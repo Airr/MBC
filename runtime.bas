@@ -160,7 +160,7 @@ IF NoRT=TRUE THEN EXIT SUB
   IF Use_Eof THEN
     FPRINT Outfile,"int EoF (FILE* stream)"
     FPRINT Outfile,"{"
-    FPRINT Outfile,"  register int c, status = ((c = fgetc(stream)) == EOF);"
+    FPRINT Outfile,"  int c, status = ((c = fgetc(stream)) == EOF);"
     FPRINT Outfile,"  ungetc(c,stream);"
     FPRINT Outfile,"  return status;"
     FPRINT Outfile,"}\n\n"

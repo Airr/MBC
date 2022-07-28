@@ -48,7 +48,7 @@ $EXECON
 
 
 '
-CONST Version$ = "4.0-Beta3 (2018/12/09)" 'BCX version number and date (YYYY/MM/DD)
+CONST Version$ = "4.0-Beta4 (2022/07/26)" 'BCX version number and date (YYYY/MM/DD)
 '*******************************************************************************
 '
 'BCX is distributed under the terms of the GNU General Public License Ver.(2).
@@ -101,6 +101,14 @@ cue that a new Basic function is needed.
 ******************************************************************************************
 This section is used to communicate to-do 's, changes, ideas, suggestions, etc.
 ******************************************************************************************
+-------------------------------------------
+2022-07-26 Armando Rivera
+After a LONG time away....
+  * Changed max size of szTmp$, Src$, and AbortSrc$ (65535)to avoid potential buffer overflows
+  * Changed max size of WarnMsg$ (65536) to avoid potential buffer overflow
+  * Removed the "register" decorator from EOF function to comply with C++17 standard
+  * The above addressed warnings thrown by C++17, which is the standard on modern Linux.
+  * Removed cdecl/stdcall from "Declare Function" (dynamic linking), since cdecl is the standard on *nix systems
 -------------------------------------------
 2018-12-12 Armando Rivera
   * Changed BcxRegEx function to REGMATCH
@@ -1082,10 +1090,14 @@ END SET
 '                              CODE BEGINS
 '*************************************************************************
 FUNCTION main(ARGC AS INTEGER, ARGV AS PCHAR PTR)
-  GLOBAL  szTmp$    * 1048576 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
-  GLOBAL  Src$      * 1048576 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
-  GLOBAL  AbortSrc$ * 1048576 'This must be at least the size of Src$
-  GLOBAL  WarnMsg$  * 32767   'This must be MORE than the size of Src$
+  ' ** AIR 2022/07/26  changed to 65535 from 2047+1 to avoid buffer overflow **
+  GLOBAL  szTmp$    * 65535 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
+  GLOBAL  Src$      * 65535 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
+  GLOBAL  AbortSrc$ * 65535 'This must be at least the size of Src$
+
+  ' ** AIR 2022/07/26  changed to 65535 from 32767 to avoid buffer overflow **
+  GLOBAL  WarnMsg$  * 65535+1   'This must be MORE than the size of Src$
+
   GLOBAL  RmLibs$   * 32767   ' libraries to remove
   LOCAL   bitz as INTEGER     ' is OS 32/64 bit
   ProtoCnt               =   0 ' Prototypes counter
@@ -2465,7 +2477,7 @@ FUNCTION PrintWriteFormat$(DoWrite)
   DIM RAW Stak[128] AS ARGTYPE
   DIM RAW Frmat$
   DIM RAW Arg$
-  DIM RAW ZZ$
+  DIM RAW ZZ$*65535
   DIM RAW Cast$
   DIM RAW NewLineFlag = 0
   DIM RAW Argcount = 0
@@ -2634,7 +2646,7 @@ SUB EmitInputCode
   DIM RAW Frmat$
   DIM Stak$[128]
   DIM RAW Y$
-  DIM RAW ZZ$
+  DIM RAW ZZ$*65535
   Use_Inputbuffer = TRUE
   Use_Scan    = TRUE
   Use_Split   = TRUE
@@ -2748,7 +2760,7 @@ SUB EmitFileInputCode
   DIM RAW Frmat$
   DIM RAW FHandle$
   DIM RAW Y$
-  DIM RAW ZZ$
+  DIM RAW ZZ$*65535
   DIM Stak$[128]
   Arg$     =  ""
   Frmat$   =  ""
@@ -2840,14 +2852,14 @@ SUB EmitFileInputCode
       VarCnt++
     END SELECT
   NEXT
-  FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(InputBuffer,1048576," ; FHandle$ ; ");"
+  FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(InputBuffer,65535," ; FHandle$ ; ");"
   FPRINT Outfile,Scoot$, "if(InputBuffer[strlen(InputBuffer)-1]== 10)"
   FPRINT Outfile,Scoot$, "   InputBuffer[strlen(InputBuffer)-1]=0;"
   FPRINT Outfile,Scoot$, "ScanError = scan(InputBuffer," + ENC$(Frmat$) + Arg$ + ");\n"
   FPRINT Outfile,Scoot$, "*InputBuffer=0;"
 END SUB ' EmitFileInputCode
 SUB AddFuncs
-  DIM RAW ZZ$
+  DIM RAW ZZ$*65535
   DIM RAW Last$
   Last$ = ""
   CALL CloseAll
@@ -6639,7 +6651,7 @@ SUB HandleNonsense
   NEXT
 END SUB ' HandleNonsense
 SUB ValidVar(v$)
-  DIM RAW ZZ$
+  DIM RAW ZZ$*65535
   IF NOT isalpha(*v$) AND *v$ <> ASC("_") THEN
     IF NOT iMatchLft(v$, "(*") THEN ' Allow byref format (*A).xxx
       Abort("Invalid String Variable Name")
@@ -6796,7 +6808,7 @@ SUB Emit
   DIM RAW Keyword$
   DIM RAW lszTmp$
   DIM RAW Var1$
-  DIM RAW ZZ$
+  DIM RAW ZZ$*65535
   DIM RAW IsSubOrFuncPtr
   DIM RAW dms
   STATIC NoBreak
@@ -6967,7 +6979,7 @@ SUB Emit
       CASE "int","fint"
       Reg$ = SPC$
       LoopLocalVar[LoopLocalCnt++] = 1
-      FPRINT Outfile,Scoot$,"  {register int ";
+      FPRINT Outfile,Scoot$,"  {int ";
       CASE "single", "float"
       Reg$ = SPC$
       LoopLocalVar[LoopLocalCnt++] = 1
@@ -7675,11 +7687,11 @@ SUB Emit
     CALL BumpUp
     IF INCHR(Stk$[2],"-") THEN
       IF LEFT$(lszTmp$,1) = "-" THEN lszTmp$ = MID$(lszTmp$,2)
-      FPRINT Outfile,Scoot$,"{register int BCX_REPEAT;"
+      FPRINT Outfile,Scoot$,"{int BCX_REPEAT;"
       FPRINT Outfile,Scoot$,"for(BCX_REPEAT=";lszTmp$;";BCX_REPEAT>=1;BCX_REPEAT--)"
       FPRINT Outfile,Scoot$,"{"
     ELSE
-      FPRINT Outfile,Scoot$,"{register int BCX_REPEAT;"
+      FPRINT Outfile,Scoot$,"{int BCX_REPEAT;"
       FPRINT Outfile,Scoot$,"for(BCX_REPEAT=1;BCX_REPEAT<=";lszTmp$;";BCX_REPEAT++)"
       FPRINT Outfile,Scoot$,"{"
     END IF
@@ -7893,7 +7905,7 @@ SUB Emit
     IF i = vt_STRLIT OR i = vt_STRVAR THEN
       IF i <> vt_STRLIT THEN Stk$[2] = Clean$(Stk$[2])
       FPRINT Outfile,Scoot$,"printf(", ENC$("%s"), ",", Stk$[2], ");"
-      FPRINT Outfile,Scoot$,"AR_fgets_retval=fgets(", Clean$(Stk$[3]),  ",2048-1,stdin);"
+      FPRINT Outfile,Scoot$,"AR_fgets_retval=fgets(", Clean$(Stk$[3]),  ",65535,stdin);"
       FPRINT Outfile,Scoot$,Clean$(Stk$[3]),"[strlen(",Clean$(Stk$[3]),")-1]=0;"
       EXIT SELECT
     END IF
@@ -7932,7 +7944,7 @@ SUB Emit
       END IF
     END IF
     FPRINT Outfile,Scoot$, Var$ ; "[0]=0;"
-    FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(" ; Var$ ; ",1048576,"; Clean$(Stk$[2]) ; ");"
+    FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(" ; Var$ ; ",65535,"; Clean$(Stk$[2]) ; ");"
     FPRINT Outfile,Scoot$, "if("    ; CVar$ ; "[strlen(" ;CVar$ ; ")-1]==10)";
     FPRINT Outfile,CVar$  ; "[strlen(" ; CVar$ ; ")-1]=0;"
     IF Var1$ <> "" THEN
@@ -9986,7 +9998,7 @@ SUB DeclareVariables
     END IF
 
     IF Use_Inputbuffer = TRUE THEN
-      FPRINT Outfile,"char    InputBuffer[1048576];"
+      FPRINT Outfile,"char    InputBuffer[65535];"
     END IF
 
     IF Use_Findfirst OR Use_Findnext THEN
@@ -10345,7 +10357,7 @@ SUB GetVarCode(varcode AS VARCODE PTR)
 END SUB ' GetVarCode
 SUB AddProtos
   DIM RAW SaveMain$
-  DIM RAW ZZ$
+  DIM RAW ZZ$*65535
   DIM RAW A
   SaveMain$  = ""
   OPEN FileOut$ FOR INPUT  AS FP1

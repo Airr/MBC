@@ -1,5 +1,5 @@
 // *********************************************************************
-//   Created with MBC (V) 4.0-Beta3 (2018/12/09)Ported to OSX by Armando Rivera
+//   Created with MBC (V) 4.0-Beta4 (2022/07/26)Ported to OSX by Armando Rivera
 //   Ported from BCX32 BASIC To C/C++ Translator (V) 5.12
 //   BCX (c) 1999 - 2018 by Kevin Diggins
 //   LinuxBC (c) 2009 by Mike Henning 
@@ -78,7 +78,7 @@ typedef long (*CPP_FARPROC)(char *);
 //            User Defined Constants
 // *************************************************
 
-#define Version "4.0-Beta3 (2018/12/09)"
+#define Version "4.0-Beta4 (2022/07/26)"
 #define __BCX__ 1
 #define vt_VarMin 2
 #define vt_VarMax vt_VARIANT 
@@ -886,6 +886,14 @@ static char* ReservedWord[]=
 // This section is used to communicate to-do 's, changes, ideas, suggestions, etc.
 // ******************************************************************************************
 // -------------------------------------------
+// 2022-07-26 Armando Rivera
+// After a LONG time away....
+//   * Changed max size of szTmp$, Src$, and AbortSrc$ (65535)to avoid potential buffer overflows
+//   * Changed max size of WarnMsg$ (65536) to avoid potential buffer overflow
+//   * Removed the "register" decorator from EOF function to comply with C++17 standard
+//   * The above addressed warnings thrown by C++17, which is the standard on modern Linux.
+//   * Removed cdecl/stdcall from "Declare Function" (dynamic linking), since cdecl is the standard on *nix systems
+// -------------------------------------------
 // 2018-12-12 Armando Rivera
 //   * Changed BcxRegEx function to REGMATCH
 //   * Changed BcxRegEx keyword to REGMATCH
@@ -1351,7 +1359,7 @@ int str_cmp (char *a, char *b)
 
 int EoF (FILE* stream)
 {
-  register int c, status = ((c = fgetc(stream)) == EOF);
+  int c, status = ((c = fgetc(stream)) == EOF);
   ungetc(c,stream);
   return status;
 }
@@ -2175,10 +2183,10 @@ int main (int argc, PCHAR* argv)
 {
   G_argc=argc;
   G_argv=argv;
-  szTmp=(char*)calloc(256+1048576,1);
-  Src=(char*)calloc(256+1048576,1);
-  AbortSrc=(char*)calloc(256+1048576,1);
-  WarnMsg=(char*)calloc(256+32767,1);
+  szTmp=(char*)calloc(256+65535,1);
+  Src=(char*)calloc(256+65535,1);
+  AbortSrc=(char*)calloc(256+65535,1);
+  WarnMsg=(char*)calloc(256+65535+1,1);
   RmLibs=(char*)calloc(256+32767,1);
   static   int  bitz;
   memset(&bitz,0,sizeof(bitz));
@@ -2242,7 +2250,7 @@ int main (int argc, PCHAR* argv)
       exit(0);
     }
   Quiet=FALSE;
-    {register int i;
+    {int i;
   for(i=2; i<=argc-1; i+=1)
     {
       if(instr_b(lcase(argv[i]),"-f"))
@@ -2434,7 +2442,7 @@ READSRCLINE:;
       if(SplitCnt==0)
         {
           Src[0]=0;
-          AR_fgets_retval=fgets(Src,1048576,SourceFile);
+          AR_fgets_retval=fgets(Src,65535,SourceFile);
           if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
           ModuleLineNos[ModuleNdx]++;
           StripCode(Src);
@@ -2710,7 +2718,7 @@ READNEXTLINE:;
   while(!EoF(FP2))
     {
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,1048576,FP2);
+      AR_fgets_retval=fgets(Z,65535,FP2);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       fprintf(FP3,"%s\n",Z);
     }
@@ -2720,7 +2728,7 @@ READNEXTLINE:;
     {
       static int     bMainOut=0;
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,1048576,FP1);
+      AR_fgets_retval=fgets(Z,65535,FP1);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       if(iMatchLft(Lastlyne,"#if"))
         {
@@ -2749,7 +2757,7 @@ READNEXTLINE:;
           while(str_cmp(trim(Z),"{")!=0)
             {
               Z[0]=0;
-              AR_fgets_retval=fgets(Z,1048576,FP1);
+              AR_fgets_retval=fgets(Z,65535,FP1);
               if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
               fprintf(FP3,"%s\n",Z);
             }
@@ -2808,7 +2816,7 @@ void EmitCmdLineConst (void)
       fprintf(FP7,"%s\n","");
       Ftmp=FP6;
       FP6=FP7;
-        {register int i;
+        {int i;
       for(i=1; i<=tally(CmdLineConst,chr(1)); i+=1)
         {
           strcpy(Src,StrToken(CmdLineConst,chr(1),i));
@@ -3037,7 +3045,7 @@ void ProcessSetCommand (int GS)
   while(!EoF(SourceFile))
     {
       Src[0]=0;
-      AR_fgets_retval=fgets(Src,1048576,SourceFile);
+      AR_fgets_retval=fgets(Src,65535,SourceFile);
       if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
       ModuleLineNos[ModuleNdx]++;
       StripCode(Src);
@@ -3517,7 +3525,7 @@ int Directives (void)
                     Abort("$Interface Without $EndInterface");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,1048576,SourceFile);
+                AR_fgets_retval=fgets(Src,65535,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 if(iMatchLft(ltrim(Src),"$endinterface"))
@@ -3539,7 +3547,7 @@ int Directives (void)
                     Abort("Unbalanced $Comment");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,1048576,SourceFile);
+                AR_fgets_retval=fgets(Src,65535,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 StripTabs();
@@ -3562,7 +3570,7 @@ int Directives (void)
                     Abort("Unbalanced $Ccode");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,1048576,SourceFile);
+                AR_fgets_retval=fgets(Src,65535,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 StripTabs();
@@ -3623,7 +3631,7 @@ int Directives (void)
                     Abort("Unbalanced $Header");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,1048576,SourceFile);
+                AR_fgets_retval=fgets(Src,65535,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 StripTabs();
@@ -3652,7 +3660,7 @@ int Directives (void)
                     Abort("Unbalanced $Asm");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,1048576,SourceFile);
+                AR_fgets_retval=fgets(Src,65535,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 if(SrcFlag)
@@ -3816,7 +3824,8 @@ char * PrintWriteFormat (int DoWrite)
    ARGTYPE  Stak[128];
   char Frmat[2048];
   char Arg[2048];
-  char ZZ[2048];
+  char *ZZ;
+  ZZ=(char*)calloc(256+65535,1);
   char Cast[2048];
   int     NewLineFlag=0;
   int     Argcount=0;
@@ -4073,6 +4082,7 @@ PRINTWRITELABEL:;
       strcat(Frmat,"\\n");
     }
   BCX_RetStr=join(4,"printf(",enc(Frmat),Clean(Arg),");");
+  if(ZZ)free(ZZ);
   return BCX_RetStr;
 }
 
@@ -4090,7 +4100,8 @@ void EmitInputCode (void)
   static char Stak[128][2048];
   memset(&Stak,0,sizeof(Stak));
   char Y[2048];
-  char ZZ[2048];
+  char *ZZ;
+  ZZ=(char*)calloc(256+65535,1);
   Use_Inputbuffer=TRUE;
   Use_Scan=TRUE;
   Use_Split=TRUE;
@@ -4243,6 +4254,7 @@ DOAGAIN:;
   fprintf(Outfile,"%s%s\n",Scoot,"InputBuffer[strlen(InputBuffer)-1]=0;");
   fprintf(Outfile,"%s%s%s%s%s\n",Scoot,"ScanError = scan(InputBuffer,",enc(Frmat),Arg,");\n");
   fprintf(Outfile,"%s%s\n",Scoot,"*InputBuffer=0;");
+  if(ZZ)free(ZZ);
 }
 
 
@@ -4256,7 +4268,8 @@ void EmitFileInputCode (void)
   char Frmat[2048];
   char FHandle[2048];
   char Y[2048];
-  char ZZ[2048];
+  char *ZZ;
+  ZZ=(char*)calloc(256+65535,1);
   static char Stak[128][2048];
   memset(&Stak,0,sizeof(Stak));
   *Arg=0;
@@ -4401,17 +4414,19 @@ DOAGAIN:;
         break;
       }
     }
-  fprintf(Outfile,"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,1048576,",FHandle,");");
+  fprintf(Outfile,"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,65535,",FHandle,");");
   fprintf(Outfile,"%s%s\n",Scoot,"if(InputBuffer[strlen(InputBuffer)-1]== 10)");
   fprintf(Outfile,"%s%s\n",Scoot,"   InputBuffer[strlen(InputBuffer)-1]=0;");
   fprintf(Outfile,"%s%s%s%s%s\n",Scoot,"ScanError = scan(InputBuffer,",enc(Frmat),Arg,");\n");
   fprintf(Outfile,"%s%s\n",Scoot,"*InputBuffer=0;");
+  if(ZZ)free(ZZ);
 }
 
 
 void AddFuncs (void)
 {
-  char ZZ[2048];
+  char *ZZ;
+  ZZ=(char*)calloc(256+65535,1);
   char Last[2048];
   *Last=0;
   CloseAll();
@@ -4436,7 +4451,7 @@ void AddFuncs (void)
   while(!EoF(FP1))
     {
       ZZ[0]=0;
-      AR_fgets_retval=fgets(ZZ,1048576,FP1);
+      AR_fgets_retval=fgets(ZZ,65535,FP1);
       if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
       if(instr_b(ZZ,"DefWindowProc"))
         {
@@ -4460,6 +4475,7 @@ void AddFuncs (void)
   remove (ovrFile);
   remove (setFile);
   remove (enuFile);
+  if(ZZ)free(ZZ);
 }
 
 
@@ -4474,7 +4490,7 @@ int CheckLocal (char *ZZ, int* varidx)
         {
           strcpy(TT,left(TT,instr_b(TT,"[")-1));
         }
-        {register int i;
+        {int i;
       for(i=1; i<=LocalVarCnt; i+=1)
         {
           if(str_cmp(TT,LocalVars[i].VarName)==0)
@@ -5453,7 +5469,7 @@ void AddLibrary (char *LibName)
     }
   if(nTimes==0)
     {
-        {register int i;
+        {int i;
       for(i=0; i<=MaxLib-1; i+=1)
         {
           *Library[i]=0;
@@ -5505,7 +5521,7 @@ void EmitLibs (void)
   fprintf(FP7,"%s\n","");
   fprintf(FP7,"%s\n","#ifndef LINUXBCX");
   fprintf(FP7,"%s\n","#if !defined( __LCC__ )");
-    {register int i;
+    {int i;
   for(i=0; i<=MaxLib-1; i+=1)
     {
       if(Library[i][0]==0&&nCount>0)
@@ -5536,7 +5552,7 @@ void EmitLibs (void)
 NEXTLIB:;
   fprintf(FP7,"%s\n","#else");
   strcat(RmLibs,",<libc.lib>,<kernel32.lib>,<comdlg32.lib>,<user32.lib>,<gdi32.lib>,<advapi32.lib>,<comctl32.lib>,<crtdll.lib>");
-    {register int i;
+    {int i;
   for(i=0; i<=MaxLib-1; i+=1)
     {
       if(Library[i][0]==0&&nCount>0)
@@ -5840,7 +5856,7 @@ void CheckParQuotes (void)
 
 void ClearIfThenStacks (void)
 {
-    {register int i;
+    {int i;
   for(i=0; i<=127; i+=1)
     {
       *SrcStk[i]=0;
@@ -5877,7 +5893,7 @@ void PostProcess (void)
       while(!EoF(FP1))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,1048576,FP1);
+          AR_fgets_retval=fgets(Z,65535,FP1);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           printf("%s\n",Z);
         }
@@ -6248,7 +6264,7 @@ void XParse (char *Arg)
     {
       if(iMatchWrd(Stk[2],"sub")||iMatchWrd(Stk[2],"function"))
         {
-            {register int i;
+            {int i;
           for(i=2; i<=Ndx; i+=1)
             {
               if(iMatchLft(Stk[i],"as")&&iMatchWrd(Stk[i+1],"string"))
@@ -7158,7 +7174,7 @@ void TokenSubstitutions (void)
                               Abort("Unbalanced ENUM");
                             }
                           Src[0]=0;
-                          AR_fgets_retval=fgets(Src,1048576,SourceFile);
+                          AR_fgets_retval=fgets(Src,65535,SourceFile);
                           if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                           ModuleLineNos[ModuleNdx]++;
                           StripCode(Src);
@@ -7411,7 +7427,7 @@ void TokenSubstitutions (void)
                       strcpy(LocalName,Stk[Tmp-2]);
                       if(LocalVarCnt)
                         {
-                            {register int i;
+                            {int i;
                           for(i=1; i<=LocalVarCnt; i+=1)
                             {
                               if(str_cmp(LocalName,LocalVars[i].VarName)==0)
@@ -9674,7 +9690,7 @@ void Parse (char *Arg)
     {
       if(iMatchNQ(Src,"->lpVtbl"))
         {
-            {register int i;
+            {int i;
           for(i=1; i<=Ndx; i+=1)
             {
               if(iMatchRgt(Stk[i],"->lpVtbl"))
@@ -10652,7 +10668,8 @@ void HandleNonsense (void)
 
 void ValidVar (char *v)
 {
-  char ZZ[2048];
+  char *ZZ;
+  ZZ=(char*)calloc(256+65535,1);
   if(!isalpha(*v)&&*v!=95)
     {
       if(!iMatchLft(v,"(*"))
@@ -10666,6 +10683,7 @@ void ValidVar (char *v)
       strcpy(ZZ, join(5,ZZ,str(ModuleLineNos[ModuleNdx])," in Module: ",trim(Modules[ModuleNdx])," is a Restricted Word"));
       Warning(ZZ);
     }
+  if(ZZ)free(ZZ);
 }
 
 
@@ -10856,7 +10874,8 @@ void Emit (void)
   char Keyword[2048];
   char lszTmp[2048];
   char Var1[2048];
-  char ZZ[2048];
+  char *ZZ;
+  ZZ=(char*)calloc(256+65535,1);
   int     IsSubOrFuncPtr;
   int     dms;
   static int     NoBreak;
@@ -10873,6 +10892,7 @@ void Emit (void)
 EMITAGAIN:;
   if(Ndx==0)
     {
+      if(ZZ)free(ZZ);
       return;
     }
   Statements++;
@@ -10880,6 +10900,7 @@ EMITAGAIN:;
     {
       fprintf(Outfile,"%s\n","");
       fprintf(Outfile,"%s%s\n",ucase(Stk[1]),";");
+      if(ZZ)free(ZZ);
       return;
     }
   for(i=1; i<=Ndx; i+=1)
@@ -11065,7 +11086,7 @@ EMITAGAIN:;
             {
               strcpy(Reg,SPC);
               LoopLocalVar[LoopLocalCnt++]=1;
-              fprintf(Outfile,"%s%s",Scoot,"  {register int ");
+              fprintf(Outfile,"%s%s",Scoot,"  {int ");
               break;
             }
           if(str_cmp(Reg,"single")==0 ||  str_cmp(Reg,"float")==0)
@@ -12035,13 +12056,13 @@ EMITAGAIN:;
               {
                 strcpy(lszTmp,mid(lszTmp,2));
               }
-            fprintf(Outfile,"%s%s\n",Scoot,"{register int BCX_REPEAT;");
+            fprintf(Outfile,"%s%s\n",Scoot,"{int BCX_REPEAT;");
             fprintf(Outfile,"%s%s%s%s\n",Scoot,"for(BCX_REPEAT=",lszTmp,";BCX_REPEAT>=1;BCX_REPEAT--)");
             fprintf(Outfile,"%s%s\n",Scoot,"{");
           }
         else
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"{register int BCX_REPEAT;");
+            fprintf(Outfile,"%s%s\n",Scoot,"{int BCX_REPEAT;");
             fprintf(Outfile,"%s%s%s%s\n",Scoot,"for(BCX_REPEAT=1;BCX_REPEAT<=",lszTmp,";BCX_REPEAT++)");
             fprintf(Outfile,"%s%s\n",Scoot,"{");
           }
@@ -12344,7 +12365,7 @@ EMITAGAIN:;
                 strcpy(Stk[2],Clean(Stk[2]));
               }
             fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"printf(",enc("%s"),",",Stk[2],");");
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Clean(Stk[3]),",2048-1,stdin);");
+            fprintf(Outfile,"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Clean(Stk[3]),",65535,stdin);");
             fprintf(Outfile,"%s%s%s%s%s\n",Scoot,Clean(Stk[3]),"[strlen(",Clean(Stk[3]),")-1]=0;");
             break;
           }
@@ -12390,7 +12411,7 @@ EMITAGAIN:;
               }
           }
         fprintf(Outfile,"%s%s%s\n",Scoot,Var,"[0]=0;");
-        fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Var,",1048576,",Clean(Stk[2]),");");
+        fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Var,",65535,",Clean(Stk[2]),");");
         fprintf(Outfile,"%s%s%s%s%s%s",Scoot,"if(",CVar,"[strlen(",CVar,")-1]==10)");
         fprintf(Outfile,"%s%s%s%s\n",CVar,"[strlen(",CVar,")-1]=0;");
         if(Var1[0]!=0)
@@ -12692,13 +12713,13 @@ EMITAGAIN:;
         if(iMatchWrd(Stk[1],"constructor")||iMatchWrd(Stk[1],"destructor"))
           {
             strcpy(Stk[1],"sub");
-              {register int ct;
+              {int ct;
             for(ct=1; ct<=Ndx; ct+=1)
               {
                 if(str_cmp(Stk[ct],"using")==0)
                   {
                     New_Ndx=ct-1;
-                      {register int ut;
+                      {int ut;
                     for(ut=ct; ut<=Ndx; ut+=1)
                       {
                         strcat(CTOR_USE,Stk[ut]);
@@ -13616,7 +13637,7 @@ EMITAGAIN:;
                     strcpy(vproc, join(2,Stk[Ndx-1],Stk[Ndx]));
                     Ndx-=2;
                   }
-                  {register int act;
+                  {int act;
                 for(act=3; act<=Ndx; act+=1)
                   {
                     strcpy(Stk[act-1],Stk[act]);
@@ -14302,6 +14323,7 @@ EMITAGAIN:;
               {
                 FuncRetnFlag=0;
                 *Stk[1]=0;
+                if(ZZ)free(ZZ);
                 return;
               }
             break;
@@ -14497,6 +14519,7 @@ PROCESSNUMERIC:;
         }
       fprintf(Outfile,"%s%s\n",Scoot,"return BCX_RetStr;");
     }
+  if(ZZ)free(ZZ);
 }
 
 
@@ -14897,7 +14920,7 @@ void DeclareVariables (void)
   while(!EoF(FP3))
     {
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,1048576,FP3);
+      AR_fgets_retval=fgets(Z,65535,FP3);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       fprintf(Outfile,"%s\n",ltrim(Z));
     }
@@ -14919,7 +14942,7 @@ void DeclareVariables (void)
       while(!EoF(FP8))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,1048576,FP8);
+          AR_fgets_retval=fgets(Z,65535,FP8);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,"%s\n",Z);
         }
@@ -14944,7 +14967,7 @@ void DeclareVariables (void)
       while(!EoF(FP3))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,1048576,FP3);
+          AR_fgets_retval=fgets(Z,65535,FP3);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,"%s%s\n",Scoot,Z);
         }
@@ -15113,7 +15136,7 @@ void DeclareVariables (void)
         }
       if(Use_Inputbuffer==TRUE)
         {
-          fprintf(Outfile,"%s\n","char    InputBuffer[1048576];");
+          fprintf(Outfile,"%s\n","char    InputBuffer[65535];");
         }
       if(Use_Findfirst||Use_Findnext)
         {
@@ -15309,7 +15332,7 @@ void DeclareVariables (void)
       while(!EoF(FP5))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,1048576,FP5);
+          AR_fgets_retval=fgets(Z,65535,FP5);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,"%s\n",Z);
         }
@@ -15323,7 +15346,7 @@ void DeclareVariables (void)
   while(!EoF(FP1))
     {
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,1048576,FP1);
+      AR_fgets_retval=fgets(Z,65535,FP1);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       fprintf(Outfile,"%s\n",Z);
     }
@@ -15660,7 +15683,8 @@ void GetVarCode (VARCODE* varcode)
 void AddProtos (void)
 {
   char SaveMain[2048];
-  char ZZ[2048];
+  char *ZZ;
+  ZZ=(char*)calloc(256+65535,1);
   int     A;
   *SaveMain=0;
   if((FP1=fopen(FileOut,"r"))==0)
@@ -15676,7 +15700,7 @@ void AddProtos (void)
   while(!EoF(FP1))
     {
       ZZ[0]=0;
-      AR_fgets_retval=fgets(ZZ,1048576,FP1);
+      AR_fgets_retval=fgets(ZZ,65535,FP1);
       if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
       if(instr_b(ZZ,"int main"))
         {
@@ -16619,7 +16643,7 @@ void AddProtos (void)
       while(!EoF(FP8))
         {
           ZZ[0]=0;
-          AR_fgets_retval=fgets(ZZ,1048576,FP8);
+          AR_fgets_retval=fgets(ZZ,65535,FP8);
           if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
           if(instr_b(ZZ,"overloaded"))
             {
@@ -16648,7 +16672,7 @@ void AddProtos (void)
       while(!EoF(FP5))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,1048576,FP5);
+          AR_fgets_retval=fgets(Z,65535,FP5);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,"%s\n",Z);
         }
@@ -16685,7 +16709,7 @@ void AddProtos (void)
   while(!EoF(FP1))
     {
       ZZ[0]=0;
-      AR_fgets_retval=fgets(ZZ,1048576,FP1);
+      AR_fgets_retval=fgets(ZZ,65535,FP1);
       if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
       fprintf(Outfile,"%s%s\n",Scoot,ZZ);
     }
@@ -16697,6 +16721,7 @@ void AddProtos (void)
   CloseAll();
   remove (FileOut);
   rename ("$t$e$m$p",FileOut);
+  if(ZZ)free(ZZ);
 }
 
 
@@ -16883,7 +16908,7 @@ void RunTimeFunctions (void)
     {
       fprintf(Outfile,"%s\n","int EoF (FILE* stream)");
       fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  register int c, status = ((c = fgetc(stream)) == EOF);");
+      fprintf(Outfile,"%s\n","  int c, status = ((c = fgetc(stream)) == EOF);");
       fprintf(Outfile,"%s\n","  ungetc(c,stream);");
       fprintf(Outfile,"%s\n","  return status;");
       fprintf(Outfile,"%s\n","}\n\n");
@@ -19059,7 +19084,7 @@ void RunTimeFunctions (void)
     {
       fprintf(Outfile,"%s\n","int BCX_StartupCode_(void)");
       fprintf(Outfile,"%s\n","{");
-        {register int i;
+        {int i;
       for(i=1; i<=StartNdx; i+=1)
         {
           fprintf(Outfile,"%s%s%s\n","  ",StartSub[i],"();");
@@ -19072,7 +19097,7 @@ void RunTimeFunctions (void)
     {
       fprintf(Outfile,"%s\n","int BCX_ExitCode_(void)");
       fprintf(Outfile,"%s\n","{");
-        {register int i;
+        {int i;
       for(i=1; i<=ExitNdx; i+=1)
         {
           fprintf(Outfile,"%s%s%s\n","  atexit(",ExitSub[i],");");
@@ -19390,7 +19415,7 @@ LFTLSE:;
                 {
                   SplitCnt--;
                 }
-                {register int BCX_REPEAT;
+                {int BCX_REPEAT;
                 for(BCX_REPEAT=1;BCX_REPEAT<=NdIfs;BCX_REPEAT++)
                 {
                   strcpy(SplitStk[SplitCnt++],"END IF");
