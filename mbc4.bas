@@ -102,6 +102,10 @@ cue that a new Basic function is needed.
 This section is used to communicate to-do 's, changes, ideas, suggestions, etc.
 ******************************************************************************************
 -------------------------------------------
+2022-07-29 Armando Rivera
+  * Added (char*) cast  in PrintWriteFormat$ function to eliminate -Wwrite-strings warning
+  * Added (char*) cast  in iMatchLft/iMatchWrd/iMatchRgt macros to eliminate -Wwrite-strings warning
+-------------------------------------------
 2022-07-26 Armando Rivera
 After a LONG time away....
   * Changed max size of szTmp$, Src$, and AbortSrc$ (65535)to avoid potential buffer overflows
@@ -2633,7 +2637,7 @@ FUNCTION PrintWriteFormat$(DoWrite)
   IF NewLineFlag = 0 THEN
     CONCAT (Frmat$,"\\n")
   END IF
-  ' AIR 2022-07-29 Added (char*) cast to eliminate -Wwrite-strings error
+  ' AIR 2022-07-29 Added (char*) cast to eliminate -Wwrite-strings warning
   FUNCTION = "printf((char*)" + ENC$(Frmat$) + Clean$(Arg$) + ");"
 END FUNCTION ' PrintWriteFormat$
 SUB EmitInputCode
