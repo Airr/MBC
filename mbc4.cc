@@ -113,9 +113,9 @@ typedef long (*CPP_FARPROC)(char *);
 #define USERTYPEDEFS_CLASS struct _USERTYPEDEFS*
 #define VARINFO_CLASS struct _VARINFO*
 #define VARCODE_CLASS struct _VARCODE*
-#define iMatchLft(A,B) iMatch (A ,B ,0)
-#define iMatchWrd(A,B) iMatch (A ,B ,1)
-#define iMatchRgt(A,B) iMatch (A ,B ,2)
+#define iMatchLft(A,B) iMatch ((char *)A ,(char *)B ,0)
+#define iMatchWrd(A,B) iMatch ((char *)A ,(char *)B ,1)
+#define iMatchRgt(A,B) iMatch ((char *)A ,(char *)B ,2)
 // *************************************************
 //        User's GLOBAL ENUM blocks
 // *************************************************
@@ -2208,43 +2208,43 @@ int main (int argc, PCHAR* argv)
   if(command(-1)[0]==0)
     {
  #if defined (__APPLE__)
-      printf("%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018");
+      printf((char*)"%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018");
  #else
-      printf("%s\n","MBC4: Based on Linux BCX by Mike Henning (c) 2009");
-      printf("%s%s\n","(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF);
+      printf((char*)"%s\n","MBC4: Based on Linux BCX by Mike Henning (c) 2009");
+      printf((char*)"%s%s\n","(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF);
  #endif
-      printf("%s%s%s","Version ",Version,"  Compiled with ");
+      printf((char*)"%s%s%s","Version ",Version,"  Compiled with ");
 // FP3
 #if defined __BCPLUSPLUS__// OUTFILE
-      printf("%s\n","Borland C++");
+      printf((char*)"%s\n","Borland C++");
 #elif defined __BORLANDC__
-      printf("%s\n","Borland C");
+      printf((char*)"%s\n","Borland C");
 #elif defined __POCC__
-      printf("%s\n","Pelles C");
+      printf((char*)"%s\n","Pelles C");
 #elif defined __GNUG__
-      printf("%s\n","GNU G++");
+      printf((char*)"%s\n","GNU G++");
 #else
-      printf("%s\n","Unknown");
+      printf((char*)"%s\n","Unknown");
 #endif  // Main
       if(bitz==64)
         {
-          printf("\n");
-          printf("%s\n","********************");
-          printf("%s\n","** 64 BIT VERSION **");
-          printf("%s%s\n","********************",LF);
+          printf((char*)"\n");
+          printf((char*)"%s\n","********************");
+          printf((char*)"%s\n","** 64 BIT VERSION **");
+          printf((char*)"%s%s\n","********************",LF);
         }
-      printf("%s%s%s\n"," Usage: ",AppExeName()," infile [.bas] [options]");
-      printf("%s\n"," [-c] Generate C++ Compatible code");
-      printf("%s%s%s\n"," [-d] DEFINE a constant ... ex. ",AppExeName()," MyFile -D:MyConst[=SomeValue]");
-      printf("%s\n"," [-e] Write ERRORS to BCX.ERR file");
-      printf("%s%s%s\n"," [-f] Output FILENAME... ex. ",AppExeName()," MyFile -f:/MyFiles/MyFile.c");
-      printf("%s\n"," [-k] KILL the generated BCX generated 'C' file");
-      printf("%s\n"," [-o] OUTPUT a copy of the generated C file to STDOUT");
-      printf("%s\n"," [-q] QUIET - No output to screen during translation");
-      printf("%s\n"," [-s] Show STATUS of translation by line number");
-      printf("%s\n"," [-w] Enable WARNINGS during translation");
-      printf("%s%s%s\n"," [-t] TURBO Mode ON w/optional size ... ex. ",AppExeName()," MyFile -t[:1024]");
-      printf("%s\n"," [-u] Turn UNICODE Support ON");
+      printf((char*)"%s%s%s\n"," Usage: ",AppExeName()," infile [.bas] [options]");
+      printf((char*)"%s\n"," [-c] Generate C++ Compatible code");
+      printf((char*)"%s%s%s\n"," [-d] DEFINE a constant ... ex. ",AppExeName()," MyFile -D:MyConst[=SomeValue]");
+      printf((char*)"%s\n"," [-e] Write ERRORS to BCX.ERR file");
+      printf((char*)"%s%s%s\n"," [-f] Output FILENAME... ex. ",AppExeName()," MyFile -f:/MyFiles/MyFile.c");
+      printf((char*)"%s\n"," [-k] KILL the generated BCX generated 'C' file");
+      printf((char*)"%s\n"," [-o] OUTPUT a copy of the generated C file to STDOUT");
+      printf((char*)"%s\n"," [-q] QUIET - No output to screen during translation");
+      printf((char*)"%s\n"," [-s] Show STATUS of translation by line number");
+      printf((char*)"%s\n"," [-w] Enable WARNINGS during translation");
+      printf((char*)"%s%s%s\n"," [-t] TURBO Mode ON w/optional size ... ex. ",AppExeName()," MyFile -t[:1024]");
+      printf((char*)"%s\n"," [-u] Turn UNICODE Support ON");
       FreeGlobals();
       fflush(stdout);
       exit(0);
@@ -2315,20 +2315,20 @@ int main (int argc, PCHAR* argv)
   if(!Quiet)
     {
       cls();
-      printf("%s%s\n","MBC Version ",Version);
+      printf((char*)"%s%s\n","MBC Version ",Version);
  #if defined (__APPLE__)
       IsApple=TRUE;
-      printf("%s%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018",LF);
+      printf((char*)"%s%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018",LF);
  #else
-      printf("%s\n","MBC4: Based on Linux BCX by Mike Henning (c) 2009");
-      printf("%s%s\n","(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF);
+      printf((char*)"%s\n","MBC4: Based on Linux BCX by Mike Henning (c) 2009");
+      printf((char*)"%s%s\n","(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF);
  #endif
       if(bitz==64)
         {
-          printf("\n");
-          printf("%s\n","********************");
-          printf("%s\n","** 64 BIT VERSION **");
-          printf("%s%s\n","********************",LF);
+          printf((char*)"\n");
+          printf((char*)"%s\n","********************");
+          printf((char*)"%s\n","** 64 BIT VERSION **");
+          printf((char*)"%s%s\n","********************",LF);
         }
     }
   if(inchr(command(1),"."))
@@ -2348,8 +2348,8 @@ int main (int argc, PCHAR* argv)
     }
   if(!Exist(Cmd))
     {
-      printf("\n");
-      printf("%s%s\n","FILE NOT FOUND: ",command(1));
+      printf((char*)"\n");
+      printf((char*)"%s%s\n","FILE NOT FOUND: ",command(1));
       FreeGlobals();
       fflush(stdout);
       exit(0);
@@ -2482,12 +2482,12 @@ READSRCLINE:;
             {
               if(!iMatchLft(Src,"end ")&&instr_b(Src,"FUNCTION",0,1)==0)
                 {
-                  fprintf(Outfile,"%s%s%s%s%s%s\n","// [",trim(Modules[ModuleNdx])," - ",trim(str(ModuleLineNos[ModuleNdx])),"] ",Src);
+                  fprintf(Outfile,(char*)"%s%s%s%s%s%s\n","// [",trim(Modules[ModuleNdx])," - ",trim(str(ModuleLineNos[ModuleNdx])),"] ",Src);
                   strcpy(Z,trim(Modules[ModuleNdx]));
                   strcpy(Z,replace(Z,"\\","\\\\"));
                   strcpy(Z, join(5," ",Z," - ",str(ModuleLineNos[ModuleNdx])," \\n"));
                   strcpy(Z, join(3,"printf(",enc(Z),");"));
-                  fprintf(Outfile,"%s\n",Z);
+                  fprintf(Outfile,(char*)"%s\n",Z);
                 }
             }
         }
@@ -2495,18 +2495,18 @@ READSRCLINE:;
         {
           if(!iMatchLft(Src,"$sourc")&&*Src!=33)
             {
-              fprintf(Outfile,"%s%s%s%s%s%s\n","// [",trim(Modules[ModuleNdx])," - ",trim(str(ModuleLineNos[ModuleNdx])),"] ",Src);
+              fprintf(Outfile,(char*)"%s%s%s%s%s%s\n","// [",trim(Modules[ModuleNdx])," - ",trim(str(ModuleLineNos[ModuleNdx])),"] ",Src);
             }
         }
       if(ShowStatus)
         {
           locate (2,1,0);
-          printf("%s%s%s%d\n","Processing Module: ",trim(Modules[ModuleNdx])," - Line:",(int)ModuleLineNos[ModuleNdx]);
+          printf((char*)"%s%s%s%d\n","Processing Module: ",trim(Modules[ModuleNdx])," - Line:",(int)ModuleLineNos[ModuleNdx]);
         }
       if(Src[0]==33)
         {
           Src[0]=32;
-          fprintf(Outfile,"%s\n",Src);
+          fprintf(Outfile,(char*)"%s\n",Src);
           *Src=0;
         }
       if(*Src==0)
@@ -2621,98 +2621,98 @@ READNEXTLINE:;
      exit(1);
    }
   DoCountLines=TRUE;
-  fprintf(FP3,"%s\n","// *********************************************************************");
-  fprintf(FP3,"%s%s%s\n","//   Created with MBC (V) ",Version,"Ported to OSX by Armando Rivera");
-  fprintf(FP3,"%s\n","//   Ported from BCX32 BASIC To C/C++ Translator (V) 5.12");
-  fprintf(FP3,"%s\n","//   BCX (c) 1999 - 2018 by Kevin Diggins");
-  fprintf(FP3,"%s\n","//   LinuxBC (c) 2009 by Mike Henning ");
-  fprintf(FP3,"%s\n","//   MBC (c) 2009 - 2018 by Armando Rivera");
-  fprintf(FP3,"%s\n","// *********************************************************************");
-  fprintf(FP3,"%s\n","//   Translated for compiling with the g++ Compiler");
+  fprintf(FP3,(char*)"%s\n","// *********************************************************************");
+  fprintf(FP3,(char*)"%s%s%s\n","//   Created with MBC (V) ",Version,"Ported to OSX by Armando Rivera");
+  fprintf(FP3,(char*)"%s\n","//   Ported from BCX32 BASIC To C/C++ Translator (V) 5.12");
+  fprintf(FP3,(char*)"%s\n","//   BCX (c) 1999 - 2018 by Kevin Diggins");
+  fprintf(FP3,(char*)"%s\n","//   LinuxBC (c) 2009 by Mike Henning ");
+  fprintf(FP3,(char*)"%s\n","//   MBC (c) 2009 - 2018 by Armando Rivera");
+  fprintf(FP3,(char*)"%s\n","// *********************************************************************");
+  fprintf(FP3,(char*)"%s\n","//   Translated for compiling with the g++ Compiler");
   if(UseCpp)
     {
-      fprintf(FP3,"%s\n","//   g++ -Wformat -D_FORTIFY_SOURCE=2 -Wno-write-strings $FILE$.cpp -ldl -o $FILE$");
+      fprintf(FP3,(char*)"%s\n","//   g++ -Wformat -D_FORTIFY_SOURCE=2 -Wno-write-strings $FILE$.cpp -ldl -o $FILE$");
     }
   else
     {
-      fprintf(FP3,"%s\n","//   g++ -Wformat -D_FORTIFY_SOURCE=2 -Wno-write-strings $FILE$.cc -ldl -o $FILE$");
+      fprintf(FP3,(char*)"%s\n","//   g++ -Wformat -D_FORTIFY_SOURCE=2 -Wno-write-strings $FILE$.cc -ldl -o $FILE$");
     }
-  fprintf(FP3,"%s\n","// *********************************************************************");
+  fprintf(FP3,(char*)"%s\n","// *********************************************************************");
   if(NoRT==FALSE)
     {
       if(Use_Osx)
         {
-          fprintf(FP3,"%s\n","#import <Cocoa/Cocoa.h>");
+          fprintf(FP3,(char*)"%s\n","#import <Cocoa/Cocoa.h>");
         }
       /*****2010-11-24AddedWxCFORWXCONSOLEApps-AIR*****/;
       if(Use_Wx||Use_WxC)
         {
-          fprintf(FP3,"%s\n","// WXWIDGETS HEADER FILES //");
-          fprintf(FP3,"%s\n","#include <wx/wx.h>");
-          fprintf(FP3,"%s\n","#include <wx/process.h>");
-          fprintf(FP3,"%s\n","#include <wx/txtstrm.h>");
-          fprintf(FP3,"%s\n","#include <wx/msgdlg.h>");
-          fprintf(FP3,"%s\n","#include <wx/stdpaths.h>");
-          fprintf(FP3,"%s\n","#include <wx/event.h>");
-          fprintf(FP3,"%s\n","// ******************* //");
-          fprintf(FP3,"%s\n","");
+          fprintf(FP3,(char*)"%s\n","// WXWIDGETS HEADER FILES //");
+          fprintf(FP3,(char*)"%s\n","#include <wx/wx.h>");
+          fprintf(FP3,(char*)"%s\n","#include <wx/process.h>");
+          fprintf(FP3,(char*)"%s\n","#include <wx/txtstrm.h>");
+          fprintf(FP3,(char*)"%s\n","#include <wx/msgdlg.h>");
+          fprintf(FP3,(char*)"%s\n","#include <wx/stdpaths.h>");
+          fprintf(FP3,(char*)"%s\n","#include <wx/event.h>");
+          fprintf(FP3,(char*)"%s\n","// ******************* //");
+          fprintf(FP3,(char*)"%s\n","");
         }
       if(Use_Gtk)
         {
-          fprintf(FP3,"%s\n","#include <gtk/gtk.h>");
+          fprintf(FP3,(char*)"%s\n","#include <gtk/gtk.h>");
         }
       if(Use_Glib)
         {
-          fprintf(FP3,"%s\n","#include <glib.h>");
+          fprintf(FP3,(char*)"%s\n","#include <glib.h>");
         }
-      fprintf(FP3,"%s\n","#include <stdbool.h>");
-      fprintf(FP3,"%s\n","#include <ctype.h>");
-      fprintf(FP3,"%s\n","#include <math.h>");
-      fprintf(FP3,"%s\n","#include <stdio.h>");
-      fprintf(FP3,"%s\n","#include <iostream>");
-      fprintf(FP3,"%s\n","#include <fstream>");
-      fprintf(FP3,"%s\n","#include <string.h>");
-      fprintf(FP3,"%s\n","#include <stddef.h>");
-      fprintf(FP3,"%s\n","#include <stdlib.h>");
-      fprintf(FP3,"%s\n","#include <setjmp.h>");
-      fprintf(FP3,"%s\n","#include <time.h>");
-      fprintf(FP3,"%s\n","#include <stdarg.h>");
-      fprintf(FP3,"%s\n","#include <dirent.h>");
-      fprintf(FP3,"%s\n","#include <sys/types.h>");
-      fprintf(FP3,"%s\n","#include <sys/stat.h>");
-      fprintf(FP3,"%s\n","#include <sys/wait.h>");
-      fprintf(FP3,"%s\n","#include <unistd.h>");
-      fprintf(FP3,"%s\n","#include <dlfcn.h>");
+      fprintf(FP3,(char*)"%s\n","#include <stdbool.h>");
+      fprintf(FP3,(char*)"%s\n","#include <ctype.h>");
+      fprintf(FP3,(char*)"%s\n","#include <math.h>");
+      fprintf(FP3,(char*)"%s\n","#include <stdio.h>");
+      fprintf(FP3,(char*)"%s\n","#include <iostream>");
+      fprintf(FP3,(char*)"%s\n","#include <fstream>");
+      fprintf(FP3,(char*)"%s\n","#include <string.h>");
+      fprintf(FP3,(char*)"%s\n","#include <stddef.h>");
+      fprintf(FP3,(char*)"%s\n","#include <stdlib.h>");
+      fprintf(FP3,(char*)"%s\n","#include <setjmp.h>");
+      fprintf(FP3,(char*)"%s\n","#include <time.h>");
+      fprintf(FP3,(char*)"%s\n","#include <stdarg.h>");
+      fprintf(FP3,(char*)"%s\n","#include <dirent.h>");
+      fprintf(FP3,(char*)"%s\n","#include <sys/types.h>");
+      fprintf(FP3,(char*)"%s\n","#include <sys/stat.h>");
+      fprintf(FP3,(char*)"%s\n","#include <sys/wait.h>");
+      fprintf(FP3,(char*)"%s\n","#include <unistd.h>");
+      fprintf(FP3,(char*)"%s\n","#include <dlfcn.h>");
  #if defined (__APPLE__)
-      fprintf(FP3,"%s\n","#include <libproc.h>");
+      fprintf(FP3,(char*)"%s\n","#include <libproc.h>");
  #endif
       if(UseCpp)
         {
-          fprintf(FP3,"%s\n","#include <iostream>");
-          fprintf(FP3,"%s\n","#include <fstream>");
+          fprintf(FP3,(char*)"%s\n","#include <iostream>");
+          fprintf(FP3,(char*)"%s\n","#include <fstream>");
         }
       if(Use_Instat)
         {
           Use_Keypress=TRUE;
-          fprintf(FP3,"%s\n","#include <fcntl.h>");
+          fprintf(FP3,(char*)"%s\n","#include <fcntl.h>");
         }
       if(Use_Keypress)
         {
-          fprintf(FP3,"%s\n","#include <term.h>");
+          fprintf(FP3,(char*)"%s\n","#include <term.h>");
         }
       if(Use_Socket)
         {
-          fprintf(FP3,"%s\n","#include <sys/socket.h>");
-          fprintf(FP3,"%s\n","#include <netinet/in.h>");
-          fprintf(FP3,"%s\n","#include <netdb.h>");
-          fprintf(FP3,"%s\n","#include <errno.h>");
-          fprintf(FP3,"%s\n","#include <arpa/inet.h>");
+          fprintf(FP3,(char*)"%s\n","#include <sys/socket.h>");
+          fprintf(FP3,(char*)"%s\n","#include <netinet/in.h>");
+          fprintf(FP3,(char*)"%s\n","#include <netdb.h>");
+          fprintf(FP3,(char*)"%s\n","#include <errno.h>");
+          fprintf(FP3,(char*)"%s\n","#include <arpa/inet.h>");
         }
       if(Use_RegEx)
         {
-          fprintf(FP3,"%s\n","#include <regex.h>");
+          fprintf(FP3,(char*)"%s\n","#include <regex.h>");
         }
-      fprintf(FP3,"%s\n","");
+      fprintf(FP3,(char*)"%s\n","");
       EmitCompilerDefines();
     }
   while(!EoF(FP2))
@@ -2720,7 +2720,7 @@ READNEXTLINE:;
       Z[0]=0;
       AR_fgets_retval=fgets(Z,65535,FP2);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-      fprintf(FP3,"%s\n",Z);
+      fprintf(FP3,(char*)"%s\n",Z);
     }
   char Lastlyne[2048];
   *Lastlyne=0;
@@ -2739,7 +2739,7 @@ READNEXTLINE:;
             }
           else
             {
-              fprintf(FP3,"%s\n",Lastlyne);
+              fprintf(FP3,(char*)"%s\n",Lastlyne);
             }
         }
       strcpy(Lastlyne,Z);
@@ -2747,7 +2747,7 @@ READNEXTLINE:;
         {
           continue;
         }
-      fprintf(FP3,"%s\n",Z);
+      fprintf(FP3,(char*)"%s\n",Z);
       if(bMainOut)
         {
           continue;
@@ -2759,15 +2759,15 @@ READNEXTLINE:;
               Z[0]=0;
               AR_fgets_retval=fgets(Z,65535,FP1);
               if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-              fprintf(FP3,"%s\n",Z);
+              fprintf(FP3,(char*)"%s\n",Z);
             }
           if(Use_StartupCode)
             {
-              fprintf(FP3,"%s%s\n",Scoot,"int BCX_SUCode = BCX_StartupCode_();  // execute user's startup code");
+              fprintf(FP3,(char*)"%s%s\n",Scoot,"int BCX_SUCode = BCX_StartupCode_();  // execute user's startup code");
             }
           if(Use_ExitCode)
             {
-              fprintf(FP3,"%s%s\n",Scoot,"int BCX_EXCode = BCX_ExitCode_();     // Prepare for user's exit code");
+              fprintf(FP3,(char*)"%s%s\n",Scoot,"int BCX_EXCode = BCX_ExitCode_();     // Prepare for user's exit code");
             }
           bMainOut++;
         }
@@ -2785,15 +2785,15 @@ READNEXTLINE:;
     {
       LinesRead+=(ModuleLineNos[1]);
       Elapsed=Round((float)clock()/(float)CLOCKS_PER_SEC,2);
-      printf("%s%d%s%d%s","[Lines In:",(int)LinesRead,"] [Lines Out:",(int)gLinesWritten,"] ");
-      printf("%s%d%s%.7G%s\n","[Statements:",(int)Statements,"] [Time:",(float)Elapsed," sec's]");
+      printf((char*)"%s%d%s%d%s","[Lines In:",(int)LinesRead,"] [Lines Out:",(int)gLinesWritten,"] ");
+      printf((char*)"%s%d%s%.7G%s\n","[Statements:",(int)Statements,"] [Time:",(float)Elapsed," sec's]");
       strcpy(Z, join(4,"BCX translated ",RemoveStr(FileIn," ")," to ",RemoveStr(FileOut," ")));
-      printf("%s\n",Z);
+      printf((char*)"%s\n",Z);
     }
   PostProcess();
   if(WarnMsg[0]>0)
     {
-      printf("%s%s%s\n","Warnings! :",CRLF,WarnMsg);
+      printf((char*)"%s%s%s\n","Warnings! :",CRLF,WarnMsg);
     }
   if(KillCFile)
     {
@@ -2809,11 +2809,11 @@ void EmitCmdLineConst (void)
   if(CmdLineConst[0]>0)
     {
       static   FILE*   Ftmp;
-      fprintf(FP7,"%s\n","");
-      fprintf(FP7,"%s\n","// ***************************************************");
-      fprintf(FP7,"%s\n","// Commandline Defines");
-      fprintf(FP7,"%s\n","// ***************************************************");
-      fprintf(FP7,"%s\n","");
+      fprintf(FP7,(char*)"%s\n","");
+      fprintf(FP7,(char*)"%s\n","// ***************************************************");
+      fprintf(FP7,(char*)"%s\n","// Commandline Defines");
+      fprintf(FP7,(char*)"%s\n","// ***************************************************");
+      fprintf(FP7,(char*)"%s\n","");
       Ftmp=FP6;
       FP6=FP7;
         {int i;
@@ -2831,63 +2831,63 @@ void EmitCmdLineConst (void)
         }
       *CmdLineConst=0;
       FP6=Ftmp;
-      fprintf(FP7,"%s\n","");
+      fprintf(FP7,(char*)"%s\n","");
     }
 }
 
 
 void EmitCompilerDefines (void)
 {
-  fprintf(FP3,"%s\n","");
-  fprintf(FP3,"%s\n","// ***************************************************");
-  fprintf(FP3,"%s\n","// Compiler Defines");
-  fprintf(FP3,"%s\n","// ***************************************************");
-  fprintf(FP3,"%s%s\n","  #define C_EXPORT extern ",enc("C"));
-  fprintf(FP3,"%s%s\n","  #define C_IMPORT extern ",enc("C"));
-  fprintf(FP3,"%s\n","");
-  fprintf(FP3,"%s\n","#ifndef stat");
-  fprintf(FP3,"%s\n","  #define lstat stat");
-  fprintf(FP3,"%s\n","#endif");
-  fprintf(FP3,"%s\n","#ifndef _fcloseall");
-  fprintf(FP3,"%s\n","  #define _fcloseall _fcloseall");
-  fprintf(FP3,"%s\n","#endif");
-  fprintf(FP3,"%s\n","#ifndef HWND");
-  fprintf(FP3,"%s\n","  #define HWND GHWND");
-  fprintf(FP3,"%s\n","#endif");
-  fprintf(FP3,"%s\n","#ifndef MAX_PATH");
-  fprintf(FP3,"%s\n","  #define MAX_PATH 2048");
-  fprintf(FP3,"%s\n","#endif");
-  fprintf(FP3,"%s\n","#ifndef CALLBACK");
-  fprintf(FP3,"%s\n","  #define CALLBACK");
-  fprintf(FP3,"%s\n","#endif");
-  fprintf(FP3,"%s\n","typedef unsigned int HINSTANCE;");
-  fprintf(FP3,"%s\n","typedef void* LPVOID;");
-  fprintf(FP3,"%s\n","typedef char* PCHAR;");
-  fprintf(FP3,"%s\n","typedef unsigned char BYTE;");
-  fprintf(FP3,"%s\n","typedef unsigned int  UINT;");
-  fprintf(FP3,"%s\n","typedef unsigned char UCHAR;");
-  fprintf(FP3,"%s\n","typedef unsigned char* PUCHAR;");
-  fprintf(FP3,"%s\n","typedef unsigned long ULONG;");
-  fprintf(FP3,"%s\n","typedef unsigned long* ULONG_PTR;");
-  fprintf(FP3,"%s\n","typedef unsigned long DWORD;");
-  fprintf(FP3,"%s\n","");
-  fprintf(FP3,"%s\n","#ifndef TRUE");
-  fprintf(FP3,"%s\n","  #define TRUE 1");
-  fprintf(FP3,"%s\n","#endif");
-  fprintf(FP3,"%s\n","");
-  fprintf(FP3,"%s\n","#ifndef FALSE");
-  fprintf(FP3,"%s\n","  #define FALSE 0");
-  fprintf(FP3,"%s\n","#endif");
+  fprintf(FP3,(char*)"%s\n","");
+  fprintf(FP3,(char*)"%s\n","// ***************************************************");
+  fprintf(FP3,(char*)"%s\n","// Compiler Defines");
+  fprintf(FP3,(char*)"%s\n","// ***************************************************");
+  fprintf(FP3,(char*)"%s%s\n","  #define C_EXPORT extern ",enc("C"));
+  fprintf(FP3,(char*)"%s%s\n","  #define C_IMPORT extern ",enc("C"));
+  fprintf(FP3,(char*)"%s\n","");
+  fprintf(FP3,(char*)"%s\n","#ifndef stat");
+  fprintf(FP3,(char*)"%s\n","  #define lstat stat");
+  fprintf(FP3,(char*)"%s\n","#endif");
+  fprintf(FP3,(char*)"%s\n","#ifndef _fcloseall");
+  fprintf(FP3,(char*)"%s\n","  #define _fcloseall _fcloseall");
+  fprintf(FP3,(char*)"%s\n","#endif");
+  fprintf(FP3,(char*)"%s\n","#ifndef HWND");
+  fprintf(FP3,(char*)"%s\n","  #define HWND GHWND");
+  fprintf(FP3,(char*)"%s\n","#endif");
+  fprintf(FP3,(char*)"%s\n","#ifndef MAX_PATH");
+  fprintf(FP3,(char*)"%s\n","  #define MAX_PATH 2048");
+  fprintf(FP3,(char*)"%s\n","#endif");
+  fprintf(FP3,(char*)"%s\n","#ifndef CALLBACK");
+  fprintf(FP3,(char*)"%s\n","  #define CALLBACK");
+  fprintf(FP3,(char*)"%s\n","#endif");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned int HINSTANCE;");
+  fprintf(FP3,(char*)"%s\n","typedef void* LPVOID;");
+  fprintf(FP3,(char*)"%s\n","typedef char* PCHAR;");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned char BYTE;");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned int  UINT;");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned char UCHAR;");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned char* PUCHAR;");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned long ULONG;");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned long* ULONG_PTR;");
+  fprintf(FP3,(char*)"%s\n","typedef unsigned long DWORD;");
+  fprintf(FP3,(char*)"%s\n","");
+  fprintf(FP3,(char*)"%s\n","#ifndef TRUE");
+  fprintf(FP3,(char*)"%s\n","  #define TRUE 1");
+  fprintf(FP3,(char*)"%s\n","#endif");
+  fprintf(FP3,(char*)"%s\n","");
+  fprintf(FP3,(char*)"%s\n","#ifndef FALSE");
+  fprintf(FP3,(char*)"%s\n","  #define FALSE 0");
+  fprintf(FP3,(char*)"%s\n","#endif");
   if(!Use_Osx)
     {
-      fprintf(FP3,"%s\n","#define BOOL bool");
+      fprintf(FP3,(char*)"%s\n","#define BOOL bool");
     }
-  fprintf(FP3,"%s\n","");
+  fprintf(FP3,(char*)"%s\n","");
   if(UseCpp)
     {
-      fprintf(FP3,"%s\n","#define println(a)  (std::cout << a << std::endl)");
-      fprintf(FP3,"%s\n","  typedef std::string CSTRING;");
-      fprintf(FP3,"%s\n","  typedef std::fstream CFILE;");
+      fprintf(FP3,(char*)"%s\n","#define println(a)  (std::cout << a << std::endl)");
+      fprintf(FP3,(char*)"%s\n","  typedef std::string CSTRING;");
+      fprintf(FP3,(char*)"%s\n","  typedef std::fstream CFILE;");
     }
 }
 
@@ -2900,7 +2900,7 @@ void MakeFreeGlobals (void)
   Emit();
   while(GlobalDynaCnt)
     {
-      fprintf(Outfile,"%s%s\n","  ",GlobalDynaStr[GlobalDynaCnt]);
+      fprintf(Outfile,(char*)"%s%s\n","  ",GlobalDynaStr[GlobalDynaCnt]);
       GlobalDynaCnt--;
     }
   strcpy(Src,"END SUB");
@@ -2957,11 +2957,11 @@ void ProcessSetCommand (int GS)
       GetVarCode( &VarCode);
       if(GS)
         {
-          fprintf(Outfile,"%s%s",Scoot,RemoveStr(VarCode.StaticOut,"static "));
+          fprintf(Outfile,(char*)"%s%s",Scoot,RemoveStr(VarCode.StaticOut,"static "));
         }
       else
         {
-          fprintf(Outfile,"%s%s",Scoot,VarCode.StaticOut);
+          fprintf(Outfile,(char*)"%s%s",Scoot,VarCode.StaticOut);
         }
        char  lszTmp[65535];
       *lszTmp=0;
@@ -2990,11 +2990,11 @@ void ProcessSetCommand (int GS)
       strcpy(CVar,Clean(Stk[2]));
       if(GS)
         {
-          fprintf(Outfile,"%s%s%s%s",Scoot,Tipe," ",CVar);
+          fprintf(Outfile,(char*)"%s%s%s%s",Scoot,Tipe," ",CVar);
         }
       else
         {
-          fprintf(Outfile,"%s%s%s%s%s",Scoot,"static ",Tipe," ",CVar);
+          fprintf(Outfile,(char*)"%s%s%s%s%s",Scoot,"static ",Tipe," ",CVar);
         }
       char DimType[2048];
       int     IsPointer;
@@ -3025,11 +3025,11 @@ void ProcessSetCommand (int GS)
         }
       if(SetString==vt_STRVAR&&j==1)
         {
-          fprintf(Outfile,"%s","[65535]=");
+          fprintf(Outfile,(char*)"%s","[65535]=");
         }
       else
         {
-          fprintf(Outfile,"%s",Stk[i]);
+          fprintf(Outfile,(char*)"%s",Stk[i]);
         }
       if(str_cmp(Stk[i],"=")==0)
         {
@@ -3040,8 +3040,8 @@ void ProcessSetCommand (int GS)
           break;
         }
     }
-  fprintf(Outfile,"%s\n","");
-  fprintf(Outfile,"%s\n","{");
+  fprintf(Outfile,(char*)"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","{");
   while(!EoF(SourceFile))
     {
       Src[0]=0;
@@ -3063,15 +3063,15 @@ void ProcessSetCommand (int GS)
         }
       if(strlen(Src))
         {
-          fprintf(Outfile,"%s","  ");
+          fprintf(Outfile,(char*)"%s","  ");
           for(ii=1; ii<=Ndx; ii+=1)
             {
-              fprintf(Outfile,"%s",Clean(Stk[ii]));
+              fprintf(Outfile,(char*)"%s",Clean(Stk[ii]));
             }
-          fprintf(Outfile,"%s\n","");
+          fprintf(Outfile,(char*)"%s\n","");
         }
     }
-  fprintf(Outfile,"%s\n","};\n");
+  fprintf(Outfile,(char*)"%s\n","};\n");
   *Src=0;
   Outfile=SaveFP;
 }
@@ -3110,9 +3110,9 @@ int Directives (void)
               }
             else
               {
-                printf("%s\n","");
-                printf("%s%s\n","Program written for BCX Version ",Src);
-                printf("%s\n","");
+                printf((char*)"%s\n","");
+                printf((char*)"%s%s\n","Program written for BCX Version ",Src);
+                printf((char*)"%s\n","");
               }
             return 0;
           }
@@ -3291,7 +3291,7 @@ int Directives (void)
         if(str_cmp(Z,"$pack")==0 ||  str_cmp(Z,"$pack(")==0)
           {
             strcpy(Src,mid(Src,6));
-            fprintf(FP4,"%s%s\n","#pragma pack ",ltrim(Src));
+            fprintf(FP4,(char*)"%s%s\n","#pragma pack ",ltrim(Src));
             *Src=0;
             return 0;
           }
@@ -3339,7 +3339,7 @@ int Directives (void)
           }
         if(str_cmp(Z,"$typed")==0)
           {
-            fprintf(FP7,"%s%s%s\n","typedef ",remain(Src," "),";");
+            fprintf(FP7,(char*)"%s%s%s\n","typedef ",remain(Src," "),";");
             *Src=0;
             return 0;
           }
@@ -3438,7 +3438,7 @@ int Directives (void)
           }
         if(str_cmp(Z,"$try")==0)
           {
-            fprintf(Outfile,"%s\n","try {");
+            fprintf(Outfile,(char*)"%s\n","try {");
             *Src=0;
             return 0;
           }
@@ -3449,7 +3449,7 @@ int Directives (void)
               {
                 strcpy(szTmp,enc("An Exception has occured!"));
               }
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"throw ",szTmp,";");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"throw ",szTmp,";");
             *Src=0;
             return 0;
           }
@@ -3460,15 +3460,15 @@ int Directives (void)
               {
                 strcpy(szTmp,"char *str");
               }
-            fprintf(Outfile,"%s\n","}");
-            fprintf(Outfile,"%s%s%s\n","catch (",szTmp,")");
-            fprintf(Outfile,"%s\n","{");
+            fprintf(Outfile,(char*)"%s\n","}");
+            fprintf(Outfile,(char*)"%s%s%s\n","catch (",szTmp,")");
+            fprintf(Outfile,(char*)"%s\n","{");
             *Src=0;
             return 0;
           }
         if(str_cmp(Z,"$endtr")==0)
           {
-            fprintf(Outfile,"%s\n","}");
+            fprintf(Outfile,(char*)"%s\n","}");
             *Src=0;
             return 0;
           }
@@ -3476,7 +3476,7 @@ int Directives (void)
           {
             InNameSpace--;
             BumpDown();
-            fprintf(Outfile,"%s%s\n",Scoot,"}");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
             *Src=0;
             return 0;
           }
@@ -3491,11 +3491,11 @@ int Directives (void)
             strcpy(szTmp,mid(Src,inchr(Src," ")+1));
             if(str_cmp(right(trim(szTmp),1),";")!=0)
               {
-                fprintf(Outfile,"%s%s%s\n","using namespace ",szTmp,";");
+                fprintf(Outfile,(char*)"%s%s%s\n","using namespace ",szTmp,";");
               }
             else
               {
-                fprintf(Outfile,"%s%s\n","using namespace ",szTmp);
+                fprintf(Outfile,(char*)"%s%s\n","using namespace ",szTmp);
               }
             *Src=0;
             return 0;
@@ -3513,11 +3513,11 @@ int Directives (void)
             if(!BeenHere)
               {
                 BeenHere++;
-                fprintf(FP4,"%s\n","#ifndef __cplusplus");
-                fprintf(FP4,"%s\n","  #error A C++ compiler is required");
-                fprintf(FP4,"%s\n","#endif");
+                fprintf(FP4,(char*)"%s\n","#ifndef __cplusplus");
+                fprintf(FP4,(char*)"%s\n","  #error A C++ compiler is required");
+                fprintf(FP4,(char*)"%s\n","#endif");
               }
-            fprintf(FP4,"%s%s%s\n","interface ",szTmp," {");
+            fprintf(FP4,(char*)"%s%s%s\n","interface ",szTmp," {");
             for(;;)
               {
                 if(EoF(SourceFile))
@@ -3532,9 +3532,9 @@ int Directives (void)
                   {
                     break;
                   }
-                fprintf(FP4,"%s\n",Src);
+                fprintf(FP4,(char*)"%s\n",Src);
               }
-            fprintf(FP4,"%s%s%s\n","}",trim(join(2,Src,13)),";");
+            fprintf(FP4,(char*)"%s%s%s\n","}",trim(join(2,Src,13)),";");
             return 0;
           }
         if(str_cmp(Z,"$comme")==0)
@@ -3555,7 +3555,7 @@ int Directives (void)
                   {
                     break;
                   }
-                fprintf(Outfile,"%s%s\n","// ",Src);
+                fprintf(Outfile,(char*)"%s%s\n","// ",Src);
               }
             *Src=0;
             return 0;
@@ -3578,11 +3578,11 @@ int Directives (void)
                   {
                     if(SrcFlag)
                       {
-                        fprintf(Outfile,"%s%s%s%s%s\n","// [",trim(Modules[ModuleNdx])," - ",trim(str(ModuleLineNos[ModuleNdx])),"] End of $CCODE Block");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s\n","// [",trim(Modules[ModuleNdx])," - ",trim(str(ModuleLineNos[ModuleNdx])),"] End of $CCODE Block");
                       }
                     break;
                   }
-                fprintf(Outfile,"%s\n",rtrim(Src));
+                fprintf(Outfile,(char*)"%s\n",rtrim(Src));
               }
             *Src=0;
             return 0;
@@ -3622,8 +3622,8 @@ int Directives (void)
         if(str_cmp(Z,"$heade")==0)
           {
             *Src=0;
-            fprintf(FP7,"%s\n","// ***************************************************");
-            fprintf(FP7,"%s\n","");
+            fprintf(FP7,(char*)"%s\n","// ***************************************************");
+            fprintf(FP7,(char*)"%s\n","");
             for(;;)
               {
                 if(EoF(SourceFile))
@@ -3640,10 +3640,10 @@ int Directives (void)
                   {
                     break;
                   }
-                fprintf(FP7,"%s\n",Src);
+                fprintf(FP7,(char*)"%s\n",Src);
               }
             *Src=0;
-            fprintf(FP7,"%s\n","");
+            fprintf(FP7,(char*)"%s\n","");
             return 0;
           }
         if(str_cmp(Z,"$asm")==0)
@@ -3665,7 +3665,7 @@ int Directives (void)
                 ModuleLineNos[ModuleNdx]++;
                 if(SrcFlag)
                   {
-                    fprintf(Outfile,"%s%s\n","// ",Src);
+                    fprintf(Outfile,(char*)"%s%s\n","// ",Src);
                   }
                 StripTabs();
                 strcpy(Src,trim(Src));
@@ -3702,14 +3702,14 @@ int Directives (void)
                         strcpy(Src, join(4,Src,TAB,"//",lszTmp));
                       }
                     strcpy(SrcTmp,Src);
-                    fprintf(Outfile,"%s\n","#if !defined( __POCC__ ) && !defined (__cplusplus )");
+                    fprintf(Outfile,(char*)"%s\n","#if !defined( __POCC__ ) && !defined (__cplusplus )");
                     strcpy(Src,replace(Src,chr(1),")"));
-                    fprintf(Outfile,"%s\n",Src);
-                    fprintf(Outfile,"%s\n","#else");
+                    fprintf(Outfile,(char*)"%s\n",Src);
+                    fprintf(Outfile,(char*)"%s\n","#else");
                     strcpy(SrcTmp,replace(SrcTmp,"_asm(","__asm{"));
                     strcpy(SrcTmp,replace(SrcTmp,chr(1),"}"));
-                    fprintf(Outfile,"%s\n",RemoveStr(SrcTmp,DQ));
-                    fprintf(Outfile,"%s\n","#endif");
+                    fprintf(Outfile,(char*)"%s\n",RemoveStr(SrcTmp,DQ));
+                    fprintf(Outfile,(char*)"%s\n","#endif");
                   }
               }
             *Src=0;
@@ -3719,7 +3719,7 @@ int Directives (void)
           {
             strcpy(Src,RemoveStr(lcase(Src),"#include"));
             strcpy(Src,trim(Src));
-            fprintf(FP7,"%s%s\n","#include ",Src);
+            fprintf(FP7,(char*)"%s%s\n","#include ",Src);
             *Src=0;
             return 0;
           }
@@ -4081,7 +4081,7 @@ PRINTWRITELABEL:;
     {
       strcat(Frmat,"\\n");
     }
-  BCX_RetStr=join(4,"printf(",enc(Frmat),Clean(Arg),");");
+  BCX_RetStr=join(4,"printf((char*)",enc(Frmat),Clean(Arg),");");
   if(ZZ)free(ZZ);
   return BCX_RetStr;
 }
@@ -4120,7 +4120,7 @@ void EmitInputCode (void)
   strcpy(Tmp, join(7,DQ,",",DQ,",",DQ," ",DQ));
   if(DataType(Stk[2])==vt_STRLIT)
     {
-      fprintf(Outfile,"%s%s%s%s\n",Scoot,"printf(",Clean(Stk[2]),");");
+      fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"printf(",Clean(Stk[2]),");");
     }
   if(DataType(Stk[2])==vt_STRLIT)
     {
@@ -4204,7 +4204,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%s");
             strcpy(Arg, join(3,Arg,",",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"*",trim(Clean(Stak[i])),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"*",trim(Clean(Stak[i])),"=0;");
             VarCnt++;
             break;
           }
@@ -4212,7 +4212,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%d");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4220,7 +4220,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%g");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4228,7 +4228,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%lG");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4236,7 +4236,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%lG");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4244,16 +4244,16 @@ DOAGAIN:;
           {
             strcat(Frmat,"%d");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
           }
         break;
       }
     }
-  fprintf(Outfile,"%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,sizeof(InputBuffer),stdin);");
-  fprintf(Outfile,"%s%s\n",Scoot,"InputBuffer[strlen(InputBuffer)-1]=0;");
-  fprintf(Outfile,"%s%s%s%s%s\n",Scoot,"ScanError = scan(InputBuffer,",enc(Frmat),Arg,");\n");
-  fprintf(Outfile,"%s%s\n",Scoot,"*InputBuffer=0;");
+  fprintf(Outfile,(char*)"%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,sizeof(InputBuffer),stdin);");
+  fprintf(Outfile,(char*)"%s%s\n",Scoot,"InputBuffer[strlen(InputBuffer)-1]=0;");
+  fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,"ScanError = scan(InputBuffer,",enc(Frmat),Arg,");\n");
+  fprintf(Outfile,(char*)"%s%s\n",Scoot,"*InputBuffer=0;");
   if(ZZ)free(ZZ);
 }
 
@@ -4368,7 +4368,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%s");
             strcpy(Arg, join(3,Arg,",",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"*",trim(Clean(Stak[i])),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"*",trim(Clean(Stak[i])),"=0;");
             VarCnt++;
             break;
           }
@@ -4376,7 +4376,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%d");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4384,7 +4384,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%g");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4392,7 +4392,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%lG");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4400,7 +4400,7 @@ DOAGAIN:;
           {
             strcat(Frmat,"%lG");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
             break;
           }
@@ -4408,17 +4408,17 @@ DOAGAIN:;
           {
             strcat(Frmat,"%d");
             strcpy(Arg, join(3,Arg,",&",Clean(Stak[i])));
-            fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stak[i]),"=0;");
             VarCnt++;
           }
         break;
       }
     }
-  fprintf(Outfile,"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,65535,",FHandle,");");
-  fprintf(Outfile,"%s%s\n",Scoot,"if(InputBuffer[strlen(InputBuffer)-1]== 10)");
-  fprintf(Outfile,"%s%s\n",Scoot,"   InputBuffer[strlen(InputBuffer)-1]=0;");
-  fprintf(Outfile,"%s%s%s%s%s\n",Scoot,"ScanError = scan(InputBuffer,",enc(Frmat),Arg,");\n");
-  fprintf(Outfile,"%s%s\n",Scoot,"*InputBuffer=0;");
+  fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,65535,",FHandle,");");
+  fprintf(Outfile,(char*)"%s%s\n",Scoot,"if(InputBuffer[strlen(InputBuffer)-1]== 10)");
+  fprintf(Outfile,(char*)"%s%s\n",Scoot,"   InputBuffer[strlen(InputBuffer)-1]=0;");
+  fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,"ScanError = scan(InputBuffer,",enc(Frmat),Arg,");\n");
+  fprintf(Outfile,(char*)"%s%s\n",Scoot,"*InputBuffer=0;");
   if(ZZ)free(ZZ);
 }
 
@@ -4442,11 +4442,11 @@ void AddFuncs (void)
    }
   if(ProtoType[1].Prototype[0]>0)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// ************************************");
-      fprintf(Outfile,"%s%s\n","//       ",BCX_STR_USR_PROCS);
-      fprintf(Outfile,"%s\n","// ************************************");
-      fprintf(Outfile,"%s\n","\n");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// ************************************");
+      fprintf(Outfile,(char*)"%s%s\n","//       ",BCX_STR_USR_PROCS);
+      fprintf(Outfile,(char*)"%s\n","// ************************************");
+      fprintf(Outfile,(char*)"%s\n","\n");
     }
   while(!EoF(FP1))
     {
@@ -4461,7 +4461,7 @@ void AddFuncs (void)
               continue;
             }
         }
-      fprintf(Outfile,"%s\n",ZZ);
+      fprintf(Outfile,(char*)"%s\n",ZZ);
       if(str_cmp(left(ZZ,2),"//")!=0)
         {
           strcpy(Last,ZZ);
@@ -5251,7 +5251,7 @@ void Warning (char * ZZ,int WarnLvl)
          fprintf(stderr,"Can't open file %s\n",FileErr);
          exit(1);
        }
-      fprintf(fErr,"%s%s\n","WARNING ",ZZ);
+      fprintf(fErr,(char*)"%s%s\n","WARNING ",ZZ);
       if(fErr)
        {
          fclose(fErr);
@@ -5518,9 +5518,9 @@ void EmitLibs (void)
     {
       return;
     }
-  fprintf(FP7,"%s\n","");
-  fprintf(FP7,"%s\n","#ifndef LINUXBCX");
-  fprintf(FP7,"%s\n","#if !defined( __LCC__ )");
+  fprintf(FP7,(char*)"%s\n","");
+  fprintf(FP7,(char*)"%s\n","#ifndef LINUXBCX");
+  fprintf(FP7,(char*)"%s\n","#if !defined( __LCC__ )");
     {int i;
   for(i=0; i<=MaxLib-1; i+=1)
     {
@@ -5541,25 +5541,25 @@ void EmitLibs (void)
       if(nCount==0)
         {
           nCount++;
-          fprintf(FP7,"%s\n","// *************************************************");
-          fprintf(FP7,"%s\n","// Instruct Linker to Search Object/Import Libraries");
-          fprintf(FP7,"%s\n","// *************************************************");
+          fprintf(FP7,(char*)"%s\n","// *************************************************");
+          fprintf(FP7,(char*)"%s\n","// Instruct Linker to Search Object/Import Libraries");
+          fprintf(FP7,(char*)"%s\n","// *************************************************");
         }
-      fprintf(FP7,"%s%s%s\n","#pragma comment(lib,",enc(ltmp),")");
+      fprintf(FP7,(char*)"%s%s%s\n","#pragma comment(lib,",enc(ltmp),")");
     }
     }
 
 NEXTLIB:;
-  fprintf(FP7,"%s\n","#else");
+  fprintf(FP7,(char*)"%s\n","#else");
   strcat(RmLibs,",<libc.lib>,<kernel32.lib>,<comdlg32.lib>,<user32.lib>,<gdi32.lib>,<advapi32.lib>,<comctl32.lib>,<crtdll.lib>");
     {int i;
   for(i=0; i<=MaxLib-1; i+=1)
     {
       if(Library[i][0]==0&&nCount>0)
         {
-          fprintf(FP7,"%s\n","// *************************************************");
-          fprintf(FP7,"%s\n","// End of Object/Import Libraries To Search");
-          fprintf(FP7,"%s\n","// *************************************************");
+          fprintf(FP7,(char*)"%s\n","// *************************************************");
+          fprintf(FP7,(char*)"%s\n","// End of Object/Import Libraries To Search");
+          fprintf(FP7,(char*)"%s\n","// *************************************************");
           goto LIBEND;
         }
       else if(Library[i][0]==0)
@@ -5573,18 +5573,18 @@ NEXTLIB:;
       if(nCount==0)
         {
           nCount++;
-          fprintf(FP7,"%s\n","");
-          fprintf(FP7,"%s\n","// *************************************************");
-          fprintf(FP7,"%s\n","// Instruct Linker to Search Object/Import Libraries");
-          fprintf(FP7,"%s\n","// *************************************************");
+          fprintf(FP7,(char*)"%s\n","");
+          fprintf(FP7,(char*)"%s\n","// *************************************************");
+          fprintf(FP7,(char*)"%s\n","// Instruct Linker to Search Object/Import Libraries");
+          fprintf(FP7,(char*)"%s\n","// *************************************************");
         }
-      fprintf(FP7,"%s%s\n","#pragma lib ",Library[i]);
+      fprintf(FP7,(char*)"%s%s\n","#pragma lib ",Library[i]);
     }
     }
 
 LIBEND:;
-  fprintf(FP7,"%s\n","#endif");
-  fprintf(FP7,"%s\n","#endif     // LINUXBCX not defined");
+  fprintf(FP7,(char*)"%s\n","#endif");
+  fprintf(FP7,(char*)"%s\n","#endif     // LINUXBCX not defined");
 }
 
 
@@ -5895,7 +5895,7 @@ void PostProcess (void)
           Z[0]=0;
           AR_fgets_retval=fgets(Z,65535,FP1);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-          printf("%s\n",Z);
+          printf((char*)"%s\n",Z);
         }
       CloseAll();
     }
@@ -5906,7 +5906,7 @@ void PostProcess (void)
       strcpy(Cmd,RemoveStr(Entry[A],DQ));
       strcpy(Cmd,replace(Cmd,"\\\\","\\"));
       strcpy(Cmd,iReplace(Cmd,"$file$",extract(OutfileClone,".")));
-      printf("%s%s\n","Shelling Out To: ",Cmd);
+      printf((char*)"%s%s\n","Shelling Out To: ",Cmd);
       Shell(Cmd);
     }
   if(Compiler[0]>0)
@@ -5925,7 +5925,7 @@ void PostProcess (void)
       strcpy(Compiler,iReplace(Compiler,"$FILE$",extract(OutfileClone,".")));
       strcpy(Compiler,replace(Compiler,"\\\\","\\"));
       strcpy(Compiler,replace(Compiler,DDQ,DQ));
-      printf("%s%s\n","Shelling Out To: ",Compiler);
+      printf((char*)"%s%s\n","Shelling Out To: ",Compiler);
       Shell(Compiler);
     }
   if(Linker[0]>0)
@@ -5944,7 +5944,7 @@ void PostProcess (void)
       strcpy(Linker,iReplace(Linker,"$FILE$",extract(OutfileClone,".")));
       strcpy(Linker,replace(Linker,"\\\\","\\"));
       strcpy(Linker,replace(Linker,DDQ,DQ));
-      printf("%s%s\n","Shelling Out To:",Linker);
+      printf((char*)"%s%s\n","Shelling Out To:",Linker);
       Shell(Linker);
     }
   for(A=1; A<=XitCount; A+=1)
@@ -5954,7 +5954,7 @@ void PostProcess (void)
       strcpy(Cmd,iReplace(Cmd,"$FILE$",extract(OutfileClone,".")));
       strcpy(Cmd,replace(Cmd,"\\\\","\\"));
       strcpy(Cmd,replace(Cmd,DDQ,DQ));
-      printf("%s%s\n","Shelling Out To: ",Cmd);
+      printf((char*)"%s%s\n","Shelling Out To: ",Cmd);
       Shell(Cmd);
     }
 }
@@ -7156,16 +7156,16 @@ void TokenSubstitutions (void)
                     {
                       Use_EnumFile=TRUE;
                       int     EnumFlag=FALSE;
-                      fprintf(FP11,"%s\n","");
+                      fprintf(FP11,(char*)"%s\n","");
                       if(Ndx==1)
                         {
-                          fprintf(FP11,"%s\n","enum");
+                          fprintf(FP11,(char*)"%s\n","enum");
                         }
                       else
                         {
-                          fprintf(FP11,"%s%s\n","enum ",Stk[1]);
+                          fprintf(FP11,(char*)"%s%s\n","enum ",Stk[1]);
                         }
-                      fprintf(FP11,"%s\n","  {");
+                      fprintf(FP11,(char*)"%s\n","  {");
                       *Src=0;
                       while(!iMatchLft(Src,"end "))
                         {
@@ -7200,15 +7200,15 @@ void TokenSubstitutions (void)
                                 }
                               else
                                 {
-                                  fprintf(FP11,"%s\n",",");
+                                  fprintf(FP11,(char*)"%s\n",",");
                                 }
                             }
-                          fprintf(FP11,"%s%s","    ",rtrim(Src));
+                          fprintf(FP11,(char*)"%s%s","    ",rtrim(Src));
                         }
                       *Src=0;
                       Ndx=0;
-                      fprintf(FP11,"%s\n","");
-                      fprintf(FP11,"%s\n","  };\n");
+                      fprintf(FP11,(char*)"%s\n","");
+                      fprintf(FP11,(char*)"%s\n","  };\n");
                       return;
                     }
                   strcpy(Stk[1],"enum {");
@@ -9141,28 +9141,28 @@ void Transforms (void)
     {
       if(str_cmp(Stk[2],"+")==0 &&  str_cmp(Stk[3],"+")==0)
         {
-          fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stk[1]),"++;");
+          fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stk[1]),"++;");
           Ndx=0;
           Statements++;
           return;
         }
       if(str_cmp(Stk[2],"-")==0 &&  str_cmp(Stk[3],"-")==0)
         {
-          fprintf(Outfile,"%s%s%s\n",Scoot,Clean(Stk[1]),"--;");
+          fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Clean(Stk[1]),"--;");
           Ndx=0;
           Statements++;
           return;
         }
       if(str_cmp(Stk[1],"+")==0 &&  str_cmp(Stk[2],"+")==0)
         {
-          fprintf(Outfile,"%s%s%s%s\n",Scoot,"++",Clean(Stk[3]),";");
+          fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"++",Clean(Stk[3]),";");
           Ndx=0;
           Statements++;
           return;
         }
       if(str_cmp(Stk[1],"-")==0 &&  str_cmp(Stk[2],"-")==0)
         {
-          fprintf(Outfile,"%s%s%s%s\n",Scoot,"--",Clean(Stk[3]),";");
+          fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"--",Clean(Stk[3]),";");
           Ndx=0;
           Statements++;
           return;
@@ -10712,15 +10712,15 @@ void DimDynaString (char *SVar, int DG, int s)
       strcpy(DynaStr[LocalDynaCnt],DS);
       if(IsAuto)
         {
-          fprintf(Outfile,"%s%s%s%s\n",Scoot,"char *",SVar,";");
+          fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"char *",SVar,";");
         }
       else if(IsRegister)
         {
-          fprintf(Outfile,"%s%s%s%s\n",Scoot,"register char *",SVar,";");
+          fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"register char *",SVar,";");
         }
       else
         {
-          fprintf(Outfile,"%s%s%s%s\n",Scoot,"char *",SVar,";");
+          fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"char *",SVar,";");
         }
       AddLocal(SVar,vt_CHAR,0,"",1,0,0);
     }
@@ -10749,12 +10749,12 @@ void DimDynaString (char *SVar, int DG, int s)
     }
   if(DG!=2)
     {
-      fprintf(Outfile,"%s%s%s",Scoot,SVar,"=(char*)calloc(256+");
+      fprintf(Outfile,(char*)"%s%s%s",Scoot,SVar,"=(char*)calloc(256+");
       for(A=4; A<=Ndx; A+=1)
         {
-          fprintf(Outfile,"%s",Clean(Stk[A]));
+          fprintf(Outfile,(char*)"%s",Clean(Stk[A]));
         }
-      fprintf(Outfile,"%s\n",",1);");
+      fprintf(Outfile,(char*)"%s\n",",1);");
     }
 }
 
@@ -10818,7 +10818,7 @@ int DimSubFunc (int IsDynamic)
         }
       if(!InNameSpace)
         {
-          fprintf(FP4,"%s%s\n",MakeDecProto( &FP),";");
+          fprintf(FP4,(char*)"%s%s\n",MakeDecProto( &FP),";");
         }
       SFPOINTER=FALSE;
       Ndx=StartPoint;
@@ -10839,16 +10839,16 @@ int DimSubFunc (int IsDynamic)
     {
       if(iMatchWrd(Stk[2],"constructor")||iMatchWrd(Stk[2],"destructor"))
         {
-          fprintf(Outfile,"%s%s%s%s\n",LF,Scoot,MakeDecProto( &FP),";");
+          fprintf(Outfile,(char*)"%s%s%s%s\n",LF,Scoot,MakeDecProto( &FP),";");
         }
       else if(Use_Virtual)
         {
-          fprintf(Outfile,"%s%s%s%s%s\n",Scoot,"virtual ",MakeDecProto( &FP),vproc,";");
+          fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,"virtual ",MakeDecProto( &FP),vproc,";");
           Use_Virtual=FALSE;
         }
       else
         {
-          fprintf(Outfile,"%s%s%s\n",Scoot,MakeDecProto( &FP),";");
+          fprintf(Outfile,(char*)"%s%s%s\n",Scoot,MakeDecProto( &FP),";");
         }
     }
   return TRUE;
@@ -10898,8 +10898,8 @@ EMITAGAIN:;
   Statements++;
   if(iMatchRgt(Stk[1],":"))
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s%s\n",ucase(Stk[1]),";");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s%s\n",ucase(Stk[1]),";");
       if(ZZ)free(ZZ);
       return;
     }
@@ -10909,7 +10909,7 @@ EMITAGAIN:;
     }
   if((CurrentFuncType==vt_STRVAR)&&InFunc&&OkayToSend)
     {
-      fprintf(Outfile,"%s%s\n",Scoot,"char *BCX_RetStr={0};");
+      fprintf(Outfile,(char*)"%s%s\n",Scoot,"char *BCX_RetStr={0};");
       OkayToSend=0;
     }
   strcpy(Lookup,lcase(Stk[1]));
@@ -10972,32 +10972,32 @@ EMITAGAIN:;
             strcpy(ZZ, join(2,"f",PrintWriteFormat(0)));
           }
         strcpy(ZZ, join(4,left(ZZ,8),RemoveStr(Handl,"@"),",",mid(ZZ,9)));
-        fprintf(Outfile,"%s%s\n",Scoot,ZZ);
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,ZZ);
         break;
       }
     if(str_cmp(Lookup,"end")==0)
       {
         if(Ndx==1)
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"fflush(stdout);");
-            fprintf(Outfile,"%s%s\n",Scoot,"exit(0);");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"fflush(stdout);");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"exit(0);");
             break;
           }
         if(str_cmp(Stk[2],"=")==0)
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"fflush(stdout);");
-            fprintf(Outfile,"%s%s",Scoot,"exit(");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"fflush(stdout);");
+            fprintf(Outfile,(char*)"%s%s",Scoot,"exit(");
             for(Tmp=3; Tmp<=Ndx; Tmp+=1)
               {
-                fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+                fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
               }
-            fprintf(Outfile,"%s\n",");");
+            fprintf(Outfile,(char*)"%s\n",");");
             break;
           }
         if(iMatchWrd(Stk[2],"if"))
           {
             BumpDown();
-            fprintf(Outfile,"%s%s\n",Scoot,"}");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
             BumpDown();
             break;
           }
@@ -11006,7 +11006,7 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"endif")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         BumpDown();
         break;
       }
@@ -11018,7 +11018,7 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"elseif")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         BumpDown();
         EmitIfCond("else if");
         break;
@@ -11086,28 +11086,28 @@ EMITAGAIN:;
             {
               strcpy(Reg,SPC);
               LoopLocalVar[LoopLocalCnt++]=1;
-              fprintf(Outfile,"%s%s",Scoot,"  {int ");
+              fprintf(Outfile,(char*)"%s%s",Scoot,"  {int ");
               break;
             }
           if(str_cmp(Reg,"single")==0 ||  str_cmp(Reg,"float")==0)
             {
               strcpy(Reg,SPC);
               LoopLocalVar[LoopLocalCnt++]=1;
-              fprintf(Outfile,"%s%s",Scoot,"  {float ");
+              fprintf(Outfile,(char*)"%s%s",Scoot,"  {float ");
               break;
             }
           if(str_cmp(Reg,"double")==0)
             {
               strcpy(Reg,SPC);
               LoopLocalVar[LoopLocalCnt++]=1;
-              fprintf(Outfile,"%s%s",Scoot,"  {double ");
+              fprintf(Outfile,(char*)"%s%s",Scoot,"  {double ");
               break;
             }
           if(str_cmp(Reg,"ldouble")==0)
             {
               strcpy(Reg,SPC);
               LoopLocalVar[LoopLocalCnt++]=1;
-              fprintf(Outfile,"%s%s",Scoot,"  {LDOUBLE ");
+              fprintf(Outfile,(char*)"%s%s",Scoot,"  {LDOUBLE ");
               break;
             }
             // case else
@@ -11172,36 +11172,36 @@ EMITAGAIN:;
         strcpy(qqq,Clean(qqq));
         if(str_cmp(Reg,SPC)==0)
           {
-            fprintf(Outfile,"%s%s\n",xxx,";");
+            fprintf(Outfile,(char*)"%s%s\n",xxx,";");
           }
         *Reg=0;
         if(IsNumberEx(qqq))
           {
             if(str_cmp(left(qqq,1),"-")==0)
               {
-                fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,"for(",Reg,xxx,"=",yyy,"; ",xxx,">=",zzz,"; ",xxx,"+=",qqq,")");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,"for(",Reg,xxx,"=",yyy,"; ",xxx,">=",zzz,"; ",xxx,"+=",qqq,")");
               }
             else
               {
-                fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,"for(",Reg,xxx,"=",yyy,"; ",xxx,"<=",zzz,"; ",xxx,"+=",qqq,")");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,"for(",Reg,xxx,"=",yyy,"; ",xxx,"<=",zzz,"; ",xxx,"+=",qqq,")");
               }
           }
         else
           {
-            fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,"for(",Reg,xxx,"=",yyy,"; ",qqq,">=0 ? ",xxx,"<=",zzz," : ",xxx,">=",zzz,"; ",xxx,"+=",qqq,")");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,"for(",Reg,xxx,"=",yyy,"; ",qqq,">=0 ? ",xxx,"<=",zzz," : ",xxx,">=",zzz,"; ",xxx,"+=",qqq,")");
           }
         BumpUp();
-        fprintf(Outfile,"%s%s\n",Scoot,"{");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
         BumpUp();
         break;
       }
     if(str_cmp(Lookup,"next")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         if(LoopLocalVar[--LoopLocalCnt])
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"}");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
           }
         if(LoopLocalCnt<0)
           {
@@ -11212,16 +11212,16 @@ EMITAGAIN:;
       }
     if(str_cmp(Lookup,"do")==0)
       {
-        fprintf(Outfile,"%s%s\n",Scoot,"for(;;)");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"for(;;)");
         BumpUp();
-        fprintf(Outfile,"%s%s\n",Scoot,"{");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
         BumpUp();
         break;
       }
     if(str_cmp(Lookup,"loop")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         BumpDown();
         break;
       }
@@ -11232,12 +11232,12 @@ EMITAGAIN:;
           {
             if(NoBreak2==0)
               {
-                fprintf(Outfile,"%s%s\n",Scoot,"break;");
+                fprintf(Outfile,(char*)"%s%s\n",Scoot,"break;");
               }
             BumpDown();
-            fprintf(Outfile,"%s%s\n",Scoot,"}");
-            fprintf(Outfile,"%s%s\n",Scoot,"// case else");
-            fprintf(Outfile,"%s%s\n",Scoot,"{");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"// case else");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
             BumpUp();
           }
         break;
@@ -11247,15 +11247,15 @@ EMITAGAIN:;
         if(CaseFlag)
           {
             BumpDown();
-            fprintf(Outfile,"%s%s\n",Scoot,"}");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
           }
         BumpDown();
         if(CaseElseFlag[Pusher]==0||NoBreak2==0)
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"break;");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"break;");
           }
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         NoBreak2=CaseElseFlag[Pusher]=0;
         Pop(CaseVar);
         break;
@@ -11263,11 +11263,11 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"else")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"else");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"else");
         BumpUp();
-        fprintf(Outfile,"%s%s\n",Scoot,"{");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
         BumpUp();
         break;
       }
@@ -11353,11 +11353,11 @@ EMITAGAIN:;
               {
                 if(NoBreak2==0)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,"break;");
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,"break;");
                   }
               }
             BumpDown();
-            fprintf(Outfile,"%s%s\n",Scoot,"}");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
             BumpDown();
           }
         CaseFlag=TRUE;
@@ -11388,7 +11388,7 @@ EMITAGAIN:;
           {
             strcat(lszTmp,Clean(Stk[i]));
           }
-        fprintf(Outfile,"%s%s%s%s\n",Scoot,"sleep(",lszTmp,");");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"sleep(",lszTmp,");");
         break;
       }
     if(str_cmp(Lookup,"qsortidx")==0)
@@ -11400,18 +11400,18 @@ EMITAGAIN:;
             strcat(lszTmp,Stk[i]);
           }
         strcpy(lszTmp,Clean(lszTmp));
-        fprintf(Outfile,"%s%s%s%s\n",Scoot,"Key = ",Stk[Ndx],";");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"Key = ",Stk[Ndx],";");
         if(str_cmp(Var,"0")!=0)
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"int iDx;");
-            fprintf(Outfile,"%s%s%s%s",Scoot,"for(iDx=0; iDx<",lszTmp,"; iDx+=1) ");
-            fprintf(Outfile,"%s%s\n",Var,"[iDx]=iDx;");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"int iDx;");
+            fprintf(Outfile,(char*)"%s%s%s%s",Scoot,"for(iDx=0; iDx<",lszTmp,"; iDx+=1) ");
+            fprintf(Outfile,(char*)"%s%s\n",Var,"[iDx]=iDx;");
           }
         if(!inchr(Stk[Ndx-2],"."))
           {
             Use_Idxqsort=TRUE;
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"pppStr = ",Clean(Stk[Ndx-2]),";");
-            fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"qsort(",Var,",",lszTmp,",sizeof(int),IdxCompare);");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"pppStr = ",Clean(Stk[Ndx-2]),";");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"qsort(",Var,",",lszTmp,",sizeof(int),IdxCompare);");
           }
         else
           {
@@ -11431,15 +11431,15 @@ EMITAGAIN:;
             if(str_cmp(Var,"0")!=0)
               {
                 Use_IdxqsortSt=TRUE;
-                fprintf(Outfile,"%s%s%s%s%s%s%s%s\n",Scoot,"cmp1 =(char*)(",Stptr,") + offsetof(",StName,",",StMem,");");
-                fprintf(Outfile,"%s%s%s%s\n",Scoot,"StructSize = sizeof(",StName,");");
-                fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"qsort(",Var,",",lszTmp,",sizeof(int),IdxCompareSt);");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s\n",Scoot,"cmp1 =(char*)(",Stptr,") + offsetof(",StName,",",StMem,");");
+                fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"StructSize = sizeof(",StName,");");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"qsort(",Var,",",lszTmp,",sizeof(int),IdxCompareSt);");
               }
             else
               {
                 Use_PtrqsortSt=TRUE;
-                fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"OffSet = offsetof(",StName,",",StMem,");");
-                fprintf(Outfile,"%s%s%s%s%s%s%s%s\n",Scoot,"qsort(",Stptr,",",lszTmp,",sizeof(",StName,"),PtrCompareSt);");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"OffSet = offsetof(",StName,",",StMem,");");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s\n",Scoot,"qsort(",Stptr,",",lszTmp,",sizeof(",StName,"),PtrCompareSt);");
               }
           }
         break;
@@ -11484,7 +11484,7 @@ EMITAGAIN:;
           {
             vt=CheckType(Stk[2]);
           }
-        fprintf(Outfile,"%s%s%s%s%s",Scoot,"qsort(",Var,",",Clean(lszTmp));
+        fprintf(Outfile,(char*)"%s%s%s%s%s",Scoot,"qsort(",Var,",",Clean(lszTmp));
         for(;;)
         {
           if(vt==vt_STRVAR)
@@ -11493,12 +11493,12 @@ EMITAGAIN:;
                 {
                   if(order==1)
                     {
-                      fprintf(Outfile,"%s%s%s\n",",sizeof(",Var,"[0]),StrCompareD);");
+                      fprintf(Outfile,(char*)"%s%s%s\n",",sizeof(",Var,"[0]),StrCompareD);");
                       Use_Strqsortd=TRUE;
                     }
                   else
                     {
-                      fprintf(Outfile,"%s%s%s\n",",sizeof(",Var,"[0]),StrCompareA);");
+                      fprintf(Outfile,(char*)"%s%s%s\n",",sizeof(",Var,"[0]),StrCompareA);");
                       Use_Strqsorta=TRUE;
                     }
                 }
@@ -11506,12 +11506,12 @@ EMITAGAIN:;
                 {
                   if(order==1)
                     {
-                      fprintf(Outfile,"%s%s%s\n",",sizeof(",Var,"[0]),DynStrCompareD);");
+                      fprintf(Outfile,(char*)"%s%s%s\n",",sizeof(",Var,"[0]),DynStrCompareD);");
                       Use_DynStrqsortd=TRUE;
                     }
                   else
                     {
-                      fprintf(Outfile,"%s%s%s\n",",sizeof(",Var,"[0]),DynStrCompareA);");
+                      fprintf(Outfile,(char*)"%s%s%s\n",",sizeof(",Var,"[0]),DynStrCompareA);");
                       Use_DynStrqsorta=TRUE;
                     }
                 }
@@ -11521,12 +11521,12 @@ EMITAGAIN:;
             {
               if(order==1)
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(int),NumCompareDint);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(int),NumCompareDint);");
                   Use_Numqsortdint=TRUE;
                 }
               else
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(int),NumCompareAint);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(int),NumCompareAint);");
                   Use_Numqsortaint=TRUE;
                 }
               break;
@@ -11535,12 +11535,12 @@ EMITAGAIN:;
             {
               if(order==1)
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(float),NumCompareDfloat);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(float),NumCompareDfloat);");
                   Use_Numqsortdfloat=TRUE;
                 }
               else
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(float),NumCompareAfloat);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(float),NumCompareAfloat);");
                   Use_Numqsortafloat=TRUE;
                 }
               break;
@@ -11549,12 +11549,12 @@ EMITAGAIN:;
             {
               if(order==1)
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(double),NumCompareDdouble);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(double),NumCompareDdouble);");
                   Use_Numqsortddouble=TRUE;
                 }
               else
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(double),NumCompareAdouble);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(double),NumCompareAdouble);");
                   Use_Numqsortadouble=TRUE;
                 }
               break;
@@ -11563,12 +11563,12 @@ EMITAGAIN:;
             {
               if(order==1)
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(int),NumCompareDint);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(int),NumCompareDint);");
                   Use_Numqsortdint=TRUE;
                 }
               else
                 {
-                  fprintf(Outfile,"%s\n",",sizeof(int),NumCompareAint);");
+                  fprintf(Outfile,(char*)"%s\n",",sizeof(int),NumCompareAint);");
                   Use_Numqsortaint=TRUE;
                 }
             }
@@ -11578,8 +11578,8 @@ EMITAGAIN:;
       }
     if(str_cmp(Lookup,"endprogram")==0)
       {
-        fprintf(Outfile,"%s\n","  return 0;         //  End of main program");
-        fprintf(Outfile,"%s\n","}\n\n");
+        fprintf(Outfile,(char*)"%s\n","  return 0;         //  End of main program");
+        fprintf(Outfile,(char*)"%s\n","}\n\n");
         EndOfProgram=1;
         break;
       }
@@ -11593,11 +11593,11 @@ EMITAGAIN:;
         strcpy(InIfDef,trim(InIfDef));
         if(InFunc||InMain)
           {
-            fprintf(Outfile,"%s\n",InIfDef);
+            fprintf(Outfile,(char*)"%s\n",InIfDef);
           }
         else
           {
-            fprintf(FP6,"%s\n",InIfDef);
+            fprintf(FP6,(char*)"%s\n",InIfDef);
           }
         break;
       }
@@ -11614,18 +11614,18 @@ EMITAGAIN:;
           {
             if(Outfile==FP3)
               {
-                fprintf(Outfile,"%s\n","// FP3");
+                fprintf(Outfile,(char*)"%s\n","// FP3");
               }
             if(Outfile==FP2)
               {
-                fprintf(Outfile,"%s\n","// FP2");
+                fprintf(Outfile,(char*)"%s\n","// FP2");
               }
-            fprintf(Outfile,"%s%s\n",InIfDef,"// OUTFILE");
+            fprintf(Outfile,(char*)"%s%s\n",InIfDef,"// OUTFILE");
             strcpy(InIfDef,"FP3");
           }
         else if(InMain)
           {
-            fprintf(Outfile,"%s%s\n",InIfDef,"// --FP2--");
+            fprintf(Outfile,(char*)"%s%s\n",InIfDef,"// --FP2--");
           }
         break;
       }
@@ -11635,11 +11635,11 @@ EMITAGAIN:;
         strcpy(ConstLastDef,InIfDef);
         if(InFunc||InMain)
           {
-            fprintf(Outfile,"%s\n",InIfDef);
+            fprintf(Outfile,(char*)"%s\n",InIfDef);
           }
         else
           {
-            fprintf(FP6,"%s\n",InIfDef);
+            fprintf(FP6,(char*)"%s\n",InIfDef);
           }
         break;
       }
@@ -11654,11 +11654,11 @@ EMITAGAIN:;
         strcpy(ConstLastDef,InIfDef);
         if(InFunc||InMain)
           {
-            fprintf(Outfile,"%s\n",InIfDef);
+            fprintf(Outfile,(char*)"%s\n",InIfDef);
           }
         else
           {
-            fprintf(FP6,"%s\n",InIfDef);
+            fprintf(FP6,(char*)"%s\n",InIfDef);
           }
         break;
       }
@@ -11666,15 +11666,15 @@ EMITAGAIN:;
       {
         if(str_cmp(InIfDef,"FP3")==0)
           {
-            fprintf(FP3,"%s\n","#endif  // FP3");
+            fprintf(FP3,(char*)"%s\n","#endif  // FP3");
           }
         else
           {
-            fprintf(Outfile,"%s\n","#endif  // Main");
+            fprintf(Outfile,(char*)"%s\n","#endif  // Main");
           }
         if(str_cmp(ConstLastDef,"FP6")==0)
           {
-            fprintf(FP6,"%s\n","#endif  // FP6");
+            fprintf(FP6,(char*)"%s\n","#endif  // FP6");
           }
         strcpy(InIfDef,"#endif  // other");
         if(InConditional==0)
@@ -11687,39 +11687,39 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"incr")==0)
       {
         j=FALSE;
-        fprintf(Outfile,"%s",Scoot);
+        fprintf(Outfile,(char*)"%s",Scoot);
         for(i=2; i<=Ndx; i+=1)
           {
             if(str_cmp(Stk[i],",")==0)
               {
-                fprintf(Outfile,"%s","+=(");
+                fprintf(Outfile,(char*)"%s","+=(");
                 j=TRUE;
               }
             else
               {
-                fprintf(Outfile,"%s",Clean(Stk[i]));
+                fprintf(Outfile,(char*)"%s",Clean(Stk[i]));
               }
           }
-        fprintf(Outfile,"%s\n",sziif(j,");","++;"));
+        fprintf(Outfile,(char*)"%s\n",sziif(j,");","++;"));
         break;
       }
     if(str_cmp(Lookup,"decr")==0)
       {
         j=FALSE;
-        fprintf(Outfile,"%s",Scoot);
+        fprintf(Outfile,(char*)"%s",Scoot);
         for(i=2; i<=Ndx; i+=1)
           {
             if(str_cmp(Stk[i],",")==0)
               {
-                fprintf(Outfile,"%s","-=(");
+                fprintf(Outfile,(char*)"%s","-=(");
                 j=TRUE;
               }
             else
               {
-                fprintf(Outfile,"%s",Clean(Stk[i]));
+                fprintf(Outfile,(char*)"%s",Clean(Stk[i]));
               }
           }
-        fprintf(Outfile,"%s\n",sziif(j,");","--;"));
+        fprintf(Outfile,(char*)"%s\n",sziif(j,");","--;"));
         break;
       }
     if(str_cmp(Lookup,"seek")==0)
@@ -11732,12 +11732,12 @@ EMITAGAIN:;
           {
             AddGlobal(Stk[2],vt_FILEPTR,0,"",0,0,0,0);
           }
-        fprintf(Outfile,"%s%s",Scoot,"fseek(");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"fseek(");
         for(Tmp=2; Tmp<=Ndx; Tmp+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
           }
-        fprintf(Outfile,"%s\n",",0);");
+        fprintf(Outfile,(char*)"%s\n",",0);");
         break;
       }
     if(str_cmp(Lookup,"select")==0)
@@ -11749,8 +11749,8 @@ EMITAGAIN:;
             strcat(CaseVar,Stk[A]);
           }
         Push(CaseVar);
-        fprintf(Outfile,"%s%s\n",Scoot,"for(;;)");
-        fprintf(Outfile,"%s%s\n",Scoot,"{");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"for(;;)");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
         BumpUp();
         break;
       }
@@ -11768,12 +11768,12 @@ EMITAGAIN:;
                 AddGlobal(Stk[2],vt_FILEPTR,0,"",0,0,0,0);
               }
           }
-        fprintf(Outfile,"%s%s",Scoot,"GET(");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"GET(");
         for(Tmp=2; Tmp<=Ndx; Tmp+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
           }
-        fprintf(Outfile,"%s\n",");");
+        fprintf(Outfile,(char*)"%s\n",");");
         break;
       }
     if(str_cmp(Lookup,"~put")==0)
@@ -11790,26 +11790,26 @@ EMITAGAIN:;
                 AddGlobal(Stk[2],vt_FILEPTR,0,"",0,0,0,0);
               }
           }
-        fprintf(Outfile,"%s%s",Scoot,"PUT(");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"PUT(");
         for(Tmp=2; Tmp<=Ndx; Tmp+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
           }
-        fprintf(Outfile,"%s\n",");");
+        fprintf(Outfile,(char*)"%s\n",");");
         break;
       }
     if(str_cmp(Lookup,"gosub")==0)
       {
         Use_Gosub=TRUE;
-        fprintf(Outfile,"%s%s",Scoot,"if (setjmp(GosubStack[GosubNdx++])==0)");
-        fprintf(Outfile,"%s%s%s\n"," goto ",ucase(Stk[2]),";");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"if (setjmp(GosubStack[GosubNdx++])==0)");
+        fprintf(Outfile,(char*)"%s%s%s\n"," goto ",ucase(Stk[2]),";");
         break;
       }
     if(str_cmp(Lookup,"return")==0)
       {
         Use_Gosub=TRUE;
-        fprintf(Outfile,"%s%s\n",Scoot,"longjmp (GosubStack [--GosubNdx],1 );");
-        fprintf(Outfile,"%s\n","");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"longjmp (GosubStack [--GosubNdx],1 );");
+        fprintf(Outfile,(char*)"%s\n","");
         break;
       }
     if(str_cmp(Lookup,"data")==0)
@@ -11825,17 +11825,17 @@ EMITAGAIN:;
               {
                 strcpy(Stk[A],enc(Stk[A]));
               }
-            fprintf(FP5,"%s",Stk[A]);
+            fprintf(FP5,(char*)"%s",Stk[A]);
           }
-        fprintf(FP5,"%s\n","");
+        fprintf(FP5,(char*)"%s\n","");
         break;
       }
     if(str_cmp(Lookup,"namespace")==0)
       {
         UseCpp=TRUE;
         strcpy(szTmp,mid(Src,inchr(Src," ")+1));
-        fprintf(Outfile,"%s%s\n","namespace ",ltrim(szTmp));
-        fprintf(Outfile,"%s\n","{");
+        fprintf(Outfile,(char*)"%s%s\n","namespace ",ltrim(szTmp));
+        fprintf(Outfile,(char*)"%s\n","{");
         InNameSpace++;
         BumpUp();
         break;
@@ -11844,7 +11844,7 @@ EMITAGAIN:;
       {
         InNameSpace--;
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         break;
       }
     if(str_cmp(Lookup,"class")==0)
@@ -11864,8 +11864,8 @@ EMITAGAIN:;
         BaseTypeDefsCnt[InTypeDef]=TypeDefsCnt;
         if(InTypeDef==1)
           {
-            fprintf(Outfile,"%s\n","");
-            fprintf(Outfile,"%s%s%s%s\n","class ",TypeName[InTypeDef],Stk[3]," {");
+            fprintf(Outfile,(char*)"%s\n","");
+            fprintf(Outfile,(char*)"%s%s%s%s\n","class ",TypeName[InTypeDef],Stk[3]," {");
             BumpUp();
           }
         break;
@@ -11873,7 +11873,7 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"endclass")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n","};",LF);
+        fprintf(Outfile,(char*)"%s%s\n","};",LF);
         InTypeDef--;
         break;
       }
@@ -11901,19 +11901,19 @@ EMITAGAIN:;
               {
                 Abort("Missing AS TYPE");
               }
-            fprintf(Outfile,"%s","typedef ");
+            fprintf(Outfile,(char*)"%s","typedef ");
             j=i-1;
             i++;
             while(i<=Ndx)
               {
-                fprintf(Outfile,"%s%s",Stk[i]," ");
+                fprintf(Outfile,(char*)"%s%s",Stk[i]," ");
                 i++;
               }
             for(i=2; i<=j; i+=1)
               {
-                fprintf(Outfile,"%s",Stk[i]);
+                fprintf(Outfile,(char*)"%s",Stk[i]);
               }
-            fprintf(Outfile,"%s\n",";");
+            fprintf(Outfile,(char*)"%s\n",";");
             Outfile=SaveOutfileNum;
           }
         else
@@ -11924,15 +11924,15 @@ EMITAGAIN:;
             BaseTypeDefsCnt[InTypeDef]=TypeDefsCnt;
             if(InTypeDef==1)
               {
-                fprintf(Outfile,"%s\n","");
-                fprintf(Outfile,"%s%s\n","typedef struct _",TypeName[InTypeDef]);
-                fprintf(Outfile,"%s\n","{");
+                fprintf(Outfile,(char*)"%s\n","");
+                fprintf(Outfile,(char*)"%s%s\n","typedef struct _",TypeName[InTypeDef]);
+                fprintf(Outfile,(char*)"%s\n","{");
                 BumpUp();
               }
             else
               {
-                fprintf(Outfile,"%s%s\n",Scoot,"struct");
-                fprintf(Outfile,"%s%s\n",Scoot,"{");
+                fprintf(Outfile,(char*)"%s%s\n",Scoot,"struct");
+                fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
                 AddTypedefElement(BaseTypeDefsCnt[InTypeDef-1],vt_STRUCT,TypeName[InTypeDef],TypeName[InTypeDef],0);
                 BumpUp();
               }
@@ -11944,16 +11944,16 @@ EMITAGAIN:;
         if(InTypeDef==1)
           {
             BumpDown();
-            fprintf(Outfile,"%s%s%s%s%s%s\n","}",TypeName[InTypeDef],", *","LP",ucase(TypeName[InTypeDef]),";");
-            fprintf(Outfile,"%s\n","");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s\n","}",TypeName[InTypeDef],", *","LP",ucase(TypeName[InTypeDef]),";");
+            fprintf(Outfile,(char*)"%s\n","");
             Outfile=SaveOutfileNum;
-            fprintf(FP6,"%s%s%s%s%s%s\n",Scoot,"#define ",ucase(TypeName[InTypeDef]),"_CLASS struct _",ucase(TypeName[InTypeDef]),"*");
+            fprintf(FP6,(char*)"%s%s%s%s%s%s\n",Scoot,"#define ",ucase(TypeName[InTypeDef]),"_CLASS struct _",ucase(TypeName[InTypeDef]),"*");
           }
         else
           {
             BumpDown();
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"} ",TypeName[InTypeDef],";");
-            fprintf(Outfile,"%s\n","");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"} ",TypeName[InTypeDef],";");
+            fprintf(Outfile,(char*)"%s\n","");
           }
         InTypeDef--;
         break;
@@ -11971,15 +11971,15 @@ EMITAGAIN:;
         BaseTypeDefsCnt[InTypeDef]=TypeDefsCnt;
         if(InTypeDef==1)
           {
-            fprintf(Outfile,"%s\n","");
-            fprintf(Outfile,"%s\n","typedef union ");
-            fprintf(Outfile,"%s\n","{");
+            fprintf(Outfile,(char*)"%s\n","");
+            fprintf(Outfile,(char*)"%s\n","typedef union ");
+            fprintf(Outfile,(char*)"%s\n","{");
             BumpUp();
           }
         else
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"union");
-            fprintf(Outfile,"%s%s\n",Scoot,"{");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"union");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
             AddTypedefElement(BaseTypeDefsCnt[InTypeDef-1],vt_UNION,TypeName[InTypeDef],TypeName[InTypeDef],0);
             BumpUp();
           }
@@ -11990,15 +11990,15 @@ EMITAGAIN:;
         if(InTypeDef==1)
           {
             BumpDown();
-            fprintf(Outfile,"%s%s%s%s%s%s\n","} ",TypeName[InTypeDef],", *","LP",ucase(TypeName[InTypeDef]),";");
-            fprintf(Outfile,"%s\n","");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s\n","} ",TypeName[InTypeDef],", *","LP",ucase(TypeName[InTypeDef]),";");
+            fprintf(Outfile,(char*)"%s\n","");
             Outfile=SaveOutfileNum;
           }
         else
           {
             BumpDown();
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"} ",TypeName[InTypeDef],";");
-            fprintf(Outfile,"%s\n","");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"} ",TypeName[InTypeDef],";");
+            fprintf(Outfile,(char*)"%s\n","");
           }
         InTypeDef--;
         break;
@@ -12025,20 +12025,20 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"clear")==0)
       {
         Use_Clear=TRUE;
-        fprintf(Outfile,"%s%s",Scoot,"Clear ");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"Clear ");
         if(str_cmp(Stk[2],"(")!=0)
           {
-            fprintf(Outfile,"%s","(");
+            fprintf(Outfile,(char*)"%s","(");
           }
         for(i=2; i<=Ndx; i+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[i]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[i]));
           }
         if(str_cmp(Stk[2],"(")!=0)
           {
-            fprintf(Outfile,"%s",")");
+            fprintf(Outfile,(char*)"%s",")");
           }
-        fprintf(Outfile,"%s\n",";");
+        fprintf(Outfile,(char*)"%s\n",";");
         break;
       }
     if(str_cmp(Lookup,"repeat")==0)
@@ -12056,15 +12056,15 @@ EMITAGAIN:;
               {
                 strcpy(lszTmp,mid(lszTmp,2));
               }
-            fprintf(Outfile,"%s%s\n",Scoot,"{int BCX_REPEAT;");
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"for(BCX_REPEAT=",lszTmp,";BCX_REPEAT>=1;BCX_REPEAT--)");
-            fprintf(Outfile,"%s%s\n",Scoot,"{");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"{int BCX_REPEAT;");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"for(BCX_REPEAT=",lszTmp,";BCX_REPEAT>=1;BCX_REPEAT--)");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
           }
         else
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"{int BCX_REPEAT;");
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"for(BCX_REPEAT=1;BCX_REPEAT<=",lszTmp,";BCX_REPEAT++)");
-            fprintf(Outfile,"%s%s\n",Scoot,"{");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"{int BCX_REPEAT;");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"for(BCX_REPEAT=1;BCX_REPEAT<=",lszTmp,";BCX_REPEAT++)");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
           }
         BumpUp();
         break;
@@ -12072,8 +12072,8 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"endrepeat")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         BumpDown();
         break;
       }
@@ -12118,42 +12118,42 @@ EMITAGAIN:;
           {
             if(InFunc)
               {
-                fprintf(Outfile,"%s\n",Buffer);
+                fprintf(Outfile,(char*)"%s\n",Buffer);
               }
             else
               {
                 if(str_cmp(ConstLastDef,"FP6")!=0)
                   {
-                    fprintf(FP6,"%s%s\n",InIfDef,"// FP6");
+                    fprintf(FP6,(char*)"%s%s\n",InIfDef,"// FP6");
                     strcpy(ConstLastDef,"FP6");
                   }
-                fprintf(FP6,"%s\n",Buffer);
+                fprintf(FP6,(char*)"%s\n",Buffer);
               }
           }
         else
           {
-            fprintf(FP6,"%s\n",Buffer);
+            fprintf(FP6,(char*)"%s\n",Buffer);
           }
         break;
       }
     if(str_cmp(Lookup,"kill")==0)
       {
-        fprintf(Outfile,"%s%s",Scoot,"remove (");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"remove (");
         for(A=2; A<=Ndx; A+=1)
           {
-            fprintf(Outfile,"%s",Clean(trim(Stk[A])));
+            fprintf(Outfile,(char*)"%s",Clean(trim(Stk[A])));
           }
-        fprintf(Outfile,"%s\n",");");
+        fprintf(Outfile,(char*)"%s\n",");");
         break;
       }
     if(str_cmp(Lookup,"chdir")==0 ||  str_cmp(Lookup,"_chdir")==0 ||  str_cmp(Lookup,"rmdir")==0 ||  str_cmp(Lookup,"_rmdir")==0 ||  str_cmp(Lookup,"mkdir")==0 ||  str_cmp(Lookup,"_mkdir")==0)
       {
-        fprintf(Outfile,"%s%s%s",Scoot,Lookup," (");
+        fprintf(Outfile,(char*)"%s%s%s",Scoot,Lookup," (");
         for(A=2; A<=Ndx; A+=1)
           {
-            fprintf(Outfile,"%s",Clean(trim(Stk[A])));
+            fprintf(Outfile,(char*)"%s",Clean(trim(Stk[A])));
           }
-        fprintf(Outfile,"%s\n",");");
+        fprintf(Outfile,(char*)"%s\n",");");
         break;
       }
     if(str_cmp(Lookup,"free")==0)
@@ -12197,22 +12197,22 @@ EMITAGAIN:;
             if(vt!=vt_UNKNOWN&&dms>0)
               {
                 Use_DynamicA=TRUE;
-                fprintf(Outfile,"%s%s%s",Scoot,"if (",CVar);
-                fprintf(Outfile,"%s%s%s%d%s",") { DestroyArr((void **)",CVar,",",(int)dms,", 1); ");
-                fprintf(Outfile,"%s%s\n",CVar,"=NULL; }");
+                fprintf(Outfile,(char*)"%s%s%s",Scoot,"if (",CVar);
+                fprintf(Outfile,(char*)"%s%s%s%d%s",") { DestroyArr((void **)",CVar,",",(int)dms,", 1); ");
+                fprintf(Outfile,(char*)"%s%s\n",CVar,"=NULL; }");
                 break;
               }
           }
         if(VI->VarPntr>1)
           {
             Use_DynamicA=TRUE;
-            fprintf(Outfile,"%s%s%s",Scoot,"if (",CVar);
-            fprintf(Outfile,"%s%s%s%s%s",") { DestroyArr((void **)",CVar,",",str(VI->VarPntr),", 1); ");
-            fprintf(Outfile,"%s%s\n",CVar,"=NULL; }");
+            fprintf(Outfile,(char*)"%s%s%s",Scoot,"if (",CVar);
+            fprintf(Outfile,(char*)"%s%s%s%s%s",") { DestroyArr((void **)",CVar,",",str(VI->VarPntr),", 1); ");
+            fprintf(Outfile,(char*)"%s%s\n",CVar,"=NULL; }");
           }
         else
           {
-            fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"free(",CVar,"), ",CVar,"=NULL;");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"free(",CVar,"), ",CVar,"=NULL;");
           }
         break;
       }
@@ -12223,7 +12223,7 @@ EMITAGAIN:;
           {
             strcat(Src,Clean(Stk[A]));
           }
-        fprintf(Outfile,"%s%s%s\n",Scoot,trim(Src),";");
+        fprintf(Outfile,(char*)"%s%s%s\n",Scoot,trim(Src),";");
         break;
       }
     if(str_cmp(Lookup,"swap")==0)
@@ -12231,14 +12231,14 @@ EMITAGAIN:;
          VarInfo*  VI1;
          VarInfo*  VI2;
          int  indx;
-        fprintf(Outfile,"%s%s",Scoot,"swap ((BYTE*)&");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"swap ((BYTE*)&");
         for(i=2; i<=Ndx; i+=1)
           {
             if(str_cmp(Stk[i],",")==0)
               {
                 break;
               }
-            fprintf(Outfile,"%s",Clean(Stk[i]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[i]));
           }
         A=CheckLocal(Stk[2], &indx);
         if(A==vt_UNKNOWN)
@@ -12258,14 +12258,14 @@ EMITAGAIN:;
           {
             if(VI1->VarType==vt_CHAR&&VI1->VarPntr==1)
               {
-                fprintf(Outfile,"%s","[0]");
+                fprintf(Outfile,(char*)"%s","[0]");
               }
           }
-        fprintf(Outfile,"%s",",(BYTE*)&");
+        fprintf(Outfile,(char*)"%s",",(BYTE*)&");
         i++;
         for(j=i; j<=Ndx; j+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[j]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[j]));
           }
         A=CheckLocal(Stk[i], &indx);
         if(A==vt_UNKNOWN)
@@ -12285,7 +12285,7 @@ EMITAGAIN:;
           {
             if(VI2->VarType==vt_CHAR&&VI2->VarPntr==1)
               {
-                fprintf(Outfile,"%s","[0]");
+                fprintf(Outfile,(char*)"%s","[0]");
               }
           }
         if(VI1->VarType!=VI2->VarType)
@@ -12294,47 +12294,47 @@ EMITAGAIN:;
           }
         if(VI2->VarType==vt_STRVAR||VI2->VarType==vt_CHAR)
           {
-            fprintf(Outfile,"%s",",strlen(");
+            fprintf(Outfile,(char*)"%s",",strlen(");
           }
         else
           {
-            fprintf(Outfile,"%s",",sizeof(");
+            fprintf(Outfile,(char*)"%s",",sizeof(");
           }
         for(j=i; j<=Ndx; j+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[j]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[j]));
           }
-        fprintf(Outfile,"%s\n","));");
+        fprintf(Outfile,(char*)"%s\n","));");
         break;
       }
     if(str_cmp(Lookup,"rename")==0)
       {
-        fprintf(Outfile,"%s%s",Scoot,"rename (");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"rename (");
         for(A=2; A<=Ndx; A+=1)
           {
-            fprintf(Outfile,"%s",Clean(trim(Stk[A])));
+            fprintf(Outfile,(char*)"%s",Clean(trim(Stk[A])));
           }
-        fprintf(Outfile,"%s\n",");");
+        fprintf(Outfile,(char*)"%s\n",");");
         break;
       }
     if(str_cmp(Lookup,"copyfile")==0)
       {
-        fprintf(Outfile,"%s%s",Scoot,"CopyFile ");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"CopyFile ");
         if(str_cmp(Stk[2],"(")!=0)
           {
-            fprintf(Outfile,"%s","(");
+            fprintf(Outfile,(char*)"%s","(");
           }
         for(A=2; A<=Ndx; A+=1)
           {
-            fprintf(Outfile,"%s",Clean(trim(Stk[A])));
+            fprintf(Outfile,(char*)"%s",Clean(trim(Stk[A])));
           }
         if(str_cmp(Stk[Ndx],")")!=0)
           {
-            fprintf(Outfile,"%s\n",");");
+            fprintf(Outfile,(char*)"%s\n",");");
           }
         else
           {
-            fprintf(Outfile,"%s\n",";");
+            fprintf(Outfile,(char*)"%s\n",";");
           }
         break;
       }
@@ -12352,7 +12352,7 @@ EMITAGAIN:;
           {
             strcpy(ZZ,DDQ);
           }
-        fprintf(Outfile,"%s%s%s%s\n",Scoot,"Shell(",Clean(ZZ),");");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"Shell(",Clean(ZZ),");");
         break;
       }
     if(str_cmp(Lookup,"lineinput")==0)
@@ -12364,9 +12364,9 @@ EMITAGAIN:;
               {
                 strcpy(Stk[2],Clean(Stk[2]));
               }
-            fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"printf(",enc("%s"),",",Stk[2],");");
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Clean(Stk[3]),",65535,stdin);");
-            fprintf(Outfile,"%s%s%s%s%s\n",Scoot,Clean(Stk[3]),"[strlen(",Clean(Stk[3]),")-1]=0;");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"printf(",enc("%s"),",",Stk[2],");");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Clean(Stk[3]),",65535,stdin);");
+            fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,Clean(Stk[3]),"[strlen(",Clean(Stk[3]),")-1]=0;");
             break;
           }
         strcpy(Stk[2],RemoveStr(Stk[2],"#"));
@@ -12410,13 +12410,13 @@ EMITAGAIN:;
                 strcpy(Var,CVar);
               }
           }
-        fprintf(Outfile,"%s%s%s\n",Scoot,Var,"[0]=0;");
-        fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Var,",65535,",Clean(Stk[2]),");");
-        fprintf(Outfile,"%s%s%s%s%s%s",Scoot,"if(",CVar,"[strlen(",CVar,")-1]==10)");
-        fprintf(Outfile,"%s%s%s%s\n",CVar,"[strlen(",CVar,")-1]=0;");
+        fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Var,"[0]=0;");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Var,",65535,",Clean(Stk[2]),");");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s",Scoot,"if(",CVar,"[strlen(",CVar,")-1]==10)");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",CVar,"[strlen(",CVar,")-1]=0;");
         if(Var1[0]!=0)
           {
-            fprintf(Outfile,"%s%s\n",Var1,";");
+            fprintf(Outfile,(char*)"%s%s\n",Var1,";");
           }
         break;
       }
@@ -12550,11 +12550,11 @@ EMITAGAIN:;
                   strcpy(ZZ,lcase(Stk[A+1]));
                   if(i==vt_STRUCT||i==vt_UNION||str_cmp(ZZ,"int")==0 ||  str_cmp(ZZ,"double")==0 ||  str_cmp(ZZ,"float")==0)
                     {
-                      fprintf(Outfile,"%s%s%s%s%s\n",Scoot,Var," = sizeof(",Stk[A+1],");");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,Var," = sizeof(",Stk[A+1],");");
                     }
                   else
                     {
-                      fprintf(Outfile,"%s%s%s%s%s\n",Scoot,Var," = ",Clean(Stk[A+1]),";");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,Var," = ",Clean(Stk[A+1]),";");
                     }
                   *Stk[A]=0;
                   *Stk[A+1]=0;
@@ -12562,12 +12562,12 @@ EMITAGAIN:;
               break;
             }
           }
-        fprintf(Outfile,"%s%s%s%s%s%s%s%s\n",Scoot,"if((",Clean(Handl),"=fopen(",Filnam,",",Op,"))==0)");
-        fprintf(Outfile,"%s%s\n",Scoot," {");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s\n",Scoot,"if((",Clean(Handl),"=fopen(",Filnam,",",Op,"))==0)");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot," {");
         strcpy(lszTmp,enc("Can't open file %s\\n"));
-        fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"   fprintf(stderr,",lszTmp,",",Filnam,");");
-        fprintf(Outfile,"%s%s\n",Scoot,"   exit(1);");
-        fprintf(Outfile,"%s%s\n",Scoot," }");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"   fprintf(stderr,",lszTmp,",",Filnam,");");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"   exit(1);");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot," }");
         break;
       }
     if(str_cmp(Lookup,"record")==0)
@@ -12593,15 +12593,15 @@ EMITAGAIN:;
           }
         if(numargs==3)
           {
-            fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s\n",Scoot,"fseek(",GetArg(1, &ffp),", (",GetArg(2, &ffp)," - 1) * ",Stk[2],"len + ",GetArg(3, &ffp),", SEEK_SET);");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s\n",Scoot,"fseek(",GetArg(1, &ffp),", (",GetArg(2, &ffp)," - 1) * ",Stk[2],"len + ",GetArg(3, &ffp),", SEEK_SET);");
           }
         else if(numargs==2)
           {
-            fprintf(Outfile,"%s%s%s%s%s%s%s%s\n",Scoot,"fseek(",GetArg(1, &ffp),", (",GetArg(2, &ffp)," - 1) * ",Stk[2],"len, SEEK_SET);");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s\n",Scoot,"fseek(",GetArg(1, &ffp),", (",GetArg(2, &ffp)," - 1) * ",Stk[2],"len, SEEK_SET);");
           }
         else
           {
-            fprintf(Outfile,"%s%s%s%s\n",Scoot,"fseek(",GetArg(1, &ffp),", 0, SEEK_SET);");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"fseek(",GetArg(1, &ffp),", 0, SEEK_SET);");
           }
         break;
       }
@@ -12629,14 +12629,14 @@ EMITAGAIN:;
         strcat(Handl,"@");
         strcpy(ZZ, join(2,"f",PrintWriteFormat(1)));
         strcpy(ZZ, join(4,left(ZZ,8),Clean(Handl),",",mid(ZZ,9)));
-        fprintf(Outfile,"%s%s\n",Scoot,ZZ);
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,ZZ);
         break;
       }
     if(str_cmp(Lookup,"close")==0)
       {
         if(Ndx==1)
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"fcloseall();");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"fcloseall();");
             break;
           }
         if(DataType(Stk[2])==vt_NUMBER)
@@ -12655,11 +12655,11 @@ EMITAGAIN:;
           {
             strcat(Handl,Stk[j]);
           }
-        fprintf(Outfile,"%s%s%s%s\n",Scoot,"if(",Handl,")");
-        fprintf(Outfile,"%s%s\n",Scoot," {");
-        fprintf(Outfile,"%s%s%s%s\n",Scoot,"   fclose(",Handl,");");
-        fprintf(Outfile,"%s%s%s%s\n",Scoot,"   ",Handl,"=NULL;");
-        fprintf(Outfile,"%s%s\n",Scoot," }");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"if(",Handl,")");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot," {");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"   fclose(",Handl,");");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"   ",Handl,"=NULL;");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot," }");
         break;
       }
     if(str_cmp(Lookup,"call")==0)
@@ -12674,7 +12674,7 @@ EMITAGAIN:;
             strcat(lszTmp,"()");
           }
         strcat(lszTmp,";");
-        fprintf(Outfile,"%s%s\n",Scoot,lszTmp);
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,lszTmp);
         break;
       }
     if(str_cmp(Lookup,"declare")==0)
@@ -12687,7 +12687,7 @@ EMITAGAIN:;
         strcpy(TempProto,MakeDecProto( &FP));
         if(!NoTypeDeclare)
           {
-            fprintf(FP4,"%s%s\n",TempProto,";");
+            fprintf(FP4,(char*)"%s%s\n",TempProto,";");
           }
         else
           {
@@ -12930,8 +12930,8 @@ EMITAGAIN:;
           {
             if(str_cmp(InIfDef,"FP3")!=0)
               {
-                fprintf(Outfile,"%s\n",InIfDef);
-                printf("%s\n",InIfDef);
+                fprintf(Outfile,(char*)"%s\n",InIfDef);
+                printf((char*)"%s\n",InIfDef);
               }
           }
         if(Use_Ctor)
@@ -12940,12 +12940,12 @@ EMITAGAIN:;
             strcpy(VarCode.Header,replace(VarCode.Header,"void",""));
             if(strlen(CTOR_USE))
               {
-                fprintf(Outfile,"%s\n",VarCode.Header);
-                fprintf(Outfile,"%s%s\n",Scoot,CTOR_USE);
+                fprintf(Outfile,(char*)"%s\n",VarCode.Header);
+                fprintf(Outfile,(char*)"%s%s\n",Scoot,CTOR_USE);
               }
             else
               {
-                fprintf(Outfile,"%s\n",VarCode.Header);
+                fprintf(Outfile,(char*)"%s\n",VarCode.Header);
               }
             Use_Ctor=FALSE;
           }
@@ -12957,13 +12957,13 @@ EMITAGAIN:;
               {
                 strcpy(szCPP_SF1,"public: virtual ");
               }
-            fprintf(Outfile,"%s%s%s\n",Scoot,szCPP_SF1,VarCode.Header);
+            fprintf(Outfile,(char*)"%s%s%s\n",Scoot,szCPP_SF1,VarCode.Header);
           }
         else
           {
-            fprintf(Outfile,"%s\n",VarCode.Header);
+            fprintf(Outfile,(char*)"%s\n",VarCode.Header);
           }
-        fprintf(Outfile,"%s%s\n",Scoot,"{");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
         BumpUp();
         break;
       }
@@ -13076,8 +13076,8 @@ EMITAGAIN:;
             strcpy(ProtoType[ProtoCnt].Condition,InIfDef);
           }
         ProtoType[ProtoCnt].CondLevel=InConditional;
-        fprintf(Outfile,"%s\n",VarCode.Header);
-        fprintf(Outfile,"%s%s\n",Scoot,"{");
+        fprintf(Outfile,(char*)"%s\n",VarCode.Header);
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
         BumpUp();
         break;
       }
@@ -13130,8 +13130,8 @@ EMITAGAIN:;
           {
             strcpy(VarCode.Header, join(2,"static ",VarCode.Header));
           }
-        fprintf(Outfile,"%s\n",VarCode.Header);
-        fprintf(Outfile,"%s%s\n",Scoot,"{");
+        fprintf(Outfile,(char*)"%s\n",VarCode.Header);
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
         BumpUp();
         break;
       }
@@ -13162,17 +13162,17 @@ EMITAGAIN:;
               {
                 for(j=1; j<=LocalDynaCnt; j+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,DynaStr[j]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,DynaStr[j]);
                   }
               }
             if(LocalDynArrCount!=0)
               {
                 for(i=1; i<=LocalDynArrCount; i+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,LocalDynArrName[i]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,LocalDynArrName[i]);
                   }
               }
-            fprintf(Outfile,"%s%s",Scoot,"return ");
+            fprintf(Outfile,(char*)"%s%s",Scoot,"return ");
             LastCmd=2;
           }
         Parse(lszTmp);
@@ -13192,7 +13192,7 @@ EMITAGAIN:;
               {
                 for(j=1; j<=LocalDynaCnt; j+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,DynaStr[j]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,DynaStr[j]);
                   }
                 LocalDynaCnt=0;
               }
@@ -13200,24 +13200,24 @@ EMITAGAIN:;
               {
                 for(i=1; i<=LocalDynArrCount; i+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,LocalDynArrName[i]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,LocalDynArrName[i]);
                   }
                 LocalDynArrCount=0;
               }
           }
         if(ForceMainToFunc==TRUE)
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"return 0;");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"return 0;");
             ForceMainToFunc=FALSE;
           }
         BumpDown();
         if(InNameSpace)
           {
-            fprintf(FP2,"%s%s\n",Scoot,"}\n");
+            fprintf(FP2,(char*)"%s%s\n",Scoot,"}\n");
           }
         else
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"}\n\n");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"}\n\n");
             BumpDown();
           }
         InFunc=FALSE;
@@ -13311,11 +13311,11 @@ EMITAGAIN:;
           {
             if(vt==vt_STRUCT)
               {
-                fprintf(Outfile,"%s%s%s%s%s%s%s\n",Scoot,"struct _",SOF,"  ",stringx(dms,42),CVar,";");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Scoot,"struct _",SOF,"  ",stringx(dms,42),CVar,";");
               }
             else
               {
-                fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,SOF,"  ",stringx(dms,42),CVar,";");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,SOF,"  ",stringx(dms,42),CVar,";");
               }
             AddTypedefElement(BaseTypeDefsCnt[InTypeDef],vt,CVar,SOF,dms);
           }
@@ -13323,7 +13323,7 @@ EMITAGAIN:;
           {
             LocalDynArrCount++;
             strcpy(LocalDynArrName[LocalDynArrCount], join(9,"if (",CVar,") { DestroyArr((void **)",CVar,",",str(dms),", 1); ",CVar,"=NULL; }"));
-            fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,SOF,"  ",stringx(dms,42),CVar,"=0;");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,SOF,"  ",stringx(dms,42),CVar,"=0;");
             AddLocal(CVar,vt,id,"",dms,0,0);
           }
         else
@@ -13337,7 +13337,7 @@ EMITAGAIN:;
           }
         if(!InTypeDef)
           {
-            fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,CVar,"= (",SOF,stringx(dms,42),")CreateArr (",CVar,",sizeof(",SOF,"),0,",trim(str(dms)),",",ZZ,");");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,CVar,"= (",SOF,stringx(dms,42),")CreateArr (",CVar,",sizeof(",SOF,"),0,",trim(str(dms)),",",ZZ,");");
           }
         break;
       }
@@ -13464,7 +13464,7 @@ EMITAGAIN:;
               }
             else
               {
-                fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s\n",Scoot,"if (",CVar,") { DestroyArr((void **)",CVar,",",str(dms),", 1); ",CVar,"=NULL; }");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s\n",Scoot,"if (",CVar,") { DestroyArr((void **)",CVar,",",str(dms),", 1); ",CVar,"=NULL; }");
                 StartPoint=3;
               }
             Use_DynamicA=TRUE;
@@ -13523,33 +13523,33 @@ EMITAGAIN:;
               {
                 Abort(join(6,"Mismatch in dimensions for ",CVar,", orignally ",str(dms)," found ",str(A)));
               }
-            fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s%s%s%d%s%s%s\n",Scoot,CVar,"= (",SOF,stringx(dms,42),")CreateArr (",CVar,",sizeof(",SOF,"),",trim(str(IsPreserve)),",",(int)dms,",",ZZ,");");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s%s%s%d%s%s%s\n",Scoot,CVar,"= (",SOF,stringx(dms,42),")CreateArr (",CVar,",sizeof(",SOF,"),",trim(str(IsPreserve)),",",(int)dms,",",ZZ,");");
             break;
           }
         if(str_cmp(Stk[3],"*")==0 || (IsPreserve&&str_cmp(Stk[4],"*")==0))
           {
             if(IsPreserve)
               {
-                fprintf(Outfile,"%s%s%s%s%s",Scoot,CVar,"=(char*)realloc(",CVar,",256+");
+                fprintf(Outfile,(char*)"%s%s%s%s%s",Scoot,CVar,"=(char*)realloc(",CVar,",256+");
                 i=5;
               }
             else
               {
-                fprintf(Outfile,"%s%s%s%s\n",Scoot,"free(",CVar,");");
-                fprintf(Outfile,"%s%s%s",Scoot,CVar,"=(char*)calloc(256+");
+                fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"free(",CVar,");");
+                fprintf(Outfile,(char*)"%s%s%s",Scoot,CVar,"=(char*)calloc(256+");
                 i=4;
               }
             for(A=i; A<=Ndx; A+=1)
               {
-                fprintf(Outfile,"%s",Clean(Stk[A]));
+                fprintf(Outfile,(char*)"%s",Clean(Stk[A]));
               }
             if(IsPreserve)
               {
-                fprintf(Outfile,"%s\n",");");
+                fprintf(Outfile,(char*)"%s\n",");");
               }
             else
               {
-                fprintf(Outfile,"%s\n",",1);");
+                fprintf(Outfile,(char*)"%s\n",",1);");
               }
             break;
           }
@@ -13621,7 +13621,7 @@ EMITAGAIN:;
           {
             if(iMatchWrd(Stk[2],"public")||iMatchWrd(Stk[2],"private")||iMatchWrd(Stk[2],"protected"))
               {
-                fprintf(Outfile,"%s%s%s\n",LF,lcase(Stk[2]),":");
+                fprintf(Outfile,(char*)"%s%s%s\n",LF,lcase(Stk[2]),":");
                 break;
               }
             else if(iMatchWrd(Stk[2],"constructor")||iMatchWrd(Stk[2],"destructor"))
@@ -13727,22 +13727,22 @@ EMITAGAIN:;
                           }
                         if(vt==vt_FILEPTR)
                           {
-                            fprintf(Outfile,"%s%s",Scoot,"register  FILE*   ");
+                            fprintf(Outfile,(char*)"%s%s",Scoot,"register  FILE*   ");
                           }
                         else
                           {
-                            fprintf(Outfile,"%s%s%s%s%s%s",Scoot,"register  ",sConst," ",Stk[Ndx],"  ");
+                            fprintf(Outfile,(char*)"%s%s%s%s%s%s",Scoot,"register  ",sConst," ",Stk[Ndx],"  ");
                           }
                       }
                     else
                       {
                         if(vt==vt_FILEPTR)
                           {
-                            fprintf(Outfile,"%s%s%s%s",Scoot,"auto ",IV,"  FILE*   ");
+                            fprintf(Outfile,(char*)"%s%s%s%s",Scoot,"auto ",IV,"  FILE*   ");
                           }
                         else
                           {
-                            fprintf(Outfile,"%s%s%s%s%s%s%s%s",Scoot,"auto ",IV," ",sConst," ",Stk[Ndx],"  ");
+                            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s",Scoot,"auto ",IV," ",sConst," ",Stk[Ndx],"  ");
                           }
                       }
                   }
@@ -13752,11 +13752,11 @@ EMITAGAIN:;
                       {
                         if(vt==vt_FILEPTR)
                           {
-                            fprintf(Outfile,"%s%s%s%s",Scoot,"static ",IV,"  FILE*   ");
+                            fprintf(Outfile,(char*)"%s%s%s%s",Scoot,"static ",IV,"  FILE*   ");
                           }
                         else
                           {
-                            fprintf(Outfile,"%s%s%s%s%s%s",Scoot,IV,sConst," ",Stk[Ndx],"  ");
+                            fprintf(Outfile,(char*)"%s%s%s%s%s%s",Scoot,IV,sConst," ",Stk[Ndx],"  ");
                           }
                       }
                     else
@@ -13771,17 +13771,17 @@ EMITAGAIN:;
                           }
                         if(vt==vt_STRUCT)
                           {
-                            fprintf(Outfile,"%s%s%s%s%s%s%s%s",Scoot,UseStatic,IV,sConst," ","struct _",Stk[Ndx],"  ");
+                            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s",Scoot,UseStatic,IV,sConst," ","struct _",Stk[Ndx],"  ");
                           }
                         else
                           {
                             if(vt==vt_FILEPTR)
                               {
-                                fprintf(Outfile,"%s%s%s%s",Scoot,UseStatic,IV,"FILE   *");
+                                fprintf(Outfile,(char*)"%s%s%s%s",Scoot,UseStatic,IV,"FILE   *");
                               }
                             else
                               {
-                                fprintf(Outfile,"%s%s%s%s%s%s%s",Scoot,UseStatic,IV,sConst," ",Stk[Ndx],"  ");
+                                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s",Scoot,UseStatic,IV,sConst," ",Stk[Ndx],"  ");
                               }
                           }
                         if(InTypeDef)
@@ -13794,17 +13794,17 @@ EMITAGAIN:;
                   {
                     AddLocal(Var1,vt,id,DimType,IsPointer,0,0,iIsConst);
                   }
-                fprintf(Outfile,"%s%s\n",Clean(lszTmp),";");
+                fprintf(Outfile,(char*)"%s%s\n",Clean(lszTmp),";");
                 if(!InTypeDef&&!IsStatic&&!IsRaw&&!IsRegister&&!IsVolatile)
                   {
                     strcpy(T,Clean(extract(lszTmp,"[")));
                     if(IsPointer)
                       {
-                        fprintf(Outfile,"%s%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",Clean(Var)," *","));");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",Clean(Var)," *","));");
                       }
                     else
                       {
-                        fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",T,"));");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",T,"));");
                       }
                   }
               }
@@ -13861,11 +13861,11 @@ EMITAGAIN:;
                 {
                   if(IsRaw)
                     {
-                      fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,IV,"char ",CVar,lszTmp,";");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,IV,"char ",CVar,lszTmp,";");
                     }
                   else if(IsAuto)
                     {
-                      fprintf(Outfile,"%s%s%s%s%s%s%s\n",Scoot,"auto ",IV,"char ",CVar,lszTmp,";");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Scoot,"auto ",IV,"char ",CVar,lszTmp,";");
                     }
                   else if(IsRegister)
                     {
@@ -13873,22 +13873,22 @@ EMITAGAIN:;
                         {
                           Abort("register volatile not supported");
                         }
-                      fprintf(Outfile,"%s%s%s%s%s\n",Scoot,"register char ",CVar,lszTmp,";");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,"register char ",CVar,lszTmp,";");
                     }
                   else
                     {
                       if(InTypeDef)
                         {
-                          fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,IV,"char ",CVar,lszTmp,";");
+                          fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,IV,"char ",CVar,lszTmp,";");
                         }
                       else
                         {
-                          fprintf(Outfile,"%s%s%s%s%s%s%s\n",Scoot,"static ",IV,"char ",CVar,lszTmp,";");
+                          fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Scoot,"static ",IV,"char ",CVar,lszTmp,";");
                         }
                     }
                   if(j&&!IsVolatile)
                     {
-                      fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",T,"));");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",T,"));");
                     }
                   break;
                 }
@@ -13898,11 +13898,11 @@ EMITAGAIN:;
                   strcpy(ZZ,rpad(ZZ,7));
                   if(IsRaw)
                     {
-                      fprintf(Outfile,"%s%s%s%s%s%s%s\n",Scoot,IV,ZZ," ",CVar,lszTmp,";");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Scoot,IV,ZZ," ",CVar,lszTmp,";");
                     }
                   else if(IsAuto)
                     {
-                      fprintf(Outfile,"%s%s%s%s%s%s%s%s\n",Scoot,"auto ",IV,ZZ," ",CVar,lszTmp,";");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s\n",Scoot,"auto ",IV,ZZ," ",CVar,lszTmp,";");
                     }
                   else if(IsRegister)
                     {
@@ -13910,22 +13910,22 @@ EMITAGAIN:;
                         {
                           Abort("Regester volatile not supported");
                         }
-                      fprintf(Outfile,"%s%s%s%s%s%s%s\n",Scoot,"register ",ZZ," ",CVar,lszTmp,";");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Scoot,"register ",ZZ," ",CVar,lszTmp,";");
                     }
                   else
                     {
                       if(InTypeDef)
                         {
-                          fprintf(Outfile,"%s%s%s%s%s%s%s\n",Scoot,IV,ZZ," ",CVar,lszTmp,";");
+                          fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Scoot,IV,ZZ," ",CVar,lszTmp,";");
                         }
                       else
                         {
-                          fprintf(Outfile,"%s%s%s%s%s%s%s%s\n",Scoot,"static ",IV,ZZ," ",CVar,lszTmp,";");
+                          fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s\n",Scoot,"static ",IV,ZZ," ",CVar,lszTmp,";");
                         }
                     }
                   if(j&&!IsVolatile)
                     {
-                      fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",T,"));");
+                      fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"memset(&",T,",0,sizeof(",T,"));");
                     }
                 }
               break;
@@ -14119,7 +14119,7 @@ EMITAGAIN:;
                 strcpy(GlobalDynaStr[GlobalDynaCnt], join(9,"if (",CVar,") { DestroyArr((void **)",CVar,",",str(dms),", 1); ",CVar,"=NULL; }"));
               }
             AddGlobal(CVar,vt,id,"",dms,0,0,0);
-            fprintf(Outfile,"%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,CVar,"= (",SOF,stringx(dms,42),")CreateArr (",CVar,",sizeof(",SOF,"),0,",trim(str(dms)),",",ZZ,");");
+            fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s%s%s%s%s%s\n",Scoot,CVar,"= (",SOF,stringx(dms,42),")CreateArr (",CVar,",sizeof(",SOF,"),0,",trim(str(dms)),",",ZZ,");");
             break;
           }
         IsPointer=0;
@@ -14187,7 +14187,7 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"wend")==0 ||  str_cmp(Lookup,"endwhile")==0)
       {
         BumpDown();
-        fprintf(Outfile,"%s%s\n",Scoot,"}");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"}");
         BumpDown();
         break;
       }
@@ -14203,17 +14203,17 @@ EMITAGAIN:;
               {
                 for(j=1; j<=LocalDynaCnt; j+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,DynaStr[j]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,DynaStr[j]);
                   }
               }
             if(LocalDynArrCount!=0)
               {
                 for(i=1; i<=LocalDynArrCount; i+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,LocalDynArrName[i]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,LocalDynArrName[i]);
                   }
               }
-            fprintf(Outfile,"%s%s\n",Scoot,"return;");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"return;");
             break;
           }
         if(iMatchWrd(Stk[2],"function"))
@@ -14222,21 +14222,21 @@ EMITAGAIN:;
               {
                 for(j=1; j<=LocalDynaCnt; j+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,DynaStr[j]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,DynaStr[j]);
                   }
               }
             if(LocalDynArrCount!=0)
               {
                 for(i=1; i<=LocalDynArrCount; i+=1)
                   {
-                    fprintf(Outfile,"%s%s\n",Scoot,LocalDynArrName[i]);
+                    fprintf(Outfile,(char*)"%s%s\n",Scoot,LocalDynArrName[i]);
                   }
               }
-            fprintf(Outfile,"%s%s\n",Scoot,"return 0;");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"return 0;");
           }
         else
           {
-            fprintf(Outfile,"%s%s\n",Scoot,"break;");
+            fprintf(Outfile,(char*)"%s%s\n",Scoot,"break;");
           }
         break;
       }
@@ -14246,52 +14246,52 @@ EMITAGAIN:;
           {
             NoBreak2=TRUE;
           }
-        fprintf(Outfile,"%s%s%s%s\n",Scoot,"goto ",ucase(Stk[2]),";");
+        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"goto ",ucase(Stk[2]),";");
         break;
       }
     if(str_cmp(Lookup,"print")==0)
       {
-        fprintf(Outfile,"%s%s\n",Scoot,PrintWriteFormat(0));
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,PrintWriteFormat(0));
         break;
       }
     if(str_cmp(Lookup,"write")==0)
       {
-        fprintf(Outfile,"%s%s\n",Scoot,PrintWriteFormat(1));
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,PrintWriteFormat(1));
         break;
       }
     if(str_cmp(Lookup,"run")==0)
       {
-        fprintf(Outfile,"%s%s",Scoot,"Run (");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"Run (");
         for(A=2; A<=Ndx; A+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[A]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[A]));
           }
-        fprintf(Outfile,"%s%s\n",Scoot,");");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,");");
         break;
       }
     if(str_cmp(Lookup,"color")==0)
       {
-        fprintf(Outfile,"%s%s",Scoot,"color (");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"color (");
         for(A=2; A<=Ndx; A+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[A]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[A]));
           }
-        fprintf(Outfile,"%s\n",");");
+        fprintf(Outfile,(char*)"%s\n",");");
         break;
       }
     if(str_cmp(Lookup,"locate")==0)
       {
-        fprintf(Outfile,"%s%s",Scoot,"locate (");
+        fprintf(Outfile,(char*)"%s%s",Scoot,"locate (");
         for(A=2; A<=Ndx; A+=1)
           {
-            fprintf(Outfile,"%s",Clean(Stk[A]));
+            fprintf(Outfile,(char*)"%s",Clean(Stk[A]));
           }
-        fprintf(Outfile,"%s\n",");");
+        fprintf(Outfile,(char*)"%s\n",");");
         break;
       }
     if(str_cmp(Lookup,"cls")==0)
       {
-        fprintf(Outfile,"%s%s\n",Scoot,"cls();");
+        fprintf(Outfile,(char*)"%s%s\n",Scoot,"cls();");
         break;
       }
       // case else
@@ -14313,11 +14313,11 @@ EMITAGAIN:;
             strcat(lszTmp,";");
             if(FuncRetnFlag==2)
               {
-                fprintf(Outfile,"%s\n",lszTmp);
+                fprintf(Outfile,(char*)"%s\n",lszTmp);
               }
             else
               {
-                fprintf(Outfile,"%s%s\n",Scoot,lszTmp);
+                fprintf(Outfile,(char*)"%s%s\n",Scoot,lszTmp);
               }
             if(FuncRetnFlag==2)
               {
@@ -14392,7 +14392,7 @@ EMITAGAIN:;
               {
                 if(str_cmp(Stk[Ndx],DDQ)==0)
                   {
-                    fprintf(Outfile,"%s%s%s%s\n",Scoot,"*",Clean(Stk[1]),"=0;");
+                    fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"*",Clean(Stk[1]),"=0;");
                     goto STRINGEXIT;
                   }
               }
@@ -14402,9 +14402,9 @@ EMITAGAIN:;
                 strcpy(Stk[3],Clean(Stk[3]));
                 if(str_cmp(Stk[1],"BCX_RetStr")==0)
                   {
-                    fprintf(Outfile,"%s%s%s%s\n",Scoot,"BCX_RetStr=BCX_TmpStr(strlen(",Stk[3],"));");
+                    fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"BCX_RetStr=BCX_TmpStr(strlen(",Stk[3],"));");
                   }
-                fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"strcpy(",Stk[1],",",Stk[3],");");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"strcpy(",Stk[1],",",Stk[3],");");
                 goto STRINGEXIT;
               }
             *Arg=0;
@@ -14443,31 +14443,31 @@ EMITAGAIN:;
                   {
                     if(HasStorage)
                       {
-                        fprintf(Outfile,"%s%s%s%s\n",Scoot,"BCX_RetStr=",Arg,";");
+                        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"BCX_RetStr=",Arg,";");
                         goto STRINGEXIT;
                       }
                     else
                       {
-                        fprintf(Outfile,"%s%s%s%s\n",Scoot,"BCX_RetStr=BCX_TmpStr(strlen(",Arg,"));");
+                        fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"BCX_RetStr=BCX_TmpStr(strlen(",Arg,"));");
                       }
                   }
-                fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"strcpy(",Var,",",Arg,");");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"strcpy(",Var,",",Arg,");");
                 goto STRINGEXIT;
               }
             if(k==TRUE&&j==1)
               {
-                fprintf(Outfile,"%s%s%s%s\n",Scoot,"strcat(",Arg,");");
+                fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"strcat(",Arg,");");
                 goto STRINGEXIT;
               }
             strcpy(lszTmp,ltrim(str(++j)));
             Use_Join=TRUE;
             if(str_cmp(Var,"BCX_RetStr")==0)
               {
-                fprintf(Outfile,"%s%s%s%s%s%s\n",Scoot,"BCX_RetStr=join(",lszTmp,",",Arg,");");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"BCX_RetStr=join(",lszTmp,",",Arg,");");
               }
             else
               {
-                fprintf(Outfile,"%s%s%s%s%s%s%s%s\n",Scoot,"strcpy(",Var,", join(",lszTmp,",",Arg,"));");
+                fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s\n",Scoot,"strcpy(",Var,", join(",lszTmp,",",Arg,"));");
               }
 
 STRINGEXIT:;
@@ -14491,19 +14491,19 @@ PROCESSNUMERIC:;
                     *Stk[B+2]=0;
                   }
               }
-            fprintf(Outfile,"%s%s",Scoot,Clean(Stk[1]));
+            fprintf(Outfile,(char*)"%s%s",Scoot,Clean(Stk[1]));
             for(A=2; A<=Ndx; A+=1)
               {
                 if(str_cmp(Stk[A],"!")==0)
                   {
-                    fprintf(Outfile,"%s","!");
+                    fprintf(Outfile,(char*)"%s","!");
                   }
                 else
                   {
-                    fprintf(Outfile,"%s",Clean(Stk[A]));
+                    fprintf(Outfile,(char*)"%s",Clean(Stk[A]));
                   }
               }
-            fprintf(Outfile,"%s\n",";");
+            fprintf(Outfile,(char*)"%s\n",";");
           }
       }
     break;
@@ -14514,10 +14514,10 @@ PROCESSNUMERIC:;
         {
           for(j=1; j<=LocalDynaCnt; j+=1)
             {
-              fprintf(Outfile,"%s%s\n",Scoot,DynaStr[j]);
+              fprintf(Outfile,(char*)"%s%s\n",Scoot,DynaStr[j]);
             }
         }
-      fprintf(Outfile,"%s%s\n",Scoot,"return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s%s\n",Scoot,"return BCX_RetStr;");
     }
   if(ZZ)free(ZZ);
 }
@@ -14660,14 +14660,14 @@ void Abort (char *Z)
          fprintf(stderr,"Can't open file %s\n",FileErr);
          exit(1);
        }
-      fprintf(fpErr,"%s%s%d%s%s\n",Z," at line",(int)ModuleLineNos[ModuleNdx]," in Module: ",trim(Modules[ModuleNdx]));
+      fprintf(fpErr,(char*)"%s%s%d%s%s\n",Z," at line",(int)ModuleLineNos[ModuleNdx]," in Module: ",trim(Modules[ModuleNdx]));
       if(fpErr)
        {
          fclose(fpErr);
          fpErr=NULL;
        }
     }
-  printf("%s%s%s%s%s\n","Error!",CRLF,FileIn,CRLF,WarnMsg);
+  printf((char*)"%s%s%s%s%s\n","Error!",CRLF,FileIn,CRLF,WarnMsg);
   FreeGlobals();
   fflush(stdout);
   exit(1);
@@ -14870,9 +14870,9 @@ void EmitEpilog (void)
 {
   if(NoMain+EndOfProgram==0)
     {
-      fprintf(Outfile,"%s\n","return 0;   //  End of main program");
+      fprintf(Outfile,(char*)"%s\n","return 0;   //  End of main program");
       BumpDown();
-      fprintf(Outfile,"%s\n","}");
+      fprintf(Outfile,(char*)"%s\n","}");
       fflush(Outfile);
     }
 }
@@ -14880,8 +14880,8 @@ void EmitEpilog (void)
 
 void EmitProlog (void)
 {
-  fprintf(Outfile,"%s\n","");
-  fprintf(Outfile,"%s\n","int main(int argc, char *argv[])");
+  fprintf(Outfile,(char*)"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","int main(int argc, char *argv[])");
   fflush(Outfile);
 }
 
@@ -14911,18 +14911,18 @@ void DeclareVariables (void)
    }
   if(lof(cstFile)>0)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s%s\n","//            ",BCX_STR_USR_CONST);
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s%s\n","//            ",BCX_STR_USR_CONST);
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
     }
   while(!EoF(FP3))
     {
       Z[0]=0;
       AR_fgets_retval=fgets(Z,65535,FP3);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-      fprintf(Outfile,"%s\n",ltrim(Z));
+      fprintf(Outfile,(char*)"%s\n",ltrim(Z));
     }
   if(FP3)
    {
@@ -14931,9 +14931,9 @@ void DeclareVariables (void)
    }
   if(Use_EnumFile)
     {
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","//        User's GLOBAL ENUM blocks");
-      fprintf(Outfile,"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","//        User's GLOBAL ENUM blocks");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
       if((FP8=fopen(enuFile,"r"))==0)
        {
          fprintf(stderr,"Can't open file %s\n",enuFile);
@@ -14944,14 +14944,14 @@ void DeclareVariables (void)
           Z[0]=0;
           AR_fgets_retval=fgets(Z,65535,FP8);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-          fprintf(Outfile,"%s\n",Z);
+          fprintf(Outfile,(char*)"%s\n",Z);
         }
       if(FP8)
        {
          fclose(FP8);
          FP8=NULL;
        }
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
     }
   if((FP3=fopen(udtFile,"r"))==0)
    {
@@ -14960,16 +14960,16 @@ void DeclareVariables (void)
    }
   if(lof(udtFile)>0)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s%s\n","//   ",BCX_STR_USR_TYPES);
-      fprintf(Outfile,"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s%s\n","//   ",BCX_STR_USR_TYPES);
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
       while(!EoF(FP3))
         {
           Z[0]=0;
           AR_fgets_retval=fgets(Z,65535,FP3);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-          fprintf(Outfile,"%s%s\n",Scoot,Z);
+          fprintf(Outfile,(char*)"%s%s\n",Scoot,Z);
         }
     }
   if(FP3)
@@ -14979,186 +14979,186 @@ void DeclareVariables (void)
    }
   if(HFileCnt>0)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","//                User Include Files");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","//                User Include Files");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
       A=0;
       while(A<HFileCnt)
         {
-          fprintf(Outfile,"%s\n",HFiles[A]);
+          fprintf(Outfile,(char*)"%s\n",HFiles[A]);
           A++;
         }
-      fprintf(Outfile,"%s\n","#include <term.h>");
+      fprintf(Outfile,(char*)"%s\n","#include <term.h>");
     }
   if(Use_SingleFile==TRUE)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s%s\n","//                ",BCX_STR_SYS_VARS);
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s%s\n","//                ",BCX_STR_SYS_VARS);
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
       if(Use_RegEx)
         {
-          fprintf(Outfile,"%s\n","typedef struct _REGEX");
-          fprintf(Outfile,"%s\n","{");
-          fprintf(Outfile,"%s\n","   int         count;");
-          fprintf(Outfile,"%s\n","   regmatch_t  matches[1024];");
-          fprintf(Outfile,"%s\n","   PCHAR       results[1024];");
-          fprintf(Outfile,"%s\n","}REGEX, *LPREGEX;\n");
+          fprintf(Outfile,(char*)"%s\n","typedef struct _REGEX");
+          fprintf(Outfile,(char*)"%s\n","{");
+          fprintf(Outfile,(char*)"%s\n","   int         count;");
+          fprintf(Outfile,(char*)"%s\n","   regmatch_t  matches[1024];");
+          fprintf(Outfile,(char*)"%s\n","   PCHAR       results[1024];");
+          fprintf(Outfile,(char*)"%s\n","}REGEX, *LPREGEX;\n");
         }
       if(Use_Time)
         {
-          fprintf(Outfile,"%s\n","enum TIME_OPTIONS");
-          fprintf(Outfile,"%s\n","{");
-          fprintf(Outfile,"%s\n","  TIME,");
-          fprintf(Outfile,"%s\n","  HOUR,");
-          fprintf(Outfile,"%s\n","  MINUTE,");
-          fprintf(Outfile,"%s\n","  SECOND,");
-          fprintf(Outfile,"%s\n","  APM,");
-          fprintf(Outfile,"%s\n","  YEAR,");
-          fprintf(Outfile,"%s\n","  MONTH,");
-          fprintf(Outfile,"%s\n","  DAY,");
-          fprintf(Outfile,"%s\n","  DAYNAME,");
-          fprintf(Outfile,"%s\n","  WEEKDAY,");
-          fprintf(Outfile,"%s\n","  YEARDAY,");
-          fprintf(Outfile,"%s\n","  WEEKNUMBER,");
-          fprintf(Outfile,"%s\n","  DATE,");
-          fprintf(Outfile,"%s\n","  FULLDATE");
-          fprintf(Outfile,"%s\n"," };\n");
+          fprintf(Outfile,(char*)"%s\n","enum TIME_OPTIONS");
+          fprintf(Outfile,(char*)"%s\n","{");
+          fprintf(Outfile,(char*)"%s\n","  TIME,");
+          fprintf(Outfile,(char*)"%s\n","  HOUR,");
+          fprintf(Outfile,(char*)"%s\n","  MINUTE,");
+          fprintf(Outfile,(char*)"%s\n","  SECOND,");
+          fprintf(Outfile,(char*)"%s\n","  APM,");
+          fprintf(Outfile,(char*)"%s\n","  YEAR,");
+          fprintf(Outfile,(char*)"%s\n","  MONTH,");
+          fprintf(Outfile,(char*)"%s\n","  DAY,");
+          fprintf(Outfile,(char*)"%s\n","  DAYNAME,");
+          fprintf(Outfile,(char*)"%s\n","  WEEKDAY,");
+          fprintf(Outfile,(char*)"%s\n","  YEARDAY,");
+          fprintf(Outfile,(char*)"%s\n","  WEEKNUMBER,");
+          fprintf(Outfile,(char*)"%s\n","  DATE,");
+          fprintf(Outfile,(char*)"%s\n","  FULLDATE");
+          fprintf(Outfile,(char*)"%s\n"," };\n");
         }
       if(Use_Findfirst||Use_Findnext)
         {
-          fprintf(Outfile,"%s\n","typedef struct _FILE_FIND_DATA");
-          fprintf(Outfile,"%s\n","{");
-          fprintf(Outfile,"%s\n","  DWORD  dwFileAttributes;");
-          fprintf(Outfile,"%s\n","  DWORD  ftCreationTime;");
-          fprintf(Outfile,"%s\n","  DWORD  ftLastAccessTime;");
-          fprintf(Outfile,"%s\n","  DWORD  ftLastWriteTime;");
-          fprintf(Outfile,"%s\n","  DWORD  nFileSizeHigh;");
-          fprintf(Outfile,"%s\n","  DWORD  nFileSizeLow;");
-          fprintf(Outfile,"%s\n","  char   cFileSpec[MAX_PATH];");
-          fprintf(Outfile,"%s\n","  char   cFileName[MAX_PATH];");
-          fprintf(Outfile,"%s\n","  char   path[MAX_PATH];");
-          fprintf(Outfile,"%s\n","  DIR   *FileHandle;");
-          fprintf(Outfile,"%s\n","}FILE_FIND_DATA, *LPFILE_FIND_DATA;\n");
+          fprintf(Outfile,(char*)"%s\n","typedef struct _FILE_FIND_DATA");
+          fprintf(Outfile,(char*)"%s\n","{");
+          fprintf(Outfile,(char*)"%s\n","  DWORD  dwFileAttributes;");
+          fprintf(Outfile,(char*)"%s\n","  DWORD  ftCreationTime;");
+          fprintf(Outfile,(char*)"%s\n","  DWORD  ftLastAccessTime;");
+          fprintf(Outfile,(char*)"%s\n","  DWORD  ftLastWriteTime;");
+          fprintf(Outfile,(char*)"%s\n","  DWORD  nFileSizeHigh;");
+          fprintf(Outfile,(char*)"%s\n","  DWORD  nFileSizeLow;");
+          fprintf(Outfile,(char*)"%s\n","  char   cFileSpec[MAX_PATH];");
+          fprintf(Outfile,(char*)"%s\n","  char   cFileName[MAX_PATH];");
+          fprintf(Outfile,(char*)"%s\n","  char   path[MAX_PATH];");
+          fprintf(Outfile,(char*)"%s\n","  DIR   *FileHandle;");
+          fprintf(Outfile,(char*)"%s\n","}FILE_FIND_DATA, *LPFILE_FIND_DATA;\n");
         }
       if(Use_Ldouble)
         {
-          fprintf(Outfile,"%s\n","#define LDOUBLE long double");
+          fprintf(Outfile,(char*)"%s\n","#define LDOUBLE long double");
         }
       if(Use_Idxqsort)
         {
-          fprintf(Outfile,"%s\n","char*** pppStr;");
+          fprintf(Outfile,(char*)"%s\n","char*** pppStr;");
         }
       if(Use_Idxqsort||Use_IdxqsortSt||Use_PtrqsortSt)
         {
-          fprintf(Outfile,"%s\n","int     Key;");
+          fprintf(Outfile,(char*)"%s\n","int     Key;");
         }
       if(Use_IdxqsortSt)
         {
-          fprintf(Outfile,"%s\n","char*   cmp1;");
-          fprintf(Outfile,"%s\n","int     StructSize;");
+          fprintf(Outfile,(char*)"%s\n","char*   cmp1;");
+          fprintf(Outfile,(char*)"%s\n","int     StructSize;");
         }
       if(Use_PtrqsortSt)
         {
-          fprintf(Outfile,"%s\n","int     OffSet;");
+          fprintf(Outfile,(char*)"%s\n","int     OffSet;");
         }
       if(Use_NUL)
         {
-          fprintf(Outfile,"%s\n","char    NUL [1]={0};     // Null");
+          fprintf(Outfile,(char*)"%s\n","char    NUL [1]={0};     // Null");
         }
       if(Use_BEL)
         {
-          fprintf(Outfile,"%s\n","char    BEL [2]={7,0};   // Bell");
+          fprintf(Outfile,(char*)"%s\n","char    BEL [2]={7,0};   // Bell");
         }
       if(Use_BS)
         {
-          fprintf(Outfile,"%s\n","char    BS  [2]={8,0};   // Back Space");
+          fprintf(Outfile,(char*)"%s\n","char    BS  [2]={8,0};   // Back Space");
         }
       if(Use_TAB)
         {
-          fprintf(Outfile,"%s\n","char    TAB [2]={9,0};   // Horz Tab");
+          fprintf(Outfile,(char*)"%s\n","char    TAB [2]={9,0};   // Horz Tab");
         }
       if(Use_LF)
         {
-          fprintf(Outfile,"%s\n","char    LF  [2]={10,0};  // Line Feed");
+          fprintf(Outfile,(char*)"%s\n","char    LF  [2]={10,0};  // Line Feed");
         }
       if(Use_VT)
         {
-          fprintf(Outfile,"%s\n","char    VT  [2]={11,0};  // Vert Tab");
+          fprintf(Outfile,(char*)"%s\n","char    VT  [2]={11,0};  // Vert Tab");
         }
       if(Use_FF)
         {
-          fprintf(Outfile,"%s\n","char    FF  [2]={12,0};  // Form Feed");
+          fprintf(Outfile,(char*)"%s\n","char    FF  [2]={12,0};  // Form Feed");
         }
       if(Use_CR)
         {
-          fprintf(Outfile,"%s\n","char    CR  [2]={13,0};  // Carr Rtn");
+          fprintf(Outfile,(char*)"%s\n","char    CR  [2]={13,0};  // Carr Rtn");
         }
       if(Use_EOF)
         {
-          fprintf(Outfile,"%s\n","char    EF  [2]={26,0};  // End-of-File");
+          fprintf(Outfile,(char*)"%s\n","char    EF  [2]={26,0};  // End-of-File");
         }
       if(Use_ESC)
         {
-          fprintf(Outfile,"%s\n","char    ESC [2]={27,0};  // Escape");
+          fprintf(Outfile,(char*)"%s\n","char    ESC [2]={27,0};  // Escape");
         }
       if(Use_SPC)
         {
-          fprintf(Outfile,"%s\n","char    SPC [2]={32,0};  // Space");
+          fprintf(Outfile,(char*)"%s\n","char    SPC [2]={32,0};  // Space");
         }
       if(Use_DQ)
         {
-          fprintf(Outfile,"%s\n","char    DQ  [2]={34,0};  // Double-Quote");
+          fprintf(Outfile,(char*)"%s\n","char    DQ  [2]={34,0};  // Double-Quote");
         }
       if(Use_DDQ)
         {
-          fprintf(Outfile,"%s\n","char    DDQ [3]={34,34,0}; // Double-Double-Quote");
+          fprintf(Outfile,(char*)"%s\n","char    DDQ [3]={34,34,0}; // Double-Double-Quote");
         }
       if(Use_Crlf)
         {
-          fprintf(Outfile,"%s\n","char    CRLF[3]={13,10,0}; // Carr Rtn & Line Feed");
+          fprintf(Outfile,(char*)"%s\n","char    CRLF[3]={13,10,0}; // Carr Rtn & Line Feed");
         }
       if(Use_Console)
         {
-          fprintf(Outfile,"%s\n","int     color_fg = 7;");
-          fprintf(Outfile,"%s\n","int     color_bg = 0;");
+          fprintf(Outfile,(char*)"%s\n","int     color_fg = 7;");
+          fprintf(Outfile,(char*)"%s\n","int     color_bg = 0;");
         }
       if(Use_Lineinput)
         {
-          fprintf(Outfile,"%s\n","char    *AR_fgets_retval;");
+          fprintf(Outfile,(char*)"%s\n","char    *AR_fgets_retval;");
         }
       if(Use_Scan)
         {
-          fprintf(Outfile,"%s\n","int     ScanError;");
+          fprintf(Outfile,(char*)"%s\n","int     ScanError;");
         }
       if(Use_Inputbuffer==TRUE)
         {
-          fprintf(Outfile,"%s\n","char    InputBuffer[65535];");
+          fprintf(Outfile,(char*)"%s\n","char    InputBuffer[65535];");
         }
       if(Use_Findfirst||Use_Findnext)
         {
-          fprintf(Outfile,"%s\n","FILE_FIND_DATA FindData;");
+          fprintf(Outfile,(char*)"%s\n","FILE_FIND_DATA FindData;");
         }
       if(Use_Gosub)
         {
-          fprintf(Outfile,"%s\n","jmp_buf GosubStack[32];");
-          fprintf(Outfile,"%s\n","int     GosubNdx;");
+          fprintf(Outfile,(char*)"%s\n","jmp_buf GosubStack[32];");
+          fprintf(Outfile,(char*)"%s\n","int     GosubNdx;");
         }
       if(Use_Dynacall)
         {
-          fprintf(Outfile,"%s\n","HINSTANCE BCX_DllStore[256];");
+          fprintf(Outfile,(char*)"%s\n","HINSTANCE BCX_DllStore[256];");
         }
     }
   if(GlobalVarCnt)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s%s\n","//            ",BCX_STR_USR_VARS);
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s%s\n","//            ",BCX_STR_USR_VARS);
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
     }
   for(i=1; i<=GlobalVarCnt; i+=1)
     {
@@ -15234,7 +15234,7 @@ void DeclareVariables (void)
             {
               strcpy(LastDef,GlobalVars[i].VarCondDef);
               LastLevel=GlobalVars[i].VarCondLevel;
-              fprintf(Outfile,"%s\n",LastDef);
+              fprintf(Outfile,(char*)"%s\n",LastDef);
             }
           if(str_cmp(LastDef,GlobalVars[i].VarCondDef)!=0)
             {
@@ -15242,22 +15242,22 @@ void DeclareVariables (void)
                 {
                   while(LastLevel>GlobalVars[i].VarCondLevel)
                     {
-                      fprintf(Outfile,"%s\n","#endif");
+                      fprintf(Outfile,(char*)"%s\n","#endif");
                       LastLevel--;
                     }
-                  fprintf(Outfile,"%s\n","#else");
+                  fprintf(Outfile,(char*)"%s\n","#else");
                   strcpy(LastDef,GlobalVars[i].VarCondDef);
                 }
               else
                 {
                   while(LastLevel>=GlobalVars[i].VarCondLevel)
                     {
-                      fprintf(Outfile,"%s\n","#endif");
+                      fprintf(Outfile,(char*)"%s\n","#endif");
                       LastLevel--;
                     }
                   strcpy(LastDef,GlobalVars[i].VarCondDef);
                   LastLevel=GlobalVars[i].VarCondLevel;
-                  fprintf(Outfile,"%s\n",LastDef);
+                  fprintf(Outfile,(char*)"%s\n",LastDef);
                 }
             }
           *P=0;
@@ -15283,18 +15283,18 @@ void DeclareVariables (void)
     {
       while(LastLevel)
         {
-          fprintf(Outfile,"%s\n","#endif");
+          fprintf(Outfile,(char*)"%s\n","#endif");
           LastLevel--;
         }
     }
-  fprintf(Outfile,"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","");
   if(DllCnt)
     {
       int     i;
       char AR_DllName[2048];
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// **********[ DLL Declarations ]**********");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// **********[ DLL Declarations ]**********");
+      fprintf(Outfile,(char*)"%s\n","");
       for(i=0; i<=LoadLibsCnt-1; i+=1)
         {
           if(inchr(Loadlibs[i],"-"))
@@ -15305,15 +15305,15 @@ void DeclareVariables (void)
             {
               strcpy(AR_DllName,extract(Loadlibs[i],"."));
             }
-          fprintf(Outfile,"%s%s%s%s%s\n","void  *H_",ucase(AR_DllName)," = dlopen(",enc(Loadlibs[i]),", RTLD_LAZY);");
+          fprintf(Outfile,(char*)"%s%s%s%s%s\n","void  *H_",ucase(AR_DllName)," = dlopen(",enc(Loadlibs[i]),", RTLD_LAZY);");
         }
       for(i=1; i<=DllCnt; i+=1)
         {
-          fprintf(Outfile,"%s\n",DllDecl[i]);
+          fprintf(Outfile,(char*)"%s\n",DllDecl[i]);
         }
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// ****************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// ****************************************");
+      fprintf(Outfile,(char*)"%s\n","");
     }
   if((FP5=fopen(datFile,"r"))==0)
    {
@@ -15322,21 +15322,21 @@ void DeclareVariables (void)
    }
   if(lof(datFile)>0)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","//              User Data Statements");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","char * DATA [] =");
-      fprintf(Outfile,"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","//              User Data Statements");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","char * DATA [] =");
+      fprintf(Outfile,(char*)"%s\n","{");
       while(!EoF(FP5))
         {
           Z[0]=0;
           AR_fgets_retval=fgets(Z,65535,FP5);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-          fprintf(Outfile,"%s\n",Z);
+          fprintf(Outfile,(char*)"%s\n",Z);
         }
-      fprintf(Outfile,"%s\n","};");
+      fprintf(Outfile,(char*)"%s\n","};");
     }
   if(FP5)
    {
@@ -15348,7 +15348,7 @@ void DeclareVariables (void)
       Z[0]=0;
       AR_fgets_retval=fgets(Z,65535,FP1);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-      fprintf(Outfile,"%s\n",Z);
+      fprintf(Outfile,(char*)"%s\n",Z);
     }
   CloseAll();
   remove (FileOut);
@@ -15707,705 +15707,705 @@ void AddProtos (void)
           strcpy(SaveMain,ZZ);
           break;
         }
-      fprintf(Outfile,"%s\n",ZZ);
+      fprintf(Outfile,(char*)"%s\n",ZZ);
     }
-  fprintf(Outfile,"%s\n","");
-  fprintf(Outfile,"%s\n","// *************************************************");
-  fprintf(Outfile,"%s%s\n","//               ",BCX_STR_STD_MACROS);
-  fprintf(Outfile,"%s\n","// *************************************************");
-  fprintf(Outfile,"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","// *************************************************");
+  fprintf(Outfile,(char*)"%s%s\n","//               ",BCX_STR_STD_MACROS);
+  fprintf(Outfile,(char*)"%s\n","// *************************************************");
+  fprintf(Outfile,(char*)"%s\n","");
   if(Use_BcxSplitPath)
     {
-      fprintf(Outfile,"%s\n","#define FDRV   2");
-      fprintf(Outfile,"%s\n","#define FPATH  4");
-      fprintf(Outfile,"%s\n","#define FNAME  8");
-      fprintf(Outfile,"%s\n","#define FEXT  16");
+      fprintf(Outfile,(char*)"%s\n","#define FDRV   2");
+      fprintf(Outfile,(char*)"%s\n","#define FPATH  4");
+      fprintf(Outfile,(char*)"%s\n","#define FNAME  8");
+      fprintf(Outfile,(char*)"%s\n","#define FEXT  16");
     }
   if(Use_Cbool)
     {
-      fprintf(Outfile,"%s\n","#define CBOOL(A)(A!=0)?1:0");
+      fprintf(Outfile,(char*)"%s\n","#define CBOOL(A)(A!=0)?1:0");
     }
   if(Use_Isptr)
     {
-      fprintf(Outfile,"%s\n","#define IsPtr(a)((DWORD)a)");
+      fprintf(Outfile,(char*)"%s\n","#define IsPtr(a)((DWORD)a)");
     }
   if(Use_Band)
     {
-      fprintf(Outfile,"%s\n","#define BAND &");
+      fprintf(Outfile,(char*)"%s\n","#define BAND &");
     }
   if(Use_Bor)
     {
-      fprintf(Outfile,"%s\n","#define BOR |");
+      fprintf(Outfile,(char*)"%s\n","#define BOR |");
     }
   if(Use_Bnot)
     {
-      fprintf(Outfile,"%s\n","#define BNOT ~(int)");
+      fprintf(Outfile,(char*)"%s\n","#define BNOT ~(int)");
     }
   if(Use_Ubound)
     {
-      fprintf(Outfile,"%s\n","#define ubound(T)(sizeof((T))/sizeof((T[0]))-1)");
+      fprintf(Outfile,(char*)"%s\n","#define ubound(T)(sizeof((T))/sizeof((T[0]))-1)");
     }
   if(Use_Clear)
     {
-      fprintf(Outfile,"%s\n","#define Clear(arg)memset(&arg,0,sizeof(arg))");
+      fprintf(Outfile,(char*)"%s\n","#define Clear(arg)memset(&arg,0,sizeof(arg))");
     }
   if(Use_Imod)
     {
-      fprintf(Outfile,"%s\n","#define imod(a,b)((a)%(b))");
+      fprintf(Outfile,(char*)"%s\n","#define imod(a,b)((a)%(b))");
     }
   if(Use_Get)
     {
-      fprintf(Outfile,"%s\n","#define GET(A,B,C) F_GetVal=fread(B,1,C,A)");
+      fprintf(Outfile,(char*)"%s\n","#define GET(A,B,C) F_GetVal=fread(B,1,C,A)");
       AddGlobal("F_GetVal",vt_INTEGER,0,"",0,0,0,0);
     }
   if(Use_Put)
     {
-      fprintf(Outfile,"%s\n","#define PUT(A,B,C) F_PutVal=fwrite(B,1,C,A)");
+      fprintf(Outfile,(char*)"%s\n","#define PUT(A,B,C) F_PutVal=fwrite(B,1,C,A)");
       AddGlobal("F_PutVal",vt_INTEGER,0,"",0,0,0,0);
     }
   if(Use_Strptr)
     {
-      fprintf(Outfile,"%s\n","#define STRPTR(A)((char*)&(A))");
+      fprintf(Outfile,(char*)"%s\n","#define STRPTR(A)((char*)&(A))");
     }
   if(Use_Val)
     {
-      fprintf(Outfile,"%s\n","#define VAL(a)(double)atof(a)");
+      fprintf(Outfile,(char*)"%s\n","#define VAL(a)(double)atof(a)");
     }
   if(Use_Vall)
     {
-      fprintf(Outfile,"%s\n","#define VALL(a) (long double)strtold(a,(char**)NULL)");
+      fprintf(Outfile,(char*)"%s\n","#define VALL(a) (long double)strtold(a,(char**)NULL)");
     }
   if(Use_Fint)
     {
-      fprintf(Outfile,"%s\n","#define FINT(a)floor(a)");
+      fprintf(Outfile,(char*)"%s\n","#define FINT(a)floor(a)");
     }
   if(Use_Frac)
     {
-      fprintf(Outfile,"%s\n","#define FRAC(a)(double)(a-FIX(a))");
+      fprintf(Outfile,(char*)"%s\n","#define FRAC(a)(double)(a-FIX(a))");
       Use_Fix=TRUE;
     }
   if(Use_Fracl)
     {
-      fprintf(Outfile,"%s\n","#define FRACL(a)(long double)(a-FIX(a))");
+      fprintf(Outfile,(char*)"%s\n","#define FRACL(a)(long double)(a-FIX(a))");
       Use_Fix=TRUE;
     }
   if(Use_Fix)
     {
-      fprintf(Outfile,"%s\n","#define FIX(a)(int)((a))");
+      fprintf(Outfile,(char*)"%s\n","#define FIX(a)(int)((a))");
     }
   if(Use_Csng)
     {
-      fprintf(Outfile,"%s\n","#define CSNG(a)((float)(a))");
+      fprintf(Outfile,(char*)"%s\n","#define CSNG(a)((float)(a))");
     }
   if(Use_Cdbl)
     {
-      fprintf(Outfile,"%s\n","#define CDBL(a)((double)(a))");
+      fprintf(Outfile,(char*)"%s\n","#define CDBL(a)((double)(a))");
     }
   if(Use_Cldbl)
     {
-      fprintf(Outfile,"%s\n","#define CLDBL(a)((long double)(a))");
+      fprintf(Outfile,(char*)"%s\n","#define CLDBL(a)((long double)(a))");
     }
   if(Use_Threads)
     {
-      fprintf(Outfile,"%s\n","#define BCX_THREAD(fn,arg)   ({ pthread_t tid; pthread_create(&tid, NULL, (void*(*)(void*))fn, arg); tid;})");
-      fprintf(Outfile,"%s\n","#define BCX_THREADWAIT(a)    pthread_join(a, NULL)");
-      fprintf(Outfile,"%s\n","#define BCX_INITLOCK(a)      pthread_mutex_init(a, NULL)");
-      fprintf(Outfile,"%s\n","#define BCX_THREADLOCK(a)    pthread_mutex_lock (a)");
-      fprintf(Outfile,"%s\n","#define BCX_THREADUNLOCK(a)  pthread_mutex_unlock (a)");
-      fprintf(Outfile,"%s\n","#define BCX_THREADKILL(t)    pthread_cancel(t)");
-      fprintf(Outfile,"%s\n","#define BCX_THREADEND        pthread_exit(0)");
+      fprintf(Outfile,(char*)"%s\n","#define BCX_THREAD(fn,arg)   ({ pthread_t tid; pthread_create(&tid, NULL, (void*(*)(void*))fn, arg); tid;})");
+      fprintf(Outfile,(char*)"%s\n","#define BCX_THREADWAIT(a)    pthread_join(a, NULL)");
+      fprintf(Outfile,(char*)"%s\n","#define BCX_INITLOCK(a)      pthread_mutex_init(a, NULL)");
+      fprintf(Outfile,(char*)"%s\n","#define BCX_THREADLOCK(a)    pthread_mutex_lock (a)");
+      fprintf(Outfile,(char*)"%s\n","#define BCX_THREADUNLOCK(a)  pthread_mutex_unlock (a)");
+      fprintf(Outfile,(char*)"%s\n","#define BCX_THREADKILL(t)    pthread_cancel(t)");
+      fprintf(Outfile,(char*)"%s\n","#define BCX_THREADEND        pthread_exit(0)");
     }
-  fprintf(Outfile,"%s\n","");
-  fprintf(Outfile,"%s\n","");
-  fprintf(Outfile,"%s\n","// *************************************************");
-  fprintf(Outfile,"%s%s\n","//               ",BCX_STR_STD_PROTOS);
-  fprintf(Outfile,"%s\n","// *************************************************");
-  fprintf(Outfile,"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","// *************************************************");
+  fprintf(Outfile,(char*)"%s%s\n","//               ",BCX_STR_STD_PROTOS);
+  fprintf(Outfile,(char*)"%s\n","// *************************************************");
+  fprintf(Outfile,(char*)"%s\n","");
   if(NoRT==FALSE)
     {
       if(Use_Clng)
         {
-          fprintf(Outfile,"%s\n","long    CLNG(double);");
+          fprintf(Outfile,(char*)"%s\n","long    CLNG(double);");
         }
       if(Use_Cint)
         {
-          fprintf(Outfile,"%s\n","int     Cint(double);");
+          fprintf(Outfile,(char*)"%s\n","int     Cint(double);");
         }
       if(Use_StartupCode)
         {
-          fprintf(Outfile,"%s\n","int     BCX_StartupCode_(void);");
+          fprintf(Outfile,(char*)"%s\n","int     BCX_StartupCode_(void);");
         }
       if(Use_ExitCode)
         {
-          fprintf(Outfile,"%s\n","int     BCX_ExitCode_(void);");
+          fprintf(Outfile,(char*)"%s\n","int     BCX_ExitCode_(void);");
         }
       if(Use_Str_Cmp)
         {
-          fprintf(Outfile,"%s\n","int     str_cmp(char*, char*);");
+          fprintf(Outfile,(char*)"%s\n","int     str_cmp(char*, char*);");
         }
       if(Use_Eof)
         {
-          fprintf(Outfile,"%s\n","int     EoF (FILE*);");
+          fprintf(Outfile,(char*)"%s\n","int     EoF (FILE*);");
         }
       if(Use_CopyFile)
         {
-          fprintf(Outfile,"%s\n","void    CopyFile (char *,char *,int=FALSE);");
+          fprintf(Outfile,(char*)"%s\n","void    CopyFile (char *,char *,int=FALSE);");
         }
       if(Use_QBColor)
         {
-          fprintf(Outfile,"%s\n","int     qbcolor (int);");
+          fprintf(Outfile,(char*)"%s\n","int     qbcolor (int);");
         }
       if(Use_Cls)
         {
-          fprintf(Outfile,"%s\n","void    cls(void);");
+          fprintf(Outfile,(char*)"%s\n","void    cls(void);");
         }
       if(Use_Color)
         {
-          fprintf(Outfile,"%s\n","void    color (int,int);");
+          fprintf(Outfile,(char*)"%s\n","void    color (int,int);");
         }
       if(Use_Locate)
         {
-          fprintf(Outfile,"%s\n","void    locate (int,int,int=1,int=12);");
+          fprintf(Outfile,(char*)"%s\n","void    locate (int,int,int=1,int=12);");
         }
       if(Use_Run)
         {
-          fprintf(Outfile,"%s\n","int     Run (char*, int =1, int =0);");
+          fprintf(Outfile,(char*)"%s\n","int     Run (char*, int =1, int =0);");
         }
       if(Use_Randomize)
         {
-          fprintf(Outfile,"%s\n","void    randomize (unsigned int);");
+          fprintf(Outfile,(char*)"%s\n","void    randomize (unsigned int);");
         }
       if(Use_Midstr)
         {
-          fprintf(Outfile,"%s\n","void    midstr (char*, int, int, char *);");
+          fprintf(Outfile,(char*)"%s\n","void    midstr (char*, int, int, char *);");
         }
       if(Use_Swap)
         {
-          fprintf(Outfile,"%s\n","void    swap (UCHAR*,UCHAR*,int);");
+          fprintf(Outfile,(char*)"%s\n","void    swap (UCHAR*,UCHAR*,int);");
         }
       if(UseFlag)
         {
-          fprintf(Outfile,"%s\n","char*   BCX_TmpStr(size_t);");
+          fprintf(Outfile,(char*)"%s\n","char*   BCX_TmpStr(size_t);");
         }
       if(Use_sziif)
         {
-          fprintf(Outfile,"%s\n","char*   sziif (bool,char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   sziif (bool,char*,char*);");
         }
       if(Use_Using)
         {
-          fprintf(Outfile,"%s\n","char*   Using (char*,double);");
+          fprintf(Outfile,(char*)"%s\n","char*   Using (char*,double);");
         }
       if(Use_TempFileName)
         {
-          fprintf(Outfile,"%s\n","char*   TempFileName (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   TempFileName (char*,char*);");
         }
       if(Use_AppExePath)
         {
-          fprintf(Outfile,"%s\n","char*   AppExePath (void);");
+          fprintf(Outfile,(char*)"%s\n","char*   AppExePath (void);");
         }
       if(Use_AppExeName)
         {
-          fprintf(Outfile,"%s\n","char*   AppExeName (void);");
+          fprintf(Outfile,(char*)"%s\n","char*   AppExeName (void);");
         }
       if(Use_Lcase)
         {
-          fprintf(Outfile,"%s\n","char*   lcase (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   lcase (char*);");
         }
       if(Use_Ucase)
         {
-          fprintf(Outfile,"%s\n","char*   ucase (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   ucase (char*);");
         }
       if(Use_Mid)
         {
-          fprintf(Outfile,"%s\n","char*   mid (char*, int, int=-1);");
+          fprintf(Outfile,(char*)"%s\n","char*   mid (char*, int, int=-1);");
         }
       if(Use_Ltrim)
         {
-          fprintf(Outfile,"%s\n","char*   ltrim (char*,char=32);");
+          fprintf(Outfile,(char*)"%s\n","char*   ltrim (char*,char=32);");
         }
       if(Use_Rtrim)
         {
-          fprintf(Outfile,"%s\n","char*   rtrim (char*,char=32);");
+          fprintf(Outfile,(char*)"%s\n","char*   rtrim (char*,char=32);");
         }
       if(Use_Trim)
         {
-          fprintf(Outfile,"%s\n","char*   trim (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   trim (char*);");
         }
       if(Use_Strim)
         {
-          fprintf(Outfile,"%s\n","char*   strim   (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   strim   (char*);");
         }
       if(Use_Left)
         {
-          fprintf(Outfile,"%s\n","char*   left (char*,int);");
+          fprintf(Outfile,(char*)"%s\n","char*   left (char*,int);");
         }
       if(Use_Right)
         {
-          fprintf(Outfile,"%s\n","char*   right (char*,int);");
+          fprintf(Outfile,(char*)"%s\n","char*   right (char*,int);");
         }
       if(Use_Rpad)
         {
-          fprintf(Outfile,"%s\n","char*   rpad (char*,int,int=32);");
+          fprintf(Outfile,(char*)"%s\n","char*   rpad (char*,int,int=32);");
         }
       if(Use_Lpad)
         {
-          fprintf(Outfile,"%s\n","char*   lpad (char*,int,int=32);");
+          fprintf(Outfile,(char*)"%s\n","char*   lpad (char*,int,int=32);");
         }
       if(Use_String)
         {
-          fprintf(Outfile,"%s\n","char*   stringx (int,int);");
+          fprintf(Outfile,(char*)"%s\n","char*   stringx (int,int);");
         }
       if(Use_Repeat)
         {
-          fprintf(Outfile,"%s\n","char*   repeat (int,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   repeat (int,char*);");
         }
       if(Use_Extract)
         {
-          fprintf(Outfile,"%s\n","char*   extract (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   extract (char*,char*);");
         }
       if(Use_Remain)
         {
-          fprintf(Outfile,"%s\n","char*   remain (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   remain (char*,char*);");
         }
       if(Use_Reverse)
         {
-          fprintf(Outfile,"%s\n","char*   reverse (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   reverse (char*);");
         }
       if(Use_Command)
         {
-          fprintf(Outfile,"%s\n","char*   command (int=-1);");
+          fprintf(Outfile,(char*)"%s\n","char*   command (int=-1);");
         }
       if(Use_Mcase)
         {
-          fprintf(Outfile,"%s\n","char*   mcase (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   mcase (char*);");
         }
       if(Use_Replace)
         {
-          fprintf(Outfile,"%s\n","char*   replace (char*,char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   replace (char*,char*,char*);");
         }
       if(Use_iReplace)
         {
-          fprintf(Outfile,"%s\n","char*   iReplace (char*,char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   iReplace (char*,char*,char*);");
         }
       if(Use_Shell)
         {
-          fprintf(Outfile,"%s\n","void    Shell (char *);");
+          fprintf(Outfile,(char*)"%s\n","void    Shell (char *);");
         }
       if(Use_Space)
         {
-          fprintf(Outfile,"%s\n","char*   space (int a);");
+          fprintf(Outfile,(char*)"%s\n","char*   space (int a);");
         }
       if(Use_Str)
         {
-          fprintf(Outfile,"%s\n","char*   str (double);");
+          fprintf(Outfile,(char*)"%s\n","char*   str (double);");
         }
       if(Use_Strl)
         {
-          fprintf(Outfile,"%s\n","char*   strl (long double);");
+          fprintf(Outfile,(char*)"%s\n","char*   strl (long double);");
         }
       if(Use_Findfirst)
         {
-          fprintf(Outfile,"%s\n","char*   findfirst (char*, FILE_FIND_DATA*);");
+          fprintf(Outfile,(char*)"%s\n","char*   findfirst (char*, FILE_FIND_DATA*);");
         }
       if(Use_Findnext)
         {
-          fprintf(Outfile,"%s\n","char*   findnext (FILE_FIND_DATA*);");
+          fprintf(Outfile,(char*)"%s\n","char*   findnext (FILE_FIND_DATA*);");
         }
       if(Use_Curdir)
         {
-          fprintf(Outfile,"%s\n","char*   curdir (void);");
+          fprintf(Outfile,(char*)"%s\n","char*   curdir (void);");
         }
       if(Use_Sysdir)
         {
-          fprintf(Outfile,"%s\n","char*   sysdir (void);");
+          fprintf(Outfile,(char*)"%s\n","char*   sysdir (void);");
         }
       if(Use_Tempdir)
         {
-          fprintf(Outfile,"%s\n","char*   tempdir (void);");
+          fprintf(Outfile,(char*)"%s\n","char*   tempdir (void);");
         }
       if(Use_Environ)
         {
-          fprintf(Outfile,"%s\n","char*   Environ (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   Environ (char*);");
         }
       if(Use_Boolstr)
         {
-          fprintf(Outfile,"%s\n","char*   BoolStr (int);");
+          fprintf(Outfile,(char*)"%s\n","char*   BoolStr (int);");
         }
       if(Use_Hex)
         {
-          fprintf(Outfile,"%s\n","char*   hex (int);");
+          fprintf(Outfile,(char*)"%s\n","char*   hex (int);");
         }
       if(Use_Bin)
         {
-          fprintf(Outfile,"%s\n","char*   Bin (int);");
+          fprintf(Outfile,(char*)"%s\n","char*   Bin (int);");
         }
       if(Use_Oct)
         {
-          fprintf(Outfile,"%s\n","char*   oct (int);");
+          fprintf(Outfile,(char*)"%s\n","char*   oct (int);");
         }
       if(Use_Now)
         {
-          fprintf(Outfile,"%s\n","char*   now (void);");
+          fprintf(Outfile,(char*)"%s\n","char*   now (void);");
         }
       if(Use_SearchPath)
         {
-          fprintf(Outfile,"%s\n","char*   SEARCHPATH (char *);");
+          fprintf(Outfile,(char*)"%s\n","char*   SEARCHPATH (char *);");
         }
       if(Use_StrUpLow)
         {
-          fprintf(Outfile,"%s\n","char*   _strupr_(char *);");
-          fprintf(Outfile,"%s\n","char*   _strlwr_(char *);");
+          fprintf(Outfile,(char*)"%s\n","char*   _strupr_(char *);");
+          fprintf(Outfile,(char*)"%s\n","char*   _strlwr_(char *);");
         }
       if(Use_BcxSplitPath)
         {
-          fprintf(Outfile,"%s\n","char*   BcxSplitPath (char *, int);");
-          fprintf(Outfile,"%s\n","void    _splitpath_(const char* path, char* drv, char* dir, char* name, char* ext);");
+          fprintf(Outfile,(char*)"%s\n","char*   BcxSplitPath (char *, int);");
+          fprintf(Outfile,(char*)"%s\n","void    _splitpath_(const char* path, char* drv, char* dir, char* name, char* ext);");
         }
       if(Use_Strtoken)
         {
-          fprintf(Outfile,"%s\n","char*   StrToken (char*,char*,int);");
+          fprintf(Outfile,(char*)"%s\n","char*   StrToken (char*,char*,int);");
         }
       if(Use_FileLocked)
         {
-          fprintf(Outfile,"%s\n","int    FileLocked (char*);");
+          fprintf(Outfile,(char*)"%s\n","int    FileLocked (char*);");
         }
       if(Use_FillArray)
         {
-          fprintf(Outfile,"%s\n","int     fillarray (char *, int, int, void *);");
+          fprintf(Outfile,(char*)"%s\n","int     fillarray (char *, int, int, void *);");
         }
       if(Use_Remove)
         {
-          fprintf(Outfile,"%s\n","char*   RemoveStr (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   RemoveStr (char*,char*);");
         }
       if(Use_IRemove)
         {
-          fprintf(Outfile,"%s\n","char*   IRemoveStr (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   IRemoveStr (char*,char*);");
         }
       if(Use_Time)
         {
-          fprintf(Outfile,"%s\n","char*   timef (int i=0);");
+          fprintf(Outfile,(char*)"%s\n","char*   timef (int i=0);");
         }
       if(Use_Join)
         {
-          fprintf(Outfile,"%s\n","char*   join (int, ... );");
+          fprintf(Outfile,(char*)"%s\n","char*   join (int, ... );");
         }
       if(Use_Enclose)
         {
-          fprintf(Outfile,"%s\n","char*   enc (char*, int=0, int=0);");
+          fprintf(Outfile,(char*)"%s\n","char*   enc (char*, int=0, int=0);");
         }
       if(Use_Chr)
         {
-          fprintf(Outfile,"%s","char*   chr");
-          fprintf(Outfile,"%s\n","(int,int=0,int=0,int=0,int=0,int=0,int=0,int=0,int=0,int=0);");
+          fprintf(Outfile,(char*)"%s","char*   chr");
+          fprintf(Outfile,(char*)"%s\n","(int,int=0,int=0,int=0,int=0,int=0,int=0,int=0,int=0,int=0);");
         }
       if(Use_VChr)
         {
-          fprintf(Outfile,"%s\n","char*   vchr (int,...);");
+          fprintf(Outfile,(char*)"%s\n","char*   vchr (int,...);");
         }
       if(Use_Freefile)
         {
-          fprintf(Outfile,"%s\n","FILE*   FreeFile (void);");
+          fprintf(Outfile,(char*)"%s\n","FILE*   FreeFile (void);");
         }
       if(Use_PeekStr)
         {
-          fprintf(Outfile,"%s\n","char*   peekstr (LPVOID,int);");
+          fprintf(Outfile,(char*)"%s\n","char*   peekstr (LPVOID,int);");
         }
       if(Use_Asc)
         {
-          fprintf(Outfile,"%s\n","int     asc (char*,int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     asc (char*,int=0);");
         }
       if(Use_Instrrev)
         {
-          fprintf(Outfile,"%s\n","int     InstrRev (char*,char*,int=0,int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     InstrRev (char*,char*,int=0,int=0);");
         }
       if(Use_Instr)
         {
-          fprintf(Outfile,"%s\n","int     instr_b(char*,char*,int=0,int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     instr_b(char*,char*,int=0,int=0);");
         }
       if(UseLCaseTbl)
         {
-          fprintf(Outfile,"%s\n","char    *MakeLCaseTbl(void);");
+          fprintf(Outfile,(char*)"%s\n","char    *MakeLCaseTbl(void);");
         }
       if(Use_Stristr)
         {
-          fprintf(Outfile,"%s\n","char    *_stristr_(char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char    *_stristr_(char*,char*);");
         }
       if(Use_StrStr)
         {
-          fprintf(Outfile,"%s\n","char    *_strstr_(char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","char    *_strstr_(char*,char*);");
         }
       if(Use_Verify)
         {
-          fprintf(Outfile,"%s\n","int     Verify (char *, char *);");
-          fprintf(Outfile,"%s\n","int     VerifyInstr(char*,char*,int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     Verify (char *, char *);");
+          fprintf(Outfile,(char*)"%s\n","int     VerifyInstr(char*,char*,int=0);");
         }
       if(Use_Retain)
         {
-          fprintf(Outfile,"%s\n","char*   Retain (char*,char *);");
+          fprintf(Outfile,(char*)"%s\n","char*   Retain (char*,char *);");
         }
       if(Use_LoadFile)
         {
-          fprintf(Outfile,"%s\n","char*   LoadFile (char*);");
+          fprintf(Outfile,(char*)"%s\n","char*   LoadFile (char*);");
         }
       if(Use_Inchr)
         {
-          fprintf(Outfile,"%s\n","int     inchr (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","int     inchr (char*,char*);");
         }
       if(Use_Idxqsort)
         {
-          fprintf(Outfile,"%s\n","int     IdxCompare (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     IdxCompare (const void *,const void *);");
         }
       if(Use_IdxqsortSt)
         {
-          fprintf(Outfile,"%s\n","int     IdxCompareSt (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     IdxCompareSt (const void *,const void *);");
         }
       if(Use_PtrqsortSt)
         {
-          fprintf(Outfile,"%s\n","int     PtrCompareSt (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     PtrCompareSt (const void *,const void *);");
         }
       if(Use_Strqsorta)
         {
-          fprintf(Outfile,"%s\n","int     StrCompareA (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     StrCompareA (const void *,const void *);");
         }
       if(Use_Strqsortd)
         {
-          fprintf(Outfile,"%s\n","int     StrCompareD (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     StrCompareD (const void *,const void *);");
         }
       if(Use_DynStrqsorta)
         {
-          fprintf(Outfile,"%s\n","int     DynStrCompareA (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     DynStrCompareA (const void *,const void *);");
         }
       if(Use_DynStrqsortd)
         {
-          fprintf(Outfile,"%s\n","int     DynStrCompareD (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     DynStrCompareD (const void *,const void *);");
         }
       if(Use_Numqsortaint)
         {
-          fprintf(Outfile,"%s\n","int     NumCompareAint (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     NumCompareAint (const void *,const void *);");
         }
       if(Use_Numqsortdint)
         {
-          fprintf(Outfile,"%s\n","int     NumCompareDint (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     NumCompareDint (const void *,const void *);");
         }
       if(Use_Numqsortafloat)
         {
-          fprintf(Outfile,"%s\n","int     NumCompareAfloat (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     NumCompareAfloat (const void *,const void *);");
         }
       if(Use_Numqsortdfloat)
         {
-          fprintf(Outfile,"%s\n","int     NumCompareDfloat (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     NumCompareDfloat (const void *,const void *);");
         }
       if(Use_Numqsortadouble)
         {
-          fprintf(Outfile,"%s\n","int     NumCompareAdouble (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     NumCompareAdouble (const void *,const void *);");
         }
       if(Use_Numqsortddouble)
         {
-          fprintf(Outfile,"%s\n","int     NumCompareDdouble (const void *,const void *);");
+          fprintf(Outfile,(char*)"%s\n","int     NumCompareDdouble (const void *,const void *);");
         }
       if(Use_Like)
         {
-          fprintf(Outfile,"%s\n","int     like (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","int     like (char*,char*);");
         }
       if(Use_Tally)
         {
-          fprintf(Outfile,"%s\n","int     tally (char*,char*,int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     tally (char*,char*,int=0);");
         }
       if(Use_Inkey)
         {
-          fprintf(Outfile,"%s\n","char*   inkey (void);");
+          fprintf(Outfile,(char*)"%s\n","char*   inkey (void);");
         }
       if(Use_InkeyD)
         {
-          fprintf(Outfile,"%s\n","int     inkeyd (void);");
+          fprintf(Outfile,(char*)"%s\n","int     inkeyd (void);");
         }
       if(Use_Instat)
         {
-          fprintf(Outfile,"%s\n","int		kbhit(void);");
+          fprintf(Outfile,(char*)"%s\n","int		kbhit(void);");
         }
       if(Use_GetCh)
         {
-          fprintf(Outfile,"%s\n","int     _getch_(int);");
+          fprintf(Outfile,(char*)"%s\n","int     _getch_(int);");
         }
       if(Use_Bin2dec)
         {
-          fprintf(Outfile,"%s\n","int     Bin2Dec (char*);");
+          fprintf(Outfile,(char*)"%s\n","int     Bin2Dec (char*);");
         }
       if(Use_Hex2Dec)
         {
-          fprintf(Outfile,"%s\n","int     Hex2Dec (char*);");
+          fprintf(Outfile,(char*)"%s\n","int     Hex2Dec (char*);");
         }
       if(Use_Download)
         {
-          fprintf(Outfile,"%s\n","int     Download (char*,char*);");
+          fprintf(Outfile,(char*)"%s\n","int     Download (char*,char*);");
         }
       if(Use_Embed)
         {
-          fprintf(Outfile,"%s\n","char*   GetResource (int* );");
+          fprintf(Outfile,(char*)"%s\n","char*   GetResource (int* );");
         }
       if(Use_Exist)
         {
           if(Use_Osx)
             {
-              fprintf(Outfile,"%s\n","bool    Exist   (char*);");
+              fprintf(Outfile,(char*)"%s\n","bool    Exist   (char*);");
             }
           else
             {
-              fprintf(Outfile,"%s\n","BOOL    Exist   (char*);");
+              fprintf(Outfile,(char*)"%s\n","BOOL    Exist   (char*);");
             }
         }
       if(Use_Ins)
         {
-          fprintf(Outfile,"%s\n","char*   ins (char *S, int i, char *a);");
+          fprintf(Outfile,(char*)"%s\n","char*   ins (char *S, int i, char *a);");
         }
       if(Use_Del)
         {
-          fprintf(Outfile,"%s\n","char*   del (char*,int,int);");
+          fprintf(Outfile,(char*)"%s\n","char*   del (char*,int,int);");
         }
       if(Use_Pause)
         {
-          fprintf(Outfile,"%s\n","void    Pause (void);");
+          fprintf(Outfile,(char*)"%s\n","void    Pause (void);");
         }
       if(Use_Keypress)
         {
-          fprintf(Outfile,"%s\n","int     keypress (void);");
+          fprintf(Outfile,(char*)"%s\n","int     keypress (void);");
         }
       if(Use_Lof)
         {
-          fprintf(Outfile,"%s\n","DWORD   lof (char*);");
+          fprintf(Outfile,(char*)"%s\n","DWORD   lof (char*);");
         }
       if(Use_Sgn)
         {
-          fprintf(Outfile,"%s\n","double  sgn (double);");
+          fprintf(Outfile,(char*)"%s\n","double  sgn (double);");
         }
       if(Use_Round)
         {
-          fprintf(Outfile,"%s\n","double  Round (double,int);");
+          fprintf(Outfile,(char*)"%s\n","double  Round (double,int);");
         }
       if(Use_Rnd)
         {
-          fprintf(Outfile,"%s\n","float   rnd (void);");
+          fprintf(Outfile,(char*)"%s\n","float   rnd (void);");
         }
       if(Use_Exp)
         {
-          fprintf(Outfile,"%s\n","double  Exp (double);");
+          fprintf(Outfile,(char*)"%s\n","double  Exp (double);");
         }
       if(Use_Min)
         {
-          fprintf(Outfile,"%s\n","double  _MIN_ (double,double);");
+          fprintf(Outfile,(char*)"%s\n","double  _MIN_ (double,double);");
         }
       if(Use_Max)
         {
-          fprintf(Outfile,"%s\n","double  _MAX_ (double,double);");
+          fprintf(Outfile,(char*)"%s\n","double  _MAX_ (double,double);");
         }
       if(Use_Timer)
         {
-          fprintf(Outfile,"%s\n","float   timer (void);");
+          fprintf(Outfile,(char*)"%s\n","float   timer (void);");
         }
       if(Use_Iif)
         {
-          fprintf(Outfile,"%s\n","double  iif (bool,double,double);");
+          fprintf(Outfile,(char*)"%s\n","double  iif (bool,double,double);");
         }
       if(Use_Loc)
         {
-          fprintf(Outfile,"%s\n","int     loc (FILE *fp, int fplen);");
+          fprintf(Outfile,(char*)"%s\n","int     loc (FILE *fp, int fplen);");
         }
       if(Use_Rec)
         {
-          fprintf(Outfile,"%s\n","int     rec (FILE *fp, int fplen);");
+          fprintf(Outfile,(char*)"%s\n","int     rec (FILE *fp, int fplen);");
         }
       if(Use_RecCount)
         {
-          fprintf(Outfile,"%s\n","int     reccount (FILE *fp, int fplen);");
+          fprintf(Outfile,(char*)"%s\n","int     reccount (FILE *fp, int fplen);");
         }
       if(Use_Scan)
         {
-          fprintf(Outfile,"%s\n","int     scan (char *input, char *format, ... );");
+          fprintf(Outfile,(char*)"%s\n","int     scan (char *input, char *format, ... );");
         }
       if(Use_Split)
         {
-          fprintf(Outfile,"%s\n","int     Split (char [][65535], char*, char*, int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     Split (char [][65535], char*, char*, int=0);");
         }
       if(Use_DSplit)
         {
-          fprintf(Outfile,"%s\n","int     DSplit (PCHAR *, char*, char*, int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     DSplit (PCHAR *, char*, char*, int=0);");
         }
       if(Use_SysStr)
         {
-          fprintf(Outfile,"%s\n","BSTR    SysStr (char * szIn, int=0, int=0);");
+          fprintf(Outfile,(char*)"%s\n","BSTR    SysStr (char * szIn, int=0, int=0);");
         }
       if(Use_WideToAnsi)
         {
-          fprintf(Outfile,"%s\n","char*   WideToAnsi (wchar_t *, UINT=0, DWORD=0);");
+          fprintf(Outfile,(char*)"%s\n","char*   WideToAnsi (wchar_t *, UINT=0, DWORD=0);");
         }
       if(Use_AnsiToWide)
         {
-          fprintf(Outfile,"%s\n","wchar_t* AnsiToWide (char*,UINT=0,DWORD=0);");
+          fprintf(Outfile,(char*)"%s\n","wchar_t* AnsiToWide (char*,UINT=0,DWORD=0);");
         }
       if(Use_Cvi)
         {
-          fprintf(Outfile,"%s\n","short   CVI (char*);");
+          fprintf(Outfile,(char*)"%s\n","short   CVI (char*);");
         }
       if(Use_Mki)
         {
-          fprintf(Outfile,"%s\n","char*   MKI (short);");
+          fprintf(Outfile,(char*)"%s\n","char*   MKI (short);");
         }
       if(Use_Cvl)
         {
-          fprintf(Outfile,"%s\n","long    CVL (char*);");
+          fprintf(Outfile,(char*)"%s\n","long    CVL (char*);");
         }
       if(Use_Mkl)
         {
-          fprintf(Outfile,"%s\n","char*   MKL (int);");
+          fprintf(Outfile,(char*)"%s\n","char*   MKL (int);");
         }
       if(Use_Cvs)
         {
-          fprintf(Outfile,"%s\n","float   CVS (char*);");
+          fprintf(Outfile,(char*)"%s\n","float   CVS (char*);");
         }
       if(Use_Mks)
         {
-          fprintf(Outfile,"%s\n","char*   MKS (float);");
+          fprintf(Outfile,(char*)"%s\n","char*   MKS (float);");
         }
       if(Use_Cvd)
         {
-          fprintf(Outfile,"%s\n","double  CVD (char*);");
+          fprintf(Outfile,(char*)"%s\n","double  CVD (char*);");
         }
       if(Use_Cvld)
         {
-          fprintf(Outfile,"%s\n","long double  CVLD (char*);");
+          fprintf(Outfile,(char*)"%s\n","long double  CVLD (char*);");
         }
       if(Use_Mkd)
         {
-          fprintf(Outfile,"%s\n","char*   MKD (double);");
+          fprintf(Outfile,(char*)"%s\n","char*   MKD (double);");
         }
       if(Use_Mkld)
         {
-          fprintf(Outfile,"%s\n","char*   MKLD (long double);");
+          fprintf(Outfile,(char*)"%s\n","char*   MKLD (long double);");
         }
       if(Use_OSVersion)
         {
-          fprintf(Outfile,"%s\n","int     OSVersion (void);");
+          fprintf(Outfile,(char*)"%s\n","int     OSVersion (void);");
         }
       if(Use_Dynacall)
         {
-          fprintf(Outfile,"%s\n","HINSTANCE BCX_LoadDll(char *);");
-          fprintf(Outfile,"%s\n","void    BCX_UnloadDll(void);");
-          fprintf(Outfile,"%s\n","typedef int (CALLBACK *DYNACALL1)(void);");
-          fprintf(Outfile,"%s\n","int     BCX_DynaCall(char *, char *, int, ...);");
+          fprintf(Outfile,(char*)"%s\n","HINSTANCE BCX_LoadDll(char *);");
+          fprintf(Outfile,(char*)"%s\n","void    BCX_UnloadDll(void);");
+          fprintf(Outfile,(char*)"%s\n","typedef int (CALLBACK *DYNACALL1)(void);");
+          fprintf(Outfile,(char*)"%s\n","int     BCX_DynaCall(char *, char *, int, ...);");
         }
       if(Use_DynamicA)
         {
-          fprintf(Outfile,"%s\n","void*   CreateArr (void*,int,int,int,...);");
-          fprintf(Outfile,"%s\n","void*   CreateArr_internal(void*, int, int, int, va_list);");
-          fprintf(Outfile,"%s\n","void    DestroyArr (void**,int,int);");
+          fprintf(Outfile,(char*)"%s\n","void*   CreateArr (void*,int,int,int,...);");
+          fprintf(Outfile,(char*)"%s\n","void*   CreateArr_internal(void*, int, int, int, va_list);");
+          fprintf(Outfile,(char*)"%s\n","void    DestroyArr (void**,int,int);");
         }
       if(Use_ContainedIn)
         {
-          fprintf(Outfile,"%s\n","int     containedin(char * ,char **,int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     containedin(char * ,char **,int=0);");
         }
       if(Use_FindInType)
         {
-          fprintf(Outfile,"%s\n","int     FindInType(char *,char *,int,int,int,int=0,int* =0);");
+          fprintf(Outfile,(char*)"%s\n","int     FindInType(char *,char *,int,int,int,int=0,int* =0);");
         }
       if(Use_SingleFile==FALSE)
         {
@@ -16418,38 +16418,38 @@ void AddProtos (void)
       /*****2010-11-24ChangeTOemitwxAppCLASSDefinitionFORWXCONSOLEApps-AIR*****/;
       if(Use_Wx)
         {
-          fprintf(Outfile,"%s\n","");
-          fprintf(Outfile,"%s%s%s\n","class ",BcxSplitPath(FileIn,FNAME),": public wxApp {");
-          fprintf(Outfile,"%s\n","  public:");
-          fprintf(Outfile,"%s\n","	virtual bool OnInit();");
-          fprintf(Outfile,"%s\n","};");
-          fprintf(Outfile,"%s\n","");
-          fprintf(Outfile,"%s%s%s\n","IMPLEMENT_APP(",BcxSplitPath(FileIn,FNAME),")");
-          fprintf(Outfile,"%s\n","");
+          fprintf(Outfile,(char*)"%s\n","");
+          fprintf(Outfile,(char*)"%s%s%s\n","class ",BcxSplitPath(FileIn,FNAME),": public wxApp {");
+          fprintf(Outfile,(char*)"%s\n","  public:");
+          fprintf(Outfile,(char*)"%s\n","	virtual bool OnInit();");
+          fprintf(Outfile,(char*)"%s\n","};");
+          fprintf(Outfile,(char*)"%s\n","");
+          fprintf(Outfile,(char*)"%s%s%s\n","IMPLEMENT_APP(",BcxSplitPath(FileIn,FNAME),")");
+          fprintf(Outfile,(char*)"%s\n","");
         }
       if(Use_Socket)
         {
-          fprintf(Outfile,"%s\n","");
-          fprintf(Outfile,"%s\n","sockaddr_in sock_addr (char* ,int=80);");
-          fprintf(Outfile,"%s\n","int     connect_socket (sockaddr_in);");
-          fprintf(Outfile,"%s\n","int     BcxSocket (char* ,int=80);");
-          fprintf(Outfile,"%s\n","int     BcxSocketSend (int, char *);");
-          fprintf(Outfile,"%s\n","int     BcxSocketRead (int, char *);");
-          fprintf(Outfile,"%s\n","void    BcxSocketClose(int);");
-          fprintf(Outfile,"%s\n","");
+          fprintf(Outfile,(char*)"%s\n","");
+          fprintf(Outfile,(char*)"%s\n","sockaddr_in sock_addr (char* ,int=80);");
+          fprintf(Outfile,(char*)"%s\n","int     connect_socket (sockaddr_in);");
+          fprintf(Outfile,(char*)"%s\n","int     BcxSocket (char* ,int=80);");
+          fprintf(Outfile,(char*)"%s\n","int     BcxSocketSend (int, char *);");
+          fprintf(Outfile,(char*)"%s\n","int     BcxSocketRead (int, char *);");
+          fprintf(Outfile,(char*)"%s\n","void    BcxSocketClose(int);");
+          fprintf(Outfile,(char*)"%s\n","");
         }
       if(Use_RegEx)
         {
-          fprintf(Outfile,"%s\n","bool    regmatch (char *, char *, REGEX* );");
+          fprintf(Outfile,(char*)"%s\n","bool    regmatch (char *, char *, REGEX* );");
         }
     }
   if(ProtoCnt)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s%s\n","//               ",BCX_STR_USR_PROTOS);
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s%s\n","//               ",BCX_STR_USR_PROTOS);
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
       char LastDef[2048];
       int     LastLevel;
       *LastDef=0;
@@ -16464,12 +16464,12 @@ void AddProtos (void)
                 {
                   if(LastDef[0]>0)
                     {
-                      fprintf(fpHFile,"%s\n",LastDef);
+                      fprintf(fpHFile,(char*)"%s\n",LastDef);
                     }
                 }
               if(LastDef[0]>0)
                 {
-                  fprintf(Outfile,"%s\n",LastDef);
+                  fprintf(Outfile,(char*)"%s\n",LastDef);
                 }
             }
           if(str_cmp(LastDef,ProtoType[A].Condition)!=0)
@@ -16480,16 +16480,16 @@ void AddProtos (void)
                     {
                       if(Use_SingleFile==FALSE)
                         {
-                          fprintf(fpHFile,"%s\n","#endif");
+                          fprintf(fpHFile,(char*)"%s\n","#endif");
                         }
-                      fprintf(Outfile,"%s\n","#endif");
+                      fprintf(Outfile,(char*)"%s\n","#endif");
                       LastLevel--;
                     }
                   if(Use_SingleFile==FALSE)
                     {
-                      fprintf(fpHFile,"%s\n","#else");
+                      fprintf(fpHFile,(char*)"%s\n","#else");
                     }
-                  fprintf(Outfile,"%s\n","#else");
+                  fprintf(Outfile,(char*)"%s\n","#else");
                   strcpy(LastDef,ProtoType[A].Condition);
                   LastLevel=ProtoType[A].CondLevel;
                 }
@@ -16499,9 +16499,9 @@ void AddProtos (void)
                     {
                       if(Use_SingleFile==FALSE)
                         {
-                          fprintf(fpHFile,"%s\n","#endif");
+                          fprintf(fpHFile,(char*)"%s\n","#endif");
                         }
-                      fprintf(Outfile,"%s\n","#endif");
+                      fprintf(Outfile,(char*)"%s\n","#endif");
                       LastLevel--;
                     }
                   strcpy(LastDef,ProtoType[A].Condition);
@@ -16510,12 +16510,12 @@ void AddProtos (void)
                     {
                       if(LastDef[0]>0)
                         {
-                          fprintf(fpHFile,"%s\n",LastDef);
+                          fprintf(fpHFile,(char*)"%s\n",LastDef);
                         }
                     }
                   if(LastDef[0]>0)
                     {
-                      fprintf(Outfile,"%s\n",LastDef);
+                      fprintf(Outfile,(char*)"%s\n",LastDef);
                     }
                 }
             }
@@ -16531,11 +16531,11 @@ void AddProtos (void)
           strcpy(ProtoType[A].Prototype, join(2,T,remain(ProtoType[A].Prototype,SPC)));
           if(Use_SingleFile==FALSE)
             {
-              fprintf(fpHFile,"%s\n",ProtoType[A].Prototype);
+              fprintf(fpHFile,(char*)"%s\n",ProtoType[A].Prototype);
             }
           if(UseCpp==FALSE&&!instr_b(ProtoType[A].Prototype,"::"))
             {
-              fprintf(Outfile,"%s\n",ProtoType[A].Prototype);
+              fprintf(Outfile,(char*)"%s\n",ProtoType[A].Prototype);
             }
         }
       if(*LastDef)
@@ -16544,14 +16544,14 @@ void AddProtos (void)
             {
               if(Use_SingleFile==FALSE)
                 {
-                  fprintf(fpHFile,"%s\n","#endif");
+                  fprintf(fpHFile,(char*)"%s\n","#endif");
                 }
-              fprintf(Outfile,"%s\n","#endif");
+              fprintf(Outfile,(char*)"%s\n","#endif");
               LastLevel--;
             }
         }
     }
-  fprintf(Outfile,"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","");
   char P[2048];
   int     i;
   char VarName[2048];
@@ -16560,11 +16560,11 @@ void AddProtos (void)
   char VAR[2048];
   if(GlobalVarCnt>0)
     {
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","//            User Global Initialized Arrays");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","//            User Global Initialized Arrays");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
       for(i=1; i<=GlobalVarCnt; i+=1)
         {
           if(GlobalVars[i].VarEmitFlag)
@@ -16596,45 +16596,45 @@ void AddProtos (void)
                   {
                     if(A==vt_STRVAR)
                       {
-                        fprintf(Outfile,"%s%s%s%s%s\n",Storage,"char    ",VarName,VarDim,";");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s\n",Storage,"char    ",VarName,VarDim,";");
                         break;
                       }
                     if(A==vt_FILEPTR)
                       {
                         strcpy(GlobalVars[i].VarName,RemoveStr(GlobalVars[i].VarName,"@"));
-                        fprintf(Outfile,"%s%s%s%s%s\n",Storage,"FILE   *",VarName,VarDim,";");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s\n",Storage,"FILE   *",VarName,VarDim,";");
                         break;
                       }
                     if(A==vt_BOOL)
                       {
-                        fprintf(Outfile,"%s%s%s%s%s\n",Storage,"bool    ",VarName,VarDim,";");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s\n",Storage,"bool    ",VarName,VarDim,";");
                         break;
                       }
                     if(A==vt_UDT||A==vt_STRUCT||A==vt_UNION)
                       {
                         strcpy(VAR,TypeDefs[GlobalVars[i].VarDef].VarName);
                         strcpy(VAR,rpad(VAR,7));
-                        fprintf(Outfile,"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
                         break;
                       }
                     if(A>=vt_VarMin&&A<=vt_VarMax)
                       {
                         strcpy(VAR,GetVarTypeName(GlobalVars[i].VarType));
                         strcpy(VAR,rpad(VAR,7));
-                        fprintf(Outfile,"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
+                        fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
                       }
                     break;
                   }
                 }
             }
         }
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
     }
   if(Use_Overloaded)
     {
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","//        User's Overloaded Subs/Functions          ");
-      fprintf(Outfile,"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","//        User's Overloaded Subs/Functions          ");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
       if((FP8=fopen(ovrFile,"r"))==0)
        {
          fprintf(stderr,"Can't open file %s\n",ovrFile);
@@ -16647,16 +16647,16 @@ void AddProtos (void)
           if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
           if(instr_b(ZZ,"overloaded"))
             {
-              fprintf(Outfile,"%s\n","\n");
+              fprintf(Outfile,(char*)"%s\n","\n");
             }
-          fprintf(Outfile,"%s\n",ZZ);
+          fprintf(Outfile,(char*)"%s\n",ZZ);
         }
       if(FP8)
        {
          fclose(FP8);
          FP8=NULL;
        }
-      fprintf(Outfile,"%s\n","\n\n");
+      fprintf(Outfile,(char*)"%s\n","\n\n");
     }
   if((FP5=fopen(setFile,"r"))==0)
    {
@@ -16665,18 +16665,18 @@ void AddProtos (void)
    }
   if(lof(setFile)>0)
     {
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","//              User GLOBAL SET Statements");
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","//              User GLOBAL SET Statements");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
       while(!EoF(FP5))
         {
           Z[0]=0;
           AR_fgets_retval=fgets(Z,65535,FP5);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
-          fprintf(Outfile,"%s\n",Z);
+          fprintf(Outfile,(char*)"%s\n",Z);
         }
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","");
     }
   if(FP5)
    {
@@ -16693,17 +16693,17 @@ void AddProtos (void)
     }
   if(NoMain==0)
     {
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s%s\n","//                  ",BCX_STR_MAIN_PROG);
-      fprintf(Outfile,"%s\n","// *************************************************");
-      fprintf(Outfile,"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s%s\n","//                  ",BCX_STR_MAIN_PROG);
+      fprintf(Outfile,(char*)"%s\n","// *************************************************");
+      fprintf(Outfile,(char*)"%s\n","");
     }
   if(NoMain==FALSE)
     {
-      fprintf(Outfile,"%s\n",SaveMain);
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  G_argc = argc;");
-      fprintf(Outfile,"%s\n","  G_argv = argv;");
+      fprintf(Outfile,(char*)"%s\n",SaveMain);
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  G_argc = argc;");
+      fprintf(Outfile,(char*)"%s\n","  G_argv = argv;");
       BumpUp();
     }
   while(!EoF(FP1))
@@ -16711,7 +16711,7 @@ void AddProtos (void)
       ZZ[0]=0;
       AR_fgets_retval=fgets(ZZ,65535,FP1);
       if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
-      fprintf(Outfile,"%s%s\n",Scoot,ZZ);
+      fprintf(Outfile,(char*)"%s%s\n",Scoot,ZZ);
     }
   if(Use_SingleFile==TRUE)
     {
@@ -16784,11 +16784,11 @@ void RunTimeFunctions (void)
   strcpy(T13,vchr(15,34,37,65,44,32,37,66,32,37,100,44,32,37,89,34));
   strcpy(X1,vchr(4,34,37,88,34));
   strcpy(TDIR,enc("/tmp/mbc.XXXXXXXX"));
-  fprintf(Outfile,"%s\n","");
-  fprintf(Outfile,"%s\n","// *************************************************");
-  fprintf(Outfile,"%s%s\n","//                 ",BCX_STR_RUNTIME);
-  fprintf(Outfile,"%s\n","// *************************************************");
-  fprintf(Outfile,"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","");
+  fprintf(Outfile,(char*)"%s\n","// *************************************************");
+  fprintf(Outfile,(char*)"%s%s\n","//                 ",BCX_STR_RUNTIME);
+  fprintf(Outfile,(char*)"%s\n","// *************************************************");
+  fprintf(Outfile,(char*)"%s\n","");
   if(NoRT==TRUE)
     {
       return;
@@ -16797,2419 +16797,2419 @@ void RunTimeFunctions (void)
     {
       if(Use_Turbo)
         {
-          fprintf(Outfile,"%s\n","char *BCX_TmpStr (size_t Bites)");
-          fprintf(Outfile,"%s\n","{");
-          fprintf(Outfile,"%s\n","  static int   StrCnt;");
-          fprintf(Outfile,"%s%d%s\n","  static char *StrFunc[",(int)TurboSize,"];");
-          fprintf(Outfile,"%s%d%s\n","  StrCnt=((StrCnt+1) &",(int)TurboSize-1,");");
-          fprintf(Outfile,"%s\n","    #if defined BCX_MAX_VAR_SIZE");
-          fprintf(Outfile,"%s\n","  if(Bites*sizeof(char)>BCX_MAX_VAR_SIZE)");
-          fprintf(Outfile,"%s\n","  {");
-          fprintf(Outfile,"%s%s%s\n","  printf(",enc("Buffer Overflow caught in BCX_TmpStr - requested space of %d EXCEEDS %d\\n"),",(int)(Bites*sizeof(char)),BCX_MAX_VAR_SIZE);");
-          fprintf(Outfile,"%s\n","  abort();");
-          fprintf(Outfile,"%s\n","  }");
-          fprintf(Outfile,"%s\n","  #endif");
-          fprintf(Outfile,"%s\n","  StrFunc[StrCnt]=(char*)realloc(StrFunc[StrCnt],Bites + 128);");
-          fprintf(Outfile,"%s\n","  return (char*)memset(StrFunc[StrCnt],0,Bites+128);");
-          fprintf(Outfile,"%s\n","}\n\n");
+          fprintf(Outfile,(char*)"%s\n","char *BCX_TmpStr (size_t Bites)");
+          fprintf(Outfile,(char*)"%s\n","{");
+          fprintf(Outfile,(char*)"%s\n","  static int   StrCnt;");
+          fprintf(Outfile,(char*)"%s%d%s\n","  static char *StrFunc[",(int)TurboSize,"];");
+          fprintf(Outfile,(char*)"%s%d%s\n","  StrCnt=((StrCnt+1) &",(int)TurboSize-1,");");
+          fprintf(Outfile,(char*)"%s\n","    #if defined BCX_MAX_VAR_SIZE");
+          fprintf(Outfile,(char*)"%s\n","  if(Bites*sizeof(char)>BCX_MAX_VAR_SIZE)");
+          fprintf(Outfile,(char*)"%s\n","  {");
+          fprintf(Outfile,(char*)"%s%s%s\n","  printf(",enc("Buffer Overflow caught in BCX_TmpStr - requested space of %d EXCEEDS %d\\n"),",(int)(Bites*sizeof(char)),BCX_MAX_VAR_SIZE);");
+          fprintf(Outfile,(char*)"%s\n","  abort();");
+          fprintf(Outfile,(char*)"%s\n","  }");
+          fprintf(Outfile,(char*)"%s\n","  #endif");
+          fprintf(Outfile,(char*)"%s\n","  StrFunc[StrCnt]=(char*)realloc(StrFunc[StrCnt],Bites + 128);");
+          fprintf(Outfile,(char*)"%s\n","  return (char*)memset(StrFunc[StrCnt],0,Bites+128);");
+          fprintf(Outfile,(char*)"%s\n","}\n\n");
         }
       else
         {
-          fprintf(Outfile,"%s\n","char *BCX_TmpStr (size_t Bites)");
-          fprintf(Outfile,"%s\n","{");
-          fprintf(Outfile,"%s\n","  static int   StrCnt;");
-          fprintf(Outfile,"%s\n","  static char *StrFunc[65535];");
-          fprintf(Outfile,"%s\n","  StrCnt=(StrCnt + 1) & 65535;");
-          fprintf(Outfile,"%s\n","  if(StrFunc[StrCnt]) free (StrFunc[StrCnt]);");
-          fprintf(Outfile,"%s\n","    #if defined BCX_MAX_VAR_SIZE");
-          fprintf(Outfile,"%s\n","  if(Bites*sizeof(char)>BCX_MAX_VAR_SIZE)");
-          fprintf(Outfile,"%s\n","  {");
-          fprintf(Outfile,"%s%s%s\n","  printf(",enc("Buffer Overflow caught in BCX_TmpStr - requested space of %d EXCEEDS %d\\n"),",(int)(Bites*sizeof(char)),BCX_MAX_VAR_SIZE);");
-          fprintf(Outfile,"%s\n","  abort();");
-          fprintf(Outfile,"%s\n","  }");
-          fprintf(Outfile,"%s\n","  #endif");
-          fprintf(Outfile,"%s\n","  return StrFunc[StrCnt]=(char*)calloc(Bites+128,sizeof(char));");
-          fprintf(Outfile,"%s\n","}\n\n");
+          fprintf(Outfile,(char*)"%s\n","char *BCX_TmpStr (size_t Bites)");
+          fprintf(Outfile,(char*)"%s\n","{");
+          fprintf(Outfile,(char*)"%s\n","  static int   StrCnt;");
+          fprintf(Outfile,(char*)"%s\n","  static char *StrFunc[65535];");
+          fprintf(Outfile,(char*)"%s\n","  StrCnt=(StrCnt + 1) & 65535;");
+          fprintf(Outfile,(char*)"%s\n","  if(StrFunc[StrCnt]) free (StrFunc[StrCnt]);");
+          fprintf(Outfile,(char*)"%s\n","    #if defined BCX_MAX_VAR_SIZE");
+          fprintf(Outfile,(char*)"%s\n","  if(Bites*sizeof(char)>BCX_MAX_VAR_SIZE)");
+          fprintf(Outfile,(char*)"%s\n","  {");
+          fprintf(Outfile,(char*)"%s%s%s\n","  printf(",enc("Buffer Overflow caught in BCX_TmpStr - requested space of %d EXCEEDS %d\\n"),",(int)(Bites*sizeof(char)),BCX_MAX_VAR_SIZE);");
+          fprintf(Outfile,(char*)"%s\n","  abort();");
+          fprintf(Outfile,(char*)"%s\n","  }");
+          fprintf(Outfile,(char*)"%s\n","  #endif");
+          fprintf(Outfile,(char*)"%s\n","  return StrFunc[StrCnt]=(char*)calloc(Bites+128,sizeof(char));");
+          fprintf(Outfile,(char*)"%s\n","}\n\n");
         }
     }
   if(Use_CopyFile)
     {
-      fprintf(Outfile,"%s\n","void CopyFile (char *InFile,char *TmpFile,int OverWrite)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  #define BLOCKCOPYSIZE (10 * 1000*1024)");
-      fprintf(Outfile,"%s\n","  char*  tmp=0;");
-      fprintf(Outfile,"%s\n","  UINT   blocks=1;");
-      fprintf(Outfile,"%s\n","  UINT   overage=0;");
-      fprintf(Outfile,"%s\n","  UINT   i;");
-      fprintf(Outfile,"%s\n","  FILE   *FP1,*FP2;");
-      fprintf(Outfile,"%s\n","  if(!OverWrite)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      if(Exist(TmpFile)) return;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  if(Exist(InFile))");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      UINT length = lof(InFile);");
-      fprintf(Outfile,"%s\n","      if(length > BLOCKCOPYSIZE)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          blocks = length/BLOCKCOPYSIZE;");
-      fprintf(Outfile,"%s\n","          overage= length % BLOCKCOPYSIZE;");
-      fprintf(Outfile,"%s\n","          length = BLOCKCOPYSIZE;");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","      tmp=(char*)calloc(16+length,1);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s%s%s\n","      if((FP1=fopen(InFile,",enc("rb"),"))==0)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s%s%s\n","         fprintf(stderr,",enc("Can't open file %s\\n"),",InFile);");
-      fprintf(Outfile,"%s\n","         exit(1);");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s%s%s\n","      if((FP2=fopen(TmpFile,",enc("wb+"),"))==0)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s%s%s\n","         fprintf(stderr,",enc("Can't open file %s\\n"),",TmpFile);");
-      fprintf(Outfile,"%s\n","         exit(1);");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","      for(i=0; i<blocks; i+=1)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          fread(tmp,1,length,FP1);");
-      fprintf(Outfile,"%s\n","          fwrite(tmp,1,length,FP2);");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","      if(overage>0)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          fread(tmp,1,overage,FP1);");
-      fprintf(Outfile,"%s\n","          fwrite(tmp,1,overage,FP2);");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","      fclose(FP2); fclose(FP1);");
-      fprintf(Outfile,"%s\n","      if(tmp) free(tmp);");
-      fprintf(Outfile,"%s\n","      struct stat st;");
-      fprintf(Outfile,"%s\n","      if(stat(InFile, &st) != -1)");
-      fprintf(Outfile,"%s\n","        chmod(TmpFile,st.st_mode);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void CopyFile (char *InFile,char *TmpFile,int OverWrite)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  #define BLOCKCOPYSIZE (10 * 1000*1024)");
+      fprintf(Outfile,(char*)"%s\n","  char*  tmp=0;");
+      fprintf(Outfile,(char*)"%s\n","  UINT   blocks=1;");
+      fprintf(Outfile,(char*)"%s\n","  UINT   overage=0;");
+      fprintf(Outfile,(char*)"%s\n","  UINT   i;");
+      fprintf(Outfile,(char*)"%s\n","  FILE   *FP1,*FP2;");
+      fprintf(Outfile,(char*)"%s\n","  if(!OverWrite)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      if(Exist(TmpFile)) return;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  if(Exist(InFile))");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      UINT length = lof(InFile);");
+      fprintf(Outfile,(char*)"%s\n","      if(length > BLOCKCOPYSIZE)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          blocks = length/BLOCKCOPYSIZE;");
+      fprintf(Outfile,(char*)"%s\n","          overage= length % BLOCKCOPYSIZE;");
+      fprintf(Outfile,(char*)"%s\n","          length = BLOCKCOPYSIZE;");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","      tmp=(char*)calloc(16+length,1);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s%s%s\n","      if((FP1=fopen(InFile,",enc("rb"),"))==0)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s%s%s\n","         fprintf(stderr,",enc("Can't open file %s\\n"),",InFile);");
+      fprintf(Outfile,(char*)"%s\n","         exit(1);");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s%s%s\n","      if((FP2=fopen(TmpFile,",enc("wb+"),"))==0)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s%s%s\n","         fprintf(stderr,",enc("Can't open file %s\\n"),",TmpFile);");
+      fprintf(Outfile,(char*)"%s\n","         exit(1);");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","      for(i=0; i<blocks; i+=1)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          fread(tmp,1,length,FP1);");
+      fprintf(Outfile,(char*)"%s\n","          fwrite(tmp,1,length,FP2);");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","      if(overage>0)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          fread(tmp,1,overage,FP1);");
+      fprintf(Outfile,(char*)"%s\n","          fwrite(tmp,1,overage,FP2);");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","      fclose(FP2); fclose(FP1);");
+      fprintf(Outfile,(char*)"%s\n","      if(tmp) free(tmp);");
+      fprintf(Outfile,(char*)"%s\n","      struct stat st;");
+      fprintf(Outfile,(char*)"%s\n","      if(stat(InFile, &st) != -1)");
+      fprintf(Outfile,(char*)"%s\n","        chmod(TmpFile,st.st_mode);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Str_Cmp)
     {
-      fprintf(Outfile,"%s\n","int str_cmp (char *a, char *b)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int counter=0;");
-      fprintf(Outfile,"%s\n","  for(;;)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","    if((a[counter]^b[counter]))");
-      fprintf(Outfile,"%s\n","     {");
-      fprintf(Outfile,"%s\n","      if((UINT) a[counter]>= (UINT) b[counter])");
-      fprintf(Outfile,"%s\n","      return  1;");
-      fprintf(Outfile,"%s\n","      return -1;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","    if(!a[counter]) return 0;");
-      fprintf(Outfile,"%s\n","    counter++;");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int str_cmp (char *a, char *b)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int counter=0;");
+      fprintf(Outfile,(char*)"%s\n","  for(;;)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","    if((a[counter]^b[counter]))");
+      fprintf(Outfile,(char*)"%s\n","     {");
+      fprintf(Outfile,(char*)"%s\n","      if((UINT) a[counter]>= (UINT) b[counter])");
+      fprintf(Outfile,(char*)"%s\n","      return  1;");
+      fprintf(Outfile,(char*)"%s\n","      return -1;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","    if(!a[counter]) return 0;");
+      fprintf(Outfile,(char*)"%s\n","    counter++;");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Eof)
     {
-      fprintf(Outfile,"%s\n","int EoF (FILE* stream)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int c, status = ((c = fgetc(stream)) == EOF);");
-      fprintf(Outfile,"%s\n","  ungetc(c,stream);");
-      fprintf(Outfile,"%s\n","  return status;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int EoF (FILE* stream)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int c, status = ((c = fgetc(stream)) == EOF);");
+      fprintf(Outfile,(char*)"%s\n","  ungetc(c,stream);");
+      fprintf(Outfile,(char*)"%s\n","  return status;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Cint)
     {
-      fprintf(Outfile,"%s\n","int Cint (double A)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return (A >=0 ? (int)(A+0.5) : (int)(A-0.5));");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int Cint (double A)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return (A >=0 ? (int)(A+0.5) : (int)(A-0.5));");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Clng)
     {
-      fprintf(Outfile,"%s\n","long CLNG (double A)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  float   r=.5;");
-      fprintf(Outfile,"%s\n","  double  a=A-(long)A;");
-      fprintf(Outfile,"%s\n","  if(A<0) { r=-.5; a=-a; }");
-      fprintf(Outfile,"%s\n","  if(((long)A % 2)==0&&a<=.5)");
-      fprintf(Outfile,"%s\n","    return (long)A;");
-      fprintf(Outfile,"%s\n","  else");
-      fprintf(Outfile,"%s\n","    return (long)(A+r);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","long CLNG (double A)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  float   r=.5;");
+      fprintf(Outfile,(char*)"%s\n","  double  a=A-(long)A;");
+      fprintf(Outfile,(char*)"%s\n","  if(A<0) { r=-.5; a=-a; }");
+      fprintf(Outfile,(char*)"%s\n","  if(((long)A % 2)==0&&a<=.5)");
+      fprintf(Outfile,(char*)"%s\n","    return (long)A;");
+      fprintf(Outfile,(char*)"%s\n","  else");
+      fprintf(Outfile,(char*)"%s\n","    return (long)(A+r);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Left)
     {
-      fprintf(Outfile,"%s\n","char *left (char *S, int length)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int tmplen = strlen(S);");
-      fprintf(Outfile,"%s\n","  if(length<1) return BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","  if(length<tmplen) tmplen=length;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(tmplen);");
-      fprintf(Outfile,"%s\n","  return (char*)memcpy(strtmp,S,tmplen);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *left (char *S, int length)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int tmplen = strlen(S);");
+      fprintf(Outfile,(char*)"%s\n","  if(length<1) return BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","  if(length<tmplen) tmplen=length;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(tmplen);");
+      fprintf(Outfile,(char*)"%s\n","  return (char*)memcpy(strtmp,S,tmplen);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Right)
     {
-      fprintf(Outfile,"%s\n","char *right (char *S, int length)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int tmplen = strlen(S);");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr = BCX_TmpStr(tmplen);");
-      fprintf(Outfile,"%s\n","  tmplen -= length;");
-      fprintf(Outfile,"%s\n","  if (tmplen<0) tmplen = 0;");
-      fprintf(Outfile,"%s\n","  return strcpy(BCX_RetStr, &S[tmplen]);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *right (char *S, int length)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int tmplen = strlen(S);");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr = BCX_TmpStr(tmplen);");
+      fprintf(Outfile,(char*)"%s\n","  tmplen -= length;");
+      fprintf(Outfile,(char*)"%s\n","  if (tmplen<0) tmplen = 0;");
+      fprintf(Outfile,(char*)"%s\n","  return strcpy(BCX_RetStr, &S[tmplen]);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Rpad)
     {
-      fprintf(Outfile,"%s\n","char *rpad (char *a, int L, int c)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp;");
-      fprintf(Outfile,"%s\n","  int s = strlen(a);");
-      fprintf(Outfile,"%s\n","  if((L-s)<1) return a;");
-      fprintf(Outfile,"%s\n","  strtmp=BCX_TmpStr(L);");
-      fprintf(Outfile,"%s\n","  strcpy(strtmp,a);");
-      fprintf(Outfile,"%s\n","  memset(&strtmp[s],c,(L-s));");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *rpad (char *a, int L, int c)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp;");
+      fprintf(Outfile,(char*)"%s\n","  int s = strlen(a);");
+      fprintf(Outfile,(char*)"%s\n","  if((L-s)<1) return a;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp=BCX_TmpStr(L);");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(strtmp,a);");
+      fprintf(Outfile,(char*)"%s\n","  memset(&strtmp[s],c,(L-s));");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Lpad)
     {
-      fprintf(Outfile,"%s\n","char *lpad (char *a, int L, int c)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp;");
-      fprintf(Outfile,"%s\n","  L=L-strlen(a);");
-      fprintf(Outfile,"%s\n","  if(L<1) return a;");
-      fprintf(Outfile,"%s\n","  strtmp = BCX_TmpStr(L);");
-      fprintf(Outfile,"%s\n","  memset(strtmp,c,L);");
-      fprintf(Outfile,"%s\n","  return strcat(strtmp,a);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *lpad (char *a, int L, int c)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp;");
+      fprintf(Outfile,(char*)"%s\n","  L=L-strlen(a);");
+      fprintf(Outfile,(char*)"%s\n","  if(L<1) return a;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp = BCX_TmpStr(L);");
+      fprintf(Outfile,(char*)"%s\n","  memset(strtmp,c,L);");
+      fprintf(Outfile,(char*)"%s\n","  return strcat(strtmp,a);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Mid)
     {
-      fprintf(Outfile,"%s\n","char *mid (char *S, int start, int length)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp;");
-      fprintf(Outfile,"%s\n","  int tmplen = strlen(S);");
-      fprintf(Outfile,"%s\n","  if(start>tmplen||start<1) return BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","  if (length<0 || length>(tmplen-start)+1)");
-      fprintf(Outfile,"%s\n","    length = (tmplen-start)+1;");
-      fprintf(Outfile,"%s\n","  strtmp = BCX_TmpStr(length);");
-      fprintf(Outfile,"%s\n","  return (char*)memcpy(strtmp,&S[start-1],length);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *mid (char *S, int start, int length)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp;");
+      fprintf(Outfile,(char*)"%s\n","  int tmplen = strlen(S);");
+      fprintf(Outfile,(char*)"%s\n","  if(start>tmplen||start<1) return BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","  if (length<0 || length>(tmplen-start)+1)");
+      fprintf(Outfile,(char*)"%s\n","    length = (tmplen-start)+1;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp = BCX_TmpStr(length);");
+      fprintf(Outfile,(char*)"%s\n","  return (char*)memcpy(strtmp,&S[start-1],length);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Trim)
     {
-      fprintf(Outfile,"%s\n","char *trim (char *S)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  while(*S==32 || *S==9 || *S==10 || *S==11 || *S==13)");
-      fprintf(Outfile,"%s\n","    S++;");
-      fprintf(Outfile,"%s\n","  int i = strlen(S);");
-      fprintf(Outfile,"%s\n","  while( i>0 && (S[i-1]==32 || S[i-1]==9 || S[i-1]==10");
-      fprintf(Outfile,"%s\n","             || S[i-1]==11 || S[i-1]==13))");
-      fprintf(Outfile,"%s\n","    i--;");
-      fprintf(Outfile,"%s\n","  char *strtmp=BCX_TmpStr(i);");
-      fprintf(Outfile,"%s\n","  return (char*)memcpy(strtmp,S,i);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *trim (char *S)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  while(*S==32 || *S==9 || *S==10 || *S==11 || *S==13)");
+      fprintf(Outfile,(char*)"%s\n","    S++;");
+      fprintf(Outfile,(char*)"%s\n","  int i = strlen(S);");
+      fprintf(Outfile,(char*)"%s\n","  while( i>0 && (S[i-1]==32 || S[i-1]==9 || S[i-1]==10");
+      fprintf(Outfile,(char*)"%s\n","             || S[i-1]==11 || S[i-1]==13))");
+      fprintf(Outfile,(char*)"%s\n","    i--;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp=BCX_TmpStr(i);");
+      fprintf(Outfile,(char*)"%s\n","  return (char*)memcpy(strtmp,S,i);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Ltrim)
     {
-      fprintf(Outfile,"%s\n","char *ltrim (char *S, char c)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(S[0]==0) return S;");
-      fprintf(Outfile,"%s\n","  while((*S==32 || *S==c) && *S !=0) S++;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(strlen(S));");
-      fprintf(Outfile,"%s\n","  return strcpy(strtmp,S);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *ltrim (char *S, char c)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(S[0]==0) return S;");
+      fprintf(Outfile,(char*)"%s\n","  while((*S==32 || *S==c) && *S !=0) S++;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(strlen(S));");
+      fprintf(Outfile,(char*)"%s\n","  return strcpy(strtmp,S);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Rtrim)
     {
-      fprintf(Outfile,"%s\n","char *rtrim (char *S,char c)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(S[0]==0) return S;");
-      fprintf(Outfile,"%s\n","  int i = strlen(S);");
-      fprintf(Outfile,"%s\n","  while(i>0 && (S[i-1]==c || S[i-1]==32))");
-      fprintf(Outfile,"%s\n","    i--;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(i);");
-      fprintf(Outfile,"%s\n","  return (char*)memcpy(strtmp,S,i);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *rtrim (char *S,char c)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(S[0]==0) return S;");
+      fprintf(Outfile,(char*)"%s\n","  int i = strlen(S);");
+      fprintf(Outfile,(char*)"%s\n","  while(i>0 && (S[i-1]==c || S[i-1]==32))");
+      fprintf(Outfile,(char*)"%s\n","    i--;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(i);");
+      fprintf(Outfile,(char*)"%s\n","  return (char*)memcpy(strtmp,S,i);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Strim)
     {
-      fprintf(Outfile,"%s\n","char *strim (char *src)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(strlen(src));");
-      fprintf(Outfile,"%s\n","  char *dst = strtmp;");
-      fprintf(Outfile,"%s\n","  while (isspace((unsigned char)*src)) src++;");
-      fprintf(Outfile,"%s\n","  do");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    while (*src && !isspace((unsigned char)*src)) *dst++ = *src++;");
-      fprintf(Outfile,"%s\n","    if (*src)");
-      fprintf(Outfile,"%s\n","      {");
-      fprintf(Outfile,"%s\n","        *dst++ = *src++;");
-      fprintf(Outfile,"%s\n","        while (isspace((unsigned char)*src)) src++;");
-      fprintf(Outfile,"%s\n","      }");
-      fprintf(Outfile,"%s\n","  } while (*src);");
-      fprintf(Outfile,"%s\n","  if (isspace((unsigned char)*(--dst))) *dst = 0;");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *strim (char *src)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(strlen(src));");
+      fprintf(Outfile,(char*)"%s\n","  char *dst = strtmp;");
+      fprintf(Outfile,(char*)"%s\n","  while (isspace((unsigned char)*src)) src++;");
+      fprintf(Outfile,(char*)"%s\n","  do");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    while (*src && !isspace((unsigned char)*src)) *dst++ = *src++;");
+      fprintf(Outfile,(char*)"%s\n","    if (*src)");
+      fprintf(Outfile,(char*)"%s\n","      {");
+      fprintf(Outfile,(char*)"%s\n","        *dst++ = *src++;");
+      fprintf(Outfile,(char*)"%s\n","        while (isspace((unsigned char)*src)) src++;");
+      fprintf(Outfile,(char*)"%s\n","      }");
+      fprintf(Outfile,(char*)"%s\n","  } while (*src);");
+      fprintf(Outfile,(char*)"%s\n","  if (isspace((unsigned char)*(--dst))) *dst = 0;");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Command)
     {
-      fprintf(Outfile,"%s\n","char *command (int nArg)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n"," int i = 0;");
-      fprintf(Outfile,"%s\n"," char *retstr=BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n"," if(nArg < i) // return entire commandline");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      retstr = BCX_TmpStr(G_argc * 2048);");
-      fprintf(Outfile,"%s\n","      for(i=1; i < G_argc; i++)");
-      fprintf(Outfile,"%s\n","         {");
-      fprintf(Outfile,"%s\n","         strcat(retstr, G_argv[i]);");
-      fprintf(Outfile,"%s\n","         strcat(retstr, SPC);");
-      fprintf(Outfile,"%s\n","         }");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n"," else if(nArg < G_argc)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      retstr = BCX_TmpStr(strlen(G_argv[nArg]) + 1);");
-      fprintf(Outfile,"%s\n","      strcpy(retstr, G_argv[nArg]);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n"," return retstr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *command (int nArg)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n"," int i = 0;");
+      fprintf(Outfile,(char*)"%s\n"," char *retstr=BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n"," if(nArg < i) // return entire commandline");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      retstr = BCX_TmpStr(G_argc * 2048);");
+      fprintf(Outfile,(char*)"%s\n","      for(i=1; i < G_argc; i++)");
+      fprintf(Outfile,(char*)"%s\n","         {");
+      fprintf(Outfile,(char*)"%s\n","         strcat(retstr, G_argv[i]);");
+      fprintf(Outfile,(char*)"%s\n","         strcat(retstr, SPC);");
+      fprintf(Outfile,(char*)"%s\n","         }");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n"," else if(nArg < G_argc)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      retstr = BCX_TmpStr(strlen(G_argv[nArg]) + 1);");
+      fprintf(Outfile,(char*)"%s\n","      strcpy(retstr, G_argv[nArg]);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n"," return retstr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Extract)
     {
-      fprintf(Outfile,"%s\n","char *extract (char *mane, char *match)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *a;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(strlen(mane));");
-      fprintf(Outfile,"%s\n","  if(*match!=0)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      a=_strstr_(mane,match);");
-      fprintf(Outfile,"%s\n","      if(a) return (char*)memcpy(strtmp,mane,a-mane);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return strcpy(strtmp,mane);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *extract (char *mane, char *match)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *a;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(strlen(mane));");
+      fprintf(Outfile,(char*)"%s\n","  if(*match!=0)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      a=_strstr_(mane,match);");
+      fprintf(Outfile,(char*)"%s\n","      if(a) return (char*)memcpy(strtmp,mane,a-mane);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return strcpy(strtmp,mane);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Remain)
     {
-      fprintf(Outfile,"%s\n","char *remain (char *mane, char *mat)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *p = strstr(mane,mat);");
-      fprintf(Outfile,"%s\n","  if(p)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    p+=(strlen(mat));");
-      fprintf(Outfile,"%s\n","    return p;");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  return mane;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *remain (char *mane, char *mat)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *p = strstr(mane,mat);");
+      fprintf(Outfile,(char*)"%s\n","  if(p)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    p+=(strlen(mat));");
+      fprintf(Outfile,(char*)"%s\n","    return p;");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  return mane;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Replace)
     {
-      fprintf(Outfile,"%s\n","char *replace (char *src, char *pat, char *rep)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  size_t patsz, repsz, tmpsz, delta;");
-      fprintf(Outfile,"%s\n","  char *strtmp, *p, *q, *r;");
-      fprintf(Outfile,"%s\n","  if (!pat || !*pat)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     strtmp = BCX_TmpStr(strlen(src));");
-      fprintf(Outfile,"%s\n","     if (!strtmp) return NULL;");
-      fprintf(Outfile,"%s\n","     return strcpy(strtmp, src);");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  repsz = strlen(rep);");
-      fprintf(Outfile,"%s\n","  patsz = strlen(pat);");
-      fprintf(Outfile,"%s\n","  for (tmpsz=0, p=src; (q=_strstr_(p,pat))!=0; p=q+patsz)");
-      fprintf(Outfile,"%s\n","   tmpsz += (size_t) (q - p) + repsz;");
-      fprintf(Outfile,"%s\n","   tmpsz += strlen(p);");
-      fprintf(Outfile,"%s\n","   strtmp = BCX_TmpStr(tmpsz);");
-      fprintf(Outfile,"%s\n","   if (!strtmp) return NULL;");
-      fprintf(Outfile,"%s\n","    for (r=strtmp,p=src; (q=_strstr_(p,pat))!=0;p=q+patsz)");
-      fprintf(Outfile,"%s\n","     {");
-      fprintf(Outfile,"%s\n","       delta = (size_t) (q-p);");
-      fprintf(Outfile,"%s\n","       memcpy(r,p,delta); r += delta;");
-      fprintf(Outfile,"%s\n","       strcpy(r,rep);      r += repsz;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","  strcpy(r,p);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *replace (char *src, char *pat, char *rep)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  size_t patsz, repsz, tmpsz, delta;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp, *p, *q, *r;");
+      fprintf(Outfile,(char*)"%s\n","  if (!pat || !*pat)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     strtmp = BCX_TmpStr(strlen(src));");
+      fprintf(Outfile,(char*)"%s\n","     if (!strtmp) return NULL;");
+      fprintf(Outfile,(char*)"%s\n","     return strcpy(strtmp, src);");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  repsz = strlen(rep);");
+      fprintf(Outfile,(char*)"%s\n","  patsz = strlen(pat);");
+      fprintf(Outfile,(char*)"%s\n","  for (tmpsz=0, p=src; (q=_strstr_(p,pat))!=0; p=q+patsz)");
+      fprintf(Outfile,(char*)"%s\n","   tmpsz += (size_t) (q - p) + repsz;");
+      fprintf(Outfile,(char*)"%s\n","   tmpsz += strlen(p);");
+      fprintf(Outfile,(char*)"%s\n","   strtmp = BCX_TmpStr(tmpsz);");
+      fprintf(Outfile,(char*)"%s\n","   if (!strtmp) return NULL;");
+      fprintf(Outfile,(char*)"%s\n","    for (r=strtmp,p=src; (q=_strstr_(p,pat))!=0;p=q+patsz)");
+      fprintf(Outfile,(char*)"%s\n","     {");
+      fprintf(Outfile,(char*)"%s\n","       delta = (size_t) (q-p);");
+      fprintf(Outfile,(char*)"%s\n","       memcpy(r,p,delta); r += delta;");
+      fprintf(Outfile,(char*)"%s\n","       strcpy(r,rep);      r += repsz;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(r,p);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Reverse)
     {
-      fprintf(Outfile,"%s\n","char *reverse (char *s)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int j=strlen(s);");
-      fprintf(Outfile,"%s\n","  char *rstr = BCX_TmpStr(j);");
-      fprintf(Outfile,"%s\n","  while(j)  rstr[--j] = *(s++);");
-      fprintf(Outfile,"%s\n","  return rstr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *reverse (char *s)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int j=strlen(s);");
+      fprintf(Outfile,(char*)"%s\n","  char *rstr = BCX_TmpStr(j);");
+      fprintf(Outfile,(char*)"%s\n","  while(j)  rstr[--j] = *(s++);");
+      fprintf(Outfile,(char*)"%s\n","  return rstr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Findfirst)
     {
-      fprintf(Outfile,"%s\n","char *findfirst (char *filespec, FILE_FIND_DATA *FindData)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  struct dirent *dp;");
-      fprintf(Outfile,"%s\n","  struct stat st;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  if(FindData->FileHandle)");
-      fprintf(Outfile,"%s\n","    closedir(FindData->FileHandle);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  strcpy(FindData->path, BcxSplitPath(filespec, FDRV|FPATH));");
-      fprintf(Outfile,"%s\n","  strcpy(FindData->cFileSpec,BcxSplitPath(filespec, FNAME|FEXT));");
-      fprintf(Outfile,"%s%s%s\n","  if(*FindData->path==0) strcpy(FindData->path, ",enc("."),");");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  FindData->FileHandle=opendir(FindData->path);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  while(FindData->FileHandle)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      dp=readdir(FindData->FileHandle);");
-      fprintf(Outfile,"%s\n","      if(dp==NULL) break;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","      if(like(dp->d_name,FindData->cFileSpec))");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          strcpy(FindData->cFileName,dp->d_name);");
-      fprintf(Outfile,"%s\n","          lstat(join(2,FindData->path,dp->d_name), &st);");
-      fprintf(Outfile,"%s\n","          FindData->dwFileAttributes = st.st_mode;");
-      fprintf(Outfile,"%s\n","          return FindData->cFileName;");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  *FindData->cFileName=0;");
-      fprintf(Outfile,"%s\n","  return FindData->cFileName;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *findfirst (char *filespec, FILE_FIND_DATA *FindData)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  struct dirent *dp;");
+      fprintf(Outfile,(char*)"%s\n","  struct stat st;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  if(FindData->FileHandle)");
+      fprintf(Outfile,(char*)"%s\n","    closedir(FindData->FileHandle);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(FindData->path, BcxSplitPath(filespec, FDRV|FPATH));");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(FindData->cFileSpec,BcxSplitPath(filespec, FNAME|FEXT));");
+      fprintf(Outfile,(char*)"%s%s%s\n","  if(*FindData->path==0) strcpy(FindData->path, ",enc("."),");");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  FindData->FileHandle=opendir(FindData->path);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  while(FindData->FileHandle)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      dp=readdir(FindData->FileHandle);");
+      fprintf(Outfile,(char*)"%s\n","      if(dp==NULL) break;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","      if(like(dp->d_name,FindData->cFileSpec))");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          strcpy(FindData->cFileName,dp->d_name);");
+      fprintf(Outfile,(char*)"%s\n","          lstat(join(2,FindData->path,dp->d_name), &st);");
+      fprintf(Outfile,(char*)"%s\n","          FindData->dwFileAttributes = st.st_mode;");
+      fprintf(Outfile,(char*)"%s\n","          return FindData->cFileName;");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  *FindData->cFileName=0;");
+      fprintf(Outfile,(char*)"%s\n","  return FindData->cFileName;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Findnext)
     {
-      fprintf(Outfile,"%s\n","char *findnext (FILE_FIND_DATA *FindData)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  struct dirent *dp;");
-      fprintf(Outfile,"%s\n","  struct stat st;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  while(FindData->FileHandle)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      dp=readdir(FindData->FileHandle);");
-      fprintf(Outfile,"%s\n","      if(dp==NULL) break;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","      if(like(dp->d_name,FindData->cFileSpec))");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          strcpy(FindData->cFileName,dp->d_name);");
-      fprintf(Outfile,"%s\n","          lstat(join(2,FindData->path,dp->d_name), &st);");
-      fprintf(Outfile,"%s\n","          FindData->dwFileAttributes = st.st_mode;");
-      fprintf(Outfile,"%s\n","          return FindData->cFileName;");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  *FindData->cFileName=0;");
-      fprintf(Outfile,"%s\n","  return FindData->cFileName;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *findnext (FILE_FIND_DATA *FindData)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  struct dirent *dp;");
+      fprintf(Outfile,(char*)"%s\n","  struct stat st;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  while(FindData->FileHandle)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      dp=readdir(FindData->FileHandle);");
+      fprintf(Outfile,(char*)"%s\n","      if(dp==NULL) break;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","      if(like(dp->d_name,FindData->cFileSpec))");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          strcpy(FindData->cFileName,dp->d_name);");
+      fprintf(Outfile,(char*)"%s\n","          lstat(join(2,FindData->path,dp->d_name), &st);");
+      fprintf(Outfile,(char*)"%s\n","          FindData->dwFileAttributes = st.st_mode;");
+      fprintf(Outfile,(char*)"%s\n","          return FindData->cFileName;");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  *FindData->cFileName=0;");
+      fprintf(Outfile,(char*)"%s\n","  return FindData->cFileName;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Ucase)
     {
-      fprintf(Outfile,"%s\n","char *ucase (char *S)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(strlen(S));");
-      fprintf(Outfile,"%s\n","  return _strupr_(strcpy(strtmp,S));");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *ucase (char *S)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(strlen(S));");
+      fprintf(Outfile,(char*)"%s\n","  return _strupr_(strcpy(strtmp,S));");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Lcase)
     {
-      fprintf(Outfile,"%s\n","char *lcase (char *S)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(strlen(S));");
-      fprintf(Outfile,"%s\n","  return _strlwr_(strcpy(strtmp,S));");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *lcase (char *S)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(strlen(S));");
+      fprintf(Outfile,(char*)"%s\n","  return _strlwr_(strcpy(strtmp,S));");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Mcase)
     {
-      fprintf(Outfile,"%s\n","char *mcase (char *S)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(strlen(S)+1);");
-      fprintf(Outfile,"%s\n","  char *s = strtmp;");
-      fprintf(Outfile,"%s\n","  _strlwr_(strcpy(strtmp,S));");
-      fprintf(Outfile,"%s\n","  while(*s)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    if(islower(*s))");
-      fprintf(Outfile,"%s\n","      {");
-      fprintf(Outfile,"%s\n","        *s-=32;");
-      fprintf(Outfile,"%s\n","        while(isalpha(*++s));");
-      fprintf(Outfile,"%s\n","      }");
-      fprintf(Outfile,"%s\n","     s++;");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *mcase (char *S)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(strlen(S)+1);");
+      fprintf(Outfile,(char*)"%s\n","  char *s = strtmp;");
+      fprintf(Outfile,(char*)"%s\n","  _strlwr_(strcpy(strtmp,S));");
+      fprintf(Outfile,(char*)"%s\n","  while(*s)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    if(islower(*s))");
+      fprintf(Outfile,(char*)"%s\n","      {");
+      fprintf(Outfile,(char*)"%s\n","        *s-=32;");
+      fprintf(Outfile,(char*)"%s\n","        while(isalpha(*++s));");
+      fprintf(Outfile,(char*)"%s\n","      }");
+      fprintf(Outfile,(char*)"%s\n","     s++;");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Remove)
     {
-      fprintf(Outfile,"%s\n","char *RemoveStr (char *a, char *b)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp, *p, *d;");
-      fprintf(Outfile,"%s\n","  int  tmplen;");
-      fprintf(Outfile,"%s\n","  strtmp = d = BCX_TmpStr(strlen(a));");
-      fprintf(Outfile,"%s\n","  if(!b || !*b) return strcpy(strtmp,a);");
-      fprintf(Outfile,"%s\n","  p=_strstr_(a,b); tmplen = strlen(b);");
-      fprintf(Outfile,"%s\n","  while(p)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     memcpy(d,a,p-a);");
-      fprintf(Outfile,"%s\n","     d+= (p-a);");
-      fprintf(Outfile,"%s\n","     a=p+tmplen;");
-      fprintf(Outfile,"%s\n","     p=_strstr_(a,b);");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  strcpy(d,a);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *RemoveStr (char *a, char *b)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp, *p, *d;");
+      fprintf(Outfile,(char*)"%s\n","  int  tmplen;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp = d = BCX_TmpStr(strlen(a));");
+      fprintf(Outfile,(char*)"%s\n","  if(!b || !*b) return strcpy(strtmp,a);");
+      fprintf(Outfile,(char*)"%s\n","  p=_strstr_(a,b); tmplen = strlen(b);");
+      fprintf(Outfile,(char*)"%s\n","  while(p)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     memcpy(d,a,p-a);");
+      fprintf(Outfile,(char*)"%s\n","     d+= (p-a);");
+      fprintf(Outfile,(char*)"%s\n","     a=p+tmplen;");
+      fprintf(Outfile,(char*)"%s\n","     p=_strstr_(a,b);");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(d,a);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_IRemove)
     {
-      fprintf(Outfile,"%s\n","char *IRemoveStr (char *a, char *b)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp, *p, *d;");
-      fprintf(Outfile,"%s\n","  int  tmplen;");
-      fprintf(Outfile,"%s\n","  strtmp = d = BCX_TmpStr(strlen(a));");
-      fprintf(Outfile,"%s\n","  if(!b || !*b) return strcpy(strtmp,a);");
-      fprintf(Outfile,"%s\n","  p=_stristr_(a,b); tmplen = strlen(b);");
-      fprintf(Outfile,"%s\n","  while(p)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     memcpy(d,a,p-a);");
-      fprintf(Outfile,"%s\n","     d+= (p-a);");
-      fprintf(Outfile,"%s\n","     a=p+tmplen;");
-      fprintf(Outfile,"%s\n","     p=_stristr_(a,b);");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  strcpy(d,a);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *IRemoveStr (char *a, char *b)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp, *p, *d;");
+      fprintf(Outfile,(char*)"%s\n","  int  tmplen;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp = d = BCX_TmpStr(strlen(a));");
+      fprintf(Outfile,(char*)"%s\n","  if(!b || !*b) return strcpy(strtmp,a);");
+      fprintf(Outfile,(char*)"%s\n","  p=_stristr_(a,b); tmplen = strlen(b);");
+      fprintf(Outfile,(char*)"%s\n","  while(p)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     memcpy(d,a,p-a);");
+      fprintf(Outfile,(char*)"%s\n","     d+= (p-a);");
+      fprintf(Outfile,(char*)"%s\n","     a=p+tmplen;");
+      fprintf(Outfile,(char*)"%s\n","     p=_stristr_(a,b);");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(d,a);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Ins)
     {
-      fprintf(Outfile,"%s\n","char *ins (char *S, int i, char *a)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int j = strlen(S);");
-      fprintf(Outfile,"%s\n","  if(i<1 || i>j+1) return S;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(j + strlen(a));");
-      fprintf(Outfile,"%s\n","  memcpy(strtmp,S,--i);");
-      fprintf(Outfile,"%s\n","  strcpy(&strtmp[i],a);");
-      fprintf(Outfile,"%s\n","  return strcat(strtmp,&S[i]);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *ins (char *S, int i, char *a)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int j = strlen(S);");
+      fprintf(Outfile,(char*)"%s\n","  if(i<1 || i>j+1) return S;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(j + strlen(a));");
+      fprintf(Outfile,(char*)"%s\n","  memcpy(strtmp,S,--i);");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(&strtmp[i],a);");
+      fprintf(Outfile,(char*)"%s\n","  return strcat(strtmp,&S[i]);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Del)
     {
-      fprintf(Outfile,"%s\n","char *del (char *S, int i, int j)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int ln = strlen(S);");
-      fprintf(Outfile,"%s\n","  if(i<1 || i>ln) return S;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(ln);");
-      fprintf(Outfile,"%s\n","  memcpy(strtmp,S,--i);");
-      fprintf(Outfile,"%s\n","  return strcat(strtmp,&S[i+j]);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *del (char *S, int i, int j)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int ln = strlen(S);");
+      fprintf(Outfile,(char*)"%s\n","  if(i<1 || i>ln) return S;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(ln);");
+      fprintf(Outfile,(char*)"%s\n","  memcpy(strtmp,S,--i);");
+      fprintf(Outfile,(char*)"%s\n","  return strcat(strtmp,&S[i+j]);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Str)
     {
-      fprintf(Outfile,"%s\n","char *str (double d)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(16);");
-      fprintf(Outfile,"%s%s%s\n","  sprintf(strtmp,",D1,",d);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *str (double d)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(16);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  sprintf(strtmp,",D1,",d);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Strl)
     {
-      fprintf(Outfile,"%s\n","char *strl (long double d)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(27);");
-      fprintf(Outfile,"%s%s%s\n","  sprintf(strtmp,",D2,",d);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *strl (long double d)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(27);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  sprintf(strtmp,",D2,",d);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Curdir)
     {
-      fprintf(Outfile,"%s\n","char *curdir (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(2048);");
-      fprintf(Outfile,"%s\n","  char *res=getcwd(strtmp, 1024);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *curdir (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(2048);");
+      fprintf(Outfile,(char*)"%s\n","  char *res=getcwd(strtmp, 1024);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Hex)
     {
-      fprintf(Outfile,"%s\n","char *hex (int a)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(16);");
-      fprintf(Outfile,"%s%s%s\n","  sprintf(strtmp,",enc("%02X"),",a);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *hex (int a)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(16);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  sprintf(strtmp,",enc("%02X"),",a);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Tempdir)
     {
-      fprintf(Outfile,"%s\n","char *tempdir (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(2048);");
-      fprintf(Outfile,"%s%s%s\n","  if(!Exist(",enc("/tmp/mbc.compiler"),")) {");
-      fprintf(Outfile,"%s%s%s\n","    mkdir (",enc("/tmp/mbc.compiler"),",0755);");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s%s%s\n","  strcpy(strtmp,",enc("/tmp/mbc.compiler"),");");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *tempdir (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(2048);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  if(!Exist(",enc("/tmp/mbc.compiler"),")) {");
+      fprintf(Outfile,(char*)"%s%s%s\n","    mkdir (",enc("/tmp/mbc.compiler"),",0755);");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s%s%s\n","  strcpy(strtmp,",enc("/tmp/mbc.compiler"),");");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Sysdir)
     {
-      fprintf(Outfile,"%s\n","char *sysdir (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(2048);");
-      fprintf(Outfile,"%s\n","  GetSystemDirectory (strtmp,2048);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *sysdir (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(2048);");
+      fprintf(Outfile,(char*)"%s\n","  GetSystemDirectory (strtmp,2048);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Repeat)
     {
-      fprintf(Outfile,"%s\n","char *repeat (int count, char *a)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr((1+count)*strlen(a));");
-      fprintf(Outfile,"%s\n","  while(count-->0) strtmp = strcat(strtmp, a);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *repeat (int count, char *a)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr((1+count)*strlen(a));");
+      fprintf(Outfile,(char*)"%s\n","  while(count-->0) strtmp = strcat(strtmp, a);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_String)
     {
-      fprintf(Outfile,"%s\n","char *stringx (int count, int a)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(count<1) return BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(count);");
-      fprintf(Outfile,"%s\n","  return (char*)memset(strtmp,a,count);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *stringx (int count, int a)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(count<1) return BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(count);");
+      fprintf(Outfile,(char*)"%s\n","  return (char*)memset(strtmp,a,count);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Shell)
     {
-      fprintf(Outfile,"%s\n","void Shell (char *cmd)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int res=system(cmd);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void Shell (char *cmd)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int res=system(cmd);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Space)
     {
-      fprintf(Outfile,"%s\n","char *space (int count)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(count<1) return BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(count);");
-      fprintf(Outfile,"%s\n","  return (char*)memset(strtmp,32,count);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *space (int count)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(count<1) return BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(count);");
+      fprintf(Outfile,(char*)"%s\n","  return (char*)memset(strtmp,32,count);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Time)
     {
-      fprintf(Outfile,"%s\n","char *timef (int t)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  time_t elapse_time;");
-      fprintf(Outfile,"%s\n","  struct tm *tp;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(256);");
-      fprintf(Outfile,"%s\n","  time (&elapse_time);");
-      fprintf(Outfile,"%s\n","  tp = localtime(&elapse_time);");
-      fprintf(Outfile,"%s\n","  switch (t)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","   case 0:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T0,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 1:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T1,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 2:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T2,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 3:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T3,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 4:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T4,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 5:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T5,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 6:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T6,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 7:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T7,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 8:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T8,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 9:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T9,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 10:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T10,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 11:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T11,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 12:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T12,",tp); break;");
-      fprintf(Outfile,"%s\n","   case 13:");
-      fprintf(Outfile,"%s%s%s\n","   strftime(strtmp,256,",T13,",tp); break;");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *timef (int t)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  time_t elapse_time;");
+      fprintf(Outfile,(char*)"%s\n","  struct tm *tp;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(256);");
+      fprintf(Outfile,(char*)"%s\n","  time (&elapse_time);");
+      fprintf(Outfile,(char*)"%s\n","  tp = localtime(&elapse_time);");
+      fprintf(Outfile,(char*)"%s\n","  switch (t)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","   case 0:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T0,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 1:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T1,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 2:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T2,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 3:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T3,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 4:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T4,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 5:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T5,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 6:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T6,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 7:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T7,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 8:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T8,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 9:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T9,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 10:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T10,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 11:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T11,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 12:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T12,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","   case 13:");
+      fprintf(Outfile,(char*)"%s%s%s\n","   strftime(strtmp,256,",T13,",tp); break;");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Enclose)
     {
-      fprintf(Outfile,"%s\n","char *enc (char *A, int L, int R)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr = BCX_TmpStr(strlen(A)+3);");
-      fprintf(Outfile,"%s\n","  if(L==0) L=34;");
-      fprintf(Outfile,"%s\n","  if(R==0) R=L;");
-      fprintf(Outfile,"%s%s%s%s%s\n","  sprintf(BCX_RetStr,",enc("%c%s%c%s"),",L,A,R,",enc("\0"),");");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *enc (char *A, int L, int R)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr = BCX_TmpStr(strlen(A)+3);");
+      fprintf(Outfile,(char*)"%s\n","  if(L==0) L=34;");
+      fprintf(Outfile,(char*)"%s\n","  if(R==0) R=L;");
+      fprintf(Outfile,(char*)"%s%s%s%s%s\n","  sprintf(BCX_RetStr,",enc("%c%s%c%s"),",L,A,R,",enc("\0"),");");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Chr)
     {
-      fprintf(Outfile,"%s\n","char *chr (int a,int b,int c,int d,int e,int f,int g,int h,int i,int j)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(11);");
-      fprintf(Outfile,"%s\n","  strtmp[0]  = a;");
-      fprintf(Outfile,"%s\n","  strtmp[1]  = b;");
-      fprintf(Outfile,"%s\n","  strtmp[2]  = c;");
-      fprintf(Outfile,"%s\n","  strtmp[3]  = d;");
-      fprintf(Outfile,"%s\n","  strtmp[4]  = e;");
-      fprintf(Outfile,"%s\n","  strtmp[5]  = f;");
-      fprintf(Outfile,"%s\n","  strtmp[6]  = g;");
-      fprintf(Outfile,"%s\n","  strtmp[7]  = h;");
-      fprintf(Outfile,"%s\n","  strtmp[8]  = i;");
-      fprintf(Outfile,"%s\n","  strtmp[9]  = j;");
-      fprintf(Outfile,"%s\n","  strtmp[10] = 0;");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *chr (int a,int b,int c,int d,int e,int f,int g,int h,int i,int j)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(11);");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[0]  = a;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[1]  = b;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[2]  = c;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[3]  = d;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[4]  = e;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[5]  = f;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[6]  = g;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[7]  = h;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[8]  = i;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[9]  = j;");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[10] = 0;");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_VChr)
     {
-      fprintf(Outfile,"%s\n","char *vchr(int charcount, ...)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int c = 0, i = charcount;");
-      fprintf(Outfile,"%s\n","  char *s_ = BCX_TmpStr(charcount + 1);");
-      fprintf(Outfile,"%s\n","  va_list marker;");
-      fprintf(Outfile,"%s\n","  s_[i] = 0;");
-      fprintf(Outfile,"%s\n","  va_start(marker, charcount);");
-      fprintf(Outfile,"%s\n","  while(i-- > 0) s_[c++] = va_arg(marker,int);");
-      fprintf(Outfile,"%s\n","  va_end(marker);");
-      fprintf(Outfile,"%s\n","  return s_;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *vchr(int charcount, ...)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int c = 0, i = charcount;");
+      fprintf(Outfile,(char*)"%s\n","  char *s_ = BCX_TmpStr(charcount + 1);");
+      fprintf(Outfile,(char*)"%s\n","  va_list marker;");
+      fprintf(Outfile,(char*)"%s\n","  s_[i] = 0;");
+      fprintf(Outfile,(char*)"%s\n","  va_start(marker, charcount);");
+      fprintf(Outfile,(char*)"%s\n","  while(i-- > 0) s_[c++] = va_arg(marker,int);");
+      fprintf(Outfile,(char*)"%s\n","  va_end(marker);");
+      fprintf(Outfile,(char*)"%s\n","  return s_;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Join)
     {
-      fprintf(Outfile,"%s\n","char * join(int n, ...)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int i = n, tmplen = 0;");
-      fprintf(Outfile,"%s\n","  char *strtmp, *s_;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  va_list marker;");
-      fprintf(Outfile,"%s\n","  va_start(marker, n); // Initialize variable arguments");
-      fprintf(Outfile,"%s\n","  while(i-- > 0)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    s_ = va_arg(marker, char *);");
-      fprintf(Outfile,"%s\n","    if(s_) tmplen += strlen(s_);");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  strtmp = BCX_TmpStr(tmplen);");
-      fprintf(Outfile,"%s\n","  va_end(marker); // Reset variable arguments");
-      fprintf(Outfile,"%s\n","  i = n;");
-      fprintf(Outfile,"%s\n","  va_start(marker, n); // Initialize variable arguments");
-      fprintf(Outfile,"%s\n","  while(i-- > 0)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    s_ = va_arg(marker, char *);");
-      fprintf(Outfile,"%s\n","    if(s_) strcat(strtmp, s_);");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  va_end(marker); // Reset variable arguments");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char * join(int n, ...)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int i = n, tmplen = 0;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp, *s_;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  va_list marker;");
+      fprintf(Outfile,(char*)"%s\n","  va_start(marker, n); // Initialize variable arguments");
+      fprintf(Outfile,(char*)"%s\n","  while(i-- > 0)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    s_ = va_arg(marker, char *);");
+      fprintf(Outfile,(char*)"%s\n","    if(s_) tmplen += strlen(s_);");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  strtmp = BCX_TmpStr(tmplen);");
+      fprintf(Outfile,(char*)"%s\n","  va_end(marker); // Reset variable arguments");
+      fprintf(Outfile,(char*)"%s\n","  i = n;");
+      fprintf(Outfile,(char*)"%s\n","  va_start(marker, n); // Initialize variable arguments");
+      fprintf(Outfile,(char*)"%s\n","  while(i-- > 0)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    s_ = va_arg(marker, char *);");
+      fprintf(Outfile,(char*)"%s\n","    if(s_) strcat(strtmp, s_);");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  va_end(marker); // Reset variable arguments");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Environ)
     {
-      fprintf(Outfile,"%s\n","char* Environ(char *S)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp, *tmp;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  tmp = getenv(S);");
-      fprintf(Outfile,"%s\n","  if(tmp != NULL) {");
-      fprintf(Outfile,"%s\n","    strtmp = BCX_TmpStr(strlen(tmp)+1);");
-      fprintf(Outfile,"%s\n","    return strcpy(strtmp, tmp);");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  return BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char* Environ(char *S)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp, *tmp;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  tmp = getenv(S);");
+      fprintf(Outfile,(char*)"%s\n","  if(tmp != NULL) {");
+      fprintf(Outfile,(char*)"%s\n","    strtmp = BCX_TmpStr(strlen(tmp)+1);");
+      fprintf(Outfile,(char*)"%s\n","    return strcpy(strtmp, tmp);");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Oct)
     {
-      fprintf(Outfile,"%s\n","char *oct (int a)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(2048);");
-      fprintf(Outfile,"%s%s%s\n","  sprintf(strtmp,",O1,",a);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *oct (int a)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(2048);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  sprintf(strtmp,",O1,",a);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Bin)
     {
-      fprintf(Outfile,"%s\n","char* Bin(int number)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(2048);");
-      fprintf(Outfile,"%s\n","   itoa(number,strtmp,2);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char* Bin(int number)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(2048);");
+      fprintf(Outfile,(char*)"%s\n","   itoa(number,strtmp,2);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Pause)
     {
-      fprintf(Outfile,"%s\n","void Pause(void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s%s%s%s%s\n","  printf(",enc("\\n%s\\n"),",",enc("Press any key to continue . . ."),");");
-      fprintf(Outfile,"%s\n","  _getch_(TRUE);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void Pause(void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s%s%s%s%s\n","  printf(",enc("\\n%s\\n"),",",enc("Press any key to continue . . ."),");");
+      fprintf(Outfile,(char*)"%s\n","  _getch_(TRUE);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Keypress)
     {
-      fprintf(Outfile,"%s\n","int keypress(void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return _getch_(TRUE);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int keypress(void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return _getch_(TRUE);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Inkey)
     {
-      fprintf(Outfile,"%s\n","char* inkey(void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(2);");
-      fprintf(Outfile,"%s\n","  strtmp[0] = _getch_(FALSE);");
-      fprintf(Outfile,"%s\n","  if(strtmp[0] == -1) strtmp[0] = 0;");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char* inkey(void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(2);");
+      fprintf(Outfile,(char*)"%s\n","  strtmp[0] = _getch_(FALSE);");
+      fprintf(Outfile,(char*)"%s\n","  if(strtmp[0] == -1) strtmp[0] = 0;");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_InkeyD)
     {
-      fprintf(Outfile,"%s\n","int inkeyd(void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return _getch_(TRUE);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int inkeyd(void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return _getch_(TRUE);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Instat)
     {
-      fprintf(Outfile,"%s\n","int kbhit(void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  struct termios oldt, newt;");
-      fprintf(Outfile,"%s\n","  int ch;");
-      fprintf(Outfile,"%s\n","	int oldf;");
-      fprintf(Outfile,"%s\n","  tcgetattr(STDIN_FILENO, &oldt);");
-      fprintf(Outfile,"%s\n","  newt = oldt;");
-      fprintf(Outfile,"%s\n","  newt.c_lflag &= ~(ICANON | ECHO);");
-      fprintf(Outfile,"%s\n","  tcsetattr(STDIN_FILENO, TCSANOW, &newt);");
-      fprintf(Outfile,"%s\n","  oldf = fcntl(STDIN_FILENO, F_GETFL, 0);");
-      fprintf(Outfile,"%s\n","  fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);");
-      fprintf(Outfile,"%s\n","  ch = getchar();");
-      fprintf(Outfile,"%s\n","  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);");
-      fprintf(Outfile,"%s\n","  fcntl(STDIN_FILENO, F_SETFL, oldf);");
-      fprintf(Outfile,"%s\n","  if(ch != EOF)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    ungetc(ch, stdin);");
-      fprintf(Outfile,"%s\n","    return 1;");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int kbhit(void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  struct termios oldt, newt;");
+      fprintf(Outfile,(char*)"%s\n","  int ch;");
+      fprintf(Outfile,(char*)"%s\n","	int oldf;");
+      fprintf(Outfile,(char*)"%s\n","  tcgetattr(STDIN_FILENO, &oldt);");
+      fprintf(Outfile,(char*)"%s\n","  newt = oldt;");
+      fprintf(Outfile,(char*)"%s\n","  newt.c_lflag &= ~(ICANON | ECHO);");
+      fprintf(Outfile,(char*)"%s\n","  tcsetattr(STDIN_FILENO, TCSANOW, &newt);");
+      fprintf(Outfile,(char*)"%s\n","  oldf = fcntl(STDIN_FILENO, F_GETFL, 0);");
+      fprintf(Outfile,(char*)"%s\n","  fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);");
+      fprintf(Outfile,(char*)"%s\n","  ch = getchar();");
+      fprintf(Outfile,(char*)"%s\n","  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);");
+      fprintf(Outfile,(char*)"%s\n","  fcntl(STDIN_FILENO, F_SETFL, oldf);");
+      fprintf(Outfile,(char*)"%s\n","  if(ch != EOF)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    ungetc(ch, stdin);");
+      fprintf(Outfile,(char*)"%s\n","    return 1;");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_GetCh)
     {
-      fprintf(Outfile,"%s\n","int _getch_(int waitkey)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  struct termios initial_settings, new_settings;");
-      fprintf(Outfile,"%s\n","  unsigned char ch;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  tcgetattr(0,&initial_settings);");
-      fprintf(Outfile,"%s\n","  new_settings = initial_settings;");
-      fprintf(Outfile,"%s\n","  new_settings.c_lflag &= ~ICANON;");
-      fprintf(Outfile,"%s\n","  new_settings.c_lflag &= ~ECHO;");
-      fprintf(Outfile,"%s\n","  new_settings.c_lflag &= ~ISIG;");
-      fprintf(Outfile,"%s\n","  new_settings.c_cc[VMIN] = waitkey;");
-      fprintf(Outfile,"%s\n","  new_settings.c_cc[VTIME] = 0;");
-      fprintf(Outfile,"%s\n","  tcsetattr(0, TCSANOW, &new_settings);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","    //read(0,&ch,1);");
-      fprintf(Outfile,"%s\n","    ch = getchar();");
-      fprintf(Outfile,"%s\n","  tcsetattr(0, TCSANOW, &initial_settings);");
-      fprintf(Outfile,"%s\n","  return ch;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int _getch_(int waitkey)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  struct termios initial_settings, new_settings;");
+      fprintf(Outfile,(char*)"%s\n","  unsigned char ch;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  tcgetattr(0,&initial_settings);");
+      fprintf(Outfile,(char*)"%s\n","  new_settings = initial_settings;");
+      fprintf(Outfile,(char*)"%s\n","  new_settings.c_lflag &= ~ICANON;");
+      fprintf(Outfile,(char*)"%s\n","  new_settings.c_lflag &= ~ECHO;");
+      fprintf(Outfile,(char*)"%s\n","  new_settings.c_lflag &= ~ISIG;");
+      fprintf(Outfile,(char*)"%s\n","  new_settings.c_cc[VMIN] = waitkey;");
+      fprintf(Outfile,(char*)"%s\n","  new_settings.c_cc[VTIME] = 0;");
+      fprintf(Outfile,(char*)"%s\n","  tcsetattr(0, TCSANOW, &new_settings);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","    //read(0,&ch,1);");
+      fprintf(Outfile,(char*)"%s\n","    ch = getchar();");
+      fprintf(Outfile,(char*)"%s\n","  tcsetattr(0, TCSANOW, &initial_settings);");
+      fprintf(Outfile,(char*)"%s\n","  return ch;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Now)
     {
-      fprintf(Outfile,"%s\n","char *now (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  time_t elapse_time;");
-      fprintf(Outfile,"%s\n","  struct tm *tp;");
-      fprintf(Outfile,"%s\n","  char *strtmp = BCX_TmpStr(2048);");
-      fprintf(Outfile,"%s\n","  time(&elapse_time);");
-      fprintf(Outfile,"%s\n","  tp=localtime(&elapse_time);");
-      fprintf(Outfile,"%s%s%s\n","  strftime(strtmp,256,",enc("%m/%d/%y %I:%M:%S: %p"),",tp);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}");
+      fprintf(Outfile,(char*)"%s\n","char *now (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  time_t elapse_time;");
+      fprintf(Outfile,(char*)"%s\n","  struct tm *tp;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp = BCX_TmpStr(2048);");
+      fprintf(Outfile,(char*)"%s\n","  time(&elapse_time);");
+      fprintf(Outfile,(char*)"%s\n","  tp=localtime(&elapse_time);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  strftime(strtmp,256,",enc("%m/%d/%y %I:%M:%S: %p"),",tp);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}");
     }
   if(Use_AppExePath)
     {
-      fprintf(Outfile,"%s\n","char *AppExePath (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char fullpath[MAX_PATH];");
-      fprintf(Outfile,"%s\n","  int length;");
+      fprintf(Outfile,(char*)"%s\n","char *AppExePath (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char fullpath[MAX_PATH];");
+      fprintf(Outfile,(char*)"%s\n","  int length;");
  #if defined (__APPLE__)
-      fprintf(Outfile,"%s\n","  pid_t pid = getpid();");
-      fprintf(Outfile,"%s\n","  length = proc_pidpath (pid, fullpath, sizeof(fullpath));");
+      fprintf(Outfile,(char*)"%s\n","  pid_t pid = getpid();");
+      fprintf(Outfile,(char*)"%s\n","  length = proc_pidpath (pid, fullpath, sizeof(fullpath));");
  #else
-      fprintf(Outfile,"%s%s%s\n","  length = readlink(",enc("/proc/self/exe"),", fullpath, MAX_PATH);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  length = readlink(",enc("/proc/self/exe"),", fullpath, MAX_PATH);");
  #endif
-      fprintf(Outfile,"%s\n","  if(length < 1) return BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  fullpath[length] = 0;");
-      fprintf(Outfile,"%s\n","  return BcxSplitPath(fullpath, FDRV|FPATH);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","  if(length < 1) return BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  fullpath[length] = 0;");
+      fprintf(Outfile,(char*)"%s\n","  return BcxSplitPath(fullpath, FDRV|FPATH);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_AppExeName)
     {
-      fprintf(Outfile,"%s\n","char *AppExeName (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return BcxSplitPath(G_argv[0], FNAME|FEXT);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *AppExeName (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return BcxSplitPath(G_argv[0], FNAME|FEXT);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_TempFileName)
     {
-      fprintf(Outfile,"%s\n","char * TempFileName (char *dr, char *prefix)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static unsigned int count;");
-      fprintf(Outfile,"%s\n","  char *f, *tmpstr = BCX_TmpStr(MAX_PATH);");
-      fprintf(Outfile,"%s\n","  int  i, length;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  if(!count) srand(time(0));");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  if(dr) strcpy(tmpstr, dr);");
-      fprintf(Outfile,"%s\n","  length = strlen(tmpstr);");
-      fprintf(Outfile,"%s\n","  if(length && (tmpstr[length-1] != '\\\\' && tmpstr[length-1] != '/'))");
-      fprintf(Outfile,"%s\n","      tmpstr[length++] = '/';");
-      fprintf(Outfile,"%s\n","  if(prefix) strcpy(&tmpstr[length], prefix);");
-      fprintf(Outfile,"%s\n","  f = &tmpstr[strlen(tmpstr)];");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  do {");
-      fprintf(Outfile,"%s\n","      count++;");
-      fprintf(Outfile,"%s\n","      for(i=0; i<5; i+=1)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          do {");
-      fprintf(Outfile,"%s\n","            f[i]=(char)(rnd()*122);");
-      fprintf(Outfile,"%s\n","          }while((f[i]<65)||(f[i]>90&&f[i]<97));");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s%s%s\n","        snprintf(&f[5],3,",enc("%x"),", count);");
-      fprintf(Outfile,"%s\n","    } while (Exist(tmpstr));");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  return tmpstr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char * TempFileName (char *dr, char *prefix)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static unsigned int count;");
+      fprintf(Outfile,(char*)"%s\n","  char *f, *tmpstr = BCX_TmpStr(MAX_PATH);");
+      fprintf(Outfile,(char*)"%s\n","  int  i, length;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  if(!count) srand(time(0));");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  if(dr) strcpy(tmpstr, dr);");
+      fprintf(Outfile,(char*)"%s\n","  length = strlen(tmpstr);");
+      fprintf(Outfile,(char*)"%s\n","  if(length && (tmpstr[length-1] != '\\\\' && tmpstr[length-1] != '/'))");
+      fprintf(Outfile,(char*)"%s\n","      tmpstr[length++] = '/';");
+      fprintf(Outfile,(char*)"%s\n","  if(prefix) strcpy(&tmpstr[length], prefix);");
+      fprintf(Outfile,(char*)"%s\n","  f = &tmpstr[strlen(tmpstr)];");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  do {");
+      fprintf(Outfile,(char*)"%s\n","      count++;");
+      fprintf(Outfile,(char*)"%s\n","      for(i=0; i<5; i+=1)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          do {");
+      fprintf(Outfile,(char*)"%s\n","            f[i]=(char)(rnd()*122);");
+      fprintf(Outfile,(char*)"%s\n","          }while((f[i]<65)||(f[i]>90&&f[i]<97));");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s%s%s\n","        snprintf(&f[5],3,",enc("%x"),", count);");
+      fprintf(Outfile,(char*)"%s\n","    } while (Exist(tmpstr));");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  return tmpstr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Boolstr)
     {
-      fprintf(Outfile,"%s\n","char * BoolStr (int a)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr=BCX_TmpStr(5);");
-      fprintf(Outfile,"%s%s%s\n","  if(a) return strcpy(BCX_RetStr,",enc("True"),");");
-      fprintf(Outfile,"%s%s%s\n","  return strcpy(BCX_RetStr,",enc("False"),");");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char * BoolStr (int a)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr=BCX_TmpStr(5);");
+      fprintf(Outfile,(char*)"%s%s%s\n","  if(a) return strcpy(BCX_RetStr,",enc("True"),");");
+      fprintf(Outfile,(char*)"%s%s%s\n","  return strcpy(BCX_RetStr,",enc("False"),");");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Using)
     {
-      fprintf(Outfile,"%s\n","char *Using (char *Mask, double Num)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int Spaces = 0;");
-      fprintf(Outfile,"%s\n","  int CntDec = 0;");
-      fprintf(Outfile,"%s\n","  int Decimals = 0;");
-      fprintf(Outfile,"%s\n","  int Dollar = 0;");
-      fprintf(Outfile,"%s\n","  char* BCX_RetStr = BCX_TmpStr(512);");
-      fprintf(Outfile,"%s\n","  char Buf_1[512]={0};");
-      fprintf(Outfile,"%s\n","  char* p = Mask;");
-      fprintf(Outfile,"%s\n","  char* r;");
-      fprintf(Outfile,"%s\n","  int  len;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  while (*p)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    if (*p == 36) Dollar++;");
-      fprintf(Outfile,"%s\n","    if (*p == 32) Spaces++;");
-      fprintf(Outfile,"%s\n","    if ((*p == 32 || *p == 35)&& CntDec) Decimals++;");
-      fprintf(Outfile,"%s\n","    if (*p == 46) CntDec = 1;");
-      fprintf(Outfile,"%s\n","    p++;");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s%s%s\n","  sprintf(Buf_1,",enc("%1.*f"),",Decimals,Num);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  len = strlen(Buf_1)-Decimals-(Decimals>0?1:0);");
-      fprintf(Outfile,"%s\n","  r = BCX_RetStr+Dollar+Spaces;");
-      fprintf(Outfile,"%s\n","  p = Buf_1;");
-      fprintf(Outfile,"%s\n","  while (*p)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     *r++ = *p++;");
-      fprintf(Outfile,"%s\n","     if (--len>2 && *(p-1) != '-' && len % 3 == 0)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s\n","         *r++ = ',';");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  if(Dollar) BCX_RetStr[Spaces]=36;");
-      fprintf(Outfile,"%s\n","  if(Spaces) memset(BCX_RetStr,32,Spaces);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *Using (char *Mask, double Num)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int Spaces = 0;");
+      fprintf(Outfile,(char*)"%s\n","  int CntDec = 0;");
+      fprintf(Outfile,(char*)"%s\n","  int Decimals = 0;");
+      fprintf(Outfile,(char*)"%s\n","  int Dollar = 0;");
+      fprintf(Outfile,(char*)"%s\n","  char* BCX_RetStr = BCX_TmpStr(512);");
+      fprintf(Outfile,(char*)"%s\n","  char Buf_1[512]={0};");
+      fprintf(Outfile,(char*)"%s\n","  char* p = Mask;");
+      fprintf(Outfile,(char*)"%s\n","  char* r;");
+      fprintf(Outfile,(char*)"%s\n","  int  len;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  while (*p)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    if (*p == 36) Dollar++;");
+      fprintf(Outfile,(char*)"%s\n","    if (*p == 32) Spaces++;");
+      fprintf(Outfile,(char*)"%s\n","    if ((*p == 32 || *p == 35)&& CntDec) Decimals++;");
+      fprintf(Outfile,(char*)"%s\n","    if (*p == 46) CntDec = 1;");
+      fprintf(Outfile,(char*)"%s\n","    p++;");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s%s%s\n","  sprintf(Buf_1,",enc("%1.*f"),",Decimals,Num);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  len = strlen(Buf_1)-Decimals-(Decimals>0?1:0);");
+      fprintf(Outfile,(char*)"%s\n","  r = BCX_RetStr+Dollar+Spaces;");
+      fprintf(Outfile,(char*)"%s\n","  p = Buf_1;");
+      fprintf(Outfile,(char*)"%s\n","  while (*p)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     *r++ = *p++;");
+      fprintf(Outfile,(char*)"%s\n","     if (--len>2 && *(p-1) != '-' && len % 3 == 0)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s\n","         *r++ = ',';");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  if(Dollar) BCX_RetStr[Spaces]=36;");
+      fprintf(Outfile,(char*)"%s\n","  if(Spaces) memset(BCX_RetStr,32,Spaces);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_SearchPath)
     {
-      fprintf(Outfile,"%s\n","char *SEARCHPATH (char *szFile)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr=BCX_TmpStr(MAX_PATH+1);");
-      fprintf(Outfile,"%s\n","  PCHAR lpbs=0;");
-      fprintf(Outfile,"%s\n","  SearchPath(0,szFile,0,MAX_PATH,BCX_RetStr,&lpbs);");
-      fprintf(Outfile,"%s\n","  if(lpbs) *lpbs=0;");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *SEARCHPATH (char *szFile)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr=BCX_TmpStr(MAX_PATH+1);");
+      fprintf(Outfile,(char*)"%s\n","  PCHAR lpbs=0;");
+      fprintf(Outfile,(char*)"%s\n","  SearchPath(0,szFile,0,MAX_PATH,BCX_RetStr,&lpbs);");
+      fprintf(Outfile,(char*)"%s\n","  if(lpbs) *lpbs=0;");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Instrrev)
     {
-      fprintf(Outfile,"%s\n","int InstrRev (char *s, char *p, int os, int sens)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," int sl, pl, ox;");
-      fprintf(Outfile,"%s\n"," int (*cmp)(const char *, const char *, size_t );");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (!s || !p)  return 0;");
-      fprintf(Outfile,"%s\n"," sl  = strlen(s); pl  = strlen(p);");
-      fprintf(Outfile,"%s\n"," if (os > sl || sl == 0 || pl == 0 || (ox = sl - pl) < 0)");
-      fprintf(Outfile,"%s\n","   return 0;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (os <= 0)  ");
-      fprintf(Outfile,"%s\n","   os = ox ;");
-      fprintf(Outfile,"%s\n"," else if(os >= pl)");
-      fprintf(Outfile,"%s\n","   os = os - pl ;");
-      fprintf(Outfile,"%s\n"," else");
-      fprintf(Outfile,"%s\n","   return 0;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," cmp = (sens ? strncasecmp : strncmp);");
-      fprintf(Outfile,"%s\n"," do { if (cmp(s + os , p, pl) == 0)");
-      fprintf(Outfile,"%s\n","       return os+1;");
-      fprintf(Outfile,"%s\n","    } while (os--);");
-      fprintf(Outfile,"%s\n"," return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int InstrRev (char *s, char *p, int os, int sens)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," int sl, pl, ox;");
+      fprintf(Outfile,(char*)"%s\n"," int (*cmp)(const char *, const char *, size_t );");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (!s || !p)  return 0;");
+      fprintf(Outfile,(char*)"%s\n"," sl  = strlen(s); pl  = strlen(p);");
+      fprintf(Outfile,(char*)"%s\n"," if (os > sl || sl == 0 || pl == 0 || (ox = sl - pl) < 0)");
+      fprintf(Outfile,(char*)"%s\n","   return 0;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (os <= 0)  ");
+      fprintf(Outfile,(char*)"%s\n","   os = ox ;");
+      fprintf(Outfile,(char*)"%s\n"," else if(os >= pl)");
+      fprintf(Outfile,(char*)"%s\n","   os = os - pl ;");
+      fprintf(Outfile,(char*)"%s\n"," else");
+      fprintf(Outfile,(char*)"%s\n","   return 0;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," cmp = (sens ? strncasecmp : strncmp);");
+      fprintf(Outfile,(char*)"%s\n"," do { if (cmp(s + os , p, pl) == 0)");
+      fprintf(Outfile,(char*)"%s\n","       return os+1;");
+      fprintf(Outfile,(char*)"%s\n","    } while (os--);");
+      fprintf(Outfile,(char*)"%s\n"," return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Instr)
     {
-      fprintf(Outfile,"%s\n","int instr_b(char* mane,char* match,int offset,int sensflag)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *s;");
-      fprintf(Outfile,"%s\n","  if (!mane || !match || ! *match || offset>(int)strlen(mane)) return 0;");
-      fprintf(Outfile,"%s\n","  if (sensflag)");
-      fprintf(Outfile,"%s\n","    s = _stristr_(offset>0 ? mane+offset-1 : mane,match);");
-      fprintf(Outfile,"%s\n","  else");
-      fprintf(Outfile,"%s\n","    s = _strstr_(offset>0 ? mane+offset-1 : mane,match);");
-      fprintf(Outfile,"%s\n","  return s ? (int)(s-mane)+1 : 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int instr_b(char* mane,char* match,int offset,int sensflag)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *s;");
+      fprintf(Outfile,(char*)"%s\n","  if (!mane || !match || ! *match || offset>(int)strlen(mane)) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  if (sensflag)");
+      fprintf(Outfile,(char*)"%s\n","    s = _stristr_(offset>0 ? mane+offset-1 : mane,match);");
+      fprintf(Outfile,(char*)"%s\n","  else");
+      fprintf(Outfile,(char*)"%s\n","    s = _strstr_(offset>0 ? mane+offset-1 : mane,match);");
+      fprintf(Outfile,(char*)"%s\n","  return s ? (int)(s-mane)+1 : 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(UseLCaseTbl)
     {
-      fprintf(Outfile,"%s\n","char  *MakeLCaseTbl (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static char tbl[256];");
-      fprintf(Outfile,"%s\n","  if(!tbl['a'])");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      int i; for (i=0; i < 256; i++)");
-      fprintf(Outfile,"%s\n","        tbl[i] = (char)(int)tolower(i);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return tbl;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char  *MakeLCaseTbl (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static char tbl[256];");
+      fprintf(Outfile,(char*)"%s\n","  if(!tbl['a'])");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      int i; for (i=0; i < 256; i++)");
+      fprintf(Outfile,(char*)"%s\n","        tbl[i] = (char)(int)tolower(i);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return tbl;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Stristr)
     {
-      fprintf(Outfile,"%s\n","char *_stristr_(char *String, char *Pattern)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int   mi=-1;");
-      fprintf(Outfile,"%s\n","  char *LowCase = MakeLCaseTbl();");
-      fprintf(Outfile,"%s\n","  while(Pattern[++mi])");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     if(String[mi]==0) return 0;");
-      fprintf(Outfile,"%s\n","     if(LowCase[(unsigned char)String[mi]]!=LowCase[(unsigned char)Pattern[mi]])");
-      fprintf(Outfile,"%s\n","       { String++; mi=-1; }");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  return String;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *_stristr_(char *String, char *Pattern)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int   mi=-1;");
+      fprintf(Outfile,(char*)"%s\n","  char *LowCase = MakeLCaseTbl();");
+      fprintf(Outfile,(char*)"%s\n","  while(Pattern[++mi])");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     if(String[mi]==0) return 0;");
+      fprintf(Outfile,(char*)"%s\n","     if(LowCase[(unsigned char)String[mi]]!=LowCase[(unsigned char)Pattern[mi]])");
+      fprintf(Outfile,(char*)"%s\n","       { String++; mi=-1; }");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  return String;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_StrStr)
     {
-      fprintf(Outfile,"%s\n","char *_strstr_(char *String, char *Pattern)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int   mi=-1;");
-      fprintf(Outfile,"%s\n","  while(Pattern[++mi])");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     if(String[mi]==0) return 0;");
-      fprintf(Outfile,"%s\n","     if(String[mi]!=Pattern[mi])");
-      fprintf(Outfile,"%s\n","       { String++; mi=-1; }");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  return String;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *_strstr_(char *String, char *Pattern)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int   mi=-1;");
+      fprintf(Outfile,(char*)"%s\n","  while(Pattern[++mi])");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     if(String[mi]==0) return 0;");
+      fprintf(Outfile,(char*)"%s\n","     if(String[mi]!=Pattern[mi])");
+      fprintf(Outfile,(char*)"%s\n","       { String++; mi=-1; }");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  return String;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Inchr)
     {
-      fprintf(Outfile,"%s\n","int inchr (char *A, char *B)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char* C=A;");
-      fprintf(Outfile,"%s\n","  while(*C)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      if(*C==*B) return C-A+1;");
-      fprintf(Outfile,"%s\n","      C++;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int inchr (char *A, char *B)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char* C=A;");
+      fprintf(Outfile,(char*)"%s\n","  while(*C)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      if(*C==*B) return C-A+1;");
+      fprintf(Outfile,(char*)"%s\n","      C++;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Asc)
     {
-      fprintf(Outfile,"%s\n","extern int asc (char *z,int index)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return (unsigned char) z[index];");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","extern int asc (char *z,int index)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return (unsigned char) z[index];");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Sgn)
     {
-      fprintf(Outfile,"%s\n","double sgn (double a)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(a<0) return -1;");
-      fprintf(Outfile,"%s\n","  if(a>0) return  1;");
-      fprintf(Outfile,"%s\n","  return  0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","double sgn (double a)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(a<0) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  if(a>0) return  1;");
+      fprintf(Outfile,(char*)"%s\n","  return  0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Round)
     {
-      fprintf(Outfile,"%s\n","double Round (double n, int d)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return (floor((n)*pow(10.0,(d))+0.5)/pow(10.0,(d)));");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","double Round (double n, int d)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return (floor((n)*pow(10.0,(d))+0.5)/pow(10.0,(d)));");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Embed)
     {
-      fprintf(Outfile,"%s\n","char* GetResource (int *resource)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr={0};");
-      fprintf(Outfile,"%s\n","  static  char*  dat;");
-      fprintf(Outfile,"%s\n","  memset(&dat,0,sizeof(char *));");
-      fprintf(Outfile,"%s\n","  dat=(char*)resource;");
-      fprintf(Outfile,"%s\n","  BCX_RetStr=BCX_TmpStr(strlen(dat));");
-      fprintf(Outfile,"%s\n","  strcpy(BCX_RetStr,dat);");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char* GetResource (int *resource)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr={0};");
+      fprintf(Outfile,(char*)"%s\n","  static  char*  dat;");
+      fprintf(Outfile,(char*)"%s\n","  memset(&dat,0,sizeof(char *));");
+      fprintf(Outfile,(char*)"%s\n","  dat=(char*)resource;");
+      fprintf(Outfile,(char*)"%s\n","  BCX_RetStr=BCX_TmpStr(strlen(dat));");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(BCX_RetStr,dat);");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Exist)
     {
-      fprintf(Outfile,"%s\n","bool Exist (char *szFilePath)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int retstat;");
-      fprintf(Outfile,"%s\n","  struct stat sb;");
-      fprintf(Outfile,"%s\n","  retstat = stat(szFilePath, &sb);");
-      fprintf(Outfile,"%s\n","  if(retstat != -1)");
-      fprintf(Outfile,"%s\n","    return TRUE;");
-      fprintf(Outfile,"%s\n","  return FALSE;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","bool Exist (char *szFilePath)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int retstat;");
+      fprintf(Outfile,(char*)"%s\n","  struct stat sb;");
+      fprintf(Outfile,(char*)"%s\n","  retstat = stat(szFilePath, &sb);");
+      fprintf(Outfile,(char*)"%s\n","  if(retstat != -1)");
+      fprintf(Outfile,(char*)"%s\n","    return TRUE;");
+      fprintf(Outfile,(char*)"%s\n","  return FALSE;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Tally)
     {
-      fprintf(Outfile,"%s\n","int tally (char *szLine, char *szChar, int sensflag)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(!*szChar) return 0;");
-      fprintf(Outfile,"%s\n","  int   mlen = strlen(szChar);");
-      fprintf(Outfile,"%s\n","  int  iCount = 0;");
-      fprintf(Outfile,"%s\n","  char *p = (sensflag == 0 ? _strstr_(szLine, szChar) : _stristr_(szLine, szChar));");
-      fprintf(Outfile,"%s\n","  while (p)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    iCount++;");
-      fprintf(Outfile,"%s\n","    p+=mlen;");
-      fprintf(Outfile,"%s\n"," p = (sensflag == 0 ? _strstr_(p, szChar) : _stristr_(p, szChar));");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","  return iCount;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int tally (char *szLine, char *szChar, int sensflag)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(!*szChar) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  int   mlen = strlen(szChar);");
+      fprintf(Outfile,(char*)"%s\n","  int  iCount = 0;");
+      fprintf(Outfile,(char*)"%s\n","  char *p = (sensflag == 0 ? _strstr_(szLine, szChar) : _stristr_(szLine, szChar));");
+      fprintf(Outfile,(char*)"%s\n","  while (p)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    iCount++;");
+      fprintf(Outfile,(char*)"%s\n","    p+=mlen;");
+      fprintf(Outfile,(char*)"%s\n"," p = (sensflag == 0 ? _strstr_(p, szChar) : _stristr_(p, szChar));");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","  return iCount;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Timer)
     {
-      fprintf(Outfile,"%s\n","float timer (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return ((double)clock()/CLOCKS_PER_SEC);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","float timer (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return ((double)clock()/CLOCKS_PER_SEC);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Rnd)
     {
-      fprintf(Outfile,"%s\n","float rnd (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return (float)rand()/RAND_MAX;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","float rnd (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return (float)rand()/RAND_MAX;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Exp)
     {
-      fprintf(Outfile,"%s\n","double Exp (double arg)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return pow(2.718281828459045,arg);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","double Exp (double arg)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return pow(2.718281828459045,arg);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Randomize)
     {
-      fprintf(Outfile,"%s\n","void randomize (unsigned int seed)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  srand(seed);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void randomize (unsigned int seed)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  srand(seed);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Max)
     {
-      fprintf(Outfile,"%s\n","double _MAX_ (double a, double b)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(a>b)");
-      fprintf(Outfile,"%s\n","  return a;");
-      fprintf(Outfile,"%s\n","  return b;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","double _MAX_ (double a, double b)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(a>b)");
+      fprintf(Outfile,(char*)"%s\n","  return a;");
+      fprintf(Outfile,(char*)"%s\n","  return b;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Min)
     {
-      fprintf(Outfile,"%s\n","double _MIN_ (double a, double b)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(a<b)");
-      fprintf(Outfile,"%s\n","  return a;");
-      fprintf(Outfile,"%s\n","  return b;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","double _MIN_ (double a, double b)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(a<b)");
+      fprintf(Outfile,(char*)"%s\n","  return a;");
+      fprintf(Outfile,(char*)"%s\n","  return b;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Locate)
     {
-      fprintf(Outfile,"%s\n","void locate (int row,int col,int show,int shape)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s%s%s%s%s%s%s%s%s\n","  printf(",enc("%c%s%u%s%u%s"),",27,",enc("["),",row,",enc(";"),",col,",enc("H"),");");
-      fprintf(Outfile,"%s\n","  // find cursor size/shape function!");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void locate (int row,int col,int show,int shape)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s\n","  printf(",enc("%c%s%u%s%u%s"),",27,",enc("["),",row,",enc(";"),",col,",enc("H"),");");
+      fprintf(Outfile,(char*)"%s\n","  // find cursor size/shape function!");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Cls)
     {
-      fprintf(Outfile,"%s\n","void cls (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s%s%s%s%s%s%s\n","  printf(",enc("%s%s%s%s"),",ESC,",enc("[2J"),",ESC,",enc("[H"),");");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void cls (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n","  printf(",enc("%s%s%s%s"),",ESC,",enc("[2J"),",ESC,",enc("[H"),");");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Color)
     {
-      fprintf(Outfile,"%s\n","void color (int fg,int bg)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s%s%s%s%s%s%s%s%s\n","  printf(",enc("%c%s%u%s%u%s"),",27,",enc("["),",30+(fg&7),",enc(";"),",40+(bg&7),",enc("m"),");");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void color (int fg,int bg)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s%s%s%s%s%s%s%s%s\n","  printf(",enc("%c%s%u%s%u%s"),",27,",enc("["),",30+(fg&7),",enc(";"),",40+(bg&7),",enc("m"),");");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Midstr)
     {
-      fprintf(Outfile,"%s\n","void midstr (char *src, int st, int length, char *rep)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int srclen = strlen(src);");
-      fprintf(Outfile,"%s\n","  if(st>srclen++ || st<1) return;");
-      fprintf(Outfile,"%s\n","  int replen = strlen(rep);");
-      fprintf(Outfile,"%s\n","  if(replen < length || length==-1) length=replen;");
-      fprintf(Outfile,"%s\n","  if((st+length) > srclen) length=srclen-st;");
-      fprintf(Outfile,"%s\n","  memcpy(&src[st-1],rep,length);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void midstr (char *src, int st, int length, char *rep)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int srclen = strlen(src);");
+      fprintf(Outfile,(char*)"%s\n","  if(st>srclen++ || st<1) return;");
+      fprintf(Outfile,(char*)"%s\n","  int replen = strlen(rep);");
+      fprintf(Outfile,(char*)"%s\n","  if(replen < length || length==-1) length=replen;");
+      fprintf(Outfile,(char*)"%s\n","  if((st+length) > srclen) length=srclen-st;");
+      fprintf(Outfile,(char*)"%s\n","  memcpy(&src[st-1],rep,length);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Swap)
     {
-      fprintf(Outfile,"%s\n","void swap ( UCHAR* A, UCHAR* B, int length)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  UCHAR t;");
-      fprintf(Outfile,"%s\n","  while(length--)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    t = *A;");
-      fprintf(Outfile,"%s\n","    *(A++) = *B;");
-      fprintf(Outfile,"%s\n","    *(B++) = t;");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void swap ( UCHAR* A, UCHAR* B, int length)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  UCHAR t;");
+      fprintf(Outfile,(char*)"%s\n","  while(length--)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    t = *A;");
+      fprintf(Outfile,(char*)"%s\n","    *(A++) = *B;");
+      fprintf(Outfile,(char*)"%s\n","    *(B++) = t;");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Like)
     {
-      fprintf(Outfile,"%s\n","int like (char *raw, char *pat)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," char a, b, d;");
-      fprintf(Outfile,"%s\n"," char *r, *p;");
-      fprintf(Outfile,"%s\n"," int star = 0;");
-      fprintf(Outfile,"%s\n"," for(;;) {");
-      fprintf(Outfile,"%s\n","   if ((d = *pat++)==0) return (star || !*raw);");
-      fprintf(Outfile,"%s\n","   else if (d == '*') star = 1;");
-      fprintf(Outfile,"%s\n","   else if (d == '?') { if (!*raw++) return 0; }");
-      fprintf(Outfile,"%s\n","   else break;");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n"," b = d;");
-      fprintf(Outfile,"%s\n"," do if ((a = *raw++) == b) {");
-      fprintf(Outfile,"%s\n","   r = raw;");
-      fprintf(Outfile,"%s\n","   p = pat;");
-      fprintf(Outfile,"%s\n","   do {");
-      fprintf(Outfile,"%s\n","     if ((d = *p++) == '*')");
-      fprintf(Outfile,"%s\n","       if (like(r, p - 1)) return 1;");
-      fprintf(Outfile,"%s\n","       else break;");
-      fprintf(Outfile,"%s\n","     else if (!d) {");
-      fprintf(Outfile,"%s\n","       if (!*r) return 1;");
-      fprintf(Outfile,"%s\n","       else break;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","   } while (*r++ == d || d == '?');");
-      fprintf(Outfile,"%s\n"," } while (star && a);");
-      fprintf(Outfile,"%s\n"," return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int like (char *raw, char *pat)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," char a, b, d;");
+      fprintf(Outfile,(char*)"%s\n"," char *r, *p;");
+      fprintf(Outfile,(char*)"%s\n"," int star = 0;");
+      fprintf(Outfile,(char*)"%s\n"," for(;;) {");
+      fprintf(Outfile,(char*)"%s\n","   if ((d = *pat++)==0) return (star || !*raw);");
+      fprintf(Outfile,(char*)"%s\n","   else if (d == '*') star = 1;");
+      fprintf(Outfile,(char*)"%s\n","   else if (d == '?') { if (!*raw++) return 0; }");
+      fprintf(Outfile,(char*)"%s\n","   else break;");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n"," b = d;");
+      fprintf(Outfile,(char*)"%s\n"," do if ((a = *raw++) == b) {");
+      fprintf(Outfile,(char*)"%s\n","   r = raw;");
+      fprintf(Outfile,(char*)"%s\n","   p = pat;");
+      fprintf(Outfile,(char*)"%s\n","   do {");
+      fprintf(Outfile,(char*)"%s\n","     if ((d = *p++) == '*')");
+      fprintf(Outfile,(char*)"%s\n","       if (like(r, p - 1)) return 1;");
+      fprintf(Outfile,(char*)"%s\n","       else break;");
+      fprintf(Outfile,(char*)"%s\n","     else if (!d) {");
+      fprintf(Outfile,(char*)"%s\n","       if (!*r) return 1;");
+      fprintf(Outfile,(char*)"%s\n","       else break;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","   } while (*r++ == d || d == '?');");
+      fprintf(Outfile,(char*)"%s\n"," } while (star && a);");
+      fprintf(Outfile,(char*)"%s\n"," return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Lof)
     {
-      fprintf(Outfile,"%s\n","DWORD lof (char *FileName)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  int retstat;");
-      fprintf(Outfile,"%s\n","  struct stat sb;");
-      fprintf(Outfile,"%s\n","  retstat = stat(FileName, &sb);");
-      fprintf(Outfile,"%s\n","  if(retstat != -1)");
-      fprintf(Outfile,"%s\n","    return sb.st_size;");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","DWORD lof (char *FileName)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  int retstat;");
+      fprintf(Outfile,(char*)"%s\n","  struct stat sb;");
+      fprintf(Outfile,(char*)"%s\n","  retstat = stat(FileName, &sb);");
+      fprintf(Outfile,(char*)"%s\n","  if(retstat != -1)");
+      fprintf(Outfile,(char*)"%s\n","    return sb.st_size;");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Iif)
     {
-      fprintf(Outfile,"%s\n","double iif (bool cond, double tp, double fp)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(cond) return tp;");
-      fprintf(Outfile,"%s\n","  return fp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","double iif (bool cond, double tp, double fp)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(cond) return tp;");
+      fprintf(Outfile,(char*)"%s\n","  return fp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_sziif)
     {
-      fprintf(Outfile,"%s\n","char * sziif (bool i, char *a, char *b)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(i) return a;");
-      fprintf(Outfile,"%s\n","  return b;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char * sziif (bool i, char *a, char *b)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(i) return a;");
+      fprintf(Outfile,(char*)"%s\n","  return b;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_DynamicA)
     {
-      fprintf(Outfile,"%s\n","void *CreateArr(void *a, int elem_size, int update, int num_dims, ... )");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  va_list ap;");
-      fprintf(Outfile,"%s\n","  void   *RetPtr;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  va_start(ap, num_dims);");
-      fprintf(Outfile,"%s\n","  RetPtr = CreateArr_internal(a, elem_size, update, num_dims, ap);");
-      fprintf(Outfile,"%s\n","  va_end(ap);");
-      fprintf(Outfile,"%s\n","  return (RetPtr);");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","void *CreateArr_internal(void *a, int elem_size, int update, int num_dims, va_list ap)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  size_t s, s1, s2;");
-      fprintf(Outfile,"%s\n","  void **vp;");
-      fprintf(Outfile,"%s\n","  va_list marker;");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","#ifdef va_copy");
-      fprintf(Outfile,"%s\n","  va_copy(marker, ap);");
-      fprintf(Outfile,"%s\n","#else");
-      fprintf(Outfile,"%s\n","  marker = ap;");
-      fprintf(Outfile,"%s\n","#endif");
-      fprintf(Outfile,"%s\n","  s = va_arg(marker, size_t);");
-      fprintf(Outfile,"%s\n","  s2 = s + 2;");
-      fprintf(Outfile,"%s\n","  if(num_dims == 1)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","    if(update && a)");
-      fprintf(Outfile,"%s\n","        a=realloc(a,s2*elem_size);");
-      fprintf(Outfile,"%s\n","     else");
-      fprintf(Outfile,"%s\n","        a=calloc(s2,elem_size);");
-      fprintf(Outfile,"%s\n","    return a;");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n"," else");
-      fprintf(Outfile,"%s\n","    if(update && a)");
-      fprintf(Outfile,"%s\n","     {");
-      fprintf(Outfile,"%s\n","     s1 = 0;");
-      fprintf(Outfile,"%s\n","     vp = (void**)a;");
-      fprintf(Outfile,"%s\n","     while(*vp && s1 <= s)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s\n","       vp++;");
-      fprintf(Outfile,"%s\n","       s1++;");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","     if(s1 > s)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s\n","       vp--;");
-      fprintf(Outfile,"%s\n","        DestroyArr(vp, num_dims, 0);");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","      a=realloc(a,s2*sizeof(int));");
-      fprintf(Outfile,"%s\n","     s1 = 0;");
-      fprintf(Outfile,"%s\n","     vp = (void**)a;");
-      fprintf(Outfile,"%s\n","     while(*vp && s1 <= s)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s\n","       vp++;");
-      fprintf(Outfile,"%s\n","       s1++;");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","     while(s1 < s2)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s\n","       *(((int *)vp)) = 0;");
-      fprintf(Outfile,"%s\n","       vp++;");
-      fprintf(Outfile,"%s\n","       s1++;");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","   else");
-      fprintf(Outfile,"%s\n","      a=calloc(s2*sizeof(int),1);");
-      fprintf(Outfile,"%s\n"," vp = (void**)a;");
-      fprintf(Outfile,"%s\n"," if(--num_dims > 0)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n"," for(s1 = 0; s1 < s; s1++)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     vp[s1] = CreateArr_internal(vp[s1], elem_size, update, num_dims, marker);");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n"," return a;");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","void DestroyArr (void** a,int num_dims, int top_free)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," int i = 0;");
-      fprintf(Outfile,"%s\n"," static int s = 0;");
-      fprintf(Outfile,"%s\n"," if(num_dims == 1)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","   free(a);");
-      fprintf(Outfile,"%s\n","   return;");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n"," s++;");
-      fprintf(Outfile,"%s\n"," num_dims--;  ");
-      fprintf(Outfile,"%s\n"," while(a[i])");
-      fprintf(Outfile,"%s\n","     {");
-      fprintf(Outfile,"%s\n","   DestroyArr((void**)a[i], num_dims, top_free);");
-      fprintf(Outfile,"%s\n","   if(num_dims > 1)");
-      fprintf(Outfile,"%s\n","         free(a[i]);");
-      fprintf(Outfile,"%s\n","       a[i++]=NULL;");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n"," s--;");
-      fprintf(Outfile,"%s\n"," if(s == 0 && top_free)");
-      fprintf(Outfile,"%s\n","   free(a);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void *CreateArr(void *a, int elem_size, int update, int num_dims, ... )");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  va_list ap;");
+      fprintf(Outfile,(char*)"%s\n","  void   *RetPtr;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  va_start(ap, num_dims);");
+      fprintf(Outfile,(char*)"%s\n","  RetPtr = CreateArr_internal(a, elem_size, update, num_dims, ap);");
+      fprintf(Outfile,(char*)"%s\n","  va_end(ap);");
+      fprintf(Outfile,(char*)"%s\n","  return (RetPtr);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void *CreateArr_internal(void *a, int elem_size, int update, int num_dims, va_list ap)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  size_t s, s1, s2;");
+      fprintf(Outfile,(char*)"%s\n","  void **vp;");
+      fprintf(Outfile,(char*)"%s\n","  va_list marker;");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","#ifdef va_copy");
+      fprintf(Outfile,(char*)"%s\n","  va_copy(marker, ap);");
+      fprintf(Outfile,(char*)"%s\n","#else");
+      fprintf(Outfile,(char*)"%s\n","  marker = ap;");
+      fprintf(Outfile,(char*)"%s\n","#endif");
+      fprintf(Outfile,(char*)"%s\n","  s = va_arg(marker, size_t);");
+      fprintf(Outfile,(char*)"%s\n","  s2 = s + 2;");
+      fprintf(Outfile,(char*)"%s\n","  if(num_dims == 1)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","    if(update && a)");
+      fprintf(Outfile,(char*)"%s\n","        a=realloc(a,s2*elem_size);");
+      fprintf(Outfile,(char*)"%s\n","     else");
+      fprintf(Outfile,(char*)"%s\n","        a=calloc(s2,elem_size);");
+      fprintf(Outfile,(char*)"%s\n","    return a;");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n"," else");
+      fprintf(Outfile,(char*)"%s\n","    if(update && a)");
+      fprintf(Outfile,(char*)"%s\n","     {");
+      fprintf(Outfile,(char*)"%s\n","     s1 = 0;");
+      fprintf(Outfile,(char*)"%s\n","     vp = (void**)a;");
+      fprintf(Outfile,(char*)"%s\n","     while(*vp && s1 <= s)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s\n","       vp++;");
+      fprintf(Outfile,(char*)"%s\n","       s1++;");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","     if(s1 > s)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s\n","       vp--;");
+      fprintf(Outfile,(char*)"%s\n","        DestroyArr(vp, num_dims, 0);");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","      a=realloc(a,s2*sizeof(int));");
+      fprintf(Outfile,(char*)"%s\n","     s1 = 0;");
+      fprintf(Outfile,(char*)"%s\n","     vp = (void**)a;");
+      fprintf(Outfile,(char*)"%s\n","     while(*vp && s1 <= s)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s\n","       vp++;");
+      fprintf(Outfile,(char*)"%s\n","       s1++;");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","     while(s1 < s2)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s\n","       *(((int *)vp)) = 0;");
+      fprintf(Outfile,(char*)"%s\n","       vp++;");
+      fprintf(Outfile,(char*)"%s\n","       s1++;");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","   else");
+      fprintf(Outfile,(char*)"%s\n","      a=calloc(s2*sizeof(int),1);");
+      fprintf(Outfile,(char*)"%s\n"," vp = (void**)a;");
+      fprintf(Outfile,(char*)"%s\n"," if(--num_dims > 0)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n"," for(s1 = 0; s1 < s; s1++)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     vp[s1] = CreateArr_internal(vp[s1], elem_size, update, num_dims, marker);");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n"," return a;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void DestroyArr (void** a,int num_dims, int top_free)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," int i = 0;");
+      fprintf(Outfile,(char*)"%s\n"," static int s = 0;");
+      fprintf(Outfile,(char*)"%s\n"," if(num_dims == 1)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","   free(a);");
+      fprintf(Outfile,(char*)"%s\n","   return;");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n"," s++;");
+      fprintf(Outfile,(char*)"%s\n"," num_dims--;  ");
+      fprintf(Outfile,(char*)"%s\n"," while(a[i])");
+      fprintf(Outfile,(char*)"%s\n","     {");
+      fprintf(Outfile,(char*)"%s\n","   DestroyArr((void**)a[i], num_dims, top_free);");
+      fprintf(Outfile,(char*)"%s\n","   if(num_dims > 1)");
+      fprintf(Outfile,(char*)"%s\n","         free(a[i]);");
+      fprintf(Outfile,(char*)"%s\n","       a[i++]=NULL;");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n"," s--;");
+      fprintf(Outfile,(char*)"%s\n"," if(s == 0 && top_free)");
+      fprintf(Outfile,(char*)"%s\n","   free(a);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Idxqsort)
     {
-      fprintf(Outfile,"%s\n","int IdxCompare (const void *one, const void *two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int *ptr1 = (int *)(one);");
-      fprintf(Outfile,"%s\n","  int *ptr2 = (int *)(two);");
-      fprintf(Outfile,"%s\n","  return strcasecmp (pppStr[Key][*ptr1],pppStr[Key][*ptr2]);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int IdxCompare (const void *one, const void *two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int *ptr1 = (int *)(one);");
+      fprintf(Outfile,(char*)"%s\n","  int *ptr2 = (int *)(two);");
+      fprintf(Outfile,(char*)"%s\n","  return strcasecmp (pppStr[Key][*ptr1],pppStr[Key][*ptr2]);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_IdxqsortSt)
     {
-      fprintf(Outfile,"%s\n","int IdxCompareSt (const void* one, const void* two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","#define compare1 cmp1+(StructSize * (*(UINT *)(one)))");
-      fprintf(Outfile,"%s\n","#define compare2 cmp1+(StructSize * (*(UINT *)(two)))");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==0)");
-      fprintf(Outfile,"%s\n","   return  strcasecmp(compare1, compare2);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==1)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n","  if (*(int*)(compare1) < *(int*)(compare2)) return -1;");
-      fprintf(Outfile,"%s\n","  if (*(int*)(compare1) > *(int*)(compare2)) return 1;");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==2)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n","  if (*(double*)(compare1) < *(double*)(compare2)) return -1;");
-      fprintf(Outfile,"%s\n","  if (*(double*)(compare1) > *(double*)(compare2)) return 1;");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==3)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n","  if (*(UINT*)(compare1) < *(UINT*)(compare2)) return -1;");
-      fprintf(Outfile,"%s\n","  if (*(UINT*)(compare1) > *(UINT*)(compare2)) return 1;");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n","return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int IdxCompareSt (const void* one, const void* two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","#define compare1 cmp1+(StructSize * (*(UINT *)(one)))");
+      fprintf(Outfile,(char*)"%s\n","#define compare2 cmp1+(StructSize * (*(UINT *)(two)))");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==0)");
+      fprintf(Outfile,(char*)"%s\n","   return  strcasecmp(compare1, compare2);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==1)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n","  if (*(int*)(compare1) < *(int*)(compare2)) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  if (*(int*)(compare1) > *(int*)(compare2)) return 1;");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==2)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n","  if (*(double*)(compare1) < *(double*)(compare2)) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  if (*(double*)(compare1) > *(double*)(compare2)) return 1;");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==3)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n","  if (*(UINT*)(compare1) < *(UINT*)(compare2)) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  if (*(UINT*)(compare1) > *(UINT*)(compare2)) return 1;");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n","return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_PtrqsortSt)
     {
-      fprintf(Outfile,"%s\n","int PtrCompareSt (const void* one, const void* two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","#define pcompare1 ((char*)(one)+OffSet)");
-      fprintf(Outfile,"%s\n","#define pcompare2 ((char*)(two)+OffSet)");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==0)");
-      fprintf(Outfile,"%s\n","   return  strcasecmp(pcompare1, pcompare2);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==1)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n","  if (*(int*)(pcompare1) < *(int*)(pcompare2)) return -1;");
-      fprintf(Outfile,"%s\n","  if (*(int*)(pcompare1) > *(int*)(pcompare2)) return 1;");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==2)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n","  if (*(double*)(pcompare1) < *(double*)(pcompare2)) return -1;");
-      fprintf(Outfile,"%s\n","  if (*(double*)(pcompare1) > *(double*)(pcompare2)) return 1;");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n"," if (Key==3)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n","  if (*(UINT*)(pcompare1) < *(UINT*)(pcompare2)) return -1;");
-      fprintf(Outfile,"%s\n","  if (*(UINT*)(pcompare1) > *(UINT*)(pcompare2)) return 1;");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n","return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int PtrCompareSt (const void* one, const void* two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","#define pcompare1 ((char*)(one)+OffSet)");
+      fprintf(Outfile,(char*)"%s\n","#define pcompare2 ((char*)(two)+OffSet)");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==0)");
+      fprintf(Outfile,(char*)"%s\n","   return  strcasecmp(pcompare1, pcompare2);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==1)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n","  if (*(int*)(pcompare1) < *(int*)(pcompare2)) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  if (*(int*)(pcompare1) > *(int*)(pcompare2)) return 1;");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==2)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n","  if (*(double*)(pcompare1) < *(double*)(pcompare2)) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  if (*(double*)(pcompare1) > *(double*)(pcompare2)) return 1;");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n"," if (Key==3)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n","  if (*(UINT*)(pcompare1) < *(UINT*)(pcompare2)) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  if (*(UINT*)(pcompare1) > *(UINT*)(pcompare2)) return 1;");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n","return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Strqsorta)
     {
-      fprintf(Outfile,"%s\n","int StrCompareA (const void *arg1, const void *arg2)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *v1 = (char*) arg1;");
-      fprintf(Outfile,"%s\n","  char *v2 = (char*) arg2;");
-      fprintf(Outfile,"%s\n","  return strcasecmp (v1,v2);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int StrCompareA (const void *arg1, const void *arg2)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *v1 = (char*) arg1;");
+      fprintf(Outfile,(char*)"%s\n","  char *v2 = (char*) arg2;");
+      fprintf(Outfile,(char*)"%s\n","  return strcasecmp (v1,v2);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Strqsortd)
     {
-      fprintf(Outfile,"%s\n","int StrCompareD (const void *arg1, const void *arg2)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *v1 = (char*) arg1;");
-      fprintf(Outfile,"%s\n","  char *v2 = (char*) arg2;");
-      fprintf(Outfile,"%s\n","  return strcasecmp (v2,v1);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int StrCompareD (const void *arg1, const void *arg2)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *v1 = (char*) arg1;");
+      fprintf(Outfile,(char*)"%s\n","  char *v2 = (char*) arg2;");
+      fprintf(Outfile,(char*)"%s\n","  return strcasecmp (v2,v1);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_DynStrqsorta)
     {
-      fprintf(Outfile,"%s\n","int DynStrCompareA (const void *arg1, const void *arg2)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *v1 = *(char **) arg1;");
-      fprintf(Outfile,"%s\n","  char *v2 = *(char **) arg2;");
-      fprintf(Outfile,"%s\n","  return strcasecmp(v1, v2);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int DynStrCompareA (const void *arg1, const void *arg2)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *v1 = *(char **) arg1;");
+      fprintf(Outfile,(char*)"%s\n","  char *v2 = *(char **) arg2;");
+      fprintf(Outfile,(char*)"%s\n","  return strcasecmp(v1, v2);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_DynStrqsortd)
     {
-      fprintf(Outfile,"%s\n","int DynStrCompareD (const void *arg1, const void *arg2)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *v1 = *(char **) arg1;");
-      fprintf(Outfile,"%s\n","  char *v2 = *(char **) arg2;");
-      fprintf(Outfile,"%s\n","  return strcasecmp(v2, v1);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int DynStrCompareD (const void *arg1, const void *arg2)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *v1 = *(char **) arg1;");
+      fprintf(Outfile,(char*)"%s\n","  char *v2 = *(char **) arg2;");
+      fprintf(Outfile,(char*)"%s\n","  return strcasecmp(v2, v1);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Numqsortaint)
     {
-      fprintf(Outfile,"%s\n","int NumCompareAint (const void *one, const void *two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int *ptr1 = (int *)(one);");
-      fprintf(Outfile,"%s\n","  int *ptr2 = (int *)(two);");
-      fprintf(Outfile,"%s\n","  if (*ptr1 < *ptr2) return -1;");
-      fprintf(Outfile,"%s\n","  else if (*ptr1 == *ptr2) return 0;");
-      fprintf(Outfile,"%s\n","  else return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int NumCompareAint (const void *one, const void *two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int *ptr1 = (int *)(one);");
+      fprintf(Outfile,(char*)"%s\n","  int *ptr2 = (int *)(two);");
+      fprintf(Outfile,(char*)"%s\n","  if (*ptr1 < *ptr2) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  else if (*ptr1 == *ptr2) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  else return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Numqsortdint)
     {
-      fprintf(Outfile,"%s\n","int NumCompareDint (const void *one, const void *two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int *ptr1 = (int *)(one);");
-      fprintf(Outfile,"%s\n","  int *ptr2 = (int *)(two);");
-      fprintf(Outfile,"%s\n","  if (*ptr1 > *ptr2) return -1;");
-      fprintf(Outfile,"%s\n","  else if (*ptr1 == *ptr2) return 0;");
-      fprintf(Outfile,"%s\n","  else return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int NumCompareDint (const void *one, const void *two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int *ptr1 = (int *)(one);");
+      fprintf(Outfile,(char*)"%s\n","  int *ptr2 = (int *)(two);");
+      fprintf(Outfile,(char*)"%s\n","  if (*ptr1 > *ptr2) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  else if (*ptr1 == *ptr2) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  else return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Numqsortafloat)
     {
-      fprintf(Outfile,"%s\n","int NumCompareAfloat (const void *one, const void *two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  float *ptr1 = (float *)(one);");
-      fprintf(Outfile,"%s\n","  float *ptr2 = (float *)(two);");
-      fprintf(Outfile,"%s\n","  if (*ptr1 < *ptr2) return -1;");
-      fprintf(Outfile,"%s\n","  else if (*ptr1 == *ptr2) return 0;");
-      fprintf(Outfile,"%s\n","  else return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int NumCompareAfloat (const void *one, const void *two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  float *ptr1 = (float *)(one);");
+      fprintf(Outfile,(char*)"%s\n","  float *ptr2 = (float *)(two);");
+      fprintf(Outfile,(char*)"%s\n","  if (*ptr1 < *ptr2) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  else if (*ptr1 == *ptr2) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  else return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Numqsortdfloat)
     {
-      fprintf(Outfile,"%s\n","int NumCompareDfloat (const void *one, const void *two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  float *ptr1 = (float *)(one);");
-      fprintf(Outfile,"%s\n","  float *ptr2 = (float *)(two);");
-      fprintf(Outfile,"%s\n","  if (*ptr1 > *ptr2) return -1;");
-      fprintf(Outfile,"%s\n","  else if (*ptr1 == *ptr2) return 0;");
-      fprintf(Outfile,"%s\n","  else return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int NumCompareDfloat (const void *one, const void *two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  float *ptr1 = (float *)(one);");
+      fprintf(Outfile,(char*)"%s\n","  float *ptr2 = (float *)(two);");
+      fprintf(Outfile,(char*)"%s\n","  if (*ptr1 > *ptr2) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  else if (*ptr1 == *ptr2) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  else return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Numqsortadouble)
     {
-      fprintf(Outfile,"%s\n","int NumCompareAdouble (const void *one, const void *two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  double *ptr1 = (double *)(one);");
-      fprintf(Outfile,"%s\n","  double *ptr2 = (double *)(two);");
-      fprintf(Outfile,"%s\n","  if (*ptr1 < *ptr2) return -1;");
-      fprintf(Outfile,"%s\n","  else if (*ptr1 == *ptr2) return 0;");
-      fprintf(Outfile,"%s\n","  else return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int NumCompareAdouble (const void *one, const void *two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  double *ptr1 = (double *)(one);");
+      fprintf(Outfile,(char*)"%s\n","  double *ptr2 = (double *)(two);");
+      fprintf(Outfile,(char*)"%s\n","  if (*ptr1 < *ptr2) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  else if (*ptr1 == *ptr2) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  else return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Numqsortddouble)
     {
-      fprintf(Outfile,"%s\n","int NumCompareDdouble (const void *one, const void *two)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  double *ptr1 = (double *)(one);");
-      fprintf(Outfile,"%s\n","  double *ptr2 = (double *)(two);");
-      fprintf(Outfile,"%s\n","  if (*ptr1 > *ptr2) return -1;");
-      fprintf(Outfile,"%s\n","  else if (*ptr1 == *ptr2) return 0;");
-      fprintf(Outfile,"%s\n","  else return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int NumCompareDdouble (const void *one, const void *two)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  double *ptr1 = (double *)(one);");
+      fprintf(Outfile,(char*)"%s\n","  double *ptr2 = (double *)(two);");
+      fprintf(Outfile,(char*)"%s\n","  if (*ptr1 > *ptr2) return -1;");
+      fprintf(Outfile,(char*)"%s\n","  else if (*ptr1 == *ptr2) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  else return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_FillArray)
     {
-      fprintf(Outfile,"%s\n","int fillarray(char *input, int ArrayType, int MaxCnt, void *Array)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," if(MaxCnt < 1) return -1;");
-      fprintf(Outfile,"%s\n"," int c = 0, cnt=-1, cnt2;");
-      fprintf(Outfile,"%s\n"," char A[65535];");
-      fprintf(Outfile,"%s\n"," int    *intptr    = (int *)Array;");
-      fprintf(Outfile,"%s\n"," float  *floatptr  = (float *)Array;");
-      fprintf(Outfile,"%s\n"," double *doubleptr = (double *)Array;");
-      fprintf(Outfile,"%s\n"," long double *ldoubleptr = (long double *)Array;");
-      fprintf(Outfile,"%s\n"," for(;;)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","     cnt2=0;");
-      fprintf(Outfile,"%s\n","     while(input[++cnt]!=',')");
-      fprintf(Outfile,"%s\n","      {");
-      fprintf(Outfile,"%s\n","        if(input[cnt]==0) break;");
-      fprintf(Outfile,"%s\n","        A[cnt2++]=input[cnt];");
-      fprintf(Outfile,"%s\n","      }");
-      fprintf(Outfile,"%s\n","     A[cnt2]=0;");
-      fprintf(Outfile,"%s\n","     if(cnt2==0||c==MaxCnt) break;");
-      fprintf(Outfile,"%s\n","     ");
-      fprintf(Outfile,"%s\n","     if(ArrayType==2)");
-      fprintf(Outfile,"%s\n","       intptr[c++] = atoi(A);");
-      fprintf(Outfile,"%s\n","     else if(ArrayType==3)");
-      fprintf(Outfile,"%s\n","       floatptr[c++] = atof(A);");
-      fprintf(Outfile,"%s\n","     else if(ArrayType==4)");
-      fprintf(Outfile,"%s\n","       doubleptr[c++] = atof(A);");
-      fprintf(Outfile,"%s\n","     else if(ArrayType==5)");
-      fprintf(Outfile,"%s\n","       ldoubleptr[c++] = atof(A);");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","     if(input[cnt]==0) break;");
-      fprintf(Outfile,"%s\n","  } ");
-      fprintf(Outfile,"%s\n"," return (c-1);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int fillarray(char *input, int ArrayType, int MaxCnt, void *Array)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," if(MaxCnt < 1) return -1;");
+      fprintf(Outfile,(char*)"%s\n"," int c = 0, cnt=-1, cnt2;");
+      fprintf(Outfile,(char*)"%s\n"," char A[65535];");
+      fprintf(Outfile,(char*)"%s\n"," int    *intptr    = (int *)Array;");
+      fprintf(Outfile,(char*)"%s\n"," float  *floatptr  = (float *)Array;");
+      fprintf(Outfile,(char*)"%s\n"," double *doubleptr = (double *)Array;");
+      fprintf(Outfile,(char*)"%s\n"," long double *ldoubleptr = (long double *)Array;");
+      fprintf(Outfile,(char*)"%s\n"," for(;;)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","     cnt2=0;");
+      fprintf(Outfile,(char*)"%s\n","     while(input[++cnt]!=',')");
+      fprintf(Outfile,(char*)"%s\n","      {");
+      fprintf(Outfile,(char*)"%s\n","        if(input[cnt]==0) break;");
+      fprintf(Outfile,(char*)"%s\n","        A[cnt2++]=input[cnt];");
+      fprintf(Outfile,(char*)"%s\n","      }");
+      fprintf(Outfile,(char*)"%s\n","     A[cnt2]=0;");
+      fprintf(Outfile,(char*)"%s\n","     if(cnt2==0||c==MaxCnt) break;");
+      fprintf(Outfile,(char*)"%s\n","     ");
+      fprintf(Outfile,(char*)"%s\n","     if(ArrayType==2)");
+      fprintf(Outfile,(char*)"%s\n","       intptr[c++] = atoi(A);");
+      fprintf(Outfile,(char*)"%s\n","     else if(ArrayType==3)");
+      fprintf(Outfile,(char*)"%s\n","       floatptr[c++] = atof(A);");
+      fprintf(Outfile,(char*)"%s\n","     else if(ArrayType==4)");
+      fprintf(Outfile,(char*)"%s\n","       doubleptr[c++] = atof(A);");
+      fprintf(Outfile,(char*)"%s\n","     else if(ArrayType==5)");
+      fprintf(Outfile,(char*)"%s\n","       ldoubleptr[c++] = atof(A);");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","     if(input[cnt]==0) break;");
+      fprintf(Outfile,(char*)"%s\n","  } ");
+      fprintf(Outfile,(char*)"%s\n"," return (c-1);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Loc)
     {
-      fprintf(Outfile,"%s\n","int loc(FILE *fp, int fplen)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  fpos_t t;");
-      fprintf(Outfile,"%s\n","  fgetpos(fp, &t);");
-      fprintf(Outfile,"%s\n","#if defined( __POCC__ )");
-      fprintf(Outfile,"%s\n","  t.off %= fplen;");
-      fprintf(Outfile,"%s\n","  return (int)t.off;");
-      fprintf(Outfile,"%s\n","#else");
-      fprintf(Outfile,"%s\n","  t %= fplen;");
-      fprintf(Outfile,"%s\n","  return (int)t;");
-      fprintf(Outfile,"%s\n","#endif");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int loc(FILE *fp, int fplen)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  fpos_t t;");
+      fprintf(Outfile,(char*)"%s\n","  fgetpos(fp, &t);");
+      fprintf(Outfile,(char*)"%s\n","#if defined( __POCC__ )");
+      fprintf(Outfile,(char*)"%s\n","  t.off %= fplen;");
+      fprintf(Outfile,(char*)"%s\n","  return (int)t.off;");
+      fprintf(Outfile,(char*)"%s\n","#else");
+      fprintf(Outfile,(char*)"%s\n","  t %= fplen;");
+      fprintf(Outfile,(char*)"%s\n","  return (int)t;");
+      fprintf(Outfile,(char*)"%s\n","#endif");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Rec)
     {
-      fprintf(Outfile,"%s\n","int rec(FILE *fp, int fplen)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  fpos_t t;");
-      fprintf(Outfile,"%s\n","  fgetpos(fp, &t);");
-      fprintf(Outfile,"%s\n","#if defined( __POCC__ )");
-      fprintf(Outfile,"%s\n","  t.off /= fplen;");
-      fprintf(Outfile,"%s\n","  return (int)++t.off;");
-      fprintf(Outfile,"%s\n","#else");
-      fprintf(Outfile,"%s\n","  t /= fplen;");
-      fprintf(Outfile,"%s\n","  return (int)++t;");
-      fprintf(Outfile,"%s\n","#endif");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int rec(FILE *fp, int fplen)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  fpos_t t;");
+      fprintf(Outfile,(char*)"%s\n","  fgetpos(fp, &t);");
+      fprintf(Outfile,(char*)"%s\n","#if defined( __POCC__ )");
+      fprintf(Outfile,(char*)"%s\n","  t.off /= fplen;");
+      fprintf(Outfile,(char*)"%s\n","  return (int)++t.off;");
+      fprintf(Outfile,(char*)"%s\n","#else");
+      fprintf(Outfile,(char*)"%s\n","  t /= fplen;");
+      fprintf(Outfile,(char*)"%s\n","  return (int)++t;");
+      fprintf(Outfile,(char*)"%s\n","#endif");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_RecCount)
     {
-      fprintf(Outfile,"%s\n","int reccount(FILE *fp, int fplen)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  fpos_t t;");
-      fprintf(Outfile,"%s\n","  fseek(fp,0,SEEK_END);");
-      fprintf(Outfile,"%s\n","  fgetpos(fp, &t);");
-      fprintf(Outfile,"%s\n","#if defined( __POCC__ )");
-      fprintf(Outfile,"%s\n","  t.off /= fplen;");
-      fprintf(Outfile,"%s\n","  return (int)t.off;");
-      fprintf(Outfile,"%s\n","#else");
-      fprintf(Outfile,"%s\n","  t /= fplen;");
-      fprintf(Outfile,"%s\n","  return (int)t;");
-      fprintf(Outfile,"%s\n","#endif");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int reccount(FILE *fp, int fplen)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  fpos_t t;");
+      fprintf(Outfile,(char*)"%s\n","  fseek(fp,0,SEEK_END);");
+      fprintf(Outfile,(char*)"%s\n","  fgetpos(fp, &t);");
+      fprintf(Outfile,(char*)"%s\n","#if defined( __POCC__ )");
+      fprintf(Outfile,(char*)"%s\n","  t.off /= fplen;");
+      fprintf(Outfile,(char*)"%s\n","  return (int)t.off;");
+      fprintf(Outfile,(char*)"%s\n","#else");
+      fprintf(Outfile,(char*)"%s\n","  t /= fplen;");
+      fprintf(Outfile,(char*)"%s\n","  return (int)t;");
+      fprintf(Outfile,(char*)"%s\n","#endif");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Scan)
     {
-      fprintf(Outfile,"%s\n","int scan(char *input, char *format, ... )");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int c,d ;");
-      fprintf(Outfile,"%s\n","  char     *s_;");
-      fprintf(Outfile,"%s\n","  int      *intptr;");
-      fprintf(Outfile,"%s\n","  float    *floatptr;");
-      fprintf(Outfile,"%s\n","  double   *doubleptr;");
-      fprintf(Outfile,"%s\n","  char     A[50][65535];");
-      fprintf(Outfile,"%s\n","  va_list  marker;");
-      fprintf(Outfile,"%s\n","  c = 0;");
-      fprintf(Outfile,"%s%s%s\n","  d = Split(A,input,",enc(","),");");
-      fprintf(Outfile,"%s\n","  va_start(marker, format); //Initialize arguments");
-      fprintf(Outfile,"%s\n","  while(d && *format)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     if(*format == '%') format++;");
-      fprintf(Outfile,"%s\n","     if(*format == 's')");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s\n","         s_ = va_arg(marker, char *);");
-      fprintf(Outfile,"%s\n","         strcpy(s_, A[c]);");
-      fprintf(Outfile,"%s\n","         c++;");
-      fprintf(Outfile,"%s\n","         d--;");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","  if(*format == 'd')");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      intptr = va_arg(marker, int *);");
-      fprintf(Outfile,"%s\n","      *intptr = atoi(A[c]);");
-      fprintf(Outfile,"%s\n","      c++;");
-      fprintf(Outfile,"%s\n","      d--;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  if(*format == 'g')");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      floatptr = va_arg(marker, float *);");
-      fprintf(Outfile,"%s\n","      *floatptr = atof(A[c]);");
-      fprintf(Outfile,"%s\n","      c++;");
-      fprintf(Outfile,"%s\n","      d--;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n"," if(*format == 'l')");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      format++;");
-      fprintf(Outfile,"%s\n","      doubleptr = va_arg(marker, double *);");
-      fprintf(Outfile,"%s\n","      *doubleptr = atof(A[c]);");
-      fprintf(Outfile,"%s\n","      c++;");
-      fprintf(Outfile,"%s\n","      d--;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","  format++;");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  va_end(marker);              // Reset variable arguments");
-      fprintf(Outfile,"%s\n","  if(d) return(1);             // More data than variables");
-      fprintf(Outfile,"%s\n","  if(*format == 0) return(0);  // OK");
-      fprintf(Outfile,"%s\n","  return(-1);                  // More variables than data");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int scan(char *input, char *format, ... )");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int c,d ;");
+      fprintf(Outfile,(char*)"%s\n","  char     *s_;");
+      fprintf(Outfile,(char*)"%s\n","  int      *intptr;");
+      fprintf(Outfile,(char*)"%s\n","  float    *floatptr;");
+      fprintf(Outfile,(char*)"%s\n","  double   *doubleptr;");
+      fprintf(Outfile,(char*)"%s\n","  char     A[50][65535];");
+      fprintf(Outfile,(char*)"%s\n","  va_list  marker;");
+      fprintf(Outfile,(char*)"%s\n","  c = 0;");
+      fprintf(Outfile,(char*)"%s%s%s\n","  d = Split(A,input,",enc(","),");");
+      fprintf(Outfile,(char*)"%s\n","  va_start(marker, format); //Initialize arguments");
+      fprintf(Outfile,(char*)"%s\n","  while(d && *format)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     if(*format == '%') format++;");
+      fprintf(Outfile,(char*)"%s\n","     if(*format == 's')");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s\n","         s_ = va_arg(marker, char *);");
+      fprintf(Outfile,(char*)"%s\n","         strcpy(s_, A[c]);");
+      fprintf(Outfile,(char*)"%s\n","         c++;");
+      fprintf(Outfile,(char*)"%s\n","         d--;");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","  if(*format == 'd')");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      intptr = va_arg(marker, int *);");
+      fprintf(Outfile,(char*)"%s\n","      *intptr = atoi(A[c]);");
+      fprintf(Outfile,(char*)"%s\n","      c++;");
+      fprintf(Outfile,(char*)"%s\n","      d--;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  if(*format == 'g')");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      floatptr = va_arg(marker, float *);");
+      fprintf(Outfile,(char*)"%s\n","      *floatptr = atof(A[c]);");
+      fprintf(Outfile,(char*)"%s\n","      c++;");
+      fprintf(Outfile,(char*)"%s\n","      d--;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n"," if(*format == 'l')");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      format++;");
+      fprintf(Outfile,(char*)"%s\n","      doubleptr = va_arg(marker, double *);");
+      fprintf(Outfile,(char*)"%s\n","      *doubleptr = atof(A[c]);");
+      fprintf(Outfile,(char*)"%s\n","      c++;");
+      fprintf(Outfile,(char*)"%s\n","      d--;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","  format++;");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  va_end(marker);              // Reset variable arguments");
+      fprintf(Outfile,(char*)"%s\n","  if(d) return(1);             // More data than variables");
+      fprintf(Outfile,(char*)"%s\n","  if(*format == 0) return(0);  // OK");
+      fprintf(Outfile,(char*)"%s\n","  return(-1);                  // More variables than data");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Split)
     {
-      fprintf(Outfile,"%s\n","int Split (char Buf[][65535], char *T, char *Delim, int Flg)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int  Begin = 0;");
-      fprintf(Outfile,"%s\n","  int  Count = 0;");
-      fprintf(Outfile,"%s\n","  int  Quote = 0;");
-      fprintf(Outfile,"%s\n","  int  Index,i;");
-      fprintf(Outfile,"%s\n","  int  lenT  = strlen(T);");
-      fprintf(Outfile,"%s\n","  char Chr34[2]={34,0};");
-      fprintf(Outfile,"%s\n","  for(Index=1;Index<=lenT;Index++)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      if(instr_b(Delim,mid(T,Index,1))&&!Quote)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          strcpy(Buf[Count],(char*)mid(T,Begin,Index-Begin));");
-      fprintf(Outfile,"%s\n","          if ((Flg & 2) == 0)  // 0 if old version");
-      fprintf(Outfile,"%s\n","           Count++;");
-      fprintf(Outfile,"%s\n","          else");
-      fprintf(Outfile,"%s\n","           if (Buf[Count][0] != 0) Count++;");
-      fprintf(Outfile,"%s\n","           Begin=0;");
-      fprintf(Outfile,"%s\n","           if((Flg & 1) == 1)   // 1 if true");
-      fprintf(Outfile,"%s\n","              strcpy(Buf[Count++],(char*)mid(T,Index,1));");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","   else");
-      fprintf(Outfile,"%s\n","     {");
-      fprintf(Outfile,"%s\n","       if(strcmp(mid(T,Index,1),Chr34)==0) Quote=!Quote;");
-      fprintf(Outfile,"%s\n","       if(Begin==0) Begin=Index;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  if(Begin)");
-      fprintf(Outfile,"%s\n","     strcpy(Buf[Count++],(char*)mid(T,Begin,Index-Begin));");
-      fprintf(Outfile,"%s\n","  if((Flg & 1) == 0)   // 0 if false");
-      fprintf(Outfile,"%s\n","      for(i=0;i<Count;i++) strcpy(Buf[i],(char*)RemoveStr(Buf[i],Chr34));");
-      fprintf(Outfile,"%s\n","  return Count;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int Split (char Buf[][65535], char *T, char *Delim, int Flg)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int  Begin = 0;");
+      fprintf(Outfile,(char*)"%s\n","  int  Count = 0;");
+      fprintf(Outfile,(char*)"%s\n","  int  Quote = 0;");
+      fprintf(Outfile,(char*)"%s\n","  int  Index,i;");
+      fprintf(Outfile,(char*)"%s\n","  int  lenT  = strlen(T);");
+      fprintf(Outfile,(char*)"%s\n","  char Chr34[2]={34,0};");
+      fprintf(Outfile,(char*)"%s\n","  for(Index=1;Index<=lenT;Index++)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      if(instr_b(Delim,mid(T,Index,1))&&!Quote)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          strcpy(Buf[Count],(char*)mid(T,Begin,Index-Begin));");
+      fprintf(Outfile,(char*)"%s\n","          if ((Flg & 2) == 0)  // 0 if old version");
+      fprintf(Outfile,(char*)"%s\n","           Count++;");
+      fprintf(Outfile,(char*)"%s\n","          else");
+      fprintf(Outfile,(char*)"%s\n","           if (Buf[Count][0] != 0) Count++;");
+      fprintf(Outfile,(char*)"%s\n","           Begin=0;");
+      fprintf(Outfile,(char*)"%s\n","           if((Flg & 1) == 1)   // 1 if true");
+      fprintf(Outfile,(char*)"%s\n","              strcpy(Buf[Count++],(char*)mid(T,Index,1));");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","   else");
+      fprintf(Outfile,(char*)"%s\n","     {");
+      fprintf(Outfile,(char*)"%s\n","       if(strcmp(mid(T,Index,1),Chr34)==0) Quote=!Quote;");
+      fprintf(Outfile,(char*)"%s\n","       if(Begin==0) Begin=Index;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  if(Begin)");
+      fprintf(Outfile,(char*)"%s\n","     strcpy(Buf[Count++],(char*)mid(T,Begin,Index-Begin));");
+      fprintf(Outfile,(char*)"%s\n","  if((Flg & 1) == 0)   // 0 if false");
+      fprintf(Outfile,(char*)"%s\n","      for(i=0;i<Count;i++) strcpy(Buf[i],(char*)RemoveStr(Buf[i],Chr34));");
+      fprintf(Outfile,(char*)"%s\n","  return Count;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_DSplit)
     {
-      fprintf(Outfile,"%s\n","int DSplit (PCHAR *Buf, char *T, char *Delim, int Flg)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int  Begin=0;");
-      fprintf(Outfile,"%s\n","  int  Count=0;");
-      fprintf(Outfile,"%s\n","  int  Quote=0;");
-      fprintf(Outfile,"%s\n","  int  Index=0;");
-      fprintf(Outfile,"%s\n","  int  lenT  = strlen(T);");
-      fprintf(Outfile,"%s\n","  char Chr34[2]={34,0};");
-      fprintf(Outfile,"%s\n","  for(Index=1;Index<=lenT;Index++)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     if(instr_b(Delim,mid(T,Index,1))&&!Quote)");
-      fprintf(Outfile,"%s\n","       {");
-      fprintf(Outfile,"%s\n","         strcpy(Buf[Count],(char*)mid(T,Begin,Index-Begin));");
-      fprintf(Outfile,"%s\n","         if ((Flg & 2) == 0)  // 0 if old version");
-      fprintf(Outfile,"%s\n","         Count++;");
-      fprintf(Outfile,"%s\n","     else");
-      fprintf(Outfile,"%s\n","         if (Buf[Count][0] != 0) Count++;");
-      fprintf(Outfile,"%s\n","         Begin=0;");
-      fprintf(Outfile,"%s\n","         if((Flg & 1) == 1)   // 1 if true");
-      fprintf(Outfile,"%s\n","             strcpy(Buf[Count++],(char*)mid(T,Index,1));");
-      fprintf(Outfile,"%s\n","       }");
-      fprintf(Outfile,"%s\n","    else");
-      fprintf(Outfile,"%s\n","      {");
-      fprintf(Outfile,"%s\n","        if(strcmp(mid(T,Index,1),Chr34)==0) Quote=!Quote;");
-      fprintf(Outfile,"%s\n","        if(Begin==0)  Begin=Index;");
-      fprintf(Outfile,"%s\n","      }");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  if(Begin) strcpy(Buf[Count++],(char*)mid(T,Begin,Index-Begin));");
-      fprintf(Outfile,"%s\n","  if((Flg & 1) == 0)   // 0 if false");
-      fprintf(Outfile,"%s\n","     for(Index=0;Index<Count;Index++) strcpy(Buf[Index],(char*)RemoveStr(Buf[Index],Chr34));");
-      fprintf(Outfile,"%s\n","  return Count;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int DSplit (PCHAR *Buf, char *T, char *Delim, int Flg)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int  Begin=0;");
+      fprintf(Outfile,(char*)"%s\n","  int  Count=0;");
+      fprintf(Outfile,(char*)"%s\n","  int  Quote=0;");
+      fprintf(Outfile,(char*)"%s\n","  int  Index=0;");
+      fprintf(Outfile,(char*)"%s\n","  int  lenT  = strlen(T);");
+      fprintf(Outfile,(char*)"%s\n","  char Chr34[2]={34,0};");
+      fprintf(Outfile,(char*)"%s\n","  for(Index=1;Index<=lenT;Index++)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     if(instr_b(Delim,mid(T,Index,1))&&!Quote)");
+      fprintf(Outfile,(char*)"%s\n","       {");
+      fprintf(Outfile,(char*)"%s\n","         strcpy(Buf[Count],(char*)mid(T,Begin,Index-Begin));");
+      fprintf(Outfile,(char*)"%s\n","         if ((Flg & 2) == 0)  // 0 if old version");
+      fprintf(Outfile,(char*)"%s\n","         Count++;");
+      fprintf(Outfile,(char*)"%s\n","     else");
+      fprintf(Outfile,(char*)"%s\n","         if (Buf[Count][0] != 0) Count++;");
+      fprintf(Outfile,(char*)"%s\n","         Begin=0;");
+      fprintf(Outfile,(char*)"%s\n","         if((Flg & 1) == 1)   // 1 if true");
+      fprintf(Outfile,(char*)"%s\n","             strcpy(Buf[Count++],(char*)mid(T,Index,1));");
+      fprintf(Outfile,(char*)"%s\n","       }");
+      fprintf(Outfile,(char*)"%s\n","    else");
+      fprintf(Outfile,(char*)"%s\n","      {");
+      fprintf(Outfile,(char*)"%s\n","        if(strcmp(mid(T,Index,1),Chr34)==0) Quote=!Quote;");
+      fprintf(Outfile,(char*)"%s\n","        if(Begin==0)  Begin=Index;");
+      fprintf(Outfile,(char*)"%s\n","      }");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  if(Begin) strcpy(Buf[Count++],(char*)mid(T,Begin,Index-Begin));");
+      fprintf(Outfile,(char*)"%s\n","  if((Flg & 1) == 0)   // 0 if false");
+      fprintf(Outfile,(char*)"%s\n","     for(Index=0;Index<Count;Index++) strcpy(Buf[Index],(char*)RemoveStr(Buf[Index],Chr34));");
+      fprintf(Outfile,(char*)"%s\n","  return Count;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Bin2dec)
     {
-      fprintf(Outfile,"%s\n","int Bin2Dec (char *cptr)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int i, j = 0;");
-      fprintf(Outfile,"%s%s%s\n","  while(cptr && *cptr && strchr(",enc("01"),", *cptr))");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    i = *cptr++ - '0';");
-      fprintf(Outfile,"%s\n","    j <<= 1;");
-      fprintf(Outfile,"%s\n","    j |= (i & 0x01);");
-      fprintf(Outfile,"%s\n","  }");
-      fprintf(Outfile,"%s\n"," return(j);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int Bin2Dec (char *cptr)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int i, j = 0;");
+      fprintf(Outfile,(char*)"%s%s%s\n","  while(cptr && *cptr && strchr(",enc("01"),", *cptr))");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    i = *cptr++ - '0';");
+      fprintf(Outfile,(char*)"%s\n","    j <<= 1;");
+      fprintf(Outfile,(char*)"%s\n","    j |= (i & 0x01);");
+      fprintf(Outfile,(char*)"%s\n","  }");
+      fprintf(Outfile,(char*)"%s\n"," return(j);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Hex2Dec)
     {
-      fprintf(Outfile,"%s\n","int Hex2Dec (char *szInput)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char   ch;");
-      fprintf(Outfile,"%s\n","  char  *dwLen   = szInput+strlen(szInput);");
-      fprintf(Outfile,"%s\n","  char  *LowCase = MakeLCaseTbl();");
-      fprintf(Outfile,"%s\n","  DWORD  dwOut   = 0;");
-      fprintf(Outfile,"%s\n","  while(*szInput)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      ch = LowCase[(unsigned char)*szInput++];");
-      fprintf(Outfile,"%s\n","      if((ch >= 'a' && ch <= 'f')  || (ch >= '0' && ch <= '9'))");
-      fprintf(Outfile,"%s\n","        dwOut |=((int)ch - (ch>'9' ? 'a'-10 : '0')) << ((dwLen - szInput) << 2);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return dwOut;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int Hex2Dec (char *szInput)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char   ch;");
+      fprintf(Outfile,(char*)"%s\n","  char  *dwLen   = szInput+strlen(szInput);");
+      fprintf(Outfile,(char*)"%s\n","  char  *LowCase = MakeLCaseTbl();");
+      fprintf(Outfile,(char*)"%s\n","  DWORD  dwOut   = 0;");
+      fprintf(Outfile,(char*)"%s\n","  while(*szInput)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      ch = LowCase[(unsigned char)*szInput++];");
+      fprintf(Outfile,(char*)"%s\n","      if((ch >= 'a' && ch <= 'f')  || (ch >= '0' && ch <= '9'))");
+      fprintf(Outfile,(char*)"%s\n","        dwOut |=((int)ch - (ch>'9' ? 'a'-10 : '0')) << ((dwLen - szInput) << 2);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return dwOut;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Verify)
     {
-      fprintf(Outfile,"%s\n","int Verify (char *Src, char *Allowed)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int i, j;");
-      fprintf(Outfile,"%s\n","  for (i=1; i<=strlen(Src); i++)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      j=VerifyInstr(Allowed,mid(Src,i,1));");
-      fprintf(Outfile,"%s\n","      if (!j) return 0;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return TRUE;");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","int VerifyInstr(char* mane,char* match,int offset)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *s;");
-      fprintf(Outfile,"%s\n","  if (!mane || !match || !*match || offset>(int)strlen(mane)) return 0;");
-      fprintf(Outfile,"%s\n","  s = strstr (offset>0 ? mane+offset-1 : mane,match);");
-      fprintf(Outfile,"%s\n","  return s ? (int)(s-mane)+1 : 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int Verify (char *Src, char *Allowed)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int i, j;");
+      fprintf(Outfile,(char*)"%s\n","  for (i=1; i<=strlen(Src); i++)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      j=VerifyInstr(Allowed,mid(Src,i,1));");
+      fprintf(Outfile,(char*)"%s\n","      if (!j) return 0;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return TRUE;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int VerifyInstr(char* mane,char* match,int offset)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *s;");
+      fprintf(Outfile,(char*)"%s\n","  if (!mane || !match || !*match || offset>(int)strlen(mane)) return 0;");
+      fprintf(Outfile,(char*)"%s\n","  s = strstr (offset>0 ? mane+offset-1 : mane,match);");
+      fprintf(Outfile,(char*)"%s\n","  return s ? (int)(s-mane)+1 : 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Retain)
     {
-      fprintf(Outfile,"%s\n","char *Retain (char *Text, char *ValidChars)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr=BCX_TmpStr(strlen(Text));");
-      fprintf(Outfile,"%s\n","  char *temp=BCX_RetStr;");
-      fprintf(Outfile,"%s\n","  while(*Text)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      if(strchr(ValidChars,*Text)) *(temp++) = *Text;");
-      fprintf(Outfile,"%s\n","      Text++;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *Retain (char *Text, char *ValidChars)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr=BCX_TmpStr(strlen(Text));");
+      fprintf(Outfile,(char*)"%s\n","  char *temp=BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","  while(*Text)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      if(strchr(ValidChars,*Text)) *(temp++) = *Text;");
+      fprintf(Outfile,(char*)"%s\n","      Text++;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_LoadFile)
     {
-      fprintf(Outfile,"%s\n","char* LoadFile (char *N)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  FILE* FP1;");
-      fprintf(Outfile,"%s\n","  char* BCX_RetStr;");
-      fprintf(Outfile,"%s\n","  if(Exist(N))");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      BCX_RetStr=BCX_TmpStr(lof(N));");
-      fprintf(Outfile,"%s%s%s\n","      if((FP1=fopen(N,",enc("rb"),"))!=0)");
-      fprintf(Outfile,"%s\n","      GET(FP1,BCX_RetStr,lof(N));");
-      fprintf(Outfile,"%s\n","      fclose(FP1);");
-      fprintf(Outfile,"%s\n","      return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  else");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      BCX_RetStr=BCX_TmpStr(64);");
-      fprintf(Outfile,"%s%s%s\n","      return strcpy(BCX_RetStr,",enc("File Not Found"),");");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char* LoadFile (char *N)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  FILE* FP1;");
+      fprintf(Outfile,(char*)"%s\n","  char* BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","  if(Exist(N))");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      BCX_RetStr=BCX_TmpStr(lof(N));");
+      fprintf(Outfile,(char*)"%s%s%s\n","      if((FP1=fopen(N,",enc("rb"),"))!=0)");
+      fprintf(Outfile,(char*)"%s\n","      GET(FP1,BCX_RetStr,lof(N));");
+      fprintf(Outfile,(char*)"%s\n","      fclose(FP1);");
+      fprintf(Outfile,(char*)"%s\n","      return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  else");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      BCX_RetStr=BCX_TmpStr(64);");
+      fprintf(Outfile,(char*)"%s%s%s\n","      return strcpy(BCX_RetStr,",enc("File Not Found"),");");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Freefile)
     {
-      fprintf(Outfile,"%s\n","FILE* FreeFile (void)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static FILE *pf;");
-      fprintf(Outfile,"%s\n","  if(pf){free(pf);pf=NULL;}");
-      fprintf(Outfile,"%s\n","  pf = (FILE*)calloc(sizeof(FILE*),sizeof(FILE*));");
-      fprintf(Outfile,"%s\n","  return pf;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","FILE* FreeFile (void)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static FILE *pf;");
+      fprintf(Outfile,(char*)"%s\n","  if(pf){free(pf);pf=NULL;}");
+      fprintf(Outfile,(char*)"%s\n","  pf = (FILE*)calloc(sizeof(FILE*),sizeof(FILE*));");
+      fprintf(Outfile,(char*)"%s\n","  return pf;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Run)
     {
-      fprintf(Outfile,"%s\n","int Run (char* Cmdline, int ShowHide, int WaitState)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","   int    processId;");
-      fprintf(Outfile,"%s\n","   char  *s, *p, *cmd_line;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  cmd_line=(char*)malloc(strlen(Cmdline)+1);");
-      fprintf(Outfile,"%s\n","  if(cmd_line==NULL) return -2;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","  strcpy(cmd_line, Cmdline);");
-      fprintf(Outfile,"%s\n","  p = s = cmd_line;");
-      fprintf(Outfile,"%s\n","  processId=fork();");
-      fprintf(Outfile,"%s\n","  if(processId==0)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      PCHAR  argv[30];");
-      fprintf(Outfile,"%s\n","      int     i=0;");
-      fprintf(Outfile,"%s\n","      while(*p)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          if(*p==34)");
-      fprintf(Outfile,"%s\n","            {");
-      fprintf(Outfile,"%s\n","              while(*(++p)!=34) {}");
-      fprintf(Outfile,"%s\n","            }");
-      fprintf(Outfile,"%s\n","          if(*p==32)");
-      fprintf(Outfile,"%s\n","            {");
-      fprintf(Outfile,"%s\n","              while(*(p+1)==32) p++;");
-      fprintf(Outfile,"%s\n","              argv[i++]=s;");
-      fprintf(Outfile,"%s\n","              *p=0; s=p+1;");
-      fprintf(Outfile,"%s\n","            }");
-      fprintf(Outfile,"%s\n","          p++;");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","      argv[i]  = s;");
-      fprintf(Outfile,"%s\n","      argv[i+1]= 0;");
-      fprintf(Outfile,"%s\n","      execvp(argv[0],argv);");
-      fprintf(Outfile,"%s%s%s\n","      printf(",enc("Failed to run%s\\n"),",argv[0]);");
-      fprintf(Outfile,"%s\n","      exit(-1);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  else if(processId!=-1)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      if(WaitState) waitpid(processId,NULL,0);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  waitpid(-1,NULL,WNOHANG);");
-      fprintf(Outfile,"%s\n","  free(cmd_line), cmd_line=NULL;");
-      fprintf(Outfile,"%s\n","  return processId;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int Run (char* Cmdline, int ShowHide, int WaitState)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","   int    processId;");
+      fprintf(Outfile,(char*)"%s\n","   char  *s, *p, *cmd_line;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  cmd_line=(char*)malloc(strlen(Cmdline)+1);");
+      fprintf(Outfile,(char*)"%s\n","  if(cmd_line==NULL) return -2;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(cmd_line, Cmdline);");
+      fprintf(Outfile,(char*)"%s\n","  p = s = cmd_line;");
+      fprintf(Outfile,(char*)"%s\n","  processId=fork();");
+      fprintf(Outfile,(char*)"%s\n","  if(processId==0)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      PCHAR  argv[30];");
+      fprintf(Outfile,(char*)"%s\n","      int     i=0;");
+      fprintf(Outfile,(char*)"%s\n","      while(*p)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          if(*p==34)");
+      fprintf(Outfile,(char*)"%s\n","            {");
+      fprintf(Outfile,(char*)"%s\n","              while(*(++p)!=34) {}");
+      fprintf(Outfile,(char*)"%s\n","            }");
+      fprintf(Outfile,(char*)"%s\n","          if(*p==32)");
+      fprintf(Outfile,(char*)"%s\n","            {");
+      fprintf(Outfile,(char*)"%s\n","              while(*(p+1)==32) p++;");
+      fprintf(Outfile,(char*)"%s\n","              argv[i++]=s;");
+      fprintf(Outfile,(char*)"%s\n","              *p=0; s=p+1;");
+      fprintf(Outfile,(char*)"%s\n","            }");
+      fprintf(Outfile,(char*)"%s\n","          p++;");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","      argv[i]  = s;");
+      fprintf(Outfile,(char*)"%s\n","      argv[i+1]= 0;");
+      fprintf(Outfile,(char*)"%s\n","      execvp(argv[0],argv);");
+      fprintf(Outfile,(char*)"%s%s%s\n","      printf(",enc("Failed to run%s\\n"),",argv[0]);");
+      fprintf(Outfile,(char*)"%s\n","      exit(-1);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  else if(processId!=-1)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      if(WaitState) waitpid(processId,NULL,0);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  waitpid(-1,NULL,WNOHANG);");
+      fprintf(Outfile,(char*)"%s\n","  free(cmd_line), cmd_line=NULL;");
+      fprintf(Outfile,(char*)"%s\n","  return processId;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Download)
     {
-      fprintf(Outfile,"%s\n","int Download (char *URL,char *Localname)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int RetVal;");
-      fprintf(Outfile,"%s\n","  return RetVal=!RetVal;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int Download (char *URL,char *Localname)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int RetVal;");
+      fprintf(Outfile,(char*)"%s\n","  return RetVal=!RetVal;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_PeekStr)
     {
-      fprintf(Outfile,"%s\n","char *peekstr (LPVOID Src, int Count)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *Des=BCX_TmpStr(Count);");
-      fprintf(Outfile,"%s\n","  memmove(Des,Src,Count);");
-      fprintf(Outfile,"%s\n","  return Des;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *peekstr (LPVOID Src, int Count)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *Des=BCX_TmpStr(Count);");
+      fprintf(Outfile,(char*)"%s\n","  memmove(Des,Src,Count);");
+      fprintf(Outfile,(char*)"%s\n","  return Des;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_QBColor)
     {
-      fprintf(Outfile,"%s\n","int qbcolor (int N)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," switch (N)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n"," case  0 : return RGB(0,0,0);");
-      fprintf(Outfile,"%s\n"," case  1 : return RGB(0,0,128);");
-      fprintf(Outfile,"%s\n"," case  2 : return RGB(0,128,0);");
-      fprintf(Outfile,"%s\n"," case  3 : return RGB(0,128,128);");
-      fprintf(Outfile,"%s\n"," case  4 : return RGB(196,0,0);");
-      fprintf(Outfile,"%s\n"," case  5 : return RGB(128,0,128);");
-      fprintf(Outfile,"%s\n"," case  6 : return RGB(128,64,0);");
-      fprintf(Outfile,"%s\n"," case  7 : return RGB(196,196,196);");
-      fprintf(Outfile,"%s\n"," case  8 : return RGB(128,128,128);");
-      fprintf(Outfile,"%s\n"," case  9 : return RGB(0,0, 255);");
-      fprintf(Outfile,"%s\n"," case 10 : return RGB(0,255,0);");
-      fprintf(Outfile,"%s\n"," case 11 : return RGB(0,255,255);");
-      fprintf(Outfile,"%s\n"," case 12 : return RGB(255,0,0);");
-      fprintf(Outfile,"%s\n"," case 13 : return RGB(255,0,255);");
-      fprintf(Outfile,"%s\n"," case 14 : return RGB(255,255,0);");
-      fprintf(Outfile,"%s\n"," case 15 : return RGB(255,255,255);");
-      fprintf(Outfile,"%s\n"," case 16 : return RGB(164,164,164);");
-      fprintf(Outfile,"%s\n"," case 17 : return RGB(128,160,255);");
-      fprintf(Outfile,"%s\n"," case 18 : return RGB(160,255,160);");
-      fprintf(Outfile,"%s\n"," case 19 : return RGB(160,255,255);");
-      fprintf(Outfile,"%s\n"," case 20 : return RGB(255,160,160);");
-      fprintf(Outfile,"%s\n"," case 21 : return RGB(255,160,255);");
-      fprintf(Outfile,"%s\n"," case 22 : return RGB(255,255,160);");
-      fprintf(Outfile,"%s\n"," case 23 : return RGB(212,212,212);");
-      fprintf(Outfile,"%s\n"," case 24 : return RGB(180,180,180);");
-      fprintf(Outfile,"%s\n"," case 25 : return RGB(188,220,255);");
-      fprintf(Outfile,"%s\n"," case 26 : return RGB(220,255,220);");
-      fprintf(Outfile,"%s\n"," case 27 : return RGB(220,255,255);");
-      fprintf(Outfile,"%s\n"," case 28 : return RGB(255,220,220);");
-      fprintf(Outfile,"%s\n"," case 29 : return RGB(255,220,255);");
-      fprintf(Outfile,"%s\n"," case 30 : return RGB(255,255,220);");
-      fprintf(Outfile,"%s\n"," case 31 : return RGB(228,228,228);");
-      fprintf(Outfile,"%s\n"," }");
-      fprintf(Outfile,"%s\n","return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int qbcolor (int N)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," switch (N)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n"," case  0 : return RGB(0,0,0);");
+      fprintf(Outfile,(char*)"%s\n"," case  1 : return RGB(0,0,128);");
+      fprintf(Outfile,(char*)"%s\n"," case  2 : return RGB(0,128,0);");
+      fprintf(Outfile,(char*)"%s\n"," case  3 : return RGB(0,128,128);");
+      fprintf(Outfile,(char*)"%s\n"," case  4 : return RGB(196,0,0);");
+      fprintf(Outfile,(char*)"%s\n"," case  5 : return RGB(128,0,128);");
+      fprintf(Outfile,(char*)"%s\n"," case  6 : return RGB(128,64,0);");
+      fprintf(Outfile,(char*)"%s\n"," case  7 : return RGB(196,196,196);");
+      fprintf(Outfile,(char*)"%s\n"," case  8 : return RGB(128,128,128);");
+      fprintf(Outfile,(char*)"%s\n"," case  9 : return RGB(0,0, 255);");
+      fprintf(Outfile,(char*)"%s\n"," case 10 : return RGB(0,255,0);");
+      fprintf(Outfile,(char*)"%s\n"," case 11 : return RGB(0,255,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 12 : return RGB(255,0,0);");
+      fprintf(Outfile,(char*)"%s\n"," case 13 : return RGB(255,0,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 14 : return RGB(255,255,0);");
+      fprintf(Outfile,(char*)"%s\n"," case 15 : return RGB(255,255,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 16 : return RGB(164,164,164);");
+      fprintf(Outfile,(char*)"%s\n"," case 17 : return RGB(128,160,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 18 : return RGB(160,255,160);");
+      fprintf(Outfile,(char*)"%s\n"," case 19 : return RGB(160,255,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 20 : return RGB(255,160,160);");
+      fprintf(Outfile,(char*)"%s\n"," case 21 : return RGB(255,160,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 22 : return RGB(255,255,160);");
+      fprintf(Outfile,(char*)"%s\n"," case 23 : return RGB(212,212,212);");
+      fprintf(Outfile,(char*)"%s\n"," case 24 : return RGB(180,180,180);");
+      fprintf(Outfile,(char*)"%s\n"," case 25 : return RGB(188,220,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 26 : return RGB(220,255,220);");
+      fprintf(Outfile,(char*)"%s\n"," case 27 : return RGB(220,255,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 28 : return RGB(255,220,220);");
+      fprintf(Outfile,(char*)"%s\n"," case 29 : return RGB(255,220,255);");
+      fprintf(Outfile,(char*)"%s\n"," case 30 : return RGB(255,255,220);");
+      fprintf(Outfile,(char*)"%s\n"," case 31 : return RGB(228,228,228);");
+      fprintf(Outfile,(char*)"%s\n"," }");
+      fprintf(Outfile,(char*)"%s\n","return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Cvi)
     {
-      fprintf(Outfile,"%s\n","short CVI (char *s)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," return ((short*)s)[0];");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","short CVI (char *s)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," return ((short*)s)[0];");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Mki)
     {
-      fprintf(Outfile,"%s\n","char *MKI (short cvt)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static char temp[3];");
-      fprintf(Outfile,"%s\n","  return (char *)memmove(temp,&cvt,2);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *MKI (short cvt)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static char temp[3];");
+      fprintf(Outfile,(char*)"%s\n","  return (char *)memmove(temp,&cvt,2);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Cvl)
     {
-      fprintf(Outfile,"%s\n","long CVL (char *s)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," return ((long*)s)[0];");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","long CVL (char *s)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," return ((long*)s)[0];");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Mkl)
     {
-      fprintf(Outfile,"%s\n","char *MKL (int cvt)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static char temp[5];");
-      fprintf(Outfile,"%s\n","  return (char *) memmove(temp,&cvt,4);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *MKL (int cvt)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static char temp[5];");
+      fprintf(Outfile,(char*)"%s\n","  return (char *) memmove(temp,&cvt,4);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Cvs)
     {
-      fprintf(Outfile,"%s\n","float CVS (char *s)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," return ((float*)s)[0];");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","float CVS (char *s)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," return ((float*)s)[0];");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Mks)
     {
-      fprintf(Outfile,"%s\n","char *MKS (float cvt)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static char temp[5];");
-      fprintf(Outfile,"%s\n","  return (char *) memmove(temp,&cvt,4);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *MKS (float cvt)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static char temp[5];");
+      fprintf(Outfile,(char*)"%s\n","  return (char *) memmove(temp,&cvt,4);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Cvd)
     {
-      fprintf(Outfile,"%s\n","double CVD (char *s)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," return ((double*)s)[0];");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","double CVD (char *s)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," return ((double*)s)[0];");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Cvld)
     {
-      fprintf(Outfile,"%s\n","long double CVLD (char *s)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n"," return ((long double*)s)[0];");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","long double CVLD (char *s)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n"," return ((long double*)s)[0];");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Mkd)
     {
-      fprintf(Outfile,"%s\n","char *MKD (double cvt)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static char temp[9];");
-      fprintf(Outfile,"%s\n","  return (char *) memmove(temp,&cvt,8);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *MKD (double cvt)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static char temp[9];");
+      fprintf(Outfile,(char*)"%s\n","  return (char *) memmove(temp,&cvt,8);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Mkld)
     {
-      fprintf(Outfile,"%s\n","char *MKLD (long double cvt)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static char temp[11];");
-      fprintf(Outfile,"%s\n","  return (char *) memmove(temp,&cvt,10);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *MKLD (long double cvt)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static char temp[11];");
+      fprintf(Outfile,(char*)"%s\n","  return (char *) memmove(temp,&cvt,10);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_BcxSplitPath)
     {
-      fprintf(Outfile,"%s\n","char *BcxSplitPath (char *FPath, int mask)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  if(!FPath) return BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr=BCX_TmpStr(strlen(FPath));");
-      fprintf(Outfile,"%s\n","  char tmp[MAX_PATH*4];");
-      fprintf(Outfile,"%s\n","  _splitpath_(FPath,tmp,&tmp[MAX_PATH],&tmp[MAX_PATH*2],&tmp[MAX_PATH*3]);");
-      fprintf(Outfile,"%s\n","  if(mask & FDRV) strcat(BCX_RetStr,tmp);");
-      fprintf(Outfile,"%s\n","  if(mask & FPATH)strcat(BCX_RetStr,&tmp[MAX_PATH]);");
-      fprintf(Outfile,"%s\n","  if(mask & FNAME)strcat(BCX_RetStr,&tmp[MAX_PATH*2]);");
-      fprintf(Outfile,"%s\n","  if(mask & FEXT) strcat(BCX_RetStr,&tmp[MAX_PATH*3]);");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n"," void _splitpath_(const char* path, char* drv, char* dir, char* name, char* ext)");
-      fprintf(Outfile,"%s\n"," {");
-      fprintf(Outfile,"%s\n","     const char* pend; /* end of processed string */");
-      fprintf(Outfile,"%s\n","     const char* p;   /* search pointer */");
-      fprintf(Outfile,"%s\n","     const char* s;   /* copy pointer */");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","     /* extract drive name */");
-      fprintf(Outfile,"%s\n","     if (path[0] && path[1]==':') {");
-      fprintf(Outfile,"%s\n","         if (drv) {");
-      fprintf(Outfile,"%s\n","             *drv++ = *path++;");
-      fprintf(Outfile,"%s\n","             *drv++ = *path++;");
-      fprintf(Outfile,"%s\n","             *drv = 0;");
-      fprintf(Outfile,"%s\n","         }");
-      fprintf(Outfile,"%s\n","     } else if (drv)");
-      fprintf(Outfile,"%s\n","         *drv = 0;");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","     /* search for end of string or stream separator */");
-      fprintf(Outfile,"%s\n","     for(pend=path; *pend && *pend!=':'; )");
-      fprintf(Outfile,"%s\n","         pend++;");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","     /* search for begin of file extension */");
-      fprintf(Outfile,"%s\n","     for(p=pend; p > path && *--p != '\\\\' && *p!='/'; )");
-      fprintf(Outfile,"%s\n","         if (*p == '.') {");
-      fprintf(Outfile,"%s\n","             pend = p;");
-      fprintf(Outfile,"%s\n","             break;");
-      fprintf(Outfile,"%s\n","         }");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","     if (ext)");
-      fprintf(Outfile,"%s\n","     {");
-      fprintf(Outfile,"%s\n","         s=pend;");
-      fprintf(Outfile,"%s\n","         do{ *ext++ = *s; } while(*s++);");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","     /* search for end of directory name */");
-      fprintf(Outfile,"%s\n","     for(p=pend; p > path; )");
-      fprintf(Outfile,"%s\n","         if (*--p == '\\\\' || *p == '/') {");
-      fprintf(Outfile,"%s\n","             p++;");
-      fprintf(Outfile,"%s\n","             break;");
-      fprintf(Outfile,"%s\n","         }");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","     if (name) {");
-      fprintf(Outfile,"%s\n","         for(s=p; s<pend; )");
-      fprintf(Outfile,"%s\n","             *name++ = *s++;");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","         *name = 0;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","     if (dir) {");
-      fprintf(Outfile,"%s\n","         for(s=path; s<p; )");
-      fprintf(Outfile,"%s\n","             *dir++ = *s++;");
-      fprintf(Outfile,"%s\n"," ");
-      fprintf(Outfile,"%s\n","         *dir = 0;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n"," }\n");
+      fprintf(Outfile,(char*)"%s\n","char *BcxSplitPath (char *FPath, int mask)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  if(!FPath) return BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr=BCX_TmpStr(strlen(FPath));");
+      fprintf(Outfile,(char*)"%s\n","  char tmp[MAX_PATH*4];");
+      fprintf(Outfile,(char*)"%s\n","  _splitpath_(FPath,tmp,&tmp[MAX_PATH],&tmp[MAX_PATH*2],&tmp[MAX_PATH*3]);");
+      fprintf(Outfile,(char*)"%s\n","  if(mask & FDRV) strcat(BCX_RetStr,tmp);");
+      fprintf(Outfile,(char*)"%s\n","  if(mask & FPATH)strcat(BCX_RetStr,&tmp[MAX_PATH]);");
+      fprintf(Outfile,(char*)"%s\n","  if(mask & FNAME)strcat(BCX_RetStr,&tmp[MAX_PATH*2]);");
+      fprintf(Outfile,(char*)"%s\n","  if(mask & FEXT) strcat(BCX_RetStr,&tmp[MAX_PATH*3]);");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n"," void _splitpath_(const char* path, char* drv, char* dir, char* name, char* ext)");
+      fprintf(Outfile,(char*)"%s\n"," {");
+      fprintf(Outfile,(char*)"%s\n","     const char* pend; /* end of processed string */");
+      fprintf(Outfile,(char*)"%s\n","     const char* p;   /* search pointer */");
+      fprintf(Outfile,(char*)"%s\n","     const char* s;   /* copy pointer */");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","     /* extract drive name */");
+      fprintf(Outfile,(char*)"%s\n","     if (path[0] && path[1]==':') {");
+      fprintf(Outfile,(char*)"%s\n","         if (drv) {");
+      fprintf(Outfile,(char*)"%s\n","             *drv++ = *path++;");
+      fprintf(Outfile,(char*)"%s\n","             *drv++ = *path++;");
+      fprintf(Outfile,(char*)"%s\n","             *drv = 0;");
+      fprintf(Outfile,(char*)"%s\n","         }");
+      fprintf(Outfile,(char*)"%s\n","     } else if (drv)");
+      fprintf(Outfile,(char*)"%s\n","         *drv = 0;");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","     /* search for end of string or stream separator */");
+      fprintf(Outfile,(char*)"%s\n","     for(pend=path; *pend && *pend!=':'; )");
+      fprintf(Outfile,(char*)"%s\n","         pend++;");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","     /* search for begin of file extension */");
+      fprintf(Outfile,(char*)"%s\n","     for(p=pend; p > path && *--p != '\\\\' && *p!='/'; )");
+      fprintf(Outfile,(char*)"%s\n","         if (*p == '.') {");
+      fprintf(Outfile,(char*)"%s\n","             pend = p;");
+      fprintf(Outfile,(char*)"%s\n","             break;");
+      fprintf(Outfile,(char*)"%s\n","         }");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","     if (ext)");
+      fprintf(Outfile,(char*)"%s\n","     {");
+      fprintf(Outfile,(char*)"%s\n","         s=pend;");
+      fprintf(Outfile,(char*)"%s\n","         do{ *ext++ = *s; } while(*s++);");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","     /* search for end of directory name */");
+      fprintf(Outfile,(char*)"%s\n","     for(p=pend; p > path; )");
+      fprintf(Outfile,(char*)"%s\n","         if (*--p == '\\\\' || *p == '/') {");
+      fprintf(Outfile,(char*)"%s\n","             p++;");
+      fprintf(Outfile,(char*)"%s\n","             break;");
+      fprintf(Outfile,(char*)"%s\n","         }");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","     if (name) {");
+      fprintf(Outfile,(char*)"%s\n","         for(s=p; s<pend; )");
+      fprintf(Outfile,(char*)"%s\n","             *name++ = *s++;");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","         *name = 0;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","     if (dir) {");
+      fprintf(Outfile,(char*)"%s\n","         for(s=path; s<p; )");
+      fprintf(Outfile,(char*)"%s\n","             *dir++ = *s++;");
+      fprintf(Outfile,(char*)"%s\n"," ");
+      fprintf(Outfile,(char*)"%s\n","         *dir = 0;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n"," }\n");
     }
   if(Use_StrUpLow)
     {
-      fprintf(Outfile,"%s\n","char *_strupr_(char *string)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","   char *s;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","   if (string)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","      for(s = string; *s; ++s)");
-      fprintf(Outfile,"%s\n","         *s = toupper(*s);");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","   return string;");
-      fprintf(Outfile,"%s\n","}\n");
-      fprintf(Outfile,"%s\n","char *_strlwr_(char *string)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","    char *s;");
-      fprintf(Outfile,"%s\n","");
-      fprintf(Outfile,"%s\n","    if (string)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","       for (s = string; *s; ++s)");
-      fprintf(Outfile,"%s\n","           *s = tolower(*s);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","    return string;");
-      fprintf(Outfile,"%s\n","}\n");
+      fprintf(Outfile,(char*)"%s\n","char *_strupr_(char *string)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","   char *s;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","   if (string)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","      for(s = string; *s; ++s)");
+      fprintf(Outfile,(char*)"%s\n","         *s = toupper(*s);");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","   return string;");
+      fprintf(Outfile,(char*)"%s\n","}\n");
+      fprintf(Outfile,(char*)"%s\n","char *_strlwr_(char *string)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","    char *s;");
+      fprintf(Outfile,(char*)"%s\n","");
+      fprintf(Outfile,(char*)"%s\n","    if (string)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","       for (s = string; *s; ++s)");
+      fprintf(Outfile,(char*)"%s\n","           *s = tolower(*s);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","    return string;");
+      fprintf(Outfile,(char*)"%s\n","}\n");
     }
   if(Use_Strtoken)
     {
-      fprintf(Outfile,"%s\n","char * StrToken (char *Source, char *TokenChar, int n)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr={0};");
-      fprintf(Outfile,"%s\n","  char *RetVal;");
-      fprintf(Outfile,"%s\n","  char *Copy;");
-      fprintf(Outfile,"%s\n","  int   Posn=0;");
-      fprintf(Outfile,"%s\n","  int   Find=0;");
-      fprintf(Outfile,"%s\n","  int   LenSrc=strlen(Source);");
-      fprintf(Outfile,"%s\n","  RetVal=(char*)calloc(LenSrc+1,1);");
-      fprintf(Outfile,"%s\n","  Copy=Source;");
-      fprintf(Outfile,"%s\n","  if(tally(Source,TokenChar)==0)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      BCX_RetStr=BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","      if(RetVal)free(RetVal);");
-      fprintf(Outfile,"%s\n","      return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  if(n==1)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      BCX_RetStr=BCX_TmpStr(LenSrc);");
-      fprintf(Outfile,"%s\n","      strcpy(BCX_RetStr,(char*)extract(Source,TokenChar));");
-      fprintf(Outfile,"%s\n","      if(RetVal)free(RetVal);");
-      fprintf(Outfile,"%s\n","      return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  if(n>tally(Source,TokenChar)+1)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      BCX_RetStr=BCX_TmpStr(1);");
-      fprintf(Outfile,"%s\n","      if(RetVal)free(RetVal);");
-      fprintf(Outfile,"%s\n","      return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  while(*Copy)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      if(*Copy==TokenChar[0]) Find++;");
-      fprintf(Outfile,"%s\n","      if(Find==n) break;");
-      fprintf(Outfile,"%s\n","      Copy++;");
-      fprintf(Outfile,"%s\n","      Posn++;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  if(n==tally(Source,TokenChar)+1)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      Posn=LenSrc;");
-      fprintf(Outfile,"%s\n","      Copy=Source+Posn;");
-      fprintf(Outfile,"%s\n","      while(*Copy&&Source[Posn]!=TokenChar[0])");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          Posn--;");
-      fprintf(Outfile,"%s\n","          Copy--;");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  strcpy(RetVal,(char*)mid(Source,1,Posn));");
-      fprintf(Outfile,"%s\n","  strcpy(RetVal,(char*)mid(RetVal,InstrRev(RetVal,TokenChar)));");
-      fprintf(Outfile,"%s\n","  BCX_RetStr=BCX_TmpStr(LenSrc);");
-      fprintf(Outfile,"%s\n","  strcpy(BCX_RetStr,(char*)RemoveStr(RetVal,TokenChar));");
-      fprintf(Outfile,"%s\n","  if(RetVal)free(RetVal);");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char * StrToken (char *Source, char *TokenChar, int n)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr={0};");
+      fprintf(Outfile,(char*)"%s\n","  char *RetVal;");
+      fprintf(Outfile,(char*)"%s\n","  char *Copy;");
+      fprintf(Outfile,(char*)"%s\n","  int   Posn=0;");
+      fprintf(Outfile,(char*)"%s\n","  int   Find=0;");
+      fprintf(Outfile,(char*)"%s\n","  int   LenSrc=strlen(Source);");
+      fprintf(Outfile,(char*)"%s\n","  RetVal=(char*)calloc(LenSrc+1,1);");
+      fprintf(Outfile,(char*)"%s\n","  Copy=Source;");
+      fprintf(Outfile,(char*)"%s\n","  if(tally(Source,TokenChar)==0)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      BCX_RetStr=BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","      if(RetVal)free(RetVal);");
+      fprintf(Outfile,(char*)"%s\n","      return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  if(n==1)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      BCX_RetStr=BCX_TmpStr(LenSrc);");
+      fprintf(Outfile,(char*)"%s\n","      strcpy(BCX_RetStr,(char*)extract(Source,TokenChar));");
+      fprintf(Outfile,(char*)"%s\n","      if(RetVal)free(RetVal);");
+      fprintf(Outfile,(char*)"%s\n","      return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  if(n>tally(Source,TokenChar)+1)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      BCX_RetStr=BCX_TmpStr(1);");
+      fprintf(Outfile,(char*)"%s\n","      if(RetVal)free(RetVal);");
+      fprintf(Outfile,(char*)"%s\n","      return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  while(*Copy)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      if(*Copy==TokenChar[0]) Find++;");
+      fprintf(Outfile,(char*)"%s\n","      if(Find==n) break;");
+      fprintf(Outfile,(char*)"%s\n","      Copy++;");
+      fprintf(Outfile,(char*)"%s\n","      Posn++;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  if(n==tally(Source,TokenChar)+1)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      Posn=LenSrc;");
+      fprintf(Outfile,(char*)"%s\n","      Copy=Source+Posn;");
+      fprintf(Outfile,(char*)"%s\n","      while(*Copy&&Source[Posn]!=TokenChar[0])");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          Posn--;");
+      fprintf(Outfile,(char*)"%s\n","          Copy--;");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(RetVal,(char*)mid(Source,1,Posn));");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(RetVal,(char*)mid(RetVal,InstrRev(RetVal,TokenChar)));");
+      fprintf(Outfile,(char*)"%s\n","  BCX_RetStr=BCX_TmpStr(LenSrc);");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(BCX_RetStr,(char*)RemoveStr(RetVal,TokenChar));");
+      fprintf(Outfile,(char*)"%s\n","  if(RetVal)free(RetVal);");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_iReplace)
     {
-      fprintf(Outfile,"%s\n","char *iReplace (char *src, char *pat, char *rep)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  size_t patsz, repsz, tmpsz, delta;");
-      fprintf(Outfile,"%s\n","  char *strtmp, *p, *q, *r;");
-      fprintf(Outfile,"%s\n","  if (!pat || !*pat)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     strtmp = BCX_TmpStr(strlen(src));");
-      fprintf(Outfile,"%s\n","     if (!strtmp) return NULL;");
-      fprintf(Outfile,"%s\n","     return strcpy(strtmp, src);");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  repsz = strlen(rep);");
-      fprintf(Outfile,"%s\n","  patsz = strlen(pat);");
-      fprintf(Outfile,"%s\n","  for (tmpsz=0, p=src;(q=_stristr_(p,pat))!=0; p=q+patsz)");
-      fprintf(Outfile,"%s\n","    tmpsz += (size_t) (q - p) + repsz;");
-      fprintf(Outfile,"%s\n","    tmpsz += strlen(p);");
-      fprintf(Outfile,"%s\n","    strtmp = BCX_TmpStr(tmpsz);");
-      fprintf(Outfile,"%s\n","    if (!strtmp) return NULL;");
-      fprintf(Outfile,"%s\n","    for (r=strtmp,p=src;(q=_stristr_(p,pat))!=0;p=q+patsz)");
-      fprintf(Outfile,"%s\n","     {");
-      fprintf(Outfile,"%s\n","       delta = (size_t) (q-p);");
-      fprintf(Outfile,"%s\n","       memcpy(r,p,delta); r += delta;");
-      fprintf(Outfile,"%s\n","       strcpy(r,rep);      r += repsz;");
-      fprintf(Outfile,"%s\n","     }");
-      fprintf(Outfile,"%s\n","  strcpy(r,p);");
-      fprintf(Outfile,"%s\n","  return strtmp;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char *iReplace (char *src, char *pat, char *rep)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  size_t patsz, repsz, tmpsz, delta;");
+      fprintf(Outfile,(char*)"%s\n","  char *strtmp, *p, *q, *r;");
+      fprintf(Outfile,(char*)"%s\n","  if (!pat || !*pat)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     strtmp = BCX_TmpStr(strlen(src));");
+      fprintf(Outfile,(char*)"%s\n","     if (!strtmp) return NULL;");
+      fprintf(Outfile,(char*)"%s\n","     return strcpy(strtmp, src);");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  repsz = strlen(rep);");
+      fprintf(Outfile,(char*)"%s\n","  patsz = strlen(pat);");
+      fprintf(Outfile,(char*)"%s\n","  for (tmpsz=0, p=src;(q=_stristr_(p,pat))!=0; p=q+patsz)");
+      fprintf(Outfile,(char*)"%s\n","    tmpsz += (size_t) (q - p) + repsz;");
+      fprintf(Outfile,(char*)"%s\n","    tmpsz += strlen(p);");
+      fprintf(Outfile,(char*)"%s\n","    strtmp = BCX_TmpStr(tmpsz);");
+      fprintf(Outfile,(char*)"%s\n","    if (!strtmp) return NULL;");
+      fprintf(Outfile,(char*)"%s\n","    for (r=strtmp,p=src;(q=_stristr_(p,pat))!=0;p=q+patsz)");
+      fprintf(Outfile,(char*)"%s\n","     {");
+      fprintf(Outfile,(char*)"%s\n","       delta = (size_t) (q-p);");
+      fprintf(Outfile,(char*)"%s\n","       memcpy(r,p,delta); r += delta;");
+      fprintf(Outfile,(char*)"%s\n","       strcpy(r,rep);      r += repsz;");
+      fprintf(Outfile,(char*)"%s\n","     }");
+      fprintf(Outfile,(char*)"%s\n","  strcpy(r,p);");
+      fprintf(Outfile,(char*)"%s\n","  return strtmp;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_WideToAnsi)
     {
-      fprintf(Outfile,"%s\n","char* WideToAnsi (wchar_t *WideStr, UINT CodePage,DWORD dwFlags)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  char *BCX_RetStr={0};");
-      fprintf(Outfile,"%s\n","  UINT uLen;");
-      fprintf(Outfile,"%s\n","  uLen=wcstombs(NULL, WideStr, 0); //WideCharToMultiByte(CodePage,dwFlags,WideStr,-1,0,0,0,0);");
-      fprintf(Outfile,"%s\n","  BCX_RetStr=(char*)BCX_TmpStr(uLen);");
-      fprintf(Outfile,"%s\n","  wcstombs(BCX_RetStr, WideStr, uLen); //WideCharToMultiByte(CodePage,dwFlags,WideStr,-1,BCX_RetStr,uLen,0,0);");
-      fprintf(Outfile,"%s\n","  return BCX_RetStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","char* WideToAnsi (wchar_t *WideStr, UINT CodePage,DWORD dwFlags)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  char *BCX_RetStr={0};");
+      fprintf(Outfile,(char*)"%s\n","  UINT uLen;");
+      fprintf(Outfile,(char*)"%s\n","  uLen=wcstombs(NULL, WideStr, 0); //WideCharToMultiByte(CodePage,dwFlags,WideStr,-1,0,0,0,0);");
+      fprintf(Outfile,(char*)"%s\n","  BCX_RetStr=(char*)BCX_TmpStr(uLen);");
+      fprintf(Outfile,(char*)"%s\n","  wcstombs(BCX_RetStr, WideStr, uLen); //WideCharToMultiByte(CodePage,dwFlags,WideStr,-1,BCX_RetStr,uLen,0,0);");
+      fprintf(Outfile,(char*)"%s\n","  return BCX_RetStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_SysStr)
     {
-      fprintf(Outfile,"%s\n","BSTR SysStr (char * szIn, int widstr, int bfree)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static  BSTR  bStr[32];");
-      fprintf(Outfile,"%s\n","  static  int   index;");
-      fprintf(Outfile,"%s\n","  if(bfree)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      for(index=0; index<32; index+=1) ");
-      fprintf(Outfile,"%s\n","        SysFreeString(bStr[index]);");
-      fprintf(Outfile,"%s\n","      return 0;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  index=(++index & 31);");
-      fprintf(Outfile,"%s\n","  SysFreeString(bStr[index]);");
-      fprintf(Outfile,"%s\n","  int   length=strlen(szIn);");
-      fprintf(Outfile,"%s\n","  if(widstr)");
-      fprintf(Outfile,"%s\n","   {");
-      fprintf(Outfile,"%s\n","     bStr[index]=SysAllocStringLen(NULL, (2*length));");
-      fprintf(Outfile,"%s\n","     MultiByteToWideChar(CP_ACP,0,szIn,-1,bStr[index],(2*length+1));");
-      fprintf(Outfile,"%s\n","   }else{");
-      fprintf(Outfile,"%s\n","     bStr[index]=SysAllocStringByteLen(szIn, length);");
-      fprintf(Outfile,"%s\n","   }");
-      fprintf(Outfile,"%s\n","  return bStr[index];");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","BSTR SysStr (char * szIn, int widstr, int bfree)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static  BSTR  bStr[32];");
+      fprintf(Outfile,(char*)"%s\n","  static  int   index;");
+      fprintf(Outfile,(char*)"%s\n","  if(bfree)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      for(index=0; index<32; index+=1) ");
+      fprintf(Outfile,(char*)"%s\n","        SysFreeString(bStr[index]);");
+      fprintf(Outfile,(char*)"%s\n","      return 0;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  index=(++index & 31);");
+      fprintf(Outfile,(char*)"%s\n","  SysFreeString(bStr[index]);");
+      fprintf(Outfile,(char*)"%s\n","  int   length=strlen(szIn);");
+      fprintf(Outfile,(char*)"%s\n","  if(widstr)");
+      fprintf(Outfile,(char*)"%s\n","   {");
+      fprintf(Outfile,(char*)"%s\n","     bStr[index]=SysAllocStringLen(NULL, (2*length));");
+      fprintf(Outfile,(char*)"%s\n","     MultiByteToWideChar(CP_ACP,0,szIn,-1,bStr[index],(2*length+1));");
+      fprintf(Outfile,(char*)"%s\n","   }else{");
+      fprintf(Outfile,(char*)"%s\n","     bStr[index]=SysAllocStringByteLen(szIn, length);");
+      fprintf(Outfile,(char*)"%s\n","   }");
+      fprintf(Outfile,(char*)"%s\n","  return bStr[index];");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_AnsiToWide)
     {
-      fprintf(Outfile,"%s\n","wchar_t *AnsiToWide (char *AnsiStr, UINT CodePage,DWORD dwFlags)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  UINT uLen;");
-      fprintf(Outfile,"%s\n","  wchar_t *WideStr;");
-      fprintf(Outfile,"%s\n","  uLen=mbstowcs(NULL, AnsiStr, 0); //MultiByteToWideChar(CodePage,dwFlags,AnsiStr,-1,0,0);");
-      fprintf(Outfile,"%s\n","  if(uLen<=1) return (wchar_t*)BCX_TmpStr(2);");
-      fprintf(Outfile,"%s\n","  WideStr = (wchar_t*)BCX_TmpStr(2*uLen);");
-      fprintf(Outfile,"%s\n","  mbstowcs(WideStr, AnsiStr, uLen); //MultiByteToWideChar(CodePage,dwFlags,AnsiStr,uLen,WideStr,uLen);");
-      fprintf(Outfile,"%s\n","  return WideStr;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","wchar_t *AnsiToWide (char *AnsiStr, UINT CodePage,DWORD dwFlags)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  UINT uLen;");
+      fprintf(Outfile,(char*)"%s\n","  wchar_t *WideStr;");
+      fprintf(Outfile,(char*)"%s\n","  uLen=mbstowcs(NULL, AnsiStr, 0); //MultiByteToWideChar(CodePage,dwFlags,AnsiStr,-1,0,0);");
+      fprintf(Outfile,(char*)"%s\n","  if(uLen<=1) return (wchar_t*)BCX_TmpStr(2);");
+      fprintf(Outfile,(char*)"%s\n","  WideStr = (wchar_t*)BCX_TmpStr(2*uLen);");
+      fprintf(Outfile,(char*)"%s\n","  mbstowcs(WideStr, AnsiStr, uLen); //MultiByteToWideChar(CodePage,dwFlags,AnsiStr,uLen,WideStr,uLen);");
+      fprintf(Outfile,(char*)"%s\n","  return WideStr;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_FileLocked)
     {
-      fprintf(Outfile,"%s\n","int FileLocked (char *Filename)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s%s%s\n","  FILE *FP=fopen(Filename,",enc("rb+"),");");
-      fprintf(Outfile,"%s\n","  if(FP==0) return 1;");
-      fprintf(Outfile,"%s\n","  fclose(FP);");
-      fprintf(Outfile,"%s\n","  return 0;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int FileLocked (char *Filename)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s%s%s\n","  FILE *FP=fopen(Filename,",enc("rb+"),");");
+      fprintf(Outfile,(char*)"%s\n","  if(FP==0) return 1;");
+      fprintf(Outfile,(char*)"%s\n","  fclose(FP);");
+      fprintf(Outfile,(char*)"%s\n","  return 0;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_ContainedIn)
     {
-      fprintf(Outfile,"%s\n","int containedin(char * Token,char **Contain ,int c)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    int i=0;");
-      fprintf(Outfile,"%s\n","    while(Contain[i][0])");
-      fprintf(Outfile,"%s\n","      {");
-      fprintf(Outfile,"%s\n","        if(0 == ((c == 0 || c == 2) ? strcmp(Contain[i],Token) : strcasecmp(Contain[i],Token)))");
-      fprintf(Outfile,"%s\n","          {");
-      fprintf(Outfile,"%s\n","            return ((c < 2) ? 0 : i);");
-      fprintf(Outfile,"%s\n","          }");
-      fprintf(Outfile,"%s\n","        i++;");
-      fprintf(Outfile,"%s\n","      }");
-      fprintf(Outfile,"%s\n","    return -1;");
-      fprintf(Outfile,"%s\n","  }\n\n");
+      fprintf(Outfile,(char*)"%s\n","int containedin(char * Token,char **Contain ,int c)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    int i=0;");
+      fprintf(Outfile,(char*)"%s\n","    while(Contain[i][0])");
+      fprintf(Outfile,(char*)"%s\n","      {");
+      fprintf(Outfile,(char*)"%s\n","        if(0 == ((c == 0 || c == 2) ? strcmp(Contain[i],Token) : strcasecmp(Contain[i],Token)))");
+      fprintf(Outfile,(char*)"%s\n","          {");
+      fprintf(Outfile,(char*)"%s\n","            return ((c < 2) ? 0 : i);");
+      fprintf(Outfile,(char*)"%s\n","          }");
+      fprintf(Outfile,(char*)"%s\n","        i++;");
+      fprintf(Outfile,(char*)"%s\n","      }");
+      fprintf(Outfile,(char*)"%s\n","    return -1;");
+      fprintf(Outfile,(char*)"%s\n","  }\n\n");
     }
   if(Use_FindInType)
     {
-      fprintf(Outfile,"%s\n","int FindInType(char *Token,char *StOffset,int StSize,int start,int finish,int c,int *idx)");
-      fprintf(Outfile,"%s\n","  {");
-      fprintf(Outfile,"%s\n","    int j;");
-      fprintf(Outfile,"%s\n","    char *Srch;");
-      fprintf(Outfile,"%s\n","    int (*cmp)(const char*,const char*);");
-      fprintf(Outfile,"%s\n","    cmp = ((c == 0 || c == 2) ? strcmp : strcasecmp);");
-      fprintf(Outfile,"%s\n","    for(j=start; j<=finish; j++)");
-      fprintf(Outfile,"%s\n","      {");
-      fprintf(Outfile,"%s\n","        Srch = StOffset + ((idx==0) ? j*StSize : idx[j]*StSize);");
-      fprintf(Outfile,"%s\n","        if(cmp(Srch,Token)==0)");
-      fprintf(Outfile,"%s\n","          {");
-      fprintf(Outfile,"%s\n","            return ((c < 2) ? 0 : j);");
-      fprintf(Outfile,"%s\n","          }");
-      fprintf(Outfile,"%s\n","      }");
-      fprintf(Outfile,"%s\n","    return -1;");
-      fprintf(Outfile,"%s\n","  }\n\n");
+      fprintf(Outfile,(char*)"%s\n","int FindInType(char *Token,char *StOffset,int StSize,int start,int finish,int c,int *idx)");
+      fprintf(Outfile,(char*)"%s\n","  {");
+      fprintf(Outfile,(char*)"%s\n","    int j;");
+      fprintf(Outfile,(char*)"%s\n","    char *Srch;");
+      fprintf(Outfile,(char*)"%s\n","    int (*cmp)(const char*,const char*);");
+      fprintf(Outfile,(char*)"%s\n","    cmp = ((c == 0 || c == 2) ? strcmp : strcasecmp);");
+      fprintf(Outfile,(char*)"%s\n","    for(j=start; j<=finish; j++)");
+      fprintf(Outfile,(char*)"%s\n","      {");
+      fprintf(Outfile,(char*)"%s\n","        Srch = StOffset + ((idx==0) ? j*StSize : idx[j]*StSize);");
+      fprintf(Outfile,(char*)"%s\n","        if(cmp(Srch,Token)==0)");
+      fprintf(Outfile,(char*)"%s\n","          {");
+      fprintf(Outfile,(char*)"%s\n","            return ((c < 2) ? 0 : j);");
+      fprintf(Outfile,(char*)"%s\n","          }");
+      fprintf(Outfile,(char*)"%s\n","      }");
+      fprintf(Outfile,(char*)"%s\n","    return -1;");
+      fprintf(Outfile,(char*)"%s\n","  }\n\n");
     }
   if(Use_StartupCode)
     {
-      fprintf(Outfile,"%s\n","int BCX_StartupCode_(void)");
-      fprintf(Outfile,"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","int BCX_StartupCode_(void)");
+      fprintf(Outfile,(char*)"%s\n","{");
         {int i;
       for(i=1; i<=StartNdx; i+=1)
         {
-          fprintf(Outfile,"%s%s%s\n","  ",StartSub[i],"();");
+          fprintf(Outfile,(char*)"%s%s%s\n","  ",StartSub[i],"();");
         }
         }
-      fprintf(Outfile,"%s\n","  return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","  return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_ExitCode)
     {
-      fprintf(Outfile,"%s\n","int BCX_ExitCode_(void)");
-      fprintf(Outfile,"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","int BCX_ExitCode_(void)");
+      fprintf(Outfile,(char*)"%s\n","{");
         {int i;
       for(i=1; i<=ExitNdx; i+=1)
         {
-          fprintf(Outfile,"%s%s%s\n","  atexit(",ExitSub[i],");");
+          fprintf(Outfile,(char*)"%s%s%s\n","  atexit(",ExitSub[i],");");
         }
         }
-      fprintf(Outfile,"%s\n","  return 1;");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","  return 1;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_Socket)
     {
-      fprintf(Outfile,"%s\n","sockaddr_in sock_addr (char *ServerName,int port)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  in_addr  iaHost;");
-      fprintf(Outfile,"%s\n","  hostent*  lpHostEntry;");
-      fprintf(Outfile,"%s\n","  sockaddr_in  saServer;");
-      fprintf(Outfile,"%s\n","  iaHost.s_addr=inet_addr(ServerName);");
-      fprintf(Outfile,"%s\n","  if(iaHost.s_addr==INADDR_NONE)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      lpHostEntry=gethostbyname(ServerName);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  else");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","     lpHostEntry=gethostbyaddr((char*)&iaHost,sizeof(in_addr),AF_INET);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n"," if(lpHostEntry==NULL)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s%s%s\n","      printf(",enc("Error! HOST NOT FOUND: %s\\n"),", ServerName);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  else");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      saServer.sin_port=htons(port);");
-      fprintf(Outfile,"%s\n","      saServer.sin_family=AF_INET;");
-      fprintf(Outfile,"%s\n","      saServer.sin_addr=*(in_addr*)lpHostEntry->h_addr;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return saServer;");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","int connect_socket (sockaddr_in saServer)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  int Socket, nRet;");
-      fprintf(Outfile,"%s\n","  Socket=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);");
-      fprintf(Outfile,"%s\n","  if(Socket==-1)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      return Socket;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  nRet=connect(Socket,(sockaddr*)&saServer,sizeof(sockaddr_in));");
-      fprintf(Outfile,"%s\n","  if(nRet==-1)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      close(Socket);");
-      fprintf(Outfile,"%s\n","      return nRet;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return Socket;");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","int BcxSocket (char *ServerName,int port)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  sockaddr_in  saServer;");
-      fprintf(Outfile,"%s\n","  saServer=sock_addr(ServerName,port);");
-      fprintf(Outfile,"%s\n","  return connect_socket(saServer);");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","int BcxSocketSend (int Socket, char *szBuffer)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static int     nRet;");
-      fprintf(Outfile,"%s\n","  nRet=send(Socket,szBuffer,strlen(szBuffer),0);");
-      fprintf(Outfile,"%s\n","  if(nRet==-1)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      close(Socket);");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  return nRet;");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","int BcxSocketRead (int Socket, char *szBuffer)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  return read(Socket,szBuffer,strlen(szBuffer));");
-      fprintf(Outfile,"%s\n","}\n\n");
-      fprintf(Outfile,"%s\n","void    BcxSocketClose(int Socket) {");
-      fprintf(Outfile,"%s\n","	close(Socket);");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","sockaddr_in sock_addr (char *ServerName,int port)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  in_addr  iaHost;");
+      fprintf(Outfile,(char*)"%s\n","  hostent*  lpHostEntry;");
+      fprintf(Outfile,(char*)"%s\n","  sockaddr_in  saServer;");
+      fprintf(Outfile,(char*)"%s\n","  iaHost.s_addr=inet_addr(ServerName);");
+      fprintf(Outfile,(char*)"%s\n","  if(iaHost.s_addr==INADDR_NONE)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      lpHostEntry=gethostbyname(ServerName);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  else");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","     lpHostEntry=gethostbyaddr((char*)&iaHost,sizeof(in_addr),AF_INET);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n"," if(lpHostEntry==NULL)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s%s%s\n","      printf(",enc("Error! HOST NOT FOUND: %s\\n"),", ServerName);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  else");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      saServer.sin_port=htons(port);");
+      fprintf(Outfile,(char*)"%s\n","      saServer.sin_family=AF_INET;");
+      fprintf(Outfile,(char*)"%s\n","      saServer.sin_addr=*(in_addr*)lpHostEntry->h_addr;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return saServer;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int connect_socket (sockaddr_in saServer)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  int Socket, nRet;");
+      fprintf(Outfile,(char*)"%s\n","  Socket=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);");
+      fprintf(Outfile,(char*)"%s\n","  if(Socket==-1)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      return Socket;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  nRet=connect(Socket,(sockaddr*)&saServer,sizeof(sockaddr_in));");
+      fprintf(Outfile,(char*)"%s\n","  if(nRet==-1)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      close(Socket);");
+      fprintf(Outfile,(char*)"%s\n","      return nRet;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return Socket;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int BcxSocket (char *ServerName,int port)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  sockaddr_in  saServer;");
+      fprintf(Outfile,(char*)"%s\n","  saServer=sock_addr(ServerName,port);");
+      fprintf(Outfile,(char*)"%s\n","  return connect_socket(saServer);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int BcxSocketSend (int Socket, char *szBuffer)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static int     nRet;");
+      fprintf(Outfile,(char*)"%s\n","  nRet=send(Socket,szBuffer,strlen(szBuffer),0);");
+      fprintf(Outfile,(char*)"%s\n","  if(nRet==-1)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      close(Socket);");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  return nRet;");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","int BcxSocketRead (int Socket, char *szBuffer)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  return read(Socket,szBuffer,strlen(szBuffer));");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","void    BcxSocketClose(int Socket) {");
+      fprintf(Outfile,(char*)"%s\n","	close(Socket);");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
   if(Use_RegEx)
     {
-      fprintf(Outfile,"%s\n","bool regmatch (char *buffer, char *pattern, REGEX* retval)");
-      fprintf(Outfile,"%s\n","{");
-      fprintf(Outfile,"%s\n","  static int     t;");
-      fprintf(Outfile,"%s\n","  static int     i;");
-      fprintf(Outfile,"%s\n","  static   regex_t  re;");
-      fprintf(Outfile,"%s\n","  t=regcomp( &re,pattern,REG_ICASE|REG_EXTENDED);");
-      fprintf(Outfile,"%s\n","  if(t)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      regerror(t, &re,buffer,sizeof(buffer));");
-      fprintf(Outfile,"%s%s%s\n","      printf(",enc("regex error: %s %s"),",buffer,pattern);");
-      fprintf(Outfile,"%s\n","      return 0;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  t=regexec( &re,buffer,1023,(*retval).matches,0);");
-      fprintf(Outfile,"%s\n","  (*retval).count=re.re_nsub;");
-      fprintf(Outfile,"%s\n","  if(!t)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      for(i=1; i<=(*retval).count; i+=1)");
-      fprintf(Outfile,"%s\n","        {");
-      fprintf(Outfile,"%s\n","          if((*retval).matches[i].rm_so>=0)");
-      fprintf(Outfile,"%s\n","            {");
-      fprintf(Outfile,"%s\n","             (*retval).results[i]=peekstr( &buffer[(*retval).matches[i].rm_so],((*retval).matches[i].rm_eo-(*retval).matches[i].rm_so));");
-      fprintf(Outfile,"%s\n","           }");
-      fprintf(Outfile,"%s\n","        }");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  regfree( &re);");
-      fprintf(Outfile,"%s\n","  if(!t)");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      return TRUE;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","  else");
-      fprintf(Outfile,"%s\n","    {");
-      fprintf(Outfile,"%s\n","      return FALSE;");
-      fprintf(Outfile,"%s\n","    }");
-      fprintf(Outfile,"%s\n","}\n\n");
+      fprintf(Outfile,(char*)"%s\n","bool regmatch (char *buffer, char *pattern, REGEX* retval)");
+      fprintf(Outfile,(char*)"%s\n","{");
+      fprintf(Outfile,(char*)"%s\n","  static int     t;");
+      fprintf(Outfile,(char*)"%s\n","  static int     i;");
+      fprintf(Outfile,(char*)"%s\n","  static   regex_t  re;");
+      fprintf(Outfile,(char*)"%s\n","  t=regcomp( &re,pattern,REG_ICASE|REG_EXTENDED);");
+      fprintf(Outfile,(char*)"%s\n","  if(t)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      regerror(t, &re,buffer,sizeof(buffer));");
+      fprintf(Outfile,(char*)"%s%s%s\n","      printf(",enc("regex error: %s %s"),",buffer,pattern);");
+      fprintf(Outfile,(char*)"%s\n","      return 0;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  t=regexec( &re,buffer,1023,(*retval).matches,0);");
+      fprintf(Outfile,(char*)"%s\n","  (*retval).count=re.re_nsub;");
+      fprintf(Outfile,(char*)"%s\n","  if(!t)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      for(i=1; i<=(*retval).count; i+=1)");
+      fprintf(Outfile,(char*)"%s\n","        {");
+      fprintf(Outfile,(char*)"%s\n","          if((*retval).matches[i].rm_so>=0)");
+      fprintf(Outfile,(char*)"%s\n","            {");
+      fprintf(Outfile,(char*)"%s\n","             (*retval).results[i]=peekstr( &buffer[(*retval).matches[i].rm_so],((*retval).matches[i].rm_eo-(*retval).matches[i].rm_so));");
+      fprintf(Outfile,(char*)"%s\n","           }");
+      fprintf(Outfile,(char*)"%s\n","        }");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  regfree( &re);");
+      fprintf(Outfile,(char*)"%s\n","  if(!t)");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      return TRUE;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","  else");
+      fprintf(Outfile,(char*)"%s\n","    {");
+      fprintf(Outfile,(char*)"%s\n","      return FALSE;");
+      fprintf(Outfile,(char*)"%s\n","    }");
+      fprintf(Outfile,(char*)"%s\n","}\n\n");
     }
 }
 
@@ -19910,8 +19910,8 @@ void EmitExportDef (char *fs)
          exit(1);
        }
       _splitpath_(FileIn,NULL,NULL,fname,NULL);
-      fprintf(fpdef,"%s%s\n","LIBRARY ",enc(fname));
-      fprintf(fpdef,"%s\n","EXPORTS");
+      fprintf(fpdef,(char*)"%s%s\n","LIBRARY ",enc(fname));
+      fprintf(fpdef,(char*)"%s\n","EXPORTS");
       beenhere=TRUE;
     }
   FastLexer(fs,"","(,)");
@@ -19945,7 +19945,7 @@ void EmitExportDef (char *fs)
     }
   strcpy(Stk[1],trim(Stk[1]));
   strcpy(funcname,mid(Stk[1],InstrRev(Stk[1]," ")+1));
-  fprintf(fpdef,"%s%s%s%s%s\n",funcname," = _",funcname,"@",ltrim(str(sz)));
+  fprintf(fpdef,(char*)"%s%s%s%s%s\n",funcname," = _",funcname,"@",ltrim(str(sz)));
 }
 
 
@@ -20358,11 +20358,11 @@ void EmitIfCond (char *CondType)
     {
       IsWhile=TRUE;
     }
-  fprintf(Outfile,"%s%s%s",Scoot,CondType,"(");
+  fprintf(Outfile,(char*)"%s%s%s",Scoot,CondType,"(");
   Tmp=2;
   while(str_cmp(Stk[Tmp],"(")==0 ||  str_cmp(Stk[Tmp],"!")==0)
     {
-      fprintf(Outfile,"%s",Stk[Tmp]);
+      fprintf(Outfile,(char*)"%s",Stk[Tmp]);
       Tmp++;
     }
   TestString=FALSE;
@@ -20373,7 +20373,7 @@ void EmitIfCond (char *CondType)
         {
           TestString=TRUE;
           Use_Str_Cmp=TRUE;
-          fprintf(Outfile,"%s","str_cmp(");
+          fprintf(Outfile,(char*)"%s","str_cmp(");
         }
     }
   *szTest=0;
@@ -20434,7 +20434,7 @@ void EmitIfCond (char *CondType)
             }
           if(str_cmp(Stk[Tmp],")")==0 &&  str_cmp(szTest,"")!=0 && ParCnt<0)
             {
-              fprintf(Outfile,"%s%s",szTest,Stk[Tmp]);
+              fprintf(Outfile,(char*)"%s%s",szTest,Stk[Tmp]);
               *szTest=0;
             }
           else
@@ -20458,12 +20458,12 @@ void EmitIfCond (char *CondType)
                     }
                   else
                     {
-                      fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+                      fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
                       TestString=FALSE;
                       goto NXTTOKEN;
                     }
                 }
-              fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+              fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
             }
         }
       else
@@ -20485,17 +20485,17 @@ void EmitIfCond (char *CondType)
                   Use_Str_Cmp=TRUE;
                   *szTest=0;
                   ParCnt=0;
-                  fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+                  fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
                   goto NXTTOKEN;
                 }
             }
           if(str_cmp(Stk[Tmp],"!")==0)
             {
-              fprintf(Outfile,"%s",Stk[Tmp]);
+              fprintf(Outfile,(char*)"%s",Stk[Tmp]);
             }
           else
             {
-              fprintf(Outfile,"%s",Clean(Stk[Tmp]));
+              fprintf(Outfile,(char*)"%s",Clean(Stk[Tmp]));
             }
           if(str_cmp(Stk[Tmp],"=")==0)
             {
@@ -20503,7 +20503,7 @@ void EmitIfCond (char *CondType)
                 {
                   if(str_cmp(Stk[Tmp+1],">")!=0 &&  str_cmp(Stk[Tmp+1],"<")!=0)
                     {
-                      fprintf(Outfile,"%s","=");
+                      fprintf(Outfile,(char*)"%s","=");
                     }
                 }
             }
@@ -20527,9 +20527,9 @@ NXTTOKEN:;
           break;
         }
     }
-  fprintf(Outfile,"%s%s\n",szTest,")");
+  fprintf(Outfile,(char*)"%s%s\n",szTest,")");
   BumpUp();
-  fprintf(Outfile,"%s%s\n",Scoot,"{");
+  fprintf(Outfile,(char*)"%s%s\n",Scoot,"{");
   BumpUp();
 }
 
@@ -20542,19 +20542,19 @@ void PrintGlobal (int A, int idx, char *Storage, char *P, char *VarName, char *V
     if(A==vt_FILEPTR)
       {
         strcpy(VarName,RemoveStr(VarName,"@"));
-        fprintf(Outfile,"%s%s%s%s%s%s\n",Storage,"FILE   *",P,VarName,VarDim,";");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Storage,"FILE   *",P,VarName,VarDim,";");
         break;
       }
     if(A==vt_UDT||A==vt_STRUCT||A==vt_UNION)
       {
         strcpy(VAR,TypeDefs[GlobalVars[idx].VarDef].VarName);
         strcpy(VAR,rpad(VAR,7));
-        fprintf(Outfile,"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
         break;
       }
     if(A==vt_BOOL)
       {
-        fprintf(Outfile,"%s%s%s%s%s\n",Storage,"bool    ",VarName,VarDim,";");
+        fprintf(Outfile,(char*)"%s%s%s%s%s\n",Storage,"bool    ",VarName,VarDim,";");
         break;
       }
     if(A==vt_STRVAR)
@@ -20563,14 +20563,14 @@ void PrintGlobal (int A, int idx, char *Storage, char *P, char *VarName, char *V
           {
             strcpy(VarDim,"[65535]");
           }
-        fprintf(Outfile,"%s%s%s%s%s%s\n",Storage,"char    ",P,VarName,VarDim,";");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Storage,"char    ",P,VarName,VarDim,";");
         break;
       }
     if(A>=vt_VarMin&&A<=vt_VarMax)
       {
         strcpy(VAR,GetVarTypeName(GlobalVars[idx].VarType));
         strcpy(VAR,rpad(VAR,7));
-        fprintf(Outfile,"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s%s\n",Storage,VAR," ",P,VarName,VarDim,";");
       }
     break;
   }

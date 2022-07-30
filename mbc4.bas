@@ -2633,7 +2633,8 @@ FUNCTION PrintWriteFormat$(DoWrite)
   IF NewLineFlag = 0 THEN
     CONCAT (Frmat$,"\\n")
   END IF
-  FUNCTION = "printf(" + ENC$(Frmat$) + Clean$(Arg$) + ");"
+  ' AIR 2022-07-29 Added (char*) cast to eliminate -Wwrite-strings error
+  FUNCTION = "printf((char*)" + ENC$(Frmat$) + Clean$(Arg$) + ");"
 END FUNCTION ' PrintWriteFormat$
 SUB EmitInputCode
   DIM RAW Argcount = 0
@@ -10793,9 +10794,10 @@ END FUNCTION
 'Case insensitive comparison - MatchStr$ to Arg$
 ' mt = 0, 1 or 2 Match left, whole word, right
 '----------------------------------------------
-CONST iMatchLft(A,B) = iMatch(A,B,0)
-CONST iMatchWrd(A,B) = iMatch(A,B,1)
-CONST iMatchRgt(A,B) = iMatch(A,B,2)
+' AIR 2022-07-29 Added (char*) cast to eliminate -Wwrite-strings warning
+CONST iMatchLft(A,B) = iMatch((char*)A, (char*)B,0)
+CONST iMatchWrd(A,B) = iMatch((char*)A,(char*)B,1)
+CONST iMatchRgt(A,B) = iMatch((char*)A,(char*)B,2)
 FUNCTION iMatch(Arg$, MatchStr$, mt)
   IF mt = 2 THEN
     DIM RAW L1, L2
