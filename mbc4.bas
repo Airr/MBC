@@ -38,7 +38,7 @@
 '**********************************
 '** AUTO BUILD TRANSLATOR BINARY **
 '**********************************
-$EXECON
+$EXECON "-g"
 
 
 '**********************
@@ -108,8 +108,8 @@ This section is used to communicate to-do 's, changes, ideas, suggestions, etc.
 -------------------------------------------
 2022-07-26 Armando Rivera
 After a LONG time away....
-  * Changed max size of szTmp$, Src$, and AbortSrc$ (65535)to avoid potential buffer overflows
-  * Changed max size of WarnMsg$ (65536) to avoid potential buffer overflow
+  * Changed max size of szTmp$, Src$, and AbortSrc$ (32768)to avoid potential buffer overflows
+  * Changed max size of WarnMsg$ (32768) to avoid potential buffer overflow
   * Removed the "register" decorator from EOF function to comply with C++17 standard
   * The above addressed warnings thrown by C++17, which is the standard on modern Linux.
   * Removed cdecl/stdcall from "Declare Function" (dynamic linking), since cdecl is the standard on *nix systems
@@ -653,7 +653,7 @@ END TYPE
 '**************************************************************
 CONST VarTypes$ = "%$#!@¦"
 SET VarTypeLookup[] AS CHAR PTR
-  "int", "int", "char *", "double", "float", "FILE *", "long double"
+  "int", "char *", "double", "float", "FILE *", "long double"
 END SET
 '**************************************************************
 TYPE ARGTYPE
@@ -701,12 +701,12 @@ TYPE VARCODE
   VarNo     AS INTEGER
   Method    AS INTEGER
   IsPtrFlag AS INTEGER
-  Header$
-  Proto$
-  Functype$
-  StaticOut$
-  Token$
-  AsToken$
+  Header    AS STRING
+  Proto     AS STRING
+  Functype  AS STRING
+  StaticOut AS STRING
+  Token     AS STRING
+  AsToken   AS STRING
 END TYPE
 
 '*************************************************************************
@@ -1094,15 +1094,15 @@ END SET
 '                              CODE BEGINS
 '*************************************************************************
 FUNCTION main(ARGC AS INTEGER, ARGV AS PCHAR PTR)
-  ' ** AIR 2022/07/26  changed to 65535 from 2047+1 to avoid buffer overflow **
-  GLOBAL  szTmp$    * 65535 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
-  GLOBAL  Src$      * 65535 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
-  GLOBAL  AbortSrc$ * 65535 'This must be at least the size of Src$
+  ' ** AIR 2022/07/26  changed to 32768 from 2047+1 to avoid buffer overflow **
+  GLOBAL  szTmp$    * 32768 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
+  GLOBAL  Src$      * 32768 'This is a problem, cannot exceed 2047+1 or bad things *WILL* happen.
+  GLOBAL  AbortSrc$ * 32768 'This must be at least the size of Src$
 
-  ' ** AIR 2022/07/26  changed to 65535 from 32767 to avoid buffer overflow **
-  GLOBAL  WarnMsg$  * 65535+1   'This must be MORE than the size of Src$
+  ' ** AIR 2022/07/26  changed to 32768 from 32767 to avoid buffer overflow **
+  GLOBAL  WarnMsg$  * 32768+1   'This must be MORE than the size of Src$
 
-  GLOBAL  RmLibs$   * 32767   ' libraries to remove
+  GLOBAL  RmLibs$   * 32768   ' libraries to remove
   LOCAL   bitz as INTEGER     ' is OS 32/64 bit
   ProtoCnt               =   0 ' Prototypes counter
   TranslateSlash         =  TRUE ' Default TO changing "\" TO "\\"
@@ -1130,10 +1130,10 @@ FUNCTION main(ARGC AS INTEGER, ARGV AS PCHAR PTR)
 
   IF COMMAND$ = "" THEN
     !#if defined (__APPLE__)
-    PRINT "MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018"
+    PRINT "MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2022"
     !#else
     PRINT "MBC4: Based on Linux BCX by Mike Henning (c) 2009"
-    PRINT "(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF$
+    PRINT "(c) 2009-2022 Armando Rivera with additional code (c) 2009 John Jacques",LF$
     !#endif
 
     PRINT "Version ", Version$, "  Compiled with ";
@@ -1205,10 +1205,10 @@ FUNCTION main(ARGC AS INTEGER, ARGV AS PCHAR PTR)
     PRINT "MBC Version ", Version$
     !#if defined (__APPLE__)
     IsApple = TRUE
-    PRINT "MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018",LF$
+    PRINT "MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2022",LF$
     !#else
     PRINT "MBC4: Based on Linux BCX by Mike Henning (c) 2009"
-    PRINT "(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF$
+    PRINT "(c) 2009-2022 Armando Rivera with additional code (c) 2009 John Jacques",LF$
     !#endif
 
 
@@ -1739,7 +1739,7 @@ SUB ProcessSetCommand(GS)
       CONCAT (lszTmp$, Stk$[i])
     NEXT
     IF vt = vt_STRVAR AND lszTmp$ <> "" THEN
-      CONCAT (lszTmp$, "[65535]")
+      CONCAT (lszTmp$, "[32768]")
     END IF
     IF NOT InFunc THEN
       CALL AddGlobal(CVar$, vt, 0,lszTmp$,0,0,0,1)
@@ -1759,7 +1759,7 @@ SUB ProcessSetCommand(GS)
     DimType$ = REMOVE$(Tipe$,"*") ' *mh - 3/9/09
     GetTypeInfo(Tipe$, &IsPointer, &id, &vt)
     IF vt = vt_STRVAR THEN
-      CONCAT(DimType$, "[65535]")
+      CONCAT(DimType$, "[32768]")
     END IF
     IF NOT InFunc THEN
       CALL AddGlobal(CVar$, vt, id, DimType$,IsPointer,0,0,1)
@@ -1773,7 +1773,7 @@ SUB ProcessSetCommand(GS)
     i++
     IF Stk$[i]= "=" THEN j = 1
     IF SetString = vt_STRVAR AND j = 1 THEN
-      FPRINT Outfile,"[65535]=";
+      FPRINT Outfile,"[32768]=";
     ELSE
       FPRINT Outfile,Stk$[i];
     END IF
@@ -2481,7 +2481,7 @@ FUNCTION PrintWriteFormat$(DoWrite)
   DIM RAW Stak[128] AS ARGTYPE
   DIM RAW Frmat$
   DIM RAW Arg$
-  DIM RAW ZZ$*65535
+  DIM RAW ZZ$
   DIM RAW Cast$
   DIM RAW NewLineFlag = 0
   DIM RAW Argcount = 0
@@ -2651,7 +2651,7 @@ SUB EmitInputCode
   DIM RAW Frmat$
   DIM Stak$[128]
   DIM RAW Y$
-  DIM RAW ZZ$*65535
+  DIM RAW ZZ$*32768
   Use_Inputbuffer = TRUE
   Use_Scan    = TRUE
   Use_Split   = TRUE
@@ -2765,7 +2765,7 @@ SUB EmitFileInputCode
   DIM RAW Frmat$
   DIM RAW FHandle$
   DIM RAW Y$
-  DIM RAW ZZ$*65535
+  DIM RAW ZZ$*32768
   DIM Stak$[128]
   Arg$     =  ""
   Frmat$   =  ""
@@ -2857,14 +2857,14 @@ SUB EmitFileInputCode
       VarCnt++
     END SELECT
   NEXT
-  FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(InputBuffer,65535," ; FHandle$ ; ");"
+  FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(InputBuffer,32768," ; FHandle$ ; ");"
   FPRINT Outfile,Scoot$, "if(InputBuffer[strlen(InputBuffer)-1]== 10)"
   FPRINT Outfile,Scoot$, "   InputBuffer[strlen(InputBuffer)-1]=0;"
   FPRINT Outfile,Scoot$, "ScanError = scan(InputBuffer," + ENC$(Frmat$) + Arg$ + ");\n"
   FPRINT Outfile,Scoot$, "*InputBuffer=0;"
 END SUB ' EmitFileInputCode
 SUB AddFuncs
-  DIM RAW ZZ$*65535
+  DIM RAW ZZ$*32768
   DIM RAW Last$
   Last$ = ""
   CALL CloseAll
@@ -6458,7 +6458,7 @@ SUB FuncSubDecs1(s$)
         ITERATE
       ELSE
         IF DataType(Stk$[i-1]) = vt_STRVAR THEN
-          Stk$[i-1] = Stk$[i-1] + "[][65535]"
+          Stk$[i-1] = Stk$[i-1] + "[][32768]"
         END IF
         Stk$[i-1] = "*"  +  Stk$[i-1]
       END IF
@@ -6656,7 +6656,7 @@ SUB HandleNonsense
   NEXT
 END SUB ' HandleNonsense
 SUB ValidVar(v$)
-  DIM RAW ZZ$*65535
+  DIM RAW ZZ$*32768
   IF NOT isalpha(*v$) AND *v$ <> ASC("_") THEN
     IF NOT iMatchLft(v$, "(*") THEN ' Allow byref format (*A).xxx
       Abort("Invalid String Variable Name")
@@ -6813,7 +6813,7 @@ SUB Emit
   DIM RAW Keyword$
   DIM RAW lszTmp$
   DIM RAW Var1$
-  DIM RAW ZZ$*65535
+  DIM RAW ZZ$*32768
   DIM RAW IsSubOrFuncPtr
   DIM RAW dms
   STATIC NoBreak
@@ -7910,7 +7910,7 @@ SUB Emit
     IF i = vt_STRLIT OR i = vt_STRVAR THEN
       IF i <> vt_STRLIT THEN Stk$[2] = Clean$(Stk$[2])
       FPRINT Outfile,Scoot$,"printf(", ENC$("%s"), ",", Stk$[2], ");"
-      FPRINT Outfile,Scoot$,"AR_fgets_retval=fgets(", Clean$(Stk$[3]),  ",65535,stdin);"
+      FPRINT Outfile,Scoot$,"AR_fgets_retval=fgets(", Clean$(Stk$[3]),  ",32768,stdin);"
       FPRINT Outfile,Scoot$,Clean$(Stk$[3]),"[strlen(",Clean$(Stk$[3]),")-1]=0;"
       EXIT SELECT
     END IF
@@ -7949,7 +7949,7 @@ SUB Emit
       END IF
     END IF
     FPRINT Outfile,Scoot$, Var$ ; "[0]=0;"
-    FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(" ; Var$ ; ",65535,"; Clean$(Stk$[2]) ; ");"
+    FPRINT Outfile,Scoot$, "AR_fgets_retval=fgets(" ; Var$ ; ",32768,"; Clean$(Stk$[2]) ; ");"
     FPRINT Outfile,Scoot$, "if("    ; CVar$ ; "[strlen(" ;CVar$ ; ")-1]==10)";
     FPRINT Outfile,CVar$  ; "[strlen(" ; CVar$ ; ")-1]=0;"
     IF Var1$ <> "" THEN
@@ -8655,7 +8655,7 @@ SUB Emit
         END IF
       END IF
       dms++
-      CONCAT(ZZ$,",65535")
+      CONCAT(ZZ$,",32768")
     END IF
     IF InTypeDef THEN
       IF vt = vt_STRUCT THEN
@@ -8756,7 +8756,7 @@ SUB Emit
       IF iMatchWrd(Stk$[Ndx], "string") THEN
         Ndx--
         Stk$[Ndx] = "["
-        Stk$[++Ndx] = "65535"
+        Stk$[++Ndx] = "32768"
         Stk$[++Ndx] = "]"
       ELSE
         Ndx -= 2
@@ -8765,7 +8765,7 @@ SUB Emit
       IF (vt = vt_CHAR AND vt1 = vt_STRVAR AND IsSplat = 0) OR vt = vt_CHARPTR THEN
         Ndx++
         Stk$[Ndx] = "["
-        Stk$[++Ndx] = "65535"
+        Stk$[++Ndx] = "32768"
         Stk$[++Ndx] = "]"
       END IF
     END IF
@@ -8814,7 +8814,7 @@ SUB Emit
       IF vt = vt_STRVAR THEN
         SOF$ = "char"
         A++
-        CONCAT(ZZ$,",65535")
+        CONCAT(ZZ$,",32768")
       END IF
       IF A <> dms THEN
         Abort("Mismatch in dimensions for " + CVar$ + ", orignally " + STR$(dms) + " found " + STR$(A))
@@ -8963,8 +8963,8 @@ SUB Emit
       IF vt = vt_STRVAR THEN
         Stk$[Ndx] = "char"
         Var$ = Stk$[Ndx]
-        CONCAT(DimType$, "[65535]")
-        CONCAT(lszTmp$, "[65535]")
+        CONCAT(DimType$, "[32768]")
+        CONCAT(lszTmp$, "[32768]")
       END IF
       IF InFunc OR InTypeDef THEN
         IF IsRegister OR IsAuto THEN
@@ -9048,8 +9048,8 @@ SUB Emit
         NEXT
         lszTmp$ = LTRIM$(Clean$(lszTmp$))
         IF VType = vt_STRVAR THEN 'AND ((Stk$[3+IsVolatile] = "" AND InTypeDef) OR (NOT InTypeDef)) THEN
-          'print lszTmp$
-          IF lszTmp$ <> "[65535]" THEN CONCAT (lszTmp$, "[2048]")
+          if len(lszTmp$) > 0 then print lszTmp$
+          IF lszTmp$ <> "[32768]" THEN CONCAT (lszTmp$, "[32768]")
           'print lszTmp$
         END IF
       END IF
@@ -9117,7 +9117,7 @@ SUB Emit
       CONCAT (lszTmp$, Stk$[i])
     NEXT
     IF VType = vt_STRVAR AND lszTmp$ <> "" THEN
-      CONCAT (lszTmp$, "[65535]")
+      CONCAT (lszTmp$, "[32768]")
     END IF
     IF IsVolatile THEN
       CALL AddGlobal(CVar$, VType, 0,lszTmp$,0,0,3,0)
@@ -9164,7 +9164,7 @@ SUB Emit
       id = 0
     END IF
     IF vt = vt_STRVAR THEN '  AND DimType$ <> "" THEN
-      CONCAT (DimType$, "[65535]")
+      CONCAT (DimType$, "[32768]")
     END IF
     IF IsVolatile THEN
       CALL AddGlobal(Var$, vt, id, DimType$, IsPointer,0,4,0)
@@ -9227,7 +9227,7 @@ SUB Emit
         vt = vt_CHAR
         SOF$ = "char"
         dms++
-        CONCAT(ZZ$,",65535")
+        CONCAT(ZZ$,",32768")
       END IF
       IF Use_GenFree THEN
         GlobalDynaCnt++
@@ -9261,7 +9261,7 @@ SUB Emit
       id = 0
     END IF
     IF vt = vt_STRVAR THEN
-      CONCAT (DimType$, "[65535]")
+      CONCAT (DimType$, "[32768]")
     END IF
     IF IsShared THEN
       IF IsVolatile THEN
@@ -10003,7 +10003,7 @@ SUB DeclareVariables
     END IF
 
     IF Use_Inputbuffer = TRUE THEN
-      FPRINT Outfile,"char    InputBuffer[65535];"
+      FPRINT Outfile,"char    InputBuffer[32768];"
     END IF
 
     IF Use_Findfirst OR Use_Findnext THEN
@@ -10264,7 +10264,7 @@ SUB GetVarCode(varcode AS VARCODE PTR)
         varcode->Proto$  = varcode->Proto$   +  "char *, "
       ELSE
         varcode->Header$ = varcode->Header$  +  "char " + REMOVE$(Clean$(varcode->Token$), "*") + ", "
-        varcode->Proto$  = varcode->Proto$   +  "char [][65535], "
+        varcode->Proto$  = varcode->Proto$   +  "char [][32768], "
       END IF
       CASE mt_Opts
       varcode->Functype$ = "char *"
@@ -10362,7 +10362,7 @@ SUB GetVarCode(varcode AS VARCODE PTR)
 END SUB ' GetVarCode
 SUB AddProtos
   DIM RAW SaveMain$
-  DIM RAW ZZ$*65535
+  DIM RAW ZZ$*32768
   DIM RAW A
   SaveMain$  = ""
   OPEN FileOut$ FOR INPUT  AS FP1
@@ -11512,7 +11512,7 @@ SUB PrintGlobal(A, idx, Storage$, P$, VarName$, VarDim$)
     CASE vt_BOOL
     FPRINT Outfile,Storage$;"bool    ";VarName$;VarDim$;";"
     CASE vt_STRVAR
-    IF VarDim$ = "" THEN VarDim$ = "[65535]"
+    IF VarDim$ = "" THEN VarDim$ = "[32768]"
     FPRINT Outfile,Storage$;"char    ";P$;VarName$;VarDim$;";"
     ' handle normal
     CASE vt_VarMin TO vt_VarMax

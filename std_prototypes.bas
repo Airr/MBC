@@ -389,7 +389,7 @@ IF NoRT=FALSE THEN
     FPRINT Outfile,"int     scan (char *input, char *format, ... );"
   END IF
   IF Use_Split THEN
-    FPRINT Outfile,"int     Split (char [][65535], char*, char*, int=0);"
+    FPRINT Outfile,"int     Split (char [][32768], char*, char*, int=0);"
   END IF
   IF Use_DSplit THEN
     FPRINT Outfile,"int     DSplit (PCHAR *, char*, char*, int=0);"

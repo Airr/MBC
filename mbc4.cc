@@ -192,7 +192,7 @@ typedef struct _functionParse
 
 typedef struct _ARGTYPE
 {
-  char Arg[2048];
+  char Arg[32768];
   int     ArgType;
 }ARGTYPE, *LPARGTYPE;
 
@@ -246,12 +246,12 @@ typedef struct _VARCODE
    int  VarNo;
    int  Method;
    int  IsPtrFlag;
-  char Header[2048];
-  char Proto[2048];
-  char Functype[2048];
-  char StaticOut[2048];
-  char Token[2048];
-  char AsToken[2048];
+   char  Header[32768];
+   char  Proto[32768];
+   char  Functype[32768];
+   char  StaticOut[32768];
+   char  Token[32768];
+   char  AsToken[32768];
 }VARCODE, *LPVARCODE;
 
 
@@ -276,7 +276,7 @@ static PCHAR   *G_argv;
 static int     G_argc;
 static int     NoRT;
 static int     ByrefCnt;
-static char    CurLine[65535];
+static char    CurLine[32768];
 static int     gLinesWritten;
 static int     LoopLocalCnt;
 static int     GlobalVarCnt;
@@ -289,37 +289,37 @@ static int     ModuleNdx;
 static int     FPtrNdx;
 static int     SplitCnt;
 static int     SplitCur;
-static char    SrcTmp[65535];
+static char    SrcTmp[32768];
 static int     StartNdx;
 static int     ExitNdx;
 static VARCODE VarCode;
 static int     UmQt;
-static char    LD_FLAGS[65535];
-static char    Accelerator[65535];
-static char    CallType[65535];
+static char    LD_FLAGS[32768];
+static char    Accelerator[32768];
+static char    CallType[32768];
 static int     CaseFlag;
-static char    CaseVar[65535];
-static char    Cmd[65535];
-static char    Compiler[65535];
-static char    CmdLineConst[65535];
-static char    CmdLineFileOut[65535];
+static char    CaseVar[32768];
+static char    Cmd[32768];
+static char    Compiler[32768];
+static char    CmdLineConst[32768];
+static char    CmdLineFileOut[32768];
 static int     CurrentFuncType;
-static char    DimType[65535];
+static char    DimType[32768];
 static int     DllCnt;
 static int     LoadLibsCnt;
 static float   Elapsed;
 static int     EndOfProgram;
 static int     EntryCnt;
 static int     ErrFile;
-static char    szFile[65535];
-static char    Filnam[65535];
+static char    szFile[32768];
+static char    Filnam[32768];
 static int     ForceMainToFunc;
-static char    Funcname[65535];
-static char    Handl[65535];
+static char    Funcname[32768];
+static char    Handl[32768];
 static int     HFileCnt;
-static char    HFile[65535];
+static char    HFile[32768];
 static int     InConditional;
-static char    InIfDef[65535];
+static char    InIfDef[32768];
 static int     Indent;
 static int     InFunc;
 static int     InMain;
@@ -338,51 +338,51 @@ static int     IsLocal;
 static int     IsRaw;
 static int     IsApple;
 static int     KillCFile;
-static char    Keyword1[65535];
+static char    Keyword1[32768];
 static int     LastCmd;
 static int     LinesRead;
-static char    Linker[65535];
-static char    Lookup[65535];
+static char    Linker[32768];
+static char    Lookup[32768];
 static int     MakeDLL;
 static int     Ndx;
 static int     NoMain;
 static int     NoDllMain;
 static int     OkayToSend;
-static char    Op[65535];
+static char    Op[32768];
 static int     OptionBase;
-static char    OutfileClone[65535];
+static char    OutfileClone[32768];
 static int     PassOne;
 static int     ProtoCnt;
 static int     Pusher;
 static int     Quiet;
 static int     ReDirect;
 static FILE   *SaveOutfileNum;
-static char    Scoot[65535];
+static char    Scoot[32768];
 static int     ShowStatus;
 static int     SrcCnt;
 static int     SrcFlag;
 static int     TrcFlag;
 static int     TestForBcxIni;
-static char    FileIn[65535];
-static char    FileOut[65535];
-static char    FileErr[65535];
-static char    T[65535];
+static char    FileIn[32768];
+static char    FileOut[32768];
+static char    FileErr[32768];
+static char    T[32768];
 static int     Test;
 static int     Statements;
 static int     TestState;
-static char    Tipe[65535];
+static char    Tipe[32768];
 static int     TranslateSlash;
 static int     UseCpp;
 static int     UseFlag;
 static int     InNameSpace;
 static int     Use_Virtual;
-static char    vproc[65535];
+static char    vproc[32768];
 static int     UseStdCall;
 static int     UseLCaseTbl;
-static char    Var[65535];
+static char    Var[32768];
 static int     XitCount;
-static char    Z[65535];
-static char    ConstLastDef[65535];
+static char    Z[32768];
+static char    ConstLastDef[32768];
 static int     Use_AnsiToWide;
 static int     Use_Asc;
 static int     Use_AppExeName;
@@ -578,14 +578,14 @@ static int     Use_NUL;
 static int     Use_SPC;
 static int     Use_TAB;
 static int     Use_VT;
-static char    prcFile[65535];
-static char    udtFile[65535];
-static char    datFile[65535];
-static char    cstFile[65535];
-static char    ovrFile[65535];
-static char    hdrFile[65535];
-static char    setFile[65535];
-static char    enuFile[65535];
+static char    prcFile[32768];
+static char    udtFile[32768];
+static char    datFile[32768];
+static char    cstFile[32768];
+static char    ovrFile[32768];
+static char    hdrFile[32768];
+static char    setFile[32768];
+static char    enuFile[32768];
 static char    *szTmp;
 static char    *Src;
 static char    *AbortSrc;
@@ -614,35 +614,35 @@ static FILE   *FP68;
 static FILE   *fpdef;
 static int     SFPOINTER;
 static int     WithCnt;
-static char    ByrefVars[1024][65535];
+static char    ByrefVars[1024][32768];
 static int     LoopLocalVar[256];
 static int     BaseTypeDefsCnt[16];
-static char    Modules[256][65535];
+static char    Modules[256][32768];
 static int     ModuleLineNos[256];
 static FILE   *FPtr[256];
-static char    Stk[4096][65535];
+static char    Stk[4096][32768];
 static ProtoStore ProtoType[1024];
-static char    SrcStk[128][65535];
-static char    SplitStk[128][65535];
-static char    CaseStk[256][65535];
+static char    SrcStk[128][32768];
+static char    SplitStk[128][32768];
+static char    CaseStk[256][32768];
 static int     CaseElseFlag[256];
-static char    Entry[256][65535];
-static char    Xit[256][65535];
-static char    LocalDynArrName[256][65535];
-static char    GlobalDynaStr[256][65535];
-static char    DynaStr[256][65535];
-static char    StartSub[32][65535];
-static char    ExitSub[32][65535];
-static char    Library[MaxLib][65535];
+static char    Entry[256][32768];
+static char    Xit[256][32768];
+static char    LocalDynArrName[256][32768];
+static char    GlobalDynaStr[256][32768];
+static char    DynaStr[256][32768];
+static char    StartSub[32][32768];
+static char    ExitSub[32][32768];
+static char    Library[MaxLib][32768];
 static int     GlobalVarHash[MaxGlobalVars];
 static VarInfo GlobalVars[MaxGlobalVars];
 static VarInfo LocalVars[MaxLocalVars];
 static UserTypeDefs TypeDefs[MaxTypes];
 static char    DllDecl[800][512];
 static char    Loadlibs[128][512];
-static char    HFiles[128][65535];
-static char    TypeName[16][65535];
-static char    WithVar[8][65535];
+static char    HFiles[128][32768];
+static char    TypeName[16][32768];
+static char    WithVar[8][32768];
 
 
 
@@ -836,7 +836,7 @@ void    FreeGlobals (void);
 
 static char* VarTypeLookup[]=
 {
-  "int","int","char *","double","float","FILE *","long double"
+  "int","char *","double","float","FILE *","long double"
 };
 
 static char VarConst[2][8]=
@@ -892,8 +892,8 @@ static char* ReservedWord[]=
 // -------------------------------------------
 // 2022-07-26 Armando Rivera
 // After a LONG time away....
-//   * Changed max size of szTmp$, Src$, and AbortSrc$ (65535)to avoid potential buffer overflows
-//   * Changed max size of WarnMsg$ (65536) to avoid potential buffer overflow
+//   * Changed max size of szTmp$, Src$, and AbortSrc$ (32768)to avoid potential buffer overflows
+//   * Changed max size of WarnMsg$ (32768) to avoid potential buffer overflow
 //   * Removed the "register" decorator from EOF function to comply with C++17 standard
 //   * The above addressed warnings thrown by C++17, which is the standard on modern Linux.
 //   * Removed cdecl/stdcall from "Declare Function" (dynamic linking), since cdecl is the standard on *nix systems
@@ -2187,11 +2187,11 @@ int main (int argc, PCHAR* argv)
 {
   G_argc=argc;
   G_argv=argv;
-  szTmp=(char*)calloc(256+65535,1);
-  Src=(char*)calloc(256+65535,1);
-  AbortSrc=(char*)calloc(256+65535,1);
-  WarnMsg=(char*)calloc(256+65535+1,1);
-  RmLibs=(char*)calloc(256+32767,1);
+  szTmp=(char*)calloc(256+32768,1);
+  Src=(char*)calloc(256+32768,1);
+  AbortSrc=(char*)calloc(256+32768,1);
+  WarnMsg=(char*)calloc(256+32768+1,1);
+  RmLibs=(char*)calloc(256+32768,1);
   static   int  bitz;
   memset(&bitz,0,sizeof(bitz));
   ProtoCnt=0;
@@ -2212,10 +2212,10 @@ int main (int argc, PCHAR* argv)
   if(command(-1)[0]==0)
     {
  #if defined (__APPLE__)
-      printf((char*)"%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018");
+      printf((char*)"%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2022");
  #else
       printf((char*)"%s\n","MBC4: Based on Linux BCX by Mike Henning (c) 2009");
-      printf((char*)"%s%s\n","(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF);
+      printf((char*)"%s%s\n","(c) 2009-2022 Armando Rivera with additional code (c) 2009 John Jacques",LF);
  #endif
       printf((char*)"%s%s%s","Version ",Version,"  Compiled with ");
 // FP3
@@ -2322,10 +2322,10 @@ int main (int argc, PCHAR* argv)
       printf((char*)"%s%s\n","MBC Version ",Version);
  #if defined (__APPLE__)
       IsApple=TRUE;
-      printf((char*)"%s%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2018",LF);
+      printf((char*)"%s%s\n","MBC4:  Ported to Mac OSX by Armando Rivera (c) 2009-2022",LF);
  #else
       printf((char*)"%s\n","MBC4: Based on Linux BCX by Mike Henning (c) 2009");
-      printf((char*)"%s%s\n","(c) 2009-2018 Armando Rivera with additional code (c) 2009 John Jacques",LF);
+      printf((char*)"%s%s\n","(c) 2009-2022 Armando Rivera with additional code (c) 2009 John Jacques",LF);
  #endif
       if(bitz==64)
         {
@@ -2446,7 +2446,7 @@ READSRCLINE:;
       if(SplitCnt==0)
         {
           Src[0]=0;
-          AR_fgets_retval=fgets(Src,65535,SourceFile);
+          AR_fgets_retval=fgets(Src,32768,SourceFile);
           if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
           ModuleLineNos[ModuleNdx]++;
           StripCode(Src);
@@ -2722,17 +2722,17 @@ READNEXTLINE:;
   while(!EoF(FP2))
     {
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,65535,FP2);
+      AR_fgets_retval=fgets(Z,32768,FP2);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       fprintf(FP3,(char*)"%s\n",Z);
     }
-  char Lastlyne[2048];
+  char Lastlyne[32768];
   *Lastlyne=0;
   while(!EoF(FP1))
     {
       static int     bMainOut=0;
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,65535,FP1);
+      AR_fgets_retval=fgets(Z,32768,FP1);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       if(iMatchLft(Lastlyne,"#if"))
         {
@@ -2761,7 +2761,7 @@ READNEXTLINE:;
           while(str_cmp(trim(Z),"{")!=0)
             {
               Z[0]=0;
-              AR_fgets_retval=fgets(Z,65535,FP1);
+              AR_fgets_retval=fgets(Z,32768,FP1);
               if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
               fprintf(FP3,(char*)"%s\n",Z);
             }
@@ -2920,7 +2920,7 @@ void ProcessSetCommand (int GS)
   int     ii;
   int     j;
   int     SetString=0;
-  char CVar[2048];
+  char CVar[32768];
   int     vt;
   static  FILE   *SaveFP;
   memset(&SaveFP,0,sizeof(SaveFP));
@@ -2967,7 +2967,7 @@ void ProcessSetCommand (int GS)
         {
           fprintf(Outfile,(char*)"%s%s",Scoot,VarCode.StaticOut);
         }
-       char  lszTmp[65535];
+       char  lszTmp[32768];
       *lszTmp=0;
       strcpy(CVar,Clean(Stk[2]));
       ValidVar(CVar);
@@ -2978,7 +2978,7 @@ void ProcessSetCommand (int GS)
         }
       if(vt==vt_STRVAR&&str_cmp(lszTmp,"")!=0)
         {
-          strcat(lszTmp,"[65535]");
+          strcat(lszTmp,"[32768]");
         }
       if(!InFunc)
         {
@@ -3000,14 +3000,14 @@ void ProcessSetCommand (int GS)
         {
           fprintf(Outfile,(char*)"%s%s%s%s%s",Scoot,"static ",Tipe," ",CVar);
         }
-      char DimType[2048];
+      char DimType[32768];
       int     IsPointer;
       int     id;
       strcpy(DimType,RemoveStr(Tipe,"*"));
       GetTypeInfo(Tipe, &IsPointer, &id, &vt);
       if(vt==vt_STRVAR)
         {
-          strcat(DimType,"[65535]");
+          strcat(DimType,"[32768]");
         }
       if(!InFunc)
         {
@@ -3029,7 +3029,7 @@ void ProcessSetCommand (int GS)
         }
       if(SetString==vt_STRVAR&&j==1)
         {
-          fprintf(Outfile,(char*)"%s","[65535]=");
+          fprintf(Outfile,(char*)"%s","[32768]=");
         }
       else
         {
@@ -3049,7 +3049,7 @@ void ProcessSetCommand (int GS)
   while(!EoF(SourceFile))
     {
       Src[0]=0;
-      AR_fgets_retval=fgets(Src,65535,SourceFile);
+      AR_fgets_retval=fgets(Src,32768,SourceFile);
       if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
       ModuleLineNos[ModuleNdx]++;
       StripCode(Src);
@@ -3083,9 +3083,9 @@ void ProcessSetCommand (int GS)
 
 int Directives (void)
 {
-  char lszTmp[2048];
+  char lszTmp[32768];
   int     i;
-  char COutputFile[2048];
+  char COutputFile[32768];
   if(*Src==35||*Src==36)
     {
       strcpy(Z,rtrim(lcase(left(Src,6))));
@@ -3131,7 +3131,7 @@ int Directives (void)
           }
         if(str_cmp(Z,"$execo")==0)
           {
-            static char SrcExt[2048];
+            static char SrcExt[32768];
             memset(&SrcExt,0,sizeof(SrcExt));
             PassOne=1;
             XParse(Src);
@@ -3158,7 +3158,7 @@ int Directives (void)
               }
             if(Use_IOS)
               {
-                static char IOS_COMPILER[2048];
+                static char IOS_COMPILER[32768];
                 memset(&IOS_COMPILER,0,sizeof(IOS_COMPILER));
                 strcpy(IOS_COMPILER,"/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/g++");
                 if(strlen(Stk[2])>0)
@@ -3349,9 +3349,9 @@ int Directives (void)
           }
         if(str_cmp(Z,"$resou")==0)
           {
-            static char resAlias[2048];
+            static char resAlias[32768];
             memset(&resAlias,0,sizeof(resAlias));
-            static char resFile[2048];
+            static char resFile[32768];
             memset(&resFile,0,sizeof(resFile));
             Use_Embed=TRUE;
             PassOne=1;
@@ -3413,7 +3413,7 @@ int Directives (void)
           }
         if(str_cmp(Z,"$inclu")==0 ||  str_cmp(Z,"$modul")==0)
           {
-            char orgfileName[2048];
+            char orgfileName[32768];
             strcpy(szFile,trim(RemoveStr(mid(Src,9),DQ)));
             strcpy(orgfileName,szFile);
             if(str_cmp(left(szFile,1),"<")==0)
@@ -3529,7 +3529,7 @@ int Directives (void)
                     Abort("$Interface Without $EndInterface");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,65535,SourceFile);
+                AR_fgets_retval=fgets(Src,32768,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 if(iMatchLft(ltrim(Src),"$endinterface"))
@@ -3551,7 +3551,7 @@ int Directives (void)
                     Abort("Unbalanced $Comment");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,65535,SourceFile);
+                AR_fgets_retval=fgets(Src,32768,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 StripTabs();
@@ -3574,7 +3574,7 @@ int Directives (void)
                     Abort("Unbalanced $Ccode");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,65535,SourceFile);
+                AR_fgets_retval=fgets(Src,32768,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 StripTabs();
@@ -3635,7 +3635,7 @@ int Directives (void)
                     Abort("Unbalanced $Header");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,65535,SourceFile);
+                AR_fgets_retval=fgets(Src,32768,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 StripTabs();
@@ -3664,7 +3664,7 @@ int Directives (void)
                     Abort("Unbalanced $Asm");
                   }
                 Src[0]=0;
-                AR_fgets_retval=fgets(Src,65535,SourceFile);
+                AR_fgets_retval=fgets(Src,32768,SourceFile);
                 if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                 ModuleLineNos[ModuleNdx]++;
                 if(SrcFlag)
@@ -3826,11 +3826,10 @@ char * PrintWriteFormat (int DoWrite)
 {
   char *BCX_RetStr={0};
    ARGTYPE  Stak[128];
-  char Frmat[2048];
-  char Arg[2048];
-  char *ZZ;
-  ZZ=(char*)calloc(256+65535,1);
-  char Cast[2048];
+  char Frmat[32768];
+  char Arg[32768];
+  char ZZ[32768];
+  char Cast[32768];
   int     NewLineFlag=0;
   int     Argcount=0;
   int     i=0;
@@ -4086,7 +4085,6 @@ PRINTWRITELABEL:;
       strcat(Frmat,"\\n");
     }
   BCX_RetStr=join(4,"printf((char*)",enc(Frmat),Clean(Arg),");");
-  if(ZZ)free(ZZ);
   return BCX_RetStr;
 }
 
@@ -4098,14 +4096,14 @@ void EmitInputCode (void)
   int     i=0;
   int     j=0;
   int     l=0;
-  char Arg[2048];
-  char Tmp[2048];
-  char Frmat[2048];
-  static char Stak[128][2048];
+  char Arg[32768];
+  char Tmp[32768];
+  char Frmat[32768];
+  static char Stak[128][32768];
   memset(&Stak,0,sizeof(Stak));
-  char Y[2048];
+  char Y[32768];
   char *ZZ;
-  ZZ=(char*)calloc(256+65535,1);
+  ZZ=(char*)calloc(256+32768,1);
   Use_Inputbuffer=TRUE;
   Use_Scan=TRUE;
   Use_Split=TRUE;
@@ -4268,13 +4266,13 @@ void EmitFileInputCode (void)
   int     VarCnt=0;
   int     i;
   int     j;
-  char Arg[2048];
-  char Frmat[2048];
-  char FHandle[2048];
-  char Y[2048];
+  char Arg[32768];
+  char Frmat[32768];
+  char FHandle[32768];
+  char Y[32768];
   char *ZZ;
-  ZZ=(char*)calloc(256+65535,1);
-  static char Stak[128][2048];
+  ZZ=(char*)calloc(256+32768,1);
+  static char Stak[128][32768];
   memset(&Stak,0,sizeof(Stak));
   *Arg=0;
   *Frmat=0;
@@ -4418,7 +4416,7 @@ DOAGAIN:;
         break;
       }
     }
-  fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,65535,",FHandle,");");
+  fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(InputBuffer,32768,",FHandle,");");
   fprintf(Outfile,(char*)"%s%s\n",Scoot,"if(InputBuffer[strlen(InputBuffer)-1]== 10)");
   fprintf(Outfile,(char*)"%s%s\n",Scoot,"   InputBuffer[strlen(InputBuffer)-1]=0;");
   fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,"ScanError = scan(InputBuffer,",enc(Frmat),Arg,");\n");
@@ -4430,8 +4428,8 @@ DOAGAIN:;
 void AddFuncs (void)
 {
   char *ZZ;
-  ZZ=(char*)calloc(256+65535,1);
-  char Last[2048];
+  ZZ=(char*)calloc(256+32768,1);
+  char Last[32768];
   *Last=0;
   CloseAll();
   if((FP1=fopen(prcFile,"r"))==0)
@@ -4455,7 +4453,7 @@ void AddFuncs (void)
   while(!EoF(FP1))
     {
       ZZ[0]=0;
-      AR_fgets_retval=fgets(ZZ,65535,FP1);
+      AR_fgets_retval=fgets(ZZ,32768,FP1);
       if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
       if(instr_b(ZZ,"DefWindowProc"))
         {
@@ -4485,7 +4483,7 @@ void AddFuncs (void)
 
 int CheckLocal (char *ZZ, int* varidx)
 {
-  char TT[2048];
+  char TT[32768];
   if(LocalVarCnt)
     {
       strcpy(TT,Clean(ZZ));
@@ -4513,7 +4511,7 @@ int CheckGlobal (char *ZZ, int* varidx)
 {
   int     hn;
   int     s;
-  char TT[2048];
+  char TT[32768];
   strcpy(TT,Clean(ZZ));
   RemoveAll(TT," &*()",1);
   if(instr_b(TT,"["))
@@ -4537,7 +4535,7 @@ int CheckGlobal (char *ZZ, int* varidx)
 
 int CheckType (char *ZZ)
 {
-  char Keyword[2048];
+  char Keyword[32768];
   int     varid=0;
   int     i;
   strcpy(Keyword,lcase(ZZ));
@@ -4738,7 +4736,7 @@ int RestrictedWords (char *ZZ)
 
 int DataType (char *ZZ)
 {
-  char Keyword[2048];
+  char Keyword[32768];
   int     i;
   if(ZZ[0]==34)
     {
@@ -5171,7 +5169,7 @@ void CloseAll (void)
 char * Clean (char *ZZ)
 {
   char *BCX_RetStr={0};
-  char Tmp[2048];
+  char Tmp[32768];
   if(inchr(ZZ,"%"))
     {
       if(str_cmp(trim(ZZ),"%")==0)
@@ -5267,7 +5265,7 @@ void Warning (char * ZZ,int WarnLvl)
 
 PCHAR GetVarTypeName (int i)
 {
-  static char A[2048];
+  static char A[32768];
   for(;;)
   {
     if(i==vt_INTEGER)
@@ -5465,7 +5463,7 @@ void AddLibrary (char *LibName)
   static int     nTimes;
   static int     nLibNdx;
   memset(&nLibNdx,0,sizeof(nLibNdx));
-  char TempLibName[2048];
+  char TempLibName[32768];
   strcpy(TempLibName,lcase(LibName));
   if(!inchr(TempLibName,DQ)&&!inchr(TempLibName,"<"))
     {
@@ -5512,7 +5510,7 @@ void EmitLibs (void)
 {
   static int     nTimes;
   static int     nCount;
-  char ltmp[2048];
+  char ltmp[32768];
   if(nTimes>0)
     {
       return;
@@ -5594,9 +5592,9 @@ LIBEND:;
 
 void AddGlobal (char * GlobalName,int GlobalType,int GlobalDef,char * GlobalDim,int GlobalPtr,int GlobalFS,int GlobalExtn,int iEmitted,int iConst)
 {
-  char FirstVar[2048];
-  char SecondVar[2048];
-  char Warn[2048];
+  char FirstVar[32768];
+  char SecondVar[32768];
+  char Warn[32768];
   int     ss;
   int     s;
   if(RestrictedWords(GlobalName)&&TestState)
@@ -5650,9 +5648,9 @@ void AddGlobal (char * GlobalName,int GlobalType,int GlobalDef,char * GlobalDim,
 void AddLocal (char * LocalName,int LocalType,int LocalDef,char * LocalDim,int LocalPtr,int LocalFS,int iEmitted,int iConst)
 {
   int     varid=0;
-  char FirstVar[2048];
-  char SecondVar[2048];
-  char Warn[2048];
+  char FirstVar[32768];
+  char SecondVar[32768];
+  char Warn[32768];
   int     s;
   if(LocalVarCnt&&TestState)
     {
@@ -5897,7 +5895,7 @@ void PostProcess (void)
       while(!EoF(FP1))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,65535,FP1);
+          AR_fgets_retval=fgets(Z,32768,FP1);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           printf((char*)"%s\n",Z);
         }
@@ -5966,7 +5964,7 @@ void PostProcess (void)
 
 void XParse (char *Arg)
 {
-  char lszTmp[2048];
+  char lszTmp[32768];
   int     j;
   int     i=0;
   int     Gapflag=0;
@@ -6220,7 +6218,7 @@ void XParse (char *Arg)
     }
   if(!InTypeDef)
     {
-      char lsz[2048];
+      char lsz[32768];
       int     Res=1;
       strcpy(lsz, join(3,SPC,Keyword1,SPC));
       if(iMatchNQ(" dim , local , global , raw , static , shared , dynamic , auto , register , extern ",lsz))
@@ -6290,7 +6288,7 @@ void TokenSubstitutions (void)
   int     A;
   int     CompPtr;
   int     CompToken;
-  char Keyword[2048];
+  char Keyword[32768];
   int     a;
   int     i;
   int     j;
@@ -6606,7 +6604,7 @@ void TokenSubstitutions (void)
               if(str_cmp(Keyword,"bcx_font")==0)
                 {
                   strcpy(Stk[Tmp],ucase(Stk[Tmp]));
-                  char tmp[2048];
+                  char tmp[32768];
                   strcpy(tmp,Clean(ucase(Stk[Tmp+1])));
                   for(;;)
                   {
@@ -7178,7 +7176,7 @@ void TokenSubstitutions (void)
                               Abort("Unbalanced ENUM");
                             }
                           Src[0]=0;
-                          AR_fgets_retval=fgets(Src,65535,SourceFile);
+                          AR_fgets_retval=fgets(Src,32768,SourceFile);
                           if(Src[strlen(Src)-1]==10)Src[strlen(Src)-1]=0;
                           ModuleLineNos[ModuleNdx]++;
                           StripCode(Src);
@@ -7286,9 +7284,9 @@ void TokenSubstitutions (void)
                 {
                   strcpy(Stk[Tmp],"FindInType");
                   Use_FindInType=TRUE;
-                  char StMem[2048];
-                  char StName[2048];
-                  char VarName[2048];
+                  char StMem[32768];
+                  char StName[32768];
+                  char VarName[32768];
                   static   struct _functionParse  fp;
                   memset(&fp,0,sizeof(fp));
                   SepFuncArgs(Tmp, &fp,TRUE);
@@ -7401,13 +7399,13 @@ void TokenSubstitutions (void)
             {
               if(str_cmp(Keyword,"getprocaddress")==0)
                 {
-                  static char GlobalName[2048];
+                  static char GlobalName[32768];
                   memset(&GlobalName,0,sizeof(GlobalName));
                   static int     s;
                   memset(&s,0,sizeof(s));
                   static int     ss;
                   memset(&ss,0,sizeof(ss));
-                  static char tempA[2048];
+                  static char tempA[32768];
                   memset(&tempA,0,sizeof(tempA));
                   strcpy(GlobalName,Stk[Tmp-2]);
                   ss=HashNumber(GlobalName);
@@ -7426,7 +7424,7 @@ void TokenSubstitutions (void)
                     }
                   if(tempA[0]==0)
                     {
-                      static char LocalName[2048];
+                      static char LocalName[32768];
                       memset(&LocalName,0,sizeof(LocalName));
                       strcpy(LocalName,Stk[Tmp-2]);
                       if(LocalVarCnt)
@@ -8289,7 +8287,7 @@ void TokenSubstitutions (void)
                 }
               if(str_cmp(Keyword,"reccount")==0)
                 {
-                  char length[2048];
+                  char length[32768];
                   if(DataType(Stk[Tmp+2])==vt_NUMBER)
                     {
                       strcpy(Stk[Tmp+2], join(2,"FP",Stk[Tmp+2]));
@@ -8964,7 +8962,7 @@ void JoinStrings (int i, int inif)
   int     j=0;
   int     l=0;
   int     sj=i;
-  char t[2048];
+  char t[32768];
   int     vt;
   while(i<=Ndx)
     {
@@ -9137,8 +9135,8 @@ void Transforms (void)
   int     a;
   int     i;
   int     j;
-  char Keyword[2048];
-  char lszTmp[2048];
+  char Keyword[32768];
+  char lszTmp[32768];
   *Keyword=0;
   *lszTmp=0;
   if(Ndx==3&&!WithCnt)
@@ -9224,10 +9222,10 @@ void Transforms (void)
       {
         if(str_cmp(Keyword,"declare")==0 && iMatchWrd(Stk[4],"lib"))
           {
-            char alias[2048];
+            char alias[32768];
             int     i;
             int     idx=-1;
-            char AR_DllName[2048];
+            char AR_DllName[32768];
             strcpy(Stk[5],RemoveStr(Stk[5],DQ));
             for(i=0; i<=LoadLibsCnt-1; i+=1)
               {
@@ -9290,8 +9288,8 @@ void Transforms (void)
       {
         if(str_cmp(Keyword,"iremove")==0)
           {
-            char Mat[2048];
-            char Fat[2048];
+            char Mat[32768];
+            char Fat[32768];
             *Mat=0;
             *Fat=0;
             for(i=2; i<=Ndx; i+=1)
@@ -9327,9 +9325,9 @@ void Transforms (void)
               }
             int     W;
             int     I;
-            char VV[2048];
-            char RR[2048];
-            char WW[2048];
+            char VV[32768];
+            char RR[32768];
+            char WW[32768];
             *VV=0;
             *RR=0;
             *WW=0;
@@ -9396,8 +9394,8 @@ void Transforms (void)
       {
         if(str_cmp(Keyword,"remove")==0)
           {
-            char Mat[2048];
-            char Fat[2048];
+            char Mat[32768];
+            char Fat[32768];
             *Mat=0;
             *Fat=0;
             for(i=2; i<=Ndx; i+=1)
@@ -9433,9 +9431,9 @@ void Transforms (void)
               }
             int     W;
             int     I;
-            char VV[2048];
-            char RR[2048];
-            char WW[2048];
+            char VV[32768];
+            char RR[32768];
+            char WW[32768];
             *VV=0;
             *RR=0;
             *WW=0;
@@ -9602,10 +9600,10 @@ void Parse (char *Arg)
   int     i;
   int     j;
   int     k;
-  char lszTmp[2048];
-  char L_Stk_1[2048];
-  char L_Stk_2[2048];
-  char Var1[2048];
+  char lszTmp[32768];
+  char L_Stk_1[32768];
+  char L_Stk_2[32768];
+  char Var1[32768];
   int     Plus2Amp=0;
   int     vt;
   *L_Stk_1=0;
@@ -10377,7 +10375,7 @@ void FuncSubDecs1 (char *s)
             {
               if(DataType(Stk[i-1])==vt_STRVAR)
                 {
-                  strcpy(Stk[i-1], join(2,Stk[i-1],"[][65535]"));
+                  strcpy(Stk[i-1], join(2,Stk[i-1],"[][32768]"));
                 }
               strcpy(Stk[i-1], join(2,"*",Stk[i-1]));
             }
@@ -10544,7 +10542,7 @@ int DefsID (char *ZZ)
 
 void GetTypeInfo (char *stk, int* IsPointer, int* UdtIdx, int* vtCode)
 {
-  char Var1[2048];
+  char Var1[32768];
   (*IsPointer)=tally(stk,"*");
   strcpy(Var1,RemoveStr(stk,"*"));
   if(str_cmp(right(Var1,6),"_CLASS")==0)
@@ -10593,7 +10591,7 @@ char * GetElement (int StartStk, int* vt, int* dms, int id)
   char *BCX_RetStr={0};
   int     BC=0;
   int     i;
-  char ZZ[2048];
+  char ZZ[32768];
   for(i=StartStk+1; i<=Ndx; i+=1)
     {
       if(str_cmp(Stk[i],"[")==0)
@@ -10673,7 +10671,7 @@ void HandleNonsense (void)
 void ValidVar (char *v)
 {
   char *ZZ;
-  ZZ=(char*)calloc(256+65535,1);
+  ZZ=(char*)calloc(256+32768,1);
   if(!isalpha(*v)&&*v!=95)
     {
       if(!iMatchLft(v,"(*"))
@@ -10708,7 +10706,7 @@ void PointerFix (void)
 void DimDynaString (char *SVar, int DG, int s)
 {
   int     A;
-  char DS[2048];
+  char DS[32768];
   strcpy(DS, join(5,"if(",SVar,")free(",SVar,");"));
   if(InFunc&&(IsLocal||IsDim||IsRaw||IsAuto||IsRegister)&&DG==0)
     {
@@ -10776,7 +10774,7 @@ int SubFuncTest (void)
 int DimSubFunc (int IsDynamic)
 {
   int     i;
-  char lszTmp[2048];
+  char lszTmp[32768];
   int     StartPoint=3;
   int     Funptr=0;
   *lszTmp=0;
@@ -10873,13 +10871,13 @@ void Emit (void)
   int     id=0;
   int     k=0;
   int     vt=0;
-  char Arg[2048];
-  char CVar[2048];
-  char Keyword[2048];
-  char lszTmp[2048];
-  char Var1[2048];
+  char Arg[32768];
+  char CVar[32768];
+  char Keyword[32768];
+  char lszTmp[32768];
+  char Var1[32768];
   char *ZZ;
-  ZZ=(char*)calloc(256+65535,1);
+  ZZ=(char*)calloc(256+32768,1);
   int     IsSubOrFuncPtr;
   int     dms;
   static int     NoBreak;
@@ -11034,11 +11032,11 @@ EMITAGAIN:;
         int     For2=0;
         int     For3=0;
         int     For4=0;
-        char Reg[2048];
-        char xxx[2048];
-        char yyy[2048];
-        char zzz[2048];
-        char qqq[2048];
+        char Reg[32768];
+        char xxx[32768];
+        char yyy[32768];
+        char zzz[32768];
+        char qqq[32768];
         *Reg=0;
         *xxx=0;
         *yyy=0;
@@ -11419,9 +11417,9 @@ EMITAGAIN:;
           }
         else
           {
-            char Stptr[2048];
-            char StMem[2048];
-            char StName[2048];
+            char Stptr[32768];
+            char StMem[32768];
+            char StName[32768];
             strcpy(StMem,remain(Clean(Stk[Ndx-2]),"."));
             strcpy(Stptr,extract(Stk[Ndx-2],"."));
             if(CheckLocal(Stptr, &i)!=vt_UNKNOWN)
@@ -12083,8 +12081,8 @@ EMITAGAIN:;
       }
     if(str_cmp(Lookup,"const")==0)
       {
-        char Buffer[2048];
-        char Sep[2048];
+        char Buffer[32768];
+        char Sep[32768];
         *Buffer=0;
         *Sep=0;
         *Stk[1]=0;
@@ -12369,7 +12367,7 @@ EMITAGAIN:;
                 strcpy(Stk[2],Clean(Stk[2]));
               }
             fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"printf(",enc("%s"),",",Stk[2],");");
-            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Clean(Stk[3]),",65535,stdin);");
+            fprintf(Outfile,(char*)"%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Clean(Stk[3]),",32768,stdin);");
             fprintf(Outfile,(char*)"%s%s%s%s%s\n",Scoot,Clean(Stk[3]),"[strlen(",Clean(Stk[3]),")-1]=0;");
             break;
           }
@@ -12415,7 +12413,7 @@ EMITAGAIN:;
               }
           }
         fprintf(Outfile,(char*)"%s%s%s\n",Scoot,Var,"[0]=0;");
-        fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Var,",65535,",Clean(Stk[2]),");");
+        fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Scoot,"AR_fgets_retval=fgets(",Var,",32768,",Clean(Stk[2]),");");
         fprintf(Outfile,(char*)"%s%s%s%s%s%s",Scoot,"if(",CVar,"[strlen(",CVar,")-1]==10)");
         fprintf(Outfile,(char*)"%s%s%s%s\n",CVar,"[strlen(",CVar,")-1]=0;");
         if(Var1[0]!=0)
@@ -12685,7 +12683,7 @@ EMITAGAIN:;
       {
         static   struct _functionParse  FP;
         memset(&FP,0,sizeof(FP));
-        char TempProto[2048];
+        char TempProto[32768];
         FuncSubDecs1("sub");
         SepFuncArgs(3, &FP,TRUE);
         strcpy(TempProto,MakeDecProto( &FP));
@@ -12702,9 +12700,9 @@ EMITAGAIN:;
       }
     if(str_cmp(Lookup,"function")==0 ||  str_cmp(Lookup,"sub")==0 ||  str_cmp(Lookup,"constructor")==0 ||  str_cmp(Lookup,"destructor")==0)
       {
-        static char CTOR_USE[2048];
+        static char CTOR_USE[32768];
         memset(&CTOR_USE,0,sizeof(CTOR_USE));
-        static char CTOR_SRC[2048];
+        static char CTOR_SRC[32768];
         memset(&CTOR_SRC,0,sizeof(CTOR_SRC));
         static int     New_Ndx;
         memset(&New_Ndx,0,sizeof(New_Ndx));
@@ -12955,7 +12953,7 @@ EMITAGAIN:;
           }
         else if(InNameSpace)
           {
-            char szCPP_SF1[2048];
+            char szCPP_SF1[32768];
             *szCPP_SF1=0;
             if(iMatchLft(Lookup,"public"))
               {
@@ -13247,7 +13245,7 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"dynamic")==0)
       {
         int     w=0;
-        char SOF[2048];
+        char SOF[32768];
         HandleNonsense();
         strcpy(CVar,Clean(Stk[2]));
         ValidVar(CVar);
@@ -13309,7 +13307,7 @@ EMITAGAIN:;
                   }
               }
             dms++;
-            strcat(ZZ,",65535");
+            strcat(ZZ,",32768");
           }
         if(InTypeDef)
           {
@@ -13348,7 +13346,7 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"redim")==0)
       {
         int     IsPreserve;
-        char SOF[2048];
+        char SOF[32768];
          VarInfo*  VI;
         int     vt1=0;
         int     IsSplat=0;
@@ -13442,7 +13440,7 @@ EMITAGAIN:;
               {
                 Ndx--;
                 strcpy(Stk[Ndx],"[");
-                strcpy(Stk[++Ndx],"65535");
+                strcpy(Stk[++Ndx],"32768");
                 strcpy(Stk[++Ndx],"]");
               }
             else
@@ -13456,7 +13454,7 @@ EMITAGAIN:;
               {
                 Ndx++;
                 strcpy(Stk[Ndx],"[");
-                strcpy(Stk[++Ndx],"65535");
+                strcpy(Stk[++Ndx],"32768");
                 strcpy(Stk[++Ndx],"]");
               }
           }
@@ -13521,7 +13519,7 @@ EMITAGAIN:;
               {
                 strcpy(SOF,"char");
                 A++;
-                strcat(ZZ,",65535");
+                strcat(ZZ,",32768");
               }
             if(A!=dms)
               {
@@ -13563,9 +13561,9 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"dim")==0 ||  str_cmp(Lookup,"local")==0 ||  str_cmp(Lookup,"raw")==0 ||  str_cmp(Lookup,"static")==0 ||  str_cmp(Lookup,"auto")==0 ||  str_cmp(Lookup,"register")==0)
       {
         int     w=0;
-        char UseStatic[2048];
+        char UseStatic[32768];
         int     IsVolatile=0;
-        char IV[2048];
+        char IV[32768];
         IsVolatile=iMatchWrd(Stk[2],"volatile");
         if(IsVolatile)
           {
@@ -13676,7 +13674,7 @@ EMITAGAIN:;
             break;
           }
         int     iASoffset=0;
-        char sConst[2048];
+        char sConst[32768];
         int     iIsConst;
         if(iMatchWrd(Stk[Ndx-1],"as"))
           {
@@ -13716,8 +13714,8 @@ EMITAGAIN:;
               {
                 strcpy(Stk[Ndx],"char");
                 strcpy(Var,Stk[Ndx]);
-                strcat(DimType,"[65535]");
-                strcat(lszTmp,"[65535]");
+                strcat(DimType,"[32768]");
+                strcat(lszTmp,"[32768]");
               }
             if(InFunc||InTypeDef)
               {
@@ -13848,9 +13846,13 @@ EMITAGAIN:;
                 strcpy(lszTmp,ltrim(Clean(lszTmp)));
                 if(VType==vt_STRVAR)
                   {
-                    if(str_cmp(lszTmp,"[65535]")!=0)
+                    if(strlen(lszTmp)>0)
                       {
-                        strcat(lszTmp,"[2048]");
+                        printf((char*)"%s\n",lszTmp);
+                      }
+                    if(str_cmp(lszTmp,"[32768]")!=0)
+                      {
+                        strcat(lszTmp,"[32768]");
                       }
                   }
               }
@@ -13951,7 +13953,7 @@ EMITAGAIN:;
           }
         if(VType==vt_STRVAR&&str_cmp(lszTmp,"")!=0)
           {
-            strcat(lszTmp,"[65535]");
+            strcat(lszTmp,"[32768]");
           }
         if(IsVolatile)
           {
@@ -14026,7 +14028,7 @@ EMITAGAIN:;
           }
         if(vt==vt_STRVAR)
           {
-            strcat(DimType,"[65535]");
+            strcat(DimType,"[32768]");
           }
         if(IsVolatile)
           {
@@ -14041,7 +14043,7 @@ EMITAGAIN:;
     if(str_cmp(Lookup,"shared")==0 ||  str_cmp(Lookup,"global")==0)
       {
         int     w=0;
-        char SOF[2048];
+        char SOF[32768];
         int     IsShared;
         int     IsVolatile;
         IsSubOrFuncPtr=SubFuncTest();
@@ -14115,7 +14117,7 @@ EMITAGAIN:;
                 vt=vt_CHAR;
                 strcpy(SOF,"char");
                 dms++;
-                strcat(ZZ,",65535");
+                strcat(ZZ,",32768");
               }
             if(Use_GenFree)
               {
@@ -14157,7 +14159,7 @@ EMITAGAIN:;
           }
         if(vt==vt_STRVAR)
           {
-            strcat(DimType,"[65535]");
+            strcat(DimType,"[32768]");
           }
         if(IsShared)
           {
@@ -14351,7 +14353,7 @@ EMITAGAIN:;
         memset(&varid,0,sizeof(varid));
         static   struct _VarInfo*  vi;
         memset(&vi,0,sizeof(VarInfo *));
-        static char vr[2048];
+        static char vr[32768];
         memset(&vr,0,sizeof(vr));
         static int     brcnt;
         memset(&brcnt,0,sizeof(brcnt));
@@ -14533,8 +14535,8 @@ void Abort (char *Z)
   int     j=0;
   int     k=0;
   int     varnum=0;
-  char t[2048];
-  char frmt[2048];
+  char t[32768];
+  char frmt[32768];
   *WarnMsg=0;
   if(str_cmp(left(AbortSrc,11),"$BCXVERSION")==0)
     {
@@ -14894,10 +14896,10 @@ void DeclareVariables (void)
 {
   int     i;
   int     A;
-  char P[2048];
-  char VarName[2048];
-  char VarDim[2048];
-  char Storage[2048];
+  char P[32768];
+  char VarName[32768];
+  char VarDim[32768];
+  char Storage[32768];
   if((FP1=fopen(FileOut,"r"))==0)
    {
      fprintf(stderr,"Can't open file %s\n",FileOut);
@@ -14924,7 +14926,7 @@ void DeclareVariables (void)
   while(!EoF(FP3))
     {
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,65535,FP3);
+      AR_fgets_retval=fgets(Z,32768,FP3);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       fprintf(Outfile,(char*)"%s\n",ltrim(Z));
     }
@@ -14946,7 +14948,7 @@ void DeclareVariables (void)
       while(!EoF(FP8))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,65535,FP8);
+          AR_fgets_retval=fgets(Z,32768,FP8);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,(char*)"%s\n",Z);
         }
@@ -14971,7 +14973,7 @@ void DeclareVariables (void)
       while(!EoF(FP3))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,65535,FP3);
+          AR_fgets_retval=fgets(Z,32768,FP3);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,(char*)"%s%s\n",Scoot,Z);
         }
@@ -15140,7 +15142,7 @@ void DeclareVariables (void)
         }
       if(Use_Inputbuffer==TRUE)
         {
-          fprintf(Outfile,(char*)"%s\n","char    InputBuffer[65535];");
+          fprintf(Outfile,(char*)"%s\n","char    InputBuffer[32768];");
         }
       if(Use_Findfirst||Use_Findnext)
         {
@@ -15222,7 +15224,7 @@ void DeclareVariables (void)
             }
         }
     }
-  char LastDef[2048];
+  char LastDef[32768];
   int     LastLevel;
   *LastDef=0;
   LastLevel=1;
@@ -15295,7 +15297,7 @@ void DeclareVariables (void)
   if(DllCnt)
     {
       int     i;
-      char AR_DllName[2048];
+      char AR_DllName[32768];
       fprintf(Outfile,(char*)"%s\n","");
       fprintf(Outfile,(char*)"%s\n","// **********[ DLL Declarations ]**********");
       fprintf(Outfile,(char*)"%s\n","");
@@ -15336,7 +15338,7 @@ void DeclareVariables (void)
       while(!EoF(FP5))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,65535,FP5);
+          AR_fgets_retval=fgets(Z,32768,FP5);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,(char*)"%s\n",Z);
         }
@@ -15350,7 +15352,7 @@ void DeclareVariables (void)
   while(!EoF(FP1))
     {
       Z[0]=0;
-      AR_fgets_retval=fgets(Z,65535,FP1);
+      AR_fgets_retval=fgets(Z,32768,FP1);
       if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
       fprintf(Outfile,(char*)"%s\n",Z);
     }
@@ -15406,12 +15408,12 @@ int GetNumArgs (int Strt,int* NdxPos)
 
 void GetVarCode (VARCODE* varcode)
 {
-  char CB[2048];
-  char PT[2048];
-  char PTH[2048];
-  char VAR[2048];
+  char CB[32768];
+  char PT[32768];
+  char PTH[32768];
+  char VAR[32768];
   int     vn;
-  char RF[2048];
+  char RF[32768];
   if(varcode->Method==mt_Opts3)
     {
       strcat(varcode->Proto,varcode->Token);
@@ -15489,7 +15491,7 @@ void GetVarCode (VARCODE* varcode)
               else
                 {
                   strcpy(varcode->Header, join(4,varcode->Header,"char ",RemoveStr(Clean(varcode->Token),"*"),", "));
-                  strcat(varcode->Proto,"char [][65535], ");
+                  strcat(varcode->Proto,"char [][32768], ");
                 }
               break;
             }
@@ -15686,9 +15688,9 @@ void GetVarCode (VARCODE* varcode)
 
 void AddProtos (void)
 {
-  char SaveMain[2048];
+  char SaveMain[32768];
   char *ZZ;
-  ZZ=(char*)calloc(256+65535,1);
+  ZZ=(char*)calloc(256+32768,1);
   int     A;
   *SaveMain=0;
   if((FP1=fopen(FileOut,"r"))==0)
@@ -15704,7 +15706,7 @@ void AddProtos (void)
   while(!EoF(FP1))
     {
       ZZ[0]=0;
-      AR_fgets_retval=fgets(ZZ,65535,FP1);
+      AR_fgets_retval=fgets(ZZ,32768,FP1);
       if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
       if(instr_b(ZZ,"int main"))
         {
@@ -16328,7 +16330,7 @@ void AddProtos (void)
         }
       if(Use_Split)
         {
-          fprintf(Outfile,(char*)"%s\n","int     Split (char [][65535], char*, char*, int=0);");
+          fprintf(Outfile,(char*)"%s\n","int     Split (char [][32768], char*, char*, int=0);");
         }
       if(Use_DSplit)
         {
@@ -16454,7 +16456,7 @@ void AddProtos (void)
       fprintf(Outfile,(char*)"%s%s\n","//               ",BCX_STR_USR_PROTOS);
       fprintf(Outfile,(char*)"%s\n","// *************************************************");
       fprintf(Outfile,(char*)"%s\n","");
-      char LastDef[2048];
+      char LastDef[32768];
       int     LastLevel;
       *LastDef=0;
       LastLevel=1;
@@ -16556,12 +16558,12 @@ void AddProtos (void)
         }
     }
   fprintf(Outfile,(char*)"%s\n","");
-  char P[2048];
+  char P[32768];
   int     i;
-  char VarName[2048];
-  char VarDim[2048];
-  char Storage[2048];
-  char VAR[2048];
+  char VarName[32768];
+  char VarDim[32768];
+  char Storage[32768];
+  char VAR[32768];
   if(GlobalVarCnt>0)
     {
       fprintf(Outfile,(char*)"%s\n","");
@@ -16647,7 +16649,7 @@ void AddProtos (void)
       while(!EoF(FP8))
         {
           ZZ[0]=0;
-          AR_fgets_retval=fgets(ZZ,65535,FP8);
+          AR_fgets_retval=fgets(ZZ,32768,FP8);
           if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
           if(instr_b(ZZ,"overloaded"))
             {
@@ -16676,7 +16678,7 @@ void AddProtos (void)
       while(!EoF(FP5))
         {
           Z[0]=0;
-          AR_fgets_retval=fgets(Z,65535,FP5);
+          AR_fgets_retval=fgets(Z,32768,FP5);
           if(Z[strlen(Z)-1]==10)Z[strlen(Z)-1]=0;
           fprintf(Outfile,(char*)"%s\n",Z);
         }
@@ -16713,7 +16715,7 @@ void AddProtos (void)
   while(!EoF(FP1))
     {
       ZZ[0]=0;
-      AR_fgets_retval=fgets(ZZ,65535,FP1);
+      AR_fgets_retval=fgets(ZZ,32768,FP1);
       if(ZZ[strlen(ZZ)-1]==10)ZZ[strlen(ZZ)-1]=0;
       fprintf(Outfile,(char*)"%s%s\n",Scoot,ZZ);
     }
@@ -16731,43 +16733,43 @@ void AddProtos (void)
 
 void RunTimeFunctions (void)
 {
-  static char X1[2048];
+  static char X1[32768];
   memset(&X1,0,sizeof(X1));
-  static char O1[2048];
+  static char O1[32768];
   memset(&O1,0,sizeof(O1));
-  static char D1[2048];
+  static char D1[32768];
   memset(&D1,0,sizeof(D1));
-  static char D2[2048];
+  static char D2[32768];
   memset(&D2,0,sizeof(D2));
-  static char T0[2048];
+  static char T0[32768];
   memset(&T0,0,sizeof(T0));
-  static char T1[2048];
+  static char T1[32768];
   memset(&T1,0,sizeof(T1));
-  static char T2[2048];
+  static char T2[32768];
   memset(&T2,0,sizeof(T2));
-  static char T3[2048];
+  static char T3[32768];
   memset(&T3,0,sizeof(T3));
-  static char T4[2048];
+  static char T4[32768];
   memset(&T4,0,sizeof(T4));
-  static char T5[2048];
+  static char T5[32768];
   memset(&T5,0,sizeof(T5));
-  static char T6[2048];
+  static char T6[32768];
   memset(&T6,0,sizeof(T6));
-  static char T7[2048];
+  static char T7[32768];
   memset(&T7,0,sizeof(T7));
-  static char T8[2048];
+  static char T8[32768];
   memset(&T8,0,sizeof(T8));
-  static char T9[2048];
+  static char T9[32768];
   memset(&T9,0,sizeof(T9));
-  static char T10[2048];
+  static char T10[32768];
   memset(&T10,0,sizeof(T10));
-  static char T11[2048];
+  static char T11[32768];
   memset(&T11,0,sizeof(T11));
-  static char T12[2048];
+  static char T12[32768];
   memset(&T12,0,sizeof(T12));
-  static char T13[2048];
+  static char T13[32768];
   memset(&T13,0,sizeof(T13));
-  static char TDIR[2048];
+  static char TDIR[32768];
   memset(&TDIR,0,sizeof(TDIR));
   strcpy(D1,vchr(8,34,37,32,46,49,53,71,34));
   strcpy(D2,vchr(9,34,37,32,46,49,57,76,71,34));
@@ -16822,8 +16824,8 @@ void RunTimeFunctions (void)
           fprintf(Outfile,(char*)"%s\n","char *BCX_TmpStr (size_t Bites)");
           fprintf(Outfile,(char*)"%s\n","{");
           fprintf(Outfile,(char*)"%s\n","  static int   StrCnt;");
-          fprintf(Outfile,(char*)"%s\n","  static char *StrFunc[65535];");
-          fprintf(Outfile,(char*)"%s\n","  StrCnt=(StrCnt + 1) & 65535;");
+          fprintf(Outfile,(char*)"%s\n","  static char *StrFunc[32768];");
+          fprintf(Outfile,(char*)"%s\n","  StrCnt=(StrCnt + 1) & 32768;");
           fprintf(Outfile,(char*)"%s\n","  if(StrFunc[StrCnt]) free (StrFunc[StrCnt]);");
           fprintf(Outfile,(char*)"%s\n","    #if defined BCX_MAX_VAR_SIZE");
           fprintf(Outfile,(char*)"%s\n","  if(Bites*sizeof(char)>BCX_MAX_VAR_SIZE)");
@@ -18334,7 +18336,7 @@ void RunTimeFunctions (void)
       fprintf(Outfile,(char*)"%s\n","{");
       fprintf(Outfile,(char*)"%s\n"," if(MaxCnt < 1) return -1;");
       fprintf(Outfile,(char*)"%s\n"," int c = 0, cnt=-1, cnt2;");
-      fprintf(Outfile,(char*)"%s\n"," char A[65535];");
+      fprintf(Outfile,(char*)"%s\n"," char A[32768];");
       fprintf(Outfile,(char*)"%s\n"," int    *intptr    = (int *)Array;");
       fprintf(Outfile,(char*)"%s\n"," float  *floatptr  = (float *)Array;");
       fprintf(Outfile,(char*)"%s\n"," double *doubleptr = (double *)Array;");
@@ -18419,7 +18421,7 @@ void RunTimeFunctions (void)
       fprintf(Outfile,(char*)"%s\n","  int      *intptr;");
       fprintf(Outfile,(char*)"%s\n","  float    *floatptr;");
       fprintf(Outfile,(char*)"%s\n","  double   *doubleptr;");
-      fprintf(Outfile,(char*)"%s\n","  char     A[50][65535];");
+      fprintf(Outfile,(char*)"%s\n","  char     A[50][32768];");
       fprintf(Outfile,(char*)"%s\n","  va_list  marker;");
       fprintf(Outfile,(char*)"%s\n","  c = 0;");
       fprintf(Outfile,(char*)"%s%s%s\n","  d = Split(A,input,",enc(","),");");
@@ -18466,7 +18468,7 @@ void RunTimeFunctions (void)
     }
   if(Use_Split)
     {
-      fprintf(Outfile,(char*)"%s\n","int Split (char Buf[][65535], char *T, char *Delim, int Flg)");
+      fprintf(Outfile,(char*)"%s\n","int Split (char Buf[][32768], char *T, char *Delim, int Flg)");
       fprintf(Outfile,(char*)"%s\n","{");
       fprintf(Outfile,(char*)"%s\n","  int  Begin = 0;");
       fprintf(Outfile,(char*)"%s\n","  int  Count = 0;");
@@ -19242,7 +19244,7 @@ void StripCode (char *Arg)
    PCHAR  p2=Arg;
   int     asmFlag=0;
   int     eStr=0;
-  char sub_[2048];
+  char sub_[32768];
   while((*p2>8&&*p2<14)||*p2==32)
     {
       p2++;
@@ -19377,7 +19379,7 @@ void StripCode (char *Arg)
 
 void ProcSingleLineIf (int* ifFlag)
 {
-  char Tmp[2048];
+  char Tmp[32768];
   int     ifp;
   int     NdIfs;
   static int     EFlag;
@@ -19622,7 +19624,7 @@ int SpecialCaseHandler (char *Arg)
 {
   int     i;
   int     j;
-  char lsz[2048];
+  char lsz[32768];
   if(iMatchNQ(Arg," sub ")||iMatchNQ(Arg," function "))
     {
       return 0;
@@ -19900,8 +19902,8 @@ void InsertTokens (int PosAfter, int NumTokens, ...)
 void EmitExportDef (char *fs)
 {
   static int     beenhere;
-  char fname[2048];
-  char funcname[2048];
+  char fname[32768];
+  char funcname[32768];
   int     i;
   int     st=1;
   int     sz=0;
@@ -19956,7 +19958,7 @@ void EmitExportDef (char *fs)
 char * GetArg (int ArgNum, functionParse* fp)
 {
   char *BCX_RetStr={0};
-  char RetArg[2048];
+  char RetArg[32768];
   int     ArgEnd=fp->CommaPos[ArgNum]-1;
   int     ArgStart=fp->CommaPos[ArgNum-1]+1;
   *RetArg=0;
@@ -20039,16 +20041,16 @@ int SepFuncArgs (int Strt, functionParse* fp, int functionflag)
 PCHAR MakeDecProto (functionParse* fp)
 {
    functionParse  fpp;
-  char FunType[2048];
-  char AsType[2048];
-  char AsArrys[2048];
+  char FunType[32768];
+  char AsType[32768];
+  char AsArrys[32768];
   int     FoundAs;
   int     pointer=0;
   int     i;
   int     ii;
-  char OptValue[2048];
+  char OptValue[32768];
   int     OptFlag=0;
-  static char Proto[2048];
+  static char Proto[32768];
   static int     SubFunPtr;
   if(SubFunPtr)
     {
@@ -20096,7 +20098,7 @@ PCHAR MakeDecProto (functionParse* fp)
         {
           strcpy(Proto, join(4,FunType," ",Clean(Stk[3]),"("));
         }
-      char Var[2048];
+      char Var[32768];
       int     w;
       int     id;
       int     vt;
@@ -20277,7 +20279,7 @@ void AsmUnknownStructs (int CompArrays)
   int     InBrace=0;
   int     InStruct=0;
   int     i;
-  char sztemp[2048];
+  char sztemp[32768];
   for(i=2; i<=Ndx; i+=1)
     {
       if(CompArrays)
@@ -20342,7 +20344,7 @@ void EmitIfCond (char *CondType)
   int     ParCnt;
   int     Tmp;
   int     IsWhile=FALSE;
-  char szTest[2048];
+  char szTest[32768];
   TestString=DataType(Stk[2]);
   if(TestString==vt_STRVAR)
     {
@@ -20540,7 +20542,7 @@ NXTTOKEN:;
 
 void PrintGlobal (int A, int idx, char *Storage, char *P, char *VarName, char *VarDim)
 {
-  char VAR[2048];
+  char VAR[32768];
   for(;;)
   {
     if(A==vt_FILEPTR)
@@ -20565,7 +20567,7 @@ void PrintGlobal (int A, int idx, char *Storage, char *P, char *VarName, char *V
       {
         if(VarDim[0]==0)
           {
-            strcpy(VarDim,"[65535]");
+            strcpy(VarDim,"[32768]");
           }
         fprintf(Outfile,(char*)"%s%s%s%s%s%s\n",Storage,"char    ",P,VarName,VarDim,";");
         break;
@@ -20596,7 +20598,7 @@ void ReDirectFPrint (FILE* TgtFile, char *pat, ...)
 
 int IsReservedWord (char *match)
 {
-  char mat[2048];
+  char mat[32768];
   strcpy(mat,ucase(match));
   if(containedin(mat,ReservedWord)==0)
     {
